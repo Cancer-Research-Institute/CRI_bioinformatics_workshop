@@ -1,0 +1,1 @@
+Sitemap: https://crigrants.github.io/CRI_bioinformatics_workshop/sitemap.xml
