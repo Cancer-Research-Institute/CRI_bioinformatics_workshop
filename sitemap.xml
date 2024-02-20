@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/resources.html</loc>
-    <lastmod>2024-02-15T22:24:41.788Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/day2.html</loc>
-    <lastmod>2024-02-15T22:24:41.807Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/index.html</loc>
-    <lastmod>2024-02-15T22:24:41.751Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/about.html</loc>
-    <lastmod>2024-02-15T22:24:41.744Z</lastmod>
+    <lastmod>2024-02-20T16:14:33.451Z</lastmod>
   </url>
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/day1.html</loc>
-    <lastmod>2024-02-15T22:24:41.801Z</lastmod>
+    <lastmod>2024-02-20T16:14:33.451Z</lastmod>
+  </url>
+  <url>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/about.html</loc>
+    <lastmod>2024-02-20T16:14:33.451Z</lastmod>
+  </url>
+  <url>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/index.html</loc>
+    <lastmod>2024-02-20T16:14:33.451Z</lastmod>
+  </url>
+  <url>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/day2.html</loc>
+    <lastmod>2024-02-20T16:14:33.451Z</lastmod>
   </url>
 </urlset>

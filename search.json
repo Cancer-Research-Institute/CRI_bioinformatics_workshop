@@ -7,32 +7,6 @@
     "text": "Here are some additional resources for further reading:\n\nSingle Cell Best Practices\n\n\nRNA-seq Bioinformatics\n\n\nPrecision Medicine Bioinformatics\n\n\nOrchestrating Single-Cell Analysis with Bioconductor"
   },
   {
-    "objectID": "tutorials/day2.html",
-    "href": "tutorials/day2.html",
-    "title": "Day 2",
-    "section": "",
-    "text": "Clustering (PCA, UMAP)\n\n\nLinear regression, correlation\n\n\nPlotting these features\n\n\nCell type clustering\n\n\nCluster comparisons\n\n\nStatistics (ggpubr)",
-    "crumbs": [
-      "Home",
-      "Tutorials",
-      "Day 2"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CRI Bioinformatics Workshop 2024",
-    "section": "",
-    "text": "Welcome to the Cancer Research Institute Bioinformatics Workshop for 2024!\n\nTutorials\n\nDay 1\nDay 2\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "tutorials/day1.html",
     "href": "tutorials/day1.html",
     "title": "Day 1",
@@ -234,6 +208,32 @@
       "Home",
       "Tutorials",
       "Day 1"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CRI Bioinformatics Workshop 2024",
+    "section": "",
+    "text": "Welcome to the Cancer Research Institute Bioinformatics Workshop for 2024!\n\nTutorials\n\nDay 1\nDay 2\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "tutorials/day2.html",
+    "href": "tutorials/day2.html",
+    "title": "Day 2",
+    "section": "",
+    "text": "Clustering (PCA, UMAP)\n\n\nLinear regression, correlation\n\n\nPlotting these features\n\n\nCell type clustering\n\n\nCluster comparisons\n\n\nStatistics (ggpubr)",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Day 2"
     ]
   }
 ]
