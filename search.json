@@ -7,18 +7,18 @@
     "text": "Here are some additional resources for further reading:\n\nSingle Cell Best Practices\n\n\nRNA-seq Bioinformatics\n\n\nPrecision Medicine Bioinformatics\n\n\nOrchestrating Single-Cell Analysis with Bioconductor"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CRI Bioinformatics Workshop 2024",
-    "section": "",
-    "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nWorking with Seurat objects\nIntroduction to ggplot\nStatistics in R and ggpubr\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CRI Bioinformatics Workshop 2024",
+    "section": "",
+    "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nWorking with Seurat objects\nIntroduction to ggplot\nStatistics in R and ggpubr\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
   },
   {
     "objectID": "tutorials/introR.html",
