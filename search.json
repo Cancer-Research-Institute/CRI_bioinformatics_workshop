@@ -31,17 +31,17 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CRI Bioinformatics Workshop 2024",
-    "section": "",
-    "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nStatistics in R and ggpubr\nWorking with Seurat objects\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CRI Bioinformatics Workshop 2024",
+    "section": "",
+    "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nStatistics in R and ggpubr\nWorking with Seurat objects\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
   }
 ]
