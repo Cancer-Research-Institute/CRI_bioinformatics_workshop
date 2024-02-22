@@ -14,6 +14,7 @@
     "text": "RStudio is an integrated development environment (IDE) for R. It provides a user-friendly interface for coding, debugging, and data analysis. We use RStudio for its convenience and powerful features.\n\n\n\nConsole: Where you can directly type and execute R commands.\nScript Editor: Where you write and save your R scripts.\nEnvironment and History: Displays objects in your workspace and your command history.\nFiles and Plots: Helps manage files and view plots.\nPackages: Shows installed packages and allows you to install and load new ones.",
     "crumbs": [
       "Home",
+      "R Workshop",
       "Tutorials",
       "Introduction to R programming"
     ]
@@ -26,16 +27,10 @@
     "text": "Console: Where you can directly type and execute R commands.\nScript Editor: Where you write and save your R scripts.\nEnvironment and History: Displays objects in your workspace and your command history.\nFiles and Plots: Helps manage files and view plots.\nPackages: Shows installed packages and allows you to install and load new ones.",
     "crumbs": [
       "Home",
+      "R Workshop",
       "Tutorials",
       "Introduction to R programming"
     ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "index.html",
@@ -43,5 +38,12 @@
     "title": "CRI Bioinformatics Workshop 2024",
     "section": "",
     "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nStatistics in R and ggpubr\nWorking with Seurat objects\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   }
 ]
