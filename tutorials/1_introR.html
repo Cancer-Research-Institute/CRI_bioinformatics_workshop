@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CRI Bioinformatics Workshop - Statistics in R and ggpubr</title>
+<title>CRI Bioinformatics Workshop - Introduction to R programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -118,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basicplotting.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/statistics.html">Statistics in R and ggpubr</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/1_introR.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/1_introR.html">Introduction to R programming</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -141,44 +175,38 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/basicplotting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Basic plotting and statistics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clustering methods</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/introR.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/1_introR.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introduction to R programming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/plotting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to ggplot</span></a>
+  <a href="../tutorials/2_basicplotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic plotting and statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/qctrouble.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Batch effects, QC, and troubleshooting</span></a>
+  <a href="../tutorials/3_statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics in R and ggpubr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/seurat.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/4_seurat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Working with Seurat objects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/statistics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Statistics in R and ggpubr</span></a>
+  <a href="../tutorials/5_clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clustering methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/6_qctrouble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Batch effects, QC, and troubleshooting</span></a>
   </div>
 </li>
       </ul>
@@ -189,14 +217,31 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rstudio-introduction-and-interface-orientation" id="toc-rstudio-introduction-and-interface-orientation" class="nav-link active" data-scroll-target="#rstudio-introduction-and-interface-orientation">RStudio: Introduction and Interface Orientation</a>
+  <ul class="collapse">
+  <li><a href="#interface-orientation" id="toc-interface-orientation" class="nav-link" data-scroll-target="#interface-orientation">Interface Orientation</a></li>
+  </ul></li>
+  <li><a href="#packages-in-r" id="toc-packages-in-r" class="nav-link" data-scroll-target="#packages-in-r">Packages in R</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse">Tidyverse</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory">Working Directory</a></li>
+  <li><a href="#objects-variables-and-environment" id="toc-objects-variables-and-environment" class="nav-link" data-scroll-target="#objects-variables-and-environment">Objects, Variables, and Environment</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#reading-in-files" id="toc-reading-in-files" class="nav-link" data-scroll-target="#reading-in-files">Reading in Files</a></li>
+  <li><a href="#data-structures-and-reformatting" id="toc-data-structures-and-reformatting" class="nav-link" data-scroll-target="#data-structures-and-reformatting">Data Structures and Reformatting</a></li>
+  <li><a href="#merging-data" id="toc-merging-data" class="nav-link" data-scroll-target="#merging-data">Merging Data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basicplotting.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/statistics.html">Statistics in R and ggpubr</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/1_introR.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/1_introR.html">Introduction to R programming</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistics in R and ggpubr</h1>
+<h1 class="title">Introduction to R programming</h1>
 </div>
 
 
@@ -213,8 +258,77 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="rstudio-introduction-and-interface-orientation" class="level1">
+<h1>RStudio: Introduction and Interface Orientation</h1>
+<p><a href="https://www.rstudio.com/">RStudio</a> is an integrated development environment (IDE) for R. It provides a user-friendly interface for coding, debugging, and data analysis. We use RStudio for its convenience and powerful features.</p>
+<section id="interface-orientation" class="level2">
+<h2 class="anchored" data-anchor-id="interface-orientation">Interface Orientation</h2>
+<ul>
+<li><strong>Console</strong>: Where you can directly type and execute R commands.</li>
+<li><strong>Script Editor</strong>: Where you write and save your R scripts.</li>
+<li><strong>Environment and History</strong>: Displays objects in your workspace and your command history.</li>
+<li><strong>Files and Plots</strong>: Helps manage files and view plots.</li>
+<li><strong>Packages</strong>: Shows installed packages and allows you to install and load new ones.</li>
+</ul>
+</section>
+</section>
+<section id="packages-in-r" class="level1">
+<h1>Packages in R</h1>
+<p>A package is a collection of R functions, data, and compiled code. Packages provide a way to organize and share code, making it easier for users to access specific tools and functions.</p>
+</section>
+<section id="tidyverse" class="level1">
+<h1>Tidyverse</h1>
+<p><a href="https://www.tidyverse.org/">Tidyverse</a> is a collection of R packages designed for data science. It includes packages like <code>ggplot2</code> for data visualization and <code>dplyr</code> for data manipulation.</p>
+</section>
+<section id="working-directory" class="level1">
+<h1>Working Directory</h1>
+<p>The working directory is the folder where R looks for files. It’s important to set it correctly for consistency across Windows and Mac.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the working directory</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/your/path/to/directory"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the current working directory</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="objects-variables-and-environment" class="level1">
+<h1>Objects, Variables, and Environment</h1>
+<p>In R, objects are created to store data. Variables are used to name and reference these objects. The environment is the current workspace where objects and variables are stored.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a variable and storing data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_variable <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing objects in the environment</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<p>Functions in R perform specific tasks. They take input (arguments), perform operations, and return output.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of a function</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sum_of_numbers <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sum_of_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reading-in-files" class="level1">
+<h1>Reading in Files</h1>
+<p>Reading files is a crucial part of data analysis. R provides functions for reading various file formats.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading a CSV file into a data frame</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"my_data.csv"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading a Seurat object</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>my_seurat_object <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"my_seurat_object.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-structures-and-reformatting" class="level1">
+<h1>Data Structures and Reformatting</h1>
+<p>Understanding data structures is essential. R offers tools to manipulate and reformat data, such as converting between long and wide formats.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting data from long to wide</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">dcast</span>(long_data, id <span class="sc">~</span> variable, <span class="at">value.var =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="merging-data" class="level1">
+<h1>Merging Data</h1>
+<p>Merging allows combining data from different sources. This is common in analyzing biological data.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging two data frames</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(data1, data2, <span class="at">by =</span> <span class="st">"common_column"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,22 +7,8 @@
     "text": "Here are some additional resources for further reading:\n\nSingle Cell Best Practices\n\n\nRNA-seq Bioinformatics\n\n\nPrecision Medicine Bioinformatics\n\n\nOrchestrating Single-Cell Analysis with Bioconductor"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CRI Bioinformatics Workshop 2024",
-    "section": "",
-    "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nWorking with Seurat objects\nIntroduction to ggplot\nStatistics in R and ggpubr\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
-  },
-  {
-    "objectID": "tutorials/introR.html",
-    "href": "tutorials/introR.html",
+    "objectID": "tutorials/1_introR.html",
+    "href": "tutorials/1_introR.html",
     "title": "Introduction to R programming",
     "section": "",
     "text": "RStudio is an integrated development environment (IDE) for R. It provides a user-friendly interface for coding, debugging, and data analysis. We use RStudio for its convenience and powerful features.\n\n\n\nConsole: Where you can directly type and execute R commands.\nScript Editor: Where you write and save your R scripts.\nEnvironment and History: Displays objects in your workspace and your command history.\nFiles and Plots: Helps manage files and view plots.\nPackages: Shows installed packages and allows you to install and load new ones.",
@@ -33,8 +19,8 @@
     ]
   },
   {
-    "objectID": "tutorials/introR.html#interface-orientation",
-    "href": "tutorials/introR.html#interface-orientation",
+    "objectID": "tutorials/1_introR.html#interface-orientation",
+    "href": "tutorials/1_introR.html#interface-orientation",
     "title": "Introduction to R programming",
     "section": "",
     "text": "Console: Where you can directly type and execute R commands.\nScript Editor: Where you write and save your R scripts.\nEnvironment and History: Displays objects in your workspace and your command history.\nFiles and Plots: Helps manage files and view plots.\nPackages: Shows installed packages and allows you to install and load new ones.",
@@ -43,5 +29,19 @@
       "Tutorials",
       "Introduction to R programming"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CRI Bioinformatics Workshop 2024",
+    "section": "",
+    "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!\n\nR Workshop\n\nIntroduction to R programming\nBasic plotting and statistics\nStatistics in R and ggpubr\nWorking with Seurat objects\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk DNA/RNA sequencing\n\n\nSingle cell RNA sequencing\n\n\nImaging"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   }
 ]
