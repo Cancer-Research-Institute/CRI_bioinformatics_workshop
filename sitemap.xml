@@ -2,50 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/resources.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/basicplotting.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <lastmod>2024-02-15T22:24:41.788Z</lastmod>
   </url>
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/statistics.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <lastmod>2024-02-22T17:25:24.752Z</lastmod>
   </url>
   <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/day2.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/basicplotting.html</loc>
+    <lastmod>2024-02-22T17:24:20.096Z</lastmod>
   </url>
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/seurat.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/index.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <lastmod>2024-02-22T17:25:13.581Z</lastmod>
   </url>
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/about.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <lastmod>2024-02-15T22:24:41.744Z</lastmod>
   </url>
   <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/plotting.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/day1.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/index.html</loc>
+    <lastmod>2024-02-22T17:18:42.298Z</lastmod>
   </url>
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/clustering.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
-  </url>
-  <url>
-    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/introR.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <lastmod>2024-02-22T17:25:29.688Z</lastmod>
   </url>
   <url>
     <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/qctrouble.html</loc>
-    <lastmod>2024-02-22T17:26:19.207Z</lastmod>
+    <lastmod>2024-02-22T17:25:33.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/introR.html</loc>
+    <lastmod>2024-02-22T17:24:21.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://crigrants.github.io/CRI_bioinformatics_workshop/tutorials/plotting.html</loc>
+    <lastmod>2024-02-22T17:25:18.361Z</lastmod>
   </url>
 </urlset>
