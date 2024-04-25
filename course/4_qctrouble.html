@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CRI Bioinformatics Workshop - Batch effects, QC, and troubleshooting</title>
+<title>CRI Bioinformatics Workshop - Common challenges and additional resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/1_introR.html">Course</a></li><li class="breadcrumb-item"><a href="../course/4_qctrouble.html">Batch effects, QC, and troubleshooting</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/1_introR.html">Course</a></li><li class="breadcrumb-item"><a href="../course/4_qctrouble.html">Common challenges and additional resources</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -170,13 +170,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course/3_clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistics in R and ggpubr</span></a>
+ <span class="menu-text">Clustering concepts and correlation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course/4_qctrouble.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Batch effects, QC, and troubleshooting</span></a>
+ <span class="menu-text">Common challenges and additional resources</span></a>
   </div>
 </li>
       </ul>
@@ -187,14 +187,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#where-do-i-go-for-help" id="toc-where-do-i-go-for-help" class="nav-link active" data-scroll-target="#where-do-i-go-for-help">Where do I go for help?</a>
+  <ul class="collapse">
+  <li><a href="#stack-exchange" id="toc-stack-exchange" class="nav-link" data-scroll-target="#stack-exchange">Stack Exchange</a></li>
+  <li><a href="#chatgpt" id="toc-chatgpt" class="nav-link" data-scroll-target="#chatgpt">ChatGPT</a></li>
+  </ul></li>
+  <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices">Good practices</a>
+  <ul class="collapse">
+  <li><a href="#commenting-your-code" id="toc-commenting-your-code" class="nav-link" data-scroll-target="#commenting-your-code">Commenting your code</a></li>
+  <li><a href="#publicly-accessible-resources" id="toc-publicly-accessible-resources" class="nav-link" data-scroll-target="#publicly-accessible-resources">Publicly accessible resources</a>
+  <ul class="collapse">
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">Github</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#where-do-i-go-for-practice" id="toc-where-do-i-go-for-practice" class="nav-link" data-scroll-target="#where-do-i-go-for-practice">Where do I go for practice?</a>
+  <ul class="collapse">
+  <li><a href="#codefights" id="toc-codefights" class="nav-link" data-scroll-target="#codefights">CodeFights</a></li>
+  </ul></li>
+  <li><a href="#how-do-i-apply-the-code-ive-learned-to-my-own-data" id="toc-how-do-i-apply-the-code-ive-learned-to-my-own-data" class="nav-link" data-scroll-target="#how-do-i-apply-the-code-ive-learned-to-my-own-data">How do I apply the code I’ve learned to my own data?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/1_introR.html">Course</a></li><li class="breadcrumb-item"><a href="../course/4_qctrouble.html">Batch effects, QC, and troubleshooting</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/1_introR.html">Course</a></li><li class="breadcrumb-item"><a href="../course/4_qctrouble.html">Common challenges and additional resources</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Batch effects, QC, and troubleshooting</h1>
+<h1 class="title">Common challenges and additional resources</h1>
 </div>
 
 
@@ -211,8 +234,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="where-do-i-go-for-help" class="level1">
+<h1>Where do I go for help?</h1>
+<p>In other words, how do I learn what to Google…</p>
+<section id="stack-exchange" class="level2">
+<h2 class="anchored" data-anchor-id="stack-exchange">Stack Exchange</h2>
+</section>
+<section id="chatgpt" class="level2">
+<h2 class="anchored" data-anchor-id="chatgpt">ChatGPT</h2>
+</section>
+</section>
+<section id="good-practices" class="level1">
+<h1>Good practices</h1>
+<section id="commenting-your-code" class="level2">
+<h2 class="anchored" data-anchor-id="commenting-your-code">Commenting your code</h2>
+</section>
+<section id="publicly-accessible-resources" class="level2">
+<h2 class="anchored" data-anchor-id="publicly-accessible-resources">Publicly accessible resources</h2>
+<section id="github" class="level3">
+<h3 class="anchored" data-anchor-id="github">Github</h3>
+</section>
+</section>
+</section>
+<section id="where-do-i-go-for-practice" class="level1">
+<h1>Where do I go for practice?</h1>
+<section id="codefights" class="level2">
+<h2 class="anchored" data-anchor-id="codefights">CodeFights</h2>
+</section>
+</section>
+<section id="how-do-i-apply-the-code-ive-learned-to-my-own-data" class="level1">
+<h1>How do I apply the code I’ve learned to my own data?</h1>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

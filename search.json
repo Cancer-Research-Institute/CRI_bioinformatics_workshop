@@ -7,6 +7,17 @@
     "text": "Welcome to the Cancer Research Institute Bioinformatics Bootcamp!"
   },
   {
+    "objectID": "course/3_clustering.html",
+    "href": "course/3_clustering.html",
+    "title": "Clustering concepts and correlation",
+    "section": "",
+    "text": "Dimensionality Reduction\n\n\nClustering",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
     "objectID": "course/1_introR.html",
     "href": "course/1_introR.html",
     "title": "Introduction to R",
@@ -56,6 +67,17 @@
     "title": "Introduction to R",
     "section": "Integer",
     "text": "Integer\n# Integer variable\nint_var &lt;- 20L  # The 'L' suffix indicates an integer\nprint(int_var)  # Output: 20\n\n# Integer arithmetic\nresult &lt;- int_var / 5\nprint(result)  # Output: 4",
+    "crumbs": [
+      "Course",
+      "Introduction to R"
+    ]
+  },
+  {
+    "objectID": "course/1_introR.html#matrices",
+    "href": "course/1_introR.html#matrices",
+    "title": "Introduction to R",
+    "section": "Matrices",
+    "text": "Matrices\nGene expression data from single-cell RNA sequencing (scRNA-seq) experiments is typically represented as a matrix, where rows correspond to genes and columns correspond to cells. Each cell contains the expression level of a gene, quantified as counts or normalized values. In R, there are several matrix data types commonly used for storing and manipulating gene expression data:\n\nMatrix (matrix): The basic matrix data type in R. It is a two-dimensional array with elements of the same data type.\nData Frame (data.frame): A special type of matrix where columns can contain different data types (e.g., numeric, character, factor). Data frames are commonly used for storing tabular data, including gene expression matrices with additional metadata.\nSparse Matrix (Matrix package): A matrix format optimized for storing large, sparse datasets with many zero values. It conserves memory and speeds up computation for large-scale analyses.\n\n\nBasic Operations on Matrix Objects\n\nCreating a Matrix:\n# Create a matrix with random values\nmat &lt;- matrix(rnorm(20), nrow = 4, ncol = 5)\nMatrix operations\nelement &lt;- mat[1, 2]\n\n# Calculate row sums\nrow_sums &lt;- rowSums(mat)\n\n# Calculate column sums\ncol_sums &lt;- colSums(mat)\n\n# Create another matrix\nmat2 &lt;- matrix(rnorm(20), nrow = 5, ncol = 4)\n\n# Perform matrix multiplication\nmat_mult &lt;- mat %*% mat2\n\n# Transpose the matrix\nmat_transpose &lt;- t(mat)\n\n# Select the first two rows\nfirst_two_rows &lt;- mat[1:2, ]\n\n# Select the first three columns\nfirst_three_cols &lt;- mat[, 1:3]",
     "crumbs": [
       "Course",
       "Introduction to R"
@@ -183,6 +205,17 @@
     ]
   },
   {
+    "objectID": "course/1_introR.html#tidyverse",
+    "href": "course/1_introR.html#tidyverse",
+    "title": "Introduction to R",
+    "section": "Tidyverse",
+    "text": "Tidyverse\nTidyverse is a collection of R packages designed for data science. It includes packages like ggplot2 for data visualization and dplyr for data manipulation.\n\nTidyverse Data Frames\nTidyverse is a collection of R packages designed for data science, developed with a focus on simplicity, consistency, and ease of use. One of the key components of Tidyverse is the concept of tidy data frames.\nA tidyverse data frame is a rectangular table-like structure where: - Each row represents an observation. - Each column represents a variable. - Each cell holds a single value.\n\n\nPrinciples of Tidy Data:\n\nEach variable forms a column: In a tidy data frame, each variable is placed in its own column. This makes it easy to work with the dataset as each variable is explicitly represented.\nEach observation forms a row: Each row corresponds to a distinct observation, entity, or case. This makes it straightforward to perform operations on individual observations.\nEach type of observational unit forms a table: Different types of data should be stored in separate tables, with relationships between tables represented using unique identifiers.\n\n\n\nWhy Tidy Data Frames are Important:\n\nEase of Analysis: Tidy data frames make it easier to perform data manipulation, visualization, and analysis using Tidyverse packages such as dplyr, ggplot2, and tidyr.\nReadability and Interpretability: Tidy data frames have a consistent structure, making it easier for others to understand and interpret your data.\nEfficiency: Tidy data frames facilitate efficient and concise code, reducing the complexity of data manipulation tasks.\n\n\n\nTidyverse Packages for Data Manipulation:\n\ndplyr: Provides a grammar of data manipulation for data frames, enabling easy filtering, selecting, mutating, summarizing, and arranging of data.\ntidyr: Offers tools for reshaping and tidying messy datasets, such as gather() and spread() functions for converting between wide and long formats.\nggplot2: Allows for the creation of sophisticated data visualizations using a layered grammar of graphics.\n\n# Example dataset\ndata &lt;- data.frame(\n  ID = 1:3,\n  Name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  Math = c(90, 85, 95),\n  Science = c(88, 92, 89)\n)\n\n# Original dataset\nprint(\"Original dataset:\")\nprint(data)\n\n# Tidy the dataset using gather() function from tidyr\ntidy_data &lt;- gather(data, Subject, Score, -ID, -Name)\n\n# Tidied dataset\nprint(\"Tidied dataset:\")\nprint(tidy_data)",
+    "crumbs": [
+      "Course",
+      "Introduction to R"
+    ]
+  },
+  {
     "objectID": "course/1_introR.html#selecting-columns",
     "href": "course/1_introR.html#selecting-columns",
     "title": "Introduction to R",
@@ -260,105 +293,6 @@
     ]
   },
   {
-    "objectID": "course/1_introR.html#long-and-wide-data-formats",
-    "href": "course/1_introR.html#long-and-wide-data-formats",
-    "title": "Introduction to R",
-    "section": "Long and Wide Data Formats",
-    "text": "Long and Wide Data Formats\nLong and wide data formats are two common ways of structuring data, each with its own advantages and use cases.\n\nLong Format\nIn the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having: - Multiple rows, each corresponding to a single observation or measurement. - One column for the variable being measured. - Additional columns to store metadata or grouping variables.\nAdvantages: - Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R. - Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.\n\n\nWide Format\nIn the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by: - One row per observation. - Each variable is represented by a separate column.\nAdvantages: - Can be easier to understand for simple datasets with few variables. - May be more convenient for certain types of analysis or visualization.\n\n\nChoosing Between Long and Wide Formats\nThe choice between long and wide formats depends on factors such as the nature of the data, the analysis tasks, and personal preference. Long format is often preferred for its flexibility and compatibility with modern data analysis tools, while wide format may be suitable for simpler datasets or specific analysis requirements.",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#long-to-wide",
-    "href": "course/1_introR.html#long-to-wide",
-    "title": "Introduction to R",
-    "section": "Long to Wide",
-    "text": "Long to Wide\nlibrary(tidyr)\n\n# Example long format data\nlong_data &lt;- data.frame(\n  Subject = c(\"A\", \"A\", \"B\", \"B\"),\n  Time = c(1, 2, 1, 2),\n  Measurement = c(10, 15, 12, 18)\n)\n\n# Convert long format data to wide format\nwide_data &lt;- spread(long_data, key = Time, value = Measurement)\n\n# View the wide format data\nprint(wide_data)",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#wide-to-long",
-    "href": "course/1_introR.html#wide-to-long",
-    "title": "Introduction to R",
-    "section": "Wide to Long",
-    "text": "Wide to Long\nlibrary(tidyr)\n\n# Example wide format data\nwide_data &lt;- data.frame(\n  Subject = c(\"A\", \"B\"),\n  Time1 = c(10, 12),\n  Time2 = c(15, 18)\n)\n\n# Convert wide format data to long format\nlong_data &lt;- gather(wide_data, key = Time, value = Measurement, -Subject)\n\n# View the long format data\nprint(long_data)",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#ggplot2",
-    "href": "course/1_introR.html#ggplot2",
-    "title": "Introduction to R",
-    "section": "ggplot2",
-    "text": "ggplot2\nThe core idea behind ggplot2 is the concept of a “grammar of graphics”. This concept provides a systematic way to describe and build graphical presentations such as charts and plots. The grammar itself is a set of independent components that can be composed in many different ways. This grammar includes elements like:\n\nData: The raw data that you want to visualize.\nAesthetics (aes): Defines how data are mapped to color, size, shape, and other visual properties.\nGeometries (geom): The geometric objects in a plot—lines, points, bars, etc.\nScales: Transformations applied to data before it is visualized, including scales for colors, sizes, and shapes.\nCoordinate systems: The space in which data is plotted.\nFacets: Used for creating plots with multiple panels (small multiple plots).\nStatistical transformations (stat): Summary statistics that can be applied to data before it is visualized, such as counting or averaging.\nThemes: Visual styles and layout configurations for the plot.\n\nHere’s how you generally use ggplot2 to create a plot:\n\nStart with ggplot(): Set up the data and, optionally, define default mappings between variables and their aesthetics.\nAdd layers: Add layers to the plot using geom_ functions, such as geom_point() for scatter plots, geom_line() for line graphs, and so on.\n\nAdjust the scales: Customize the scales used for aesthetics such as color, size, and x-y coordinates.\nModify the coordinate system: Choose a coordinate system.\nAdd facets: If necessary, add facets to create a multi-panel plot.\nApply a theme: Customize the appearance of the plot using themes.\n\nlibrary(ggplot2)\n\n# Sample data\ndf &lt;- data.frame(\n  x = rnorm(100),\n  y = rnorm(100),\n  group = factor(rep(1:2, each = 50))\n)\n\n# Creating a scatter plot\nggplot(df, aes(x = x, y = y, color = group)) + \n  geom_point() +\n  theme_minimal() +\n  labs(title = \"Scatter Plot Example\", x = \"X Axis\", y = \"Y Axis\")",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#histogram",
-    "href": "course/1_introR.html#histogram",
-    "title": "Introduction to R",
-    "section": "Histogram",
-    "text": "Histogram\nLet’s simulate some TCR clonotype data. We will create a dataset where each TCR has a randomly generated number of cells associated with it, representing the clone size. After generating the data, we’ll use the hist() function from base R to plot a histogram of the clone sizes.\nlibrary(dplyr)\n\n# Step 1: Simulate data\nset.seed(123)  # Set seed for reproducibility\nnum_clonotypes &lt;- 100  # Specify the number of different clonotypes\n\n# Create a data frame with random cell counts for each clonotype\ntcr_data &lt;- tibble(\n  clonotype = paste(\"TCR\", seq_len(num_clonotypes), sep=\"\"),\n  cell_count = sample(1:1000, num_clonotypes, replace=TRUE)  # Random cell counts between 1 and 1000\n)\n\n# Step 2: Create a histogram of clone sizes\nhist(tcr_data$cell_count, \n     breaks=20,  # You can adjust the number of breaks to change bin sizes\n     col=\"skyblue\", \n     main=\"Histogram of TCR Clone Sizes\", \n     xlab=\"Clone Size (Number of Cells)\", \n     ylab=\"Frequency\")\nWe can perform the same task using ggplot2:\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Step 1: Simulate data\nset.seed(123)  # Set seed for reproducibility\nnum_clonotypes &lt;- 100  # Specify the number of different clonotypes\n\n# Create a data frame with random cell counts for each clonotype\ntcr_data &lt;- tibble(\n  clonotype = paste(\"TCR\", seq_len(num_clonotypes), sep=\"\"),\n  cell_count = sample(1:1000, num_clonotypes, replace=TRUE)  # Random cell counts between 1 and 1000\n)\n\n# Step 2: Create a histogram using ggplot2\nggplot(tcr_data, aes(x = cell_count)) + \n  geom_histogram(bins = 20, fill = \"skyblue\", color = \"black\") + \n  theme_minimal() + \n  labs(\n    title = \"Histogram of TCR Clone Sizes\",\n    x = \"Clone Size (Number of Cells)\",\n    y = \"Frequency\"\n  ) + \n  theme(\n    plot.title = element_text(hjust = 0.5)  # Center the plot title\n  )",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#boxplot",
-    "href": "course/1_introR.html#boxplot",
-    "title": "Introduction to R",
-    "section": "Boxplot",
-    "text": "Boxplot\nLet’s simulate some gene expression data for key CD8 T cell genes.\nlibrary(tidyverse)\nlibrary(MASS)  # For negative binomial simulation\n\n# Define genes and number of cells\ngenes &lt;- c(\"GZMB\", \"GZMA\", \"GNLY\", \"PRF1\", \"TOX\", \"ENTPD1\", \"LAG3\", \"TIGIT\", \"HAVCR2\", \"TIGIT\", \"CXCL13\", \"IL7R\", \"SELL\", \"LEF1\", \"TCF7\")\nnum_cells &lt;- 20\n\n# Parameters for negative binomial\nsize &lt;- 2  # Dispersion parameter\nmu_pre &lt;- 20  # Mean for pre-treatment\nmu_post &lt;- 30  # Mean for post-treatment\n\n# Simulate gene expression data\nset.seed(42)\npre_treatment &lt;- sapply(rep(mu_pre, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))\npost_treatment &lt;- sapply(rep(mu_post, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))\n\n# Format as data frame\npre_data &lt;- as_tibble(pre_treatment, .name_repair = \"minimal\") %&gt;% \n  mutate(Treatment = \"Pre\") %&gt;% \n  pivot_longer(cols = -Treatment, names_to = \"Gene\", values_to = \"Expression\", names_prefix = \"V\")\n\npost_data &lt;- as_tibble(post_treatment, .name_repair = \"minimal\") %&gt;% \n  mutate(Treatment = \"Post\") %&gt;% \n  pivot_longer(cols = -Treatment, names_to = \"Gene\", values_to = \"Expression\", names_prefix = \"V\")\n\n# Combine the datasets\ncombined_data &lt;- bind_rows(pre_data, post_data)\nNow let’s use this data to build a boxplot of TOX expression pre and post treatment.\n# Filter data for the TOX gene\ntox_data &lt;- combined_data %&gt;% \n  filter(Gene == \"TOX\")\n\n# Plot\nggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +\n  geom_boxplot() +\n  labs(title=\"Expression of TOX pre and post treatment\", x=\"Treatment Condition\", y=\"Expression Level\") +\n  theme_minimal() +\n  scale_fill_brewer(palette=\"Pastel1\")  # Enhance aesthetics with color",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#violin-plot",
-    "href": "course/1_introR.html#violin-plot",
-    "title": "Introduction to R",
-    "section": "Violin plot",
-    "text": "Violin plot\nSame thing a violin plot.\nlibrary(ggplot2)\n\n# Filter data for the TOX gene\ntox_data &lt;- combined_data %&gt;% \n  filter(Gene == \"TOX\")\n\n# Create the violin plot\nggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +\n  geom_violin(trim=FALSE) +  # Trim set to FALSE to show the full range of data\n  labs(title=\"Expression of TOX pre and post treatment\", x=\"Treatment Condition\", y=\"Expression Level\") +\n  theme_minimal() +\n  scale_fill_brewer(palette=\"Pastel1\") +\n  geom_boxplot(width=0.1, fill=\"white\")  # Overlay boxplot to show median and quartiles",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#t-test",
-    "href": "course/1_introR.html#t-test",
-    "title": "Introduction to R",
-    "section": "t-Test",
-    "text": "t-Test\nA t-test could be used to compare the means of two groups, for example, the level of a specific immune marker in patients with and without a certain mutation.\nR\nCopy code\n# Randomly generated sample data: Immune marker levels in two patient groups\ngroup1 &lt;- rnorm(30, mean = 5, sd = 1.5) # Patients with a mutation\ngroup2 &lt;- rnorm(30, mean = 4.5, sd = 1.2) # Patients without the mutation\n\n# Perform a t-test\ntest &lt;- t.test(group1, group2)\n\n# Print the result\nprint(test)",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
-    "objectID": "course/1_introR.html#fishers-exact-test",
-    "href": "course/1_introR.html#fishers-exact-test",
-    "title": "Introduction to R",
-    "section": "Fisher’s Exact Test",
-    "text": "Fisher’s Exact Test\nAssume you’ve identified a TCR clonotype and quantified the number of cells expressing this clonotype at two timepoints:\n\nTimepoint 1 (Pre-treatment): X number of cells\nTimepoint 2 (Post-treatment): Y number of cells\n\nYou also need the total number of cells sequenced at each timepoint to complete the contingency table for the Fisher’s Exact Test. Let’s say:\n\nTotal cells at Timepoint 1: N_pre\nTotal cells at Timepoint 2: N_post\n\n# Number of cells with the specific clonotype at each timepoint\ncells_with_clone &lt;- c(X, Y)  \n\n# Number of cells without the clonotype (total cells minus cells with the clonotype)\ncells_without_clone &lt;- c(N_pre - X, N_post - Y)\n\n# Create the contingency table\ndata &lt;- matrix(c(cells_with_clone, cells_without_clone), ncol = 2,\n              dimnames = list(c(\"With Clone\", \"Without Clone\"),\n                              c(\"Pre-Treatment\", \"Post-Treatment\")))\n\n# Perform Fisher's Exact Test\ntest &lt;- fisher.test(data)\n\n# Print the result\nprint(test)\n\nThe matrix data has two rows (“With Clone” and “Without Clone”) and two columns (“Pre-Treatment” and “Post-Treatment”). This matrix is filled with the counts of cells with and without the specific TCR clonotype at each timepoint.\nfisher.test(data) calculates whether the proportions of cells with the clonotype are significantly different between the two timepoints.\nThe output includes a p-value which indicates the probability that any observed difference in proportions occurred by chance.",
-    "crumbs": [
-      "Course",
-      "Introduction to R"
-    ]
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -394,10 +328,164 @@
     "text": "The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 2024 at the Hilton Bonnett Creek, Orlando FL.\n\n\n\n\n\n\n\n\n\n\nDay\nTime\nDuration\nModule\nTopic\n\n\n\n\n1 (Sat)\n9:00AM-9:30AM\n0:30\nR Workshop\nIntroduction to R and RStudio\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Reading, writing, and interpreting data structures\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nIntroduction to plotting and statistics\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Plotting information from data structures for real-time analysis\n\n\n2 (Sun)\n9:00AM-9:30AM\n0:30\nR Workshop\nTypes of analysis: Clustering concepts and correlation\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Dimension reduction methods, computing correlation\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nCommon challenges and resources\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Creating different types of plots, continued practice\n\n\n3 (Mon)\n9:00AM-9:45AM\n0:45\nBulk DNA/RNA sequencing\nIntroduction to sequencing data processing and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to rnabio.org\n\n\n\n10:30AM-10:45AM\n0:15\n\nIntroduction to bulk RNAseq dataset\n\n\n\n10:45AM-11:30AM\n0:45\n\nHands-on: Exploring RNAseq data in IGV\n\n\n\n11:30AM-12:00PM\n0:30\n\nHands-on: DE analysis with DESeq2\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: DE visualization with DESeq2\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:00PM\n1:00\n\nHands-on: DE visualization advanced\n\n\n\n3:00PM-4:00PM\n1:00\n\nHands-on: Pathway analysis\n\n\n\n4:00PM-4:45PM\n0:45\n\nHands-on: Batch correction\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 3 Summary/Questions\n\n\n4 (Tue)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nIntroduction to scRNAseq methods and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to scRNAseq dataset and loupe demonstration\n\n\n\n10:45AM-12:00PM\n1:15\n\nHands-on: Quality assesment and clustering\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: Cell typing\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:30PM\n1:30\n\nHands-on: DE analysis\n\n\n\n3:30PM-4:45PM\n1:15\n\nHands-on: Gene set and regulatory pathway\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 4 Summary/Questions\n\n\n5 (Wed)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nAdvanced analyses in scRNAseq and multi-omic integration\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-12:00PM\n2:00\n\nHands-on: Cancer cell identification\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:30PM\n1:30\n\nHands-on: Trajectory analysis\n\n\n\n2:30PM-2:45PM\n0:15\n\nBreak\n\n\n\n2:45PM-4:00PM\n1:15\n\nHands-on: TCR/BCR analysis\n\n\n\n4:00PM-4:30PM\n0:30\n\nvLoupe Browser demonstration\n\n\n\n4:30PM-5:00PM\n0:30\n\nDay 5 Summary/Questions\n\n\n6 (Thu)\n9:00AM-9:45AM\n0:45\nImaging\nOverview of spatial biology, types of imaging, experimental planning\n\n\n\n10:00AM-10:30AM\n0:30\n\nImaging file types, visualization platforms\n\n\n\n10:30AM-10:45AM\n0:15\n\nBreak\n\n\n\n10:45AM-11:30PM\n0:45\n\nHands-on: Exploring datasets\n\n\n\n11:30AM-12:00PM\n0:30\n\nMini-lecture and hands-on: Introduction to python\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:00PM\n1:00\n\nQuantifying spatial features from imaging data\n\n\n\n2:00PM-3:45PM\n1:45\n\nHands-on: Spatial feature extraction\n\n\n\n3:45PM-4:00PM\n0:15\nConclusion\nClosing and feedback"
   },
   {
+    "objectID": "course/4_qctrouble.html",
+    "href": "course/4_qctrouble.html",
+    "title": "Common challenges and additional resources",
+    "section": "",
+    "text": "In other words, how do I learn what to Google…",
+    "crumbs": [
+      "Course",
+      "Common challenges and additional resources"
+    ]
+  },
+  {
+    "objectID": "course/4_qctrouble.html#commenting-your-code",
+    "href": "course/4_qctrouble.html#commenting-your-code",
+    "title": "Common challenges and additional resources",
+    "section": "Commenting your code",
+    "text": "Commenting your code",
+    "crumbs": [
+      "Course",
+      "Common challenges and additional resources"
+    ]
+  },
+  {
+    "objectID": "course/4_qctrouble.html#publicly-accessible-resources",
+    "href": "course/4_qctrouble.html#publicly-accessible-resources",
+    "title": "Common challenges and additional resources",
+    "section": "Publicly accessible resources",
+    "text": "Publicly accessible resources\n\nGithub",
+    "crumbs": [
+      "Course",
+      "Common challenges and additional resources"
+    ]
+  },
+  {
+    "objectID": "course/4_qctrouble.html#codefights",
+    "href": "course/4_qctrouble.html#codefights",
+    "title": "Common challenges and additional resources",
+    "section": "CodeFights",
+    "text": "CodeFights",
+    "crumbs": [
+      "Course",
+      "Common challenges and additional resources"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html",
+    "href": "course/2_basicplotting.html",
+    "title": "Basic plotting and statistics",
+    "section": "",
+    "text": "Long and wide data formats are two common ways of structuring data, each with its own advantages and use cases.\n\n\nIn the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having: - Multiple rows, each corresponding to a single observation or measurement. - One column for the variable being measured. - Additional columns to store metadata or grouping variables.\nAdvantages: - Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R. - Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.\n\n\n\nIn the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by: - One row per observation. - Each variable is represented by a separate column.\nAdvantages: - Can be easier to understand for simple datasets with few variables. - May be more convenient for certain types of analysis or visualization.\n\n\n\nThe choice between long and wide formats depends on factors such as the nature of the data, the analysis tasks, and personal preference. Long format is often preferred for its flexibility and compatibility with modern data analysis tools, while wide format may be suitable for simpler datasets or specific analysis requirements.",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#long-and-wide-data-formats",
+    "href": "course/2_basicplotting.html#long-and-wide-data-formats",
+    "title": "Basic plotting and statistics",
+    "section": "",
+    "text": "Long and wide data formats are two common ways of structuring data, each with its own advantages and use cases.\n\n\nIn the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having: - Multiple rows, each corresponding to a single observation or measurement. - One column for the variable being measured. - Additional columns to store metadata or grouping variables.\nAdvantages: - Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R. - Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.\n\n\n\nIn the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by: - One row per observation. - Each variable is represented by a separate column.\nAdvantages: - Can be easier to understand for simple datasets with few variables. - May be more convenient for certain types of analysis or visualization.\n\n\n\nThe choice between long and wide formats depends on factors such as the nature of the data, the analysis tasks, and personal preference. Long format is often preferred for its flexibility and compatibility with modern data analysis tools, while wide format may be suitable for simpler datasets or specific analysis requirements.",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#long-to-wide",
+    "href": "course/2_basicplotting.html#long-to-wide",
+    "title": "Basic plotting and statistics",
+    "section": "Long to Wide",
+    "text": "Long to Wide\nlibrary(tidyr)\n\n# Example long format data\nlong_data &lt;- data.frame(\n  Subject = c(\"A\", \"A\", \"B\", \"B\"),\n  Time = c(1, 2, 1, 2),\n  Measurement = c(10, 15, 12, 18)\n)\n\n# Convert long format data to wide format\nwide_data &lt;- spread(long_data, key = Time, value = Measurement)\n\n# View the wide format data\nprint(wide_data)",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#wide-to-long",
+    "href": "course/2_basicplotting.html#wide-to-long",
+    "title": "Basic plotting and statistics",
+    "section": "Wide to Long",
+    "text": "Wide to Long\nlibrary(tidyr)\n\n# Example wide format data\nwide_data &lt;- data.frame(\n  Subject = c(\"A\", \"B\"),\n  Time1 = c(10, 12),\n  Time2 = c(15, 18)\n)\n\n# Convert wide format data to long format\nlong_data &lt;- gather(wide_data, key = Time, value = Measurement, -Subject)\n\n# View the long format data\nprint(long_data)",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#ggplot2",
+    "href": "course/2_basicplotting.html#ggplot2",
+    "title": "Basic plotting and statistics",
+    "section": "ggplot2",
+    "text": "ggplot2\nThe core idea behind ggplot2 is the concept of a “grammar of graphics”. This concept provides a systematic way to describe and build graphical presentations such as charts and plots. The grammar itself is a set of independent components that can be composed in many different ways. This grammar includes elements like:\n\nData: The raw data that you want to visualize.\nAesthetics (aes): Defines how data are mapped to color, size, shape, and other visual properties.\nGeometries (geom): The geometric objects in a plot—lines, points, bars, etc.\nScales: Transformations applied to data before it is visualized, including scales for colors, sizes, and shapes.\nCoordinate systems: The space in which data is plotted.\nFacets: Used for creating plots with multiple panels (small multiple plots).\nStatistical transformations (stat): Summary statistics that can be applied to data before it is visualized, such as counting or averaging.\nThemes: Visual styles and layout configurations for the plot.\n\nHere’s how you generally use ggplot2 to create a plot:\n\nStart with ggplot(): Set up the data and, optionally, define default mappings between variables and their aesthetics.\nAdd layers: Add layers to the plot using geom_ functions, such as geom_point() for scatter plots, geom_line() for line graphs, and so on.\n\nAdjust the scales: Customize the scales used for aesthetics such as color, size, and x-y coordinates.\nModify the coordinate system: Choose a coordinate system.\nAdd facets: If necessary, add facets to create a multi-panel plot.\nApply a theme: Customize the appearance of the plot using themes.\n\nlibrary(ggplot2)\n\n# Sample data\ndf &lt;- data.frame(\n  x = rnorm(100),\n  y = rnorm(100),\n  group = factor(rep(1:2, each = 50))\n)\n\n# Creating a scatter plot\nggplot(df, aes(x = x, y = y, color = group)) + \n  geom_point() +\n  theme_minimal() +\n  labs(title = \"Scatter Plot Example\", x = \"X Axis\", y = \"Y Axis\")",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#histogram",
+    "href": "course/2_basicplotting.html#histogram",
+    "title": "Basic plotting and statistics",
+    "section": "Histogram",
+    "text": "Histogram\nLet’s simulate some TCR clonotype data. We will create a dataset where each TCR has a randomly generated number of cells associated with it, representing the clone size. After generating the data, we’ll use the hist() function from base R to plot a histogram of the clone sizes.\nlibrary(dplyr)\n\n# Step 1: Simulate data\nset.seed(123)  # Set seed for reproducibility\nnum_clonotypes &lt;- 100  # Specify the number of different clonotypes\n\n# Create a data frame with random cell counts for each clonotype\ntcr_data &lt;- tibble(\n  clonotype = paste(\"TCR\", seq_len(num_clonotypes), sep=\"\"),\n  cell_count = sample(1:1000, num_clonotypes, replace=TRUE)  # Random cell counts between 1 and 1000\n)\n\n# Step 2: Create a histogram of clone sizes\nhist(tcr_data$cell_count, \n     breaks=20,  # You can adjust the number of breaks to change bin sizes\n     col=\"skyblue\", \n     main=\"Histogram of TCR Clone Sizes\", \n     xlab=\"Clone Size (Number of Cells)\", \n     ylab=\"Frequency\")\nWe can perform the same task using ggplot2:\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Step 1: Simulate data\nset.seed(123)  # Set seed for reproducibility\nnum_clonotypes &lt;- 100  # Specify the number of different clonotypes\n\n# Create a data frame with random cell counts for each clonotype\ntcr_data &lt;- tibble(\n  clonotype = paste(\"TCR\", seq_len(num_clonotypes), sep=\"\"),\n  cell_count = sample(1:1000, num_clonotypes, replace=TRUE)  # Random cell counts between 1 and 1000\n)\n\n# Step 2: Create a histogram using ggplot2\nggplot(tcr_data, aes(x = cell_count)) + \n  geom_histogram(bins = 20, fill = \"skyblue\", color = \"black\") + \n  theme_minimal() + \n  labs(\n    title = \"Histogram of TCR Clone Sizes\",\n    x = \"Clone Size (Number of Cells)\",\n    y = \"Frequency\"\n  ) + \n  theme(\n    plot.title = element_text(hjust = 0.5)  # Center the plot title\n  )",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#boxplot",
+    "href": "course/2_basicplotting.html#boxplot",
+    "title": "Basic plotting and statistics",
+    "section": "Boxplot",
+    "text": "Boxplot\nLet’s simulate some gene expression data for key CD8 T cell genes.\nlibrary(tidyverse)\nlibrary(MASS)  # For negative binomial simulation\n\n# Define genes and number of cells\ngenes &lt;- c(\"GZMB\", \"GZMA\", \"GNLY\", \"PRF1\", \"TOX\", \"ENTPD1\", \"LAG3\", \"TIGIT\", \"HAVCR2\", \"TIGIT\", \"CXCL13\", \"IL7R\", \"SELL\", \"LEF1\", \"TCF7\")\nnum_cells &lt;- 20\n\n# Parameters for negative binomial\nsize &lt;- 2  # Dispersion parameter\nmu_pre &lt;- 20  # Mean for pre-treatment\nmu_post &lt;- 30  # Mean for post-treatment\n\n# Simulate gene expression data\nset.seed(42)\npre_treatment &lt;- sapply(rep(mu_pre, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))\npost_treatment &lt;- sapply(rep(mu_post, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))\n\n# Format as data frame\npre_data &lt;- as_tibble(pre_treatment, .name_repair = \"minimal\") %&gt;% \n  mutate(Treatment = \"Pre\") %&gt;% \n  pivot_longer(cols = -Treatment, names_to = \"Gene\", values_to = \"Expression\", names_prefix = \"V\")\n\npost_data &lt;- as_tibble(post_treatment, .name_repair = \"minimal\") %&gt;% \n  mutate(Treatment = \"Post\") %&gt;% \n  pivot_longer(cols = -Treatment, names_to = \"Gene\", values_to = \"Expression\", names_prefix = \"V\")\n\n# Combine the datasets\ncombined_data &lt;- bind_rows(pre_data, post_data)\nNow let’s use this data to build a boxplot of TOX expression pre and post treatment.\n# Filter data for the TOX gene\ntox_data &lt;- combined_data %&gt;% \n  filter(Gene == \"TOX\")\n\n# Plot\nggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +\n  geom_boxplot() +\n  labs(title=\"Expression of TOX pre and post treatment\", x=\"Treatment Condition\", y=\"Expression Level\") +\n  theme_minimal() +\n  scale_fill_brewer(palette=\"Pastel1\")  # Enhance aesthetics with color",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#violin-plot",
+    "href": "course/2_basicplotting.html#violin-plot",
+    "title": "Basic plotting and statistics",
+    "section": "Violin plot",
+    "text": "Violin plot\nSame thing a violin plot.\nlibrary(ggplot2)\n\n# Filter data for the TOX gene\ntox_data &lt;- combined_data %&gt;% \n  filter(Gene == \"TOX\")\n\n# Create the violin plot\nggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +\n  geom_violin(trim=FALSE) +  # Trim set to FALSE to show the full range of data\n  labs(title=\"Expression of TOX pre and post treatment\", x=\"Treatment Condition\", y=\"Expression Level\") +\n  theme_minimal() +\n  scale_fill_brewer(palette=\"Pastel1\") +\n  geom_boxplot(width=0.1, fill=\"white\")  # Overlay boxplot to show median and quartiles",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#t-test",
+    "href": "course/2_basicplotting.html#t-test",
+    "title": "Basic plotting and statistics",
+    "section": "t-Test",
+    "text": "t-Test\nA t-test could be used to compare the means of two groups, for example, the level of a specific immune marker in patients with and without a certain mutation.\nR\nCopy code\n# Randomly generated sample data: Immune marker levels in two patient groups\ngroup1 &lt;- rnorm(30, mean = 5, sd = 1.5) # Patients with a mutation\ngroup2 &lt;- rnorm(30, mean = 4.5, sd = 1.2) # Patients without the mutation\n\n# Perform a t-test\ntest &lt;- t.test(group1, group2)\n\n# Print the result\nprint(test)",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
+    "objectID": "course/2_basicplotting.html#fishers-exact-test",
+    "href": "course/2_basicplotting.html#fishers-exact-test",
+    "title": "Basic plotting and statistics",
+    "section": "Fisher’s Exact Test",
+    "text": "Fisher’s Exact Test\nAssume you’ve identified a TCR clonotype and quantified the number of cells expressing this clonotype at two timepoints:\n\nTimepoint 1 (Pre-treatment): X number of cells\nTimepoint 2 (Post-treatment): Y number of cells\n\nYou also need the total number of cells sequenced at each timepoint to complete the contingency table for the Fisher’s Exact Test. Let’s say:\n\nTotal cells at Timepoint 1: N_pre\nTotal cells at Timepoint 2: N_post\n\n# Number of cells with the specific clonotype at each timepoint\ncells_with_clone &lt;- c(X, Y)  \n\n# Number of cells without the clonotype (total cells minus cells with the clonotype)\ncells_without_clone &lt;- c(N_pre - X, N_post - Y)\n\n# Create the contingency table\ndata &lt;- matrix(c(cells_with_clone, cells_without_clone), ncol = 2,\n              dimnames = list(c(\"With Clone\", \"Without Clone\"),\n                              c(\"Pre-Treatment\", \"Post-Treatment\")))\n\n# Perform Fisher's Exact Test\ntest &lt;- fisher.test(data)\n\n# Print the result\nprint(test)\n\nThe matrix data has two rows (“With Clone” and “Without Clone”) and two columns (“Pre-Treatment” and “Post-Treatment”). This matrix is filled with the counts of cells with and without the specific TCR clonotype at each timepoint.\nfisher.test(data) calculates whether the proportions of cells with the clonotype are significantly different between the two timepoints.\nThe output includes a p-value which indicates the probability that any observed difference in proportions occurred by chance.",
+    "crumbs": [
+      "Course",
+      "Basic plotting and statistics"
+    ]
+  },
+  {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Prerequisites\nThis workshop will utilize the R programmling language through the RStudio user interface. We will perform these activities on the RStudio Server, available through the Posit Cloud platform. - Posit Cloud account: You should have received access to Posit Cloud through a link to your email address. If you did not receive this link, please contact @ for a new one. Logging into the workspace, using this email address, will provide access to all course materials and allow for data analysis through RStudio Server on your internet browser. - Laptop computer: Please bring your own laptop with internet capability. Since the workshop will take place through Posit Cloud, the interface will be accessed through an internet browser. Google Chrome is recommended.\nWhile the Introduction to R programming (Days 1-2) is is designed for all skill levels, having a basic understanding of R programming may enhance your learning experience. If you are new to these areas, consider reviewing one or a few of the following introductory materials prior to the workshop.\n\n\nDuring the course\nOver the course of the workshop, teaching assistants (TAs) will be working with small groups of attendees during the hands-on exercises. Feel free to direct your questions to the them, the instructors, or the Slack channel.\n\n\nAfter the course\n\nR: In order to utilize the RStudio Desktop application from your laptop (and not through the browser), you will first need to install the latest version of R. [link]\nRStudio Desktop can be downloaded here [link]. Note that this functions in the same manner as the RStudio Server by Posit Cloud, but utilizes the storage and compute of the laptop machine itself. Laptops vary in memory and storage space, which can dictate the speed and capability of data analysis, and this may result in slower processes with large datasets.\n\n\n\nWorkshops and vignettes\n\nSingle Cell Best Practices\nRNA-seq Bioinformatics\nPrecision Medicine Bioinformatics\nOrchestrating Single-Cell Analysis with Bioconductor"
+    "text": "Prerequisites\nThis workshop will utilize the R programmling language through the RStudio user interface. We will perform these activities on the RStudio Server, available through the Posit Cloud platform.\n\nPosit Cloud account: You should have received access to Posit Cloud through a link to your email address for this workshop. Logging into the workspace, using this email address, will provide access to all course materials and allow for data analysis through RStudio Server on your internet browser.\nLaptop computer: Please bring your own laptop with internet capability. Since the workshop will take place through Posit Cloud, the interface will be accessed through an internet browser. Google Chrome is recommended.\n\nWhile the Introduction to R programming (Days 1-2) is is designed for all skill levels, having a basic understanding of R programming may enhance your learning experience. If you are new to these areas, consider reviewing one or a few of the following introductory materials prior to the workshop.\n\n\nDuring the course\nOver the course of the workshop, teaching assistants (TAs) will be working with small groups of attendees during the hands-on exercises. Feel free to direct your questions to the them, the instructors, or the Slack channel.\n\n\nAfter the course\n\nR: In order to utilize the RStudio Desktop application from your laptop (and not through the browser), you will first need to install the latest version of R. [link]\nRStudio Desktop can be downloaded here [link]. Note that this functions in the same manner as the RStudio Server by Posit Cloud, but utilizes the storage and compute of the laptop machine itself. Laptops vary in memory and storage space, which can dictate the speed and capability of data analysis, and this may result in slower processes with large datasets.\n\n\n\nWorkshops and vignettes\n\nSingle Cell Best Practices\nRNA-seq Bioinformatics\nPrecision Medicine Bioinformatics\nOrchestrating Single-Cell Analysis with Bioconductor"
   }
 ]
