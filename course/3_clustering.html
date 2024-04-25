@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,35 +101,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -233,14 +238,6 @@ window.Quarto = {
   <li><a href="#spearman-vs.-pearson-correlation" id="toc-spearman-vs.-pearson-correlation" class="nav-link" data-scroll-target="#spearman-vs.-pearson-correlation">Spearman vs.&nbsp;Pearson Correlation</a></li>
   <li><a href="#example-code" id="toc-example-code" class="nav-link" data-scroll-target="#example-code">Example Code</a></li>
   </ul></li>
-  <li><a href="#example-dataframe" id="toc-example-dataframe" class="nav-link" data-scroll-target="#example-dataframe">Example dataframe</a></li>
-  <li><a href="#perform-pca" id="toc-perform-pca" class="nav-link" data-scroll-target="#perform-pca">Perform PCA</a></li>
-  <li><a href="#plot-pca" id="toc-plot-pca" class="nav-link" data-scroll-target="#plot-pca">Plot PCA</a></li>
-  <li><a href="#perform-clustering" id="toc-perform-clustering" class="nav-link" data-scroll-target="#perform-clustering">Perform clustering</a></li>
-  <li><a href="#example-clustering-algorithm-k-means" id="toc-example-clustering-algorithm-k-means" class="nav-link" data-scroll-target="#example-clustering-algorithm-k-means">Example clustering algorithm: k-means</a></li>
-  <li><a href="#plot-clustering" id="toc-plot-clustering" class="nav-link" data-scroll-target="#plot-clustering">Plot clustering</a></li>
-  <li><a href="#add-correlation-statistics-to-a-plot" id="toc-add-correlation-statistics-to-a-plot" class="nav-link" data-scroll-target="#add-correlation-statistics-to-a-plot">Add correlation statistics to a plot</a></li>
-  <li><a href="#example-plot" id="toc-example-plot" class="nav-link" data-scroll-target="#example-plot">Example plot</a></li>
   </ul>
 </nav>
     </div>
@@ -295,40 +292,42 @@ window.Quarto = {
 </section>
 <section id="example-code" class="level2">
 <h2 class="anchored" data-anchor-id="example-code">Example Code</h2>
-<p>```R # Load required libraries library(ggpubr)</p>
-</section>
-</section>
-<section id="example-dataframe" class="level1">
-<h1>Example dataframe</h1>
-<p>df &lt;- data.frame( Gene1 = c(1, 2, 3, 4, 5), Gene2 = c(5, 4, 3, 2, 1), Gene3 = c(2, 3, 4, 5, 6) )</p>
-</section>
-<section id="perform-pca" class="level1">
-<h1>Perform PCA</h1>
-<p>pca_result &lt;- prcomp(df)</p>
-</section>
-<section id="plot-pca" class="level1">
-<h1>Plot PCA</h1>
-<p>plot(pca_result<span class="math inline">\(x[,1], pca_result\)</span>x[,2], xlab = “PC1”, ylab = “PC2”, main = “PCA Plot”)</p>
-</section>
-<section id="perform-clustering" class="level1">
-<h1>Perform clustering</h1>
-</section>
-<section id="example-clustering-algorithm-k-means" class="level1">
-<h1>Example clustering algorithm: k-means</h1>
-<p>kmeans_result &lt;- kmeans(df, centers = 2)</p>
-</section>
-<section id="plot-clustering" class="level1">
-<h1>Plot clustering</h1>
-<p>plot(df, col = kmeans_result$cluster, main = “Clustering Plot”)</p>
-</section>
-<section id="add-correlation-statistics-to-a-plot" class="level1">
-<h1>Add correlation statistics to a plot</h1>
-</section>
-<section id="example-plot" class="level1">
-<h1>Example plot</h1>
-<p>ggscatter(df, x = “Gene1”, y = “Gene2”, add = “reg.line”, cor.coef = TRUE, cor.method = “spearman”, cor.coeff.args = list(method = “spearman”))</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example dataframe</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gene1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gene2 =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gene3 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform PCA</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pca_result <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(df)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot PCA</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_result<span class="sc">$</span>x[,<span class="dv">1</span>], pca_result<span class="sc">$</span>x[,<span class="dv">2</span>], </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"PC1"</span>, <span class="at">ylab =</span> <span class="st">"PC2"</span>, </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"PCA Plot"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform clustering</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Example clustering algorithm: k-means</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>kmeans_result <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">2</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot clustering</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df, <span class="at">col =</span> kmeans_result<span class="sc">$</span>cluster, </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Clustering Plot"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Add correlation statistics to a plot</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Example plot</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(df, <span class="at">x =</span> <span class="st">"Gene1"</span>, <span class="at">y =</span> <span class="st">"Gene2"</span>, </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"reg.line"</span>, </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">cor.coef =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">cor.method =</span> <span class="st">"spearman"</span>, </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">cor.coeff.args =</span> <span class="fu">list</span>(<span class="at">method =</span> <span class="st">"spearman"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -203,17 +237,16 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices">Good practices</a>
   <ul class="collapse">
-  <li><a href="#commenting-your-code" id="toc-commenting-your-code" class="nav-link" data-scroll-target="#commenting-your-code">Commenting your code</a></li>
   <li><a href="#publicly-accessible-resources" id="toc-publicly-accessible-resources" class="nav-link" data-scroll-target="#publicly-accessible-resources">Publicly accessible resources</a>
   <ul class="collapse">
   <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">Github</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#how-do-i-apply-the-code-ive-learned-to-my-own-data" id="toc-how-do-i-apply-the-code-ive-learned-to-my-own-data" class="nav-link" data-scroll-target="#how-do-i-apply-the-code-ive-learned-to-my-own-data">How do I apply the code I’ve learned to my own data?</a></li>
   <li><a href="#where-do-i-go-for-practice" id="toc-where-do-i-go-for-practice" class="nav-link" data-scroll-target="#where-do-i-go-for-practice">Where do I go for practice?</a>
   <ul class="collapse">
   <li><a href="#codefights" id="toc-codefights" class="nav-link" data-scroll-target="#codefights">CodeFights</a></li>
   </ul></li>
-  <li><a href="#how-do-i-apply-the-code-ive-learned-to-my-own-data" id="toc-how-do-i-apply-the-code-ive-learned-to-my-own-data" class="nav-link" data-scroll-target="#how-do-i-apply-the-code-ive-learned-to-my-own-data">How do I apply the code I’ve learned to my own data?</a></li>
   </ul>
 </nav>
     </div>
@@ -243,43 +276,60 @@ ul.task-list li input[type="checkbox"] {
 <h1>Common challenges</h1>
 <section id="nan-and-missing-data" class="level2">
 <h2 class="anchored" data-anchor-id="nan-and-missing-data"><em>NaN</em> and missing data</h2>
+<p>Dealing with missing data and NaN (Not a Number) values is a common challenge in R programming. These values can affect the results of your analyses and visualizations. It’s essential to handle missing data appropriately, either by imputing them or excluding them from the analysis, depending on the context.</p>
+<p><strong>Example</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a dataframe with missing values</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="cn">NA</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for missing values</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="missing-packages-or-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="missing-packages-or-dependencies">Missing packages or dependencies</h2>
+<p>When running R code, you may encounter errors related to missing packages or dependencies. This occurs when you try to use functions or libraries that are not installed on your system. This will commonly look like a red error stating “There is no package…” Installing the required packages using <em>install.packages(“package_name”)</em> can resolve this issue.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trying to use a function from an uninstalled package</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: there is no package called 'ggplot2'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="where-do-i-go-for-help" class="level1">
 <h1>Where do I go for help?</h1>
-<p>In other words, how do I learn what to Google…</p>
 <section id="stack-exchange" class="level2">
 <h2 class="anchored" data-anchor-id="stack-exchange">Stack Exchange</h2>
+<p>Online communities like Stack Exchange, particularly the Stack Overflow platform, are excellent resources for getting help with R programming. You can search for solutions to specific problems or ask questions if you’re facing challenges. If you attempt to Google what you’re trying to accomplish with your dataset, StackExchange often includes responses from others who may have gone through this effort before. With the open crowdsourcing of troubleshooting, these responses that work for others are “upvoted” so that you can try to adapt the code to work for your dataset. Importantly, take care to change the names of variables and file paths in any code that you try to implement from others.</p>
 </section>
 <section id="chatgpt" class="level2">
 <h2 class="anchored" data-anchor-id="chatgpt">ChatGPT</h2>
+<p>ChatGPT is an AI assistant that can provide guidance and answer questions related to R programming. You can ask for clarification on concepts, debugging assistance, or advice on best practices. If you copy/paste an error into ChatGPT, it often tries to debug without any other preface. However, if you try to explain exactly what your code is trying to accomplish, it can be a helpful way to debug your help.</p>
 </section>
 </section>
 <section id="good-practices" class="level1">
 <h1>Good practices</h1>
-<section id="commenting-your-code" class="level2">
-<h2 class="anchored" data-anchor-id="commenting-your-code">Commenting your code</h2>
-</section>
+<p>##Commenting your code Adding comments to your code is crucial for making it more understandable to yourself and others. Comments provide context and explanations for the code’s functionality, making it easier to troubleshoot and maintain.</p>
 <section id="publicly-accessible-resources" class="level2">
 <h2 class="anchored" data-anchor-id="publicly-accessible-resources">Publicly accessible resources</h2>
 <section id="github" class="level3">
 <h3 class="anchored" data-anchor-id="github">Github</h3>
+<p>Github hosts numerous repositories containing R scripts, packages, and projects. Browsing through repositories and contributing to open-source projects can help you learn from others’ code and collaborate with the R community. This can be a direct way to make your code available upon publication, according to journal practices.</p>
 </section>
 </section>
+</section>
+<section id="how-do-i-apply-the-code-ive-learned-to-my-own-data" class="level1">
+<h1>How do I apply the code I’ve learned to my own data?</h1>
+<p>Once you’ve learned R programming basics, applying the code to your own data involves understanding your data structure, identifying relevant functions and packages, and adapting example code to suit your specific analysis goals.</p>
 </section>
 <section id="where-do-i-go-for-practice" class="level1">
 <h1>Where do I go for practice?</h1>
 <section id="codefights" class="level2">
 <h2 class="anchored" data-anchor-id="codefights">CodeFights</h2>
-</section>
-</section>
-<section id="how-do-i-apply-the-code-ive-learned-to-my-own-data" class="level1">
-<h1>How do I apply the code I’ve learned to my own data?</h1>
+<p>CodeFights (now CodeSignal) offers coding challenges and exercises in R and other programming languages. Practicing coding problems can help reinforce your skills and improve your problem-solving abilities.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
