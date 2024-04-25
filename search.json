@@ -9,353 +9,353 @@
   {
     "objectID": "course/1_introR.html",
     "href": "course/1_introR.html",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "",
     "text": "RStudio is an integrated development environment (IDE) for R. It provides a user-friendly interface for coding, debugging, and data analysis. We use RStudio for its convenience and powerful features.\n\n\n\nConsole: Where you can directly type and execute R commands.\nScript Editor: Where you write and save your R scripts.\nEnvironment and History: Displays objects in your workspace and your command history.\nFiles and Plots: Helps manage files and view plots.\nPackages: Shows installed packages and allows you to install and load new ones.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#interface-orientation",
     "href": "course/1_introR.html#interface-orientation",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "",
     "text": "Console: Where you can directly type and execute R commands.\nScript Editor: Where you write and save your R scripts.\nEnvironment and History: Displays objects in your workspace and your command history.\nFiles and Plots: Helps manage files and view plots.\nPackages: Shows installed packages and allows you to install and load new ones.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#numeric",
     "href": "course/1_introR.html#numeric",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Numeric",
     "text": "Numeric\n# Numeric variable\nnum_var &lt;- 10\nprint(num_var)  # Output: 10\n\n# Arithmetic operations\nresult &lt;- num_var * 2\nprint(result)  # Output: 20",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#character",
     "href": "course/1_introR.html#character",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Character",
     "text": "Character\n# Character variable\nchar_var &lt;- \"Hello, World!\"\nprint(char_var)  # Output: Hello, World!\n\n# Concatenation\nnew_string &lt;- paste(char_var, \"This is R programming.\")\nprint(new_string)  # Output: Hello, World! This is R programming.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#integer",
     "href": "course/1_introR.html#integer",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Integer",
     "text": "Integer\n# Integer variable\nint_var &lt;- 20L  # The 'L' suffix indicates an integer\nprint(int_var)  # Output: 20\n\n# Integer arithmetic\nresult &lt;- int_var / 5\nprint(result)  # Output: 4",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#logical",
     "href": "course/1_introR.html#logical",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Logical",
     "text": "Logical\n# Logical variable\nlogical_var &lt;- TRUE\nprint(logical_var)  # Output: TRUE\n\n# Logical operations\nresult &lt;- logical_var & FALSE\nprint(result)  # Output: FALSE\n\n\n# Logical operations\na &lt;- TRUE\nb &lt;- FALSE\n\n# AND operation\nresult_and &lt;- a & b\nprint(result_and)  # Output: FALSE\n\n# OR operation\nresult_or &lt;- a | b\nprint(result_or)   # Output: TRUE\n\n# NOT operation\nresult_not &lt;- !a\nprint(result_not)  # Output: FALSE\n\n# Comparison operators\nx &lt;- 5\ny &lt;- 10\n\n# Greater than\nresult_gt &lt;- x &gt; y\nprint(result_gt)  # Output: FALSE\n\n# Less than\nresult_lt &lt;- x &lt; y\nprint(result_lt)  # Output: TRUE\n\n# Equal to\nresult_eq &lt;- x == y\nprint(result_eq)  # Output: FALSE\n\n# Not equal to\nresult_neq &lt;- x != y\nprint(result_neq)  # Output: TRUE",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#while",
     "href": "course/1_introR.html#while",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "while",
     "text": "while\nA while loop is a control flow statement that allows code to be executed repeatedly based on a given Boolean condition. The loop executes the loop body as long as the condition remains true. When the condition becomes false, the loop terminates.\n# Example of a while loop\nx &lt;- 1\nwhile (x &lt;= 5) {\n  print(x)\n  x &lt;- x + 1\n}\n\nConsiderations:\n\nEnsure that the loop has an exit condition that is guaranteed to be met to avoid infinite loops.\nAvoid complex conditions that can make the loop difficult to read and maintain.\nUse while loops when the number of iterations is not known before the loop starts, as opposed to for loops, which are better suited for a known number of iterations.\nManage loop variables carefully to ensure they are updated correctly and the loop condition changes as expected.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#for",
     "href": "course/1_introR.html#for",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "for",
     "text": "for\nA for loop is a control flow statement used in many programming languages to repeat a block of code multiple times. It is particularly useful for iterating over sequences (like lists, arrays, or strings) and executing a piece of code for each element in the sequence.\n# Example of a for loop\nfor (i in 1:5) {\n  print(i)\n}\n\nConsiderations\n\nEnsure the loop has a condition that eventually becomes false to prevent infinite loops.\nBe careful with the loop’s scope and variables to avoid unintended side effects.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#apply",
     "href": "course/1_introR.html#apply",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "apply",
     "text": "apply\nThe apply() function in R is a powerful tool for applying a function to the rows or columns of a matrix or data frame. It is particularly useful for performing operations across a dataset without needing to write explicit loops. The syntax for apply() is:\napply(X, margin, function, ...)\n\n# X: This is the array or matrix on which you want to apply the function.\n# margin: A value that specifies whether to apply the function over rows (1), columns (2), or both (c(1, 2)).\n# function: The function you want to apply to each row or column.\nTo calculate the sum of each row in a matrix:\n# Create a matrix\nmy_matrix &lt;- matrix(1:9, nrow=3)\n\n# Apply sum function across rows\nrow_sums &lt;- apply(my_matrix, 1, sum)\nprint(row_sums)\nTo find the mean of each column in a data frame:\n# Create a data frame\ndf &lt;- data.frame(a = c(1, 2, 3), b = c(4, 5, 6))\n\n# Apply mean function across columns\ncolumn_means &lt;- apply(df, 2, mean)\nprint(column_means)\n\nsapply and lappy\n\nlapply() returns a list, regardless of the output of each application of the function.\nsapply() attempts to simplify the result into a vector or matrix if possible. If simplification is not possible, it returns a list similar to lapply().\n\nSuppose you have a list of numerical vectors and you want to compute the sum of each vector. Here’s how you could use lapply():\n# Define a list of vectors\nnum_list &lt;- list(c(1, 2, 3), c(4, 5), c(6, 7, 8, 9))\n\n# Use lapply to apply the sum function\nlist_sums &lt;- lapply(num_list, sum)\nprint(list_sums)\nUsing the same list of numerical vectors, if you use sapply() to compute the sum, the function will try to simplify the output into a vector:\n# Use sapply to apply the sum function\nvector_sums &lt;- sapply(num_list, sum)\nprint(vector_sums)\nWhen to Use Each\n\nlapply(): When you need the robustness of a list output, especially when dealing with heterogeneous data or when the function can return variable lengths or types.\nsapply(): When you are working with homogeneous data and prefer a simplified output such as a vector or matrix, assuming the lengths and types are consistent across elements.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#finding-patterns",
     "href": "course/1_introR.html#finding-patterns",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Finding Patterns",
     "text": "Finding Patterns\nFinding specific sequences or motifs within biological sequences is a common task.\nsequence &lt;- \"ATGCGTACGTTGAC\"\nmotif &lt;- \"CGT\"\nstr_locate(sequence, motif)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#replacing-substrings",
     "href": "course/1_introR.html#replacing-substrings",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Replacing Substrings",
     "text": "Replacing Substrings\nModifying sequences by replacing specific nucleotides or amino acids.\ndna_sequence &lt;- \"ATGCGTACGTTGAC\"\nrna_sequence &lt;- str_replace_all(dna_sequence, \"T\", \"U\")\nprint(rna_sequence)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#substring-extraction",
     "href": "course/1_introR.html#substring-extraction",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Substring Extraction",
     "text": "Substring Extraction\nExtracting parts of sequences, such as cutting out genes or regions of interest.\nextracted_sequence &lt;- str_sub(sequence, 3, 8)\nprint(extracted_sequence)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#length-calculation",
     "href": "course/1_introR.html#length-calculation",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Length Calculation",
     "text": "Length Calculation\nDetermining the length of sequences.\nsequence_length &lt;- str_length(sequence)\nprint(sequence_length)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#case-conversion",
     "href": "course/1_introR.html#case-conversion",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Case Conversion",
     "text": "Case Conversion\nConverting uppercase to lowercase, or vice versa.\nsequence_upper &lt;- str_to_upper(sequence)\nprint(sequence_upper)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#splitting-strings",
     "href": "course/1_introR.html#splitting-strings",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Splitting Strings",
     "text": "Splitting Strings\nSplitting sequences into arrays, useful for reading fasta files or analyzing codons.\ncodons &lt;- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))\nprint(codons)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#counting-specific-characters",
     "href": "course/1_introR.html#counting-specific-characters",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Counting Specific Characters",
     "text": "Counting Specific Characters\nCounting occurrences of specific nucleotides or amino acids.\nguanine_count &lt;- str_count(sequence, \"G\")\nprint(guanine_count)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#selecting-columns",
     "href": "course/1_introR.html#selecting-columns",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Selecting Columns",
     "text": "Selecting Columns\nSelecting columns allows you to choose specific columns from your dataset. It helps you focus on the variables of interest and ignore the rest.\nselected_data &lt;- select(tidy_data, ID, Math)\nprint(selected_data)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#filtering-rows",
     "href": "course/1_introR.html#filtering-rows",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Filtering Rows",
     "text": "Filtering Rows\nFiltering rows allows you to subset your dataset based on specific conditions. It helps you extract only the rows that meet certain criteria.\n# Filtering rows based on conditions\nfiltered_data &lt;- filter(tidy_data, Math &gt; 90)\nprint(filtered_data)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#summarizing-data",
     "href": "course/1_introR.html#summarizing-data",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Summarizing Data",
     "text": "Summarizing Data\nSummarizing data involves calculating summary statistics or aggregating data to get a concise overview of your dataset. It helps you understand the overall characteristics of your data.\nsummary_data &lt;- summarize(tidy_data, \n                          Mean_Math = mean(Math), \n                          Mean_Science = mean(Science))\nprint(summary_data)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#sorting-arranging",
     "href": "course/1_introR.html#sorting-arranging",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Sorting (Arranging)",
     "text": "Sorting (Arranging)\nArranging rows involves sorting your dataset based on the values of one or more columns. It helps you reorder your data for better visualization or analysis.\narranged_data &lt;- arrange(tidy_data, desc(Math))\nprint(arranged_data)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#mutate",
     "href": "course/1_introR.html#mutate",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Mutate",
     "text": "Mutate\nThe mutate() function in the dplyr package is essential for transforming data frames in R. It allows you to add new columns to a data frame or modify existing ones, using existing data. mutate() is part of the tidyverse, a collection of R packages designed for data science that makes data manipulation, exploration, and visualization easy and intuitive.\n\nAdding columns\nCalculating the GC content of DNA sequences.\nlibrary(dplyr)\nlibrary(stringr)\n\n# Sample data\nsequences &lt;- tibble(\n  id = c(\"seq1\", \"seq2\", \"seq3\"),\n  dna = c(\"ATGCGC\", \"GCGTACGT\", \"ATATATAT\")\n)\n\n# Calculate GC content\nsequences &lt;- sequences %&gt;%\n  mutate(gc_content = (str_count(dna, \"[GC]\") / str_length(dna)) * 100)\n\nprint(sequences)\n\n\nReplacing existing columns\nTranscription of DNA sequences into RNA sequences involves replacing thymine (T) with uracil (U).\n# Convert DNA to RNA\nsequences &lt;- sequences %&gt;%\n  mutate(rna = str_replace_all(dna, \"T\", \"U\"))\n\nprint(sequences)\n\n\nMultiple Transformations\nIdentifying potential neoantigens by finding motifs associated with high mutation frequencies or specific mutation patterns.\n# Sample DNA sequences\nsequences &lt;- tibble(\n  id = c(\"seq1\", \"seq2\", \"seq3\"),\n  dna = c(\"ATGCGCATC\", \"GCGTACGTAGT\", \"ATATATATAT\")\n)\n\n# Assume a simple motif that might indicate a neoantigen\nmotif = \"ATG\"\n\n# Annotate sequences with potential neoantigen presence\nsequences &lt;- sequences %&gt;%\n  mutate(\n    start_position = str_locate(dna, motif)[,1],\n    is_neoantigen_candidate = ifelse(start_position &gt; 0 & str_count(dna, \"[GC]\") / str_length(dna) &gt; 0.5, \"Yes\", \"No\")\n  )\n\nprint(sequences)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#definition",
     "href": "course/1_introR.html#definition",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Definition",
     "text": "Definition\nFunctions (function) in R perform specific tasks. They take input (arguments), perform operations, and return output.\n\nfunction_name: Name of the function.\nargument1, argument2, …: Arguments passed to the function (optional).\nFunction body: Code block where you define what the function should do.\nReturn a value (optional): Use the return() statement to specify what the function should return (optional).\n\nfunction_name &lt;- function(argument1, argument2, ...) {\n  # Function body\n  # Perform operations\n  # Return a value (optional)\n}\nHere, we define a function and call it!\n# Define a function to calculate the square of a number\nsquare &lt;- function(x) {\n  return(x^2)\n}\n\n# Call the function\nresult &lt;- square(5)\nprint(result)  # Output: 25",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#example",
     "href": "course/1_introR.html#example",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Example",
     "text": "Example\nLet’s bring together concepts by writing the function analyze_tcr_data.\nThe function will:\n\nFilter T cell sequences based on a specified length threshold.\nSort the remaining data by clonality in descending order to identify the most prevalent TCRs.\nCreate a new column that indicates the presence of a specific motif within the TCR sequence, a common task in sequence analysis.\n\nlibrary(dplyr)\nlibrary(stringr)\n\n# Define the function\nanalyze_tcr_data &lt;- function(tcr_tibble, length_threshold) {\n  # Validate input\n  if (!inherits(tcr_tibble, \"tbl_df\")) {\n    stop(\"Input must be a tibble.\")\n  }\n  \n  # Filter TCR sequences longer than the threshold and sort by clonality\n  filtered_and_sorted &lt;- tcr_tibble %&gt;%\n    filter(str_length(tcr_sequence) &gt; length_threshold) %&gt;%\n    arrange(desc(clonality))\n  \n  # Add a column to indicate the presence of a specific motif (e.g., 'CASS')\n  enhanced_tcr_tibble &lt;- filtered_and_sorted %&gt;%\n    mutate(has_motif = if_else(str_detect(tcr_sequence, \"CASS\"), \"Yes\", \"No\"))\n  \n  # Return the transformed tibble\n  return(enhanced_tcr_tibble)\n}\n\n# Example usage\n# Assuming a tibble with TCR sequences and clonality metrics\ntcr_data &lt;- tibble(\n  tcr_sequence = c(\"CASSLGGTDTQYF\", \"CASSLGDETQYF\", \"CASSLG\", \"CASSEGTDTQYF\"),\n  clonality = c(0.25, 0.15, 0.05, 0.55)\n)\n\n# Apply the function with a length threshold of 10\nresult_data &lt;- analyze_tcr_data(tcr_data, 10)\nprint(result_data)\nExplanation\n\nValidation: The function starts by checking if the provided data is a tibble to ensure type safety.\nFiltering: Uses filter() to retain only TCR sequences longer than the specified length_threshold.\nSorting: Uses arrange() to sort the data by clonality in descending order.\nString Manipulation: Adding has_motif Column: Uses mutate() combined with str_detect() from the stringr package to add a column that indicates whether each TCR sequence contains the motif “CASS”.\nReturn Value: Outputs a tibble that’s been filtered, sorted, and enhanced with additional string-based analysis.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#long-and-wide-data-formats",
     "href": "course/1_introR.html#long-and-wide-data-formats",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Long and Wide Data Formats",
     "text": "Long and Wide Data Formats\nLong and wide data formats are two common ways of structuring data, each with its own advantages and use cases.\n\nLong Format\nIn the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having: - Multiple rows, each corresponding to a single observation or measurement. - One column for the variable being measured. - Additional columns to store metadata or grouping variables.\nAdvantages: - Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R. - Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.\n\n\nWide Format\nIn the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by: - One row per observation. - Each variable is represented by a separate column.\nAdvantages: - Can be easier to understand for simple datasets with few variables. - May be more convenient for certain types of analysis or visualization.\n\n\nChoosing Between Long and Wide Formats\nThe choice between long and wide formats depends on factors such as the nature of the data, the analysis tasks, and personal preference. Long format is often preferred for its flexibility and compatibility with modern data analysis tools, while wide format may be suitable for simpler datasets or specific analysis requirements.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#long-to-wide",
     "href": "course/1_introR.html#long-to-wide",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Long to Wide",
     "text": "Long to Wide\nlibrary(tidyr)\n\n# Example long format data\nlong_data &lt;- data.frame(\n  Subject = c(\"A\", \"A\", \"B\", \"B\"),\n  Time = c(1, 2, 1, 2),\n  Measurement = c(10, 15, 12, 18)\n)\n\n# Convert long format data to wide format\nwide_data &lt;- spread(long_data, key = Time, value = Measurement)\n\n# View the wide format data\nprint(wide_data)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#wide-to-long",
     "href": "course/1_introR.html#wide-to-long",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Wide to Long",
     "text": "Wide to Long\nlibrary(tidyr)\n\n# Example wide format data\nwide_data &lt;- data.frame(\n  Subject = c(\"A\", \"B\"),\n  Time1 = c(10, 12),\n  Time2 = c(15, 18)\n)\n\n# Convert wide format data to long format\nlong_data &lt;- gather(wide_data, key = Time, value = Measurement, -Subject)\n\n# View the long format data\nprint(long_data)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#ggplot2",
     "href": "course/1_introR.html#ggplot2",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "ggplot2",
     "text": "ggplot2\nThe core idea behind ggplot2 is the concept of a “grammar of graphics”. This concept provides a systematic way to describe and build graphical presentations such as charts and plots. The grammar itself is a set of independent components that can be composed in many different ways. This grammar includes elements like:\n\nData: The raw data that you want to visualize.\nAesthetics (aes): Defines how data are mapped to color, size, shape, and other visual properties.\nGeometries (geom): The geometric objects in a plot—lines, points, bars, etc.\nScales: Transformations applied to data before it is visualized, including scales for colors, sizes, and shapes.\nCoordinate systems: The space in which data is plotted.\nFacets: Used for creating plots with multiple panels (small multiple plots).\nStatistical transformations (stat): Summary statistics that can be applied to data before it is visualized, such as counting or averaging.\nThemes: Visual styles and layout configurations for the plot.\n\nHere’s how you generally use ggplot2 to create a plot:\n\nStart with ggplot(): Set up the data and, optionally, define default mappings between variables and their aesthetics.\nAdd layers: Add layers to the plot using geom_ functions, such as geom_point() for scatter plots, geom_line() for line graphs, and so on.\n\nAdjust the scales: Customize the scales used for aesthetics such as color, size, and x-y coordinates.\nModify the coordinate system: Choose a coordinate system.\nAdd facets: If necessary, add facets to create a multi-panel plot.\nApply a theme: Customize the appearance of the plot using themes.\n\nlibrary(ggplot2)\n\n# Sample data\ndf &lt;- data.frame(\n  x = rnorm(100),\n  y = rnorm(100),\n  group = factor(rep(1:2, each = 50))\n)\n\n# Creating a scatter plot\nggplot(df, aes(x = x, y = y, color = group)) + \n  geom_point() +\n  theme_minimal() +\n  labs(title = \"Scatter Plot Example\", x = \"X Axis\", y = \"Y Axis\")",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#histogram",
     "href": "course/1_introR.html#histogram",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Histogram",
     "text": "Histogram\nLet’s simulate some TCR clonotype data. We will create a dataset where each TCR has a randomly generated number of cells associated with it, representing the clone size. After generating the data, we’ll use the hist() function from base R to plot a histogram of the clone sizes.\nlibrary(dplyr)\n\n# Step 1: Simulate data\nset.seed(123)  # Set seed for reproducibility\nnum_clonotypes &lt;- 100  # Specify the number of different clonotypes\n\n# Create a data frame with random cell counts for each clonotype\ntcr_data &lt;- tibble(\n  clonotype = paste(\"TCR\", seq_len(num_clonotypes), sep=\"\"),\n  cell_count = sample(1:1000, num_clonotypes, replace=TRUE)  # Random cell counts between 1 and 1000\n)\n\n# Step 2: Create a histogram of clone sizes\nhist(tcr_data$cell_count, \n     breaks=20,  # You can adjust the number of breaks to change bin sizes\n     col=\"skyblue\", \n     main=\"Histogram of TCR Clone Sizes\", \n     xlab=\"Clone Size (Number of Cells)\", \n     ylab=\"Frequency\")\nWe can perform the same task using ggplot2:\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Step 1: Simulate data\nset.seed(123)  # Set seed for reproducibility\nnum_clonotypes &lt;- 100  # Specify the number of different clonotypes\n\n# Create a data frame with random cell counts for each clonotype\ntcr_data &lt;- tibble(\n  clonotype = paste(\"TCR\", seq_len(num_clonotypes), sep=\"\"),\n  cell_count = sample(1:1000, num_clonotypes, replace=TRUE)  # Random cell counts between 1 and 1000\n)\n\n# Step 2: Create a histogram using ggplot2\nggplot(tcr_data, aes(x = cell_count)) + \n  geom_histogram(bins = 20, fill = \"skyblue\", color = \"black\") + \n  theme_minimal() + \n  labs(\n    title = \"Histogram of TCR Clone Sizes\",\n    x = \"Clone Size (Number of Cells)\",\n    y = \"Frequency\"\n  ) + \n  theme(\n    plot.title = element_text(hjust = 0.5)  # Center the plot title\n  )",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#boxplot",
     "href": "course/1_introR.html#boxplot",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Boxplot",
     "text": "Boxplot\nLet’s simulate some gene expression data for key CD8 T cell genes.\nlibrary(tidyverse)\nlibrary(MASS)  # For negative binomial simulation\n\n# Define genes and number of cells\ngenes &lt;- c(\"GZMB\", \"GZMA\", \"GNLY\", \"PRF1\", \"TOX\", \"ENTPD1\", \"LAG3\", \"TIGIT\", \"HAVCR2\", \"TIGIT\", \"CXCL13\", \"IL7R\", \"SELL\", \"LEF1\", \"TCF7\")\nnum_cells &lt;- 20\n\n# Parameters for negative binomial\nsize &lt;- 2  # Dispersion parameter\nmu_pre &lt;- 20  # Mean for pre-treatment\nmu_post &lt;- 30  # Mean for post-treatment\n\n# Simulate gene expression data\nset.seed(42)\npre_treatment &lt;- sapply(rep(mu_pre, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))\npost_treatment &lt;- sapply(rep(mu_post, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))\n\n# Format as data frame\npre_data &lt;- as_tibble(pre_treatment, .name_repair = \"minimal\") %&gt;% \n  mutate(Treatment = \"Pre\") %&gt;% \n  pivot_longer(cols = -Treatment, names_to = \"Gene\", values_to = \"Expression\", names_prefix = \"V\")\n\npost_data &lt;- as_tibble(post_treatment, .name_repair = \"minimal\") %&gt;% \n  mutate(Treatment = \"Post\") %&gt;% \n  pivot_longer(cols = -Treatment, names_to = \"Gene\", values_to = \"Expression\", names_prefix = \"V\")\n\n# Combine the datasets\ncombined_data &lt;- bind_rows(pre_data, post_data)\nNow let’s use this data to build a boxplot of TOX expression pre and post treatment.\n# Filter data for the TOX gene\ntox_data &lt;- combined_data %&gt;% \n  filter(Gene == \"TOX\")\n\n# Plot\nggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +\n  geom_boxplot() +\n  labs(title=\"Expression of TOX pre and post treatment\", x=\"Treatment Condition\", y=\"Expression Level\") +\n  theme_minimal() +\n  scale_fill_brewer(palette=\"Pastel1\")  # Enhance aesthetics with color",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#violin-plot",
     "href": "course/1_introR.html#violin-plot",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Violin plot",
     "text": "Violin plot\nSame thing a violin plot.\nlibrary(ggplot2)\n\n# Filter data for the TOX gene\ntox_data &lt;- combined_data %&gt;% \n  filter(Gene == \"TOX\")\n\n# Create the violin plot\nggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +\n  geom_violin(trim=FALSE) +  # Trim set to FALSE to show the full range of data\n  labs(title=\"Expression of TOX pre and post treatment\", x=\"Treatment Condition\", y=\"Expression Level\") +\n  theme_minimal() +\n  scale_fill_brewer(palette=\"Pastel1\") +\n  geom_boxplot(width=0.1, fill=\"white\")  # Overlay boxplot to show median and quartiles",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#t-test",
     "href": "course/1_introR.html#t-test",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "t-Test",
     "text": "t-Test\nA t-test could be used to compare the means of two groups, for example, the level of a specific immune marker in patients with and without a certain mutation.\nR\nCopy code\n# Randomly generated sample data: Immune marker levels in two patient groups\ngroup1 &lt;- rnorm(30, mean = 5, sd = 1.5) # Patients with a mutation\ngroup2 &lt;- rnorm(30, mean = 4.5, sd = 1.2) # Patients without the mutation\n\n# Perform a t-test\ntest &lt;- t.test(group1, group2)\n\n# Print the result\nprint(test)",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
     "objectID": "course/1_introR.html#fishers-exact-test",
     "href": "course/1_introR.html#fishers-exact-test",
-    "title": "Introduction to R programming",
+    "title": "Introduction to R",
     "section": "Fisher’s Exact Test",
     "text": "Fisher’s Exact Test\nAssume you’ve identified a TCR clonotype and quantified the number of cells expressing this clonotype at two timepoints:\n\nTimepoint 1 (Pre-treatment): X number of cells\nTimepoint 2 (Post-treatment): Y number of cells\n\nYou also need the total number of cells sequenced at each timepoint to complete the contingency table for the Fisher’s Exact Test. Let’s say:\n\nTotal cells at Timepoint 1: N_pre\nTotal cells at Timepoint 2: N_post\n\n# Number of cells with the specific clonotype at each timepoint\ncells_with_clone &lt;- c(X, Y)  \n\n# Number of cells without the clonotype (total cells minus cells with the clonotype)\ncells_without_clone &lt;- c(N_pre - X, N_post - Y)\n\n# Create the contingency table\ndata &lt;- matrix(c(cells_with_clone, cells_without_clone), ncol = 2,\n              dimnames = list(c(\"With Clone\", \"Without Clone\"),\n                              c(\"Pre-Treatment\", \"Post-Treatment\")))\n\n# Perform Fisher's Exact Test\ntest &lt;- fisher.test(data)\n\n# Print the result\nprint(test)\n\nThe matrix data has two rows (“With Clone” and “Without Clone”) and two columns (“Pre-Treatment” and “Post-Treatment”). This matrix is filled with the counts of cells with and without the specific TCR clonotype at each timepoint.\nfisher.test(data) calculates whether the proportions of cells with the clonotype are significantly different between the two timepoints.\nThe output includes a p-value which indicates the probability that any observed difference in proportions occurred by chance.",
     "crumbs": [
       "Course",
-      "Introduction to R programming"
+      "Introduction to R"
     ]
   },
   {
@@ -370,7 +370,7 @@
     "href": "course.html",
     "title": "Course overview",
     "section": "",
-    "text": "R Workshop (Day 1, Sat. - Day 2, Sun.)\n\nIntroduction to R programming\nBasic plotting and statistics\nStatistics in R and ggpubr\nWorking with Seurat objects\nClustering methods\nBatch effects, QC, and troubleshooting\n\n\n\nBulk RNA sequence analysis (Day 3, Mon.)\n\nIntroduction to rnabio.org and bulk RNAseq dataset (Lead: Obi/Malachi)\nIntroduction to IGV (Lead: Malachi)\nDifferential Expression Analysis (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (Advanced R) (Lead: Obi/Charles)\nPathway Analysis (Lead: Obi)\nBatch Correction (Lead: Malachi)\n\n\n\nSingle cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)\n\nIntroduction to scRNAseq dataset (Lead: Malachi)\nQA/QC and Clustering (Lead: Evelyn)\nCell Type Annotation (Lead: Kelsy)\nDifferential Expression (Lead: Kartik)\nGene Set Enrichment (Lead: Kartik)\nCancer Cell Identification (Lead: Kartik)\nTrajectory Analysis (Lead: Evelyn/Malachi)\nTCR/BCR Repertoire Analysis (Lead: Obi)\n\n\n\nImaging (Day 6, Thu.)"
+    "text": "R Workshop (Day 1, Sat. - Day 2, Sun.)\n\nIntroduction to R\nBasic plotting and statistics\nClustering concepts and correlation\nCommon challenges and additional resources\n\n\n\nBulk RNA sequence analysis (Day 3, Mon.)\n\nIntroduction to rnabio.org and bulk RNAseq dataset (Lead: Obi/Malachi)\nIntroduction to IGV (Lead: Malachi)\nDifferential Expression Analysis (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (Advanced R) (Lead: Obi/Charles)\nPathway Analysis (Lead: Obi)\nBatch Correction (Lead: Malachi)\n\n\n\nSingle cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)\n\nIntroduction to scRNAseq dataset (Lead: Malachi)\nQA/QC and Clustering (Lead: Evelyn)\nCell Type Annotation (Lead: Kelsy)\nDifferential Expression (Lead: Kartik)\nGene Set Enrichment (Lead: Kartik)\nCancer Cell Identification (Lead: Kartik)\nTrajectory Analysis (Lead: Evelyn/Malachi)\nTCR/BCR Repertoire Analysis (Lead: Obi)\n\n\n\nImaging (Day 6, Thu.)"
   },
   {
     "objectID": "authors.html#instructors",
