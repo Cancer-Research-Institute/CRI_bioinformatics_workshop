@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -191,8 +220,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link active" data-scroll-target="#dimensionality-reduction">Dimensionality Reduction</a></li>
-  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link active" data-scroll-target="#clustering">Clustering</a>
+  <ul class="collapse">
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering">K-means clustering</a></li>
+  </ul></li>
+  <li><a href="#dimension-reduction" id="toc-dimension-reduction" class="nav-link" data-scroll-target="#dimension-reduction">Dimension Reduction</a>
+  <ul class="collapse">
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+  </ul></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a>
+  <ul class="collapse">
+  <li><a href="#spearman-vs.-pearson-correlation" id="toc-spearman-vs.-pearson-correlation" class="nav-link" data-scroll-target="#spearman-vs.-pearson-correlation">Spearman vs.&nbsp;Pearson Correlation</a></li>
+  <li><a href="#example-code" id="toc-example-code" class="nav-link" data-scroll-target="#example-code">Example Code</a></li>
+  </ul></li>
+  <li><a href="#example-dataframe" id="toc-example-dataframe" class="nav-link" data-scroll-target="#example-dataframe">Example dataframe</a></li>
+  <li><a href="#perform-pca" id="toc-perform-pca" class="nav-link" data-scroll-target="#perform-pca">Perform PCA</a></li>
+  <li><a href="#plot-pca" id="toc-plot-pca" class="nav-link" data-scroll-target="#plot-pca">Plot PCA</a></li>
+  <li><a href="#perform-clustering" id="toc-perform-clustering" class="nav-link" data-scroll-target="#perform-clustering">Perform clustering</a></li>
+  <li><a href="#example-clustering-algorithm-k-means" id="toc-example-clustering-algorithm-k-means" class="nav-link" data-scroll-target="#example-clustering-algorithm-k-means">Example clustering algorithm: k-means</a></li>
+  <li><a href="#plot-clustering" id="toc-plot-clustering" class="nav-link" data-scroll-target="#plot-clustering">Plot clustering</a></li>
+  <li><a href="#add-correlation-statistics-to-a-plot" id="toc-add-correlation-statistics-to-a-plot" class="nav-link" data-scroll-target="#add-correlation-statistics-to-a-plot">Add correlation statistics to a plot</a></li>
+  <li><a href="#example-plot" id="toc-example-plot" class="nav-link" data-scroll-target="#example-plot">Example plot</a></li>
   </ul>
 </nav>
     </div>
@@ -218,11 +266,67 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="dimensionality-reduction" class="level1">
-<h1>Dimensionality Reduction</h1>
-</section>
 <section id="clustering" class="level1">
 <h1>Clustering</h1>
+<p><em>Clustering</em> is a technique used to group similar objects or data points together based on their characteristics or features. For example, clustering can be applied to gene expression data to identify groups of genes that behave similarly under different experimental conditions. These clusters might ultimately inform cell types or subtypes. There are several different clustering techniques, including hierarchical or K-means clustering. It is important to understand the limitations or assumptions of a clustering algorithm when applying it to your data.</p>
+<section id="k-means-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering">K-means clustering</h2>
+<p>K-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.</p>
+<p>K-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.</p>
+</section>
+</section>
+<section id="dimension-reduction" class="level1">
+<h1>Dimension Reduction</h1>
+<p>Dimension reduction is a crucial step in analyzing high-dimensional data, such as gene expression data, where the number of features (genes) is large compared to the number of samples (experimental conditions). Dimension reduction techniques aim to simplify the data while preserving its essential structure, simplifying hundreds or thousands of features into a two-dimensional space. For clustering cell types or samples, this approach enables the identification of which genes are the most different across groups or clusters.</p>
+<section id="principal-component-analysis-pca" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h2>
+<p>PCA is a widely used dimension reduction technique that transforms high-dimensional data into a lower-dimensional representation by identifying the principal components that capture the maximum variance in the data. These principal components are orthogonal to each other and can be used to visualize the data in lower dimensions.</p>
+</section>
+</section>
+<section id="correlation" class="level1">
+<h1>Correlation</h1>
+<p>Correlation measures the strength and direction of the relationship between two variables. In bioinformatics, correlation analysis is often used to explore relationships between gene expression levels across different samples or experimental conditions.</p>
+<section id="spearman-vs.-pearson-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="spearman-vs.-pearson-correlation">Spearman vs.&nbsp;Pearson Correlation</h2>
+<ul>
+<li><strong>Pearson Correlation</strong>: Measures the linear relationship between two variables. It assumes that the variables are normally distributed and have a linear relationship.</li>
+<li><strong>Spearman Correlation</strong>: Measures the monotonic relationship between two variables. It does not assume linearity and is more robust to outliers and non-normal distributions.</li>
+</ul>
+</section>
+<section id="example-code" class="level2">
+<h2 class="anchored" data-anchor-id="example-code">Example Code</h2>
+<p>```R # Load required libraries library(ggpubr)</p>
+</section>
+</section>
+<section id="example-dataframe" class="level1">
+<h1>Example dataframe</h1>
+<p>df &lt;- data.frame( Gene1 = c(1, 2, 3, 4, 5), Gene2 = c(5, 4, 3, 2, 1), Gene3 = c(2, 3, 4, 5, 6) )</p>
+</section>
+<section id="perform-pca" class="level1">
+<h1>Perform PCA</h1>
+<p>pca_result &lt;- prcomp(df)</p>
+</section>
+<section id="plot-pca" class="level1">
+<h1>Plot PCA</h1>
+<p>plot(pca_result<span class="math inline">\(x[,1], pca_result\)</span>x[,2], xlab = “PC1”, ylab = “PC2”, main = “PCA Plot”)</p>
+</section>
+<section id="perform-clustering" class="level1">
+<h1>Perform clustering</h1>
+</section>
+<section id="example-clustering-algorithm-k-means" class="level1">
+<h1>Example clustering algorithm: k-means</h1>
+<p>kmeans_result &lt;- kmeans(df, centers = 2)</p>
+</section>
+<section id="plot-clustering" class="level1">
+<h1>Plot clustering</h1>
+<p>plot(df, col = kmeans_result$cluster, main = “Clustering Plot”)</p>
+</section>
+<section id="add-correlation-statistics-to-a-plot" class="level1">
+<h1>Add correlation statistics to a plot</h1>
+</section>
+<section id="example-plot" class="level1">
+<h1>Example plot</h1>
+<p>ggscatter(df, x = “Gene1”, y = “Gene2”, add = “reg.line”, cor.coef = TRUE, cor.method = “spearman”, cor.coeff.args = list(method = “spearman”))</p>
 
 
 </section>

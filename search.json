@@ -11,7 +11,51 @@
     "href": "course/3_clustering.html",
     "title": "Clustering concepts and correlation",
     "section": "",
-    "text": "Dimensionality Reduction\n\n\nClustering",
+    "text": "Clustering is a technique used to group similar objects or data points together based on their characteristics or features. For example, clustering can be applied to gene expression data to identify groups of genes that behave similarly under different experimental conditions. These clusters might ultimately inform cell types or subtypes. There are several different clustering techniques, including hierarchical or K-means clustering. It is important to understand the limitations or assumptions of a clustering algorithm when applying it to your data.\n\n\nK-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.\nK-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#k-means-clustering",
+    "href": "course/3_clustering.html#k-means-clustering",
+    "title": "Clustering concepts and correlation",
+    "section": "",
+    "text": "K-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.\nK-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#principal-component-analysis-pca",
+    "href": "course/3_clustering.html#principal-component-analysis-pca",
+    "title": "Clustering concepts and correlation",
+    "section": "Principal Component Analysis (PCA)",
+    "text": "Principal Component Analysis (PCA)\nPCA is a widely used dimension reduction technique that transforms high-dimensional data into a lower-dimensional representation by identifying the principal components that capture the maximum variance in the data. These principal components are orthogonal to each other and can be used to visualize the data in lower dimensions.",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#spearman-vs.-pearson-correlation",
+    "href": "course/3_clustering.html#spearman-vs.-pearson-correlation",
+    "title": "Clustering concepts and correlation",
+    "section": "Spearman vs. Pearson Correlation",
+    "text": "Spearman vs. Pearson Correlation\n\nPearson Correlation: Measures the linear relationship between two variables. It assumes that the variables are normally distributed and have a linear relationship.\nSpearman Correlation: Measures the monotonic relationship between two variables. It does not assume linearity and is more robust to outliers and non-normal distributions.",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#example-code",
+    "href": "course/3_clustering.html#example-code",
+    "title": "Clustering concepts and correlation",
+    "section": "Example Code",
+    "text": "Example Code\n```R # Load required libraries library(ggpubr)",
     "crumbs": [
       "Course",
       "Clustering concepts and correlation"
@@ -328,11 +372,22 @@
     "text": "The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 2024 at the Hilton Bonnett Creek, Orlando FL.\n\n\n\n\n\n\n\n\n\n\nDay\nTime\nDuration\nModule\nTopic\n\n\n\n\n1 (Sat)\n9:00AM-9:30AM\n0:30\nR Workshop\nIntroduction to R and RStudio\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Reading, writing, and interpreting data structures\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nIntroduction to plotting and statistics\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Plotting information from data structures for real-time analysis\n\n\n2 (Sun)\n9:00AM-9:30AM\n0:30\nR Workshop\nTypes of analysis: Clustering concepts and correlation\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Dimension reduction methods, computing correlation\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nCommon challenges and resources\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Creating different types of plots, continued practice\n\n\n3 (Mon)\n9:00AM-9:45AM\n0:45\nBulk DNA/RNA sequencing\nIntroduction to sequencing data processing and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to rnabio.org\n\n\n\n10:30AM-10:45AM\n0:15\n\nIntroduction to bulk RNAseq dataset\n\n\n\n10:45AM-11:30AM\n0:45\n\nHands-on: Exploring RNAseq data in IGV\n\n\n\n11:30AM-12:00PM\n0:30\n\nHands-on: DE analysis with DESeq2\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: DE visualization with DESeq2\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:00PM\n1:00\n\nHands-on: DE visualization advanced\n\n\n\n3:00PM-4:00PM\n1:00\n\nHands-on: Pathway analysis\n\n\n\n4:00PM-4:45PM\n0:45\n\nHands-on: Batch correction\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 3 Summary/Questions\n\n\n4 (Tue)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nIntroduction to scRNAseq methods and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to scRNAseq dataset and loupe demonstration\n\n\n\n10:45AM-12:00PM\n1:15\n\nHands-on: Quality assesment and clustering\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: Cell typing\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:30PM\n1:30\n\nHands-on: DE analysis\n\n\n\n3:30PM-4:45PM\n1:15\n\nHands-on: Gene set and regulatory pathway\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 4 Summary/Questions\n\n\n5 (Wed)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nAdvanced analyses in scRNAseq and multi-omic integration\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-12:00PM\n2:00\n\nHands-on: Cancer cell identification\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:30PM\n1:30\n\nHands-on: Trajectory analysis\n\n\n\n2:30PM-2:45PM\n0:15\n\nBreak\n\n\n\n2:45PM-4:00PM\n1:15\n\nHands-on: TCR/BCR analysis\n\n\n\n4:00PM-4:30PM\n0:30\n\nvLoupe Browser demonstration\n\n\n\n4:30PM-5:00PM\n0:30\n\nDay 5 Summary/Questions\n\n\n6 (Thu)\n9:00AM-9:45AM\n0:45\nImaging\nOverview of spatial biology, types of imaging, experimental planning\n\n\n\n10:00AM-10:30AM\n0:30\n\nImaging file types, visualization platforms\n\n\n\n10:30AM-10:45AM\n0:15\n\nBreak\n\n\n\n10:45AM-11:30PM\n0:45\n\nHands-on: Exploring datasets\n\n\n\n11:30AM-12:00PM\n0:30\n\nMini-lecture and hands-on: Introduction to python\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:00PM\n1:00\n\nQuantifying spatial features from imaging data\n\n\n\n2:00PM-3:45PM\n1:45\n\nHands-on: Spatial feature extraction\n\n\n\n3:45PM-4:00PM\n0:15\nConclusion\nClosing and feedback"
   },
   {
-    "objectID": "course/4_qctrouble.html",
-    "href": "course/4_qctrouble.html",
+    "objectID": "course/4_qctrouble.html#stack-exchange",
+    "href": "course/4_qctrouble.html#stack-exchange",
     "title": "Common challenges and additional resources",
-    "section": "",
-    "text": "In other words, how do I learn what to Google…",
+    "section": "Stack Exchange",
+    "text": "Stack Exchange",
+    "crumbs": [
+      "Course",
+      "Common challenges and additional resources"
+    ]
+  },
+  {
+    "objectID": "course/4_qctrouble.html#chatgpt",
+    "href": "course/4_qctrouble.html#chatgpt",
+    "title": "Common challenges and additional resources",
+    "section": "ChatGPT",
+    "text": "ChatGPT",
     "crumbs": [
       "Course",
       "Common challenges and additional resources"
