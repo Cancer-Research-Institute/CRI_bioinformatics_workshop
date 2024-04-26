@@ -236,7 +236,7 @@ library(tidyverse)
 library(MASS)  # For negative binomial simulation
 
 # Define genes and number of cells
-genes <- c("GZMB", "GZMA", "GNLY", "PRF1", "TOX", "ENTPD1", "LAG3", "TIGIT", "HAVCR2", "TIGIT", "CXCL13", "IL7R", "SELL", "LEF1", "TCF7")
+genes <- c("GZMB", "GZMA", "GNLY", "PRF1", "TOX", "ENTPD1", "LAG3", "HAVCR2", "TIGIT", "CXCL13", "IL7R", "SELL", "LEF1", "TCF7")
 num_cells <- 20
 
 # Parameters for negative binomial
@@ -248,6 +248,10 @@ mu_post <- 30  # Mean for post-treatment
 set.seed(42)
 pre_treatment <- sapply(rep(mu_pre, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))
 post_treatment <- sapply(rep(mu_post, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))
+
+# Assign column names
+colnames(pre_treatment) <- genes
+colnames(post_treatment) <- genes
 
 # Format as data frame
 pre_data <- as_tibble(pre_treatment, .name_repair = "minimal") %>% 
@@ -302,8 +306,6 @@ ggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +
 A t-test could be used to compare the means of two groups, for example, the level of a specific immune marker in patients with and without a certain mutation.
 
 ```R
-R
-Copy code
 # Randomly generated sample data: Immune marker levels in two patient groups
 group1 <- rnorm(30, mean = 5, sd = 1.5) # Patients with a mutation
 group2 <- rnorm(30, mean = 4.5, sd = 1.2) # Patients without the mutation
