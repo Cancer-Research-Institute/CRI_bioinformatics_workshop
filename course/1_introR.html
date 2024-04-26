@@ -572,14 +572,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="finding-patterns" class="level2">
 <h2 class="anchored" data-anchor-id="finding-patterns">Finding Patterns</h2>
 <p>Finding specific sequences or motifs within biological sequences is a common task.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="st">"ATGCGTACGTTGAC"</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>motif <span class="ot">&lt;-</span> <span class="st">"CGT"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_locate</span>(sequence, motif)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="st">"ATGCGTACGTTGAC"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>motif <span class="ot">&lt;-</span> <span class="st">"CGT"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_locate</span>(sequence, motif)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="replacing-substrings" class="level2">
 <h2 class="anchored" data-anchor-id="replacing-substrings">Replacing Substrings</h2>
 <p>Modifying sequences by replacing specific nucleotides or amino acids.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dna_sequence <span class="ot">&lt;-</span> <span class="st">"ATGCGTACGTTGAC"</span></span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dna_sequence <span class="ot">&lt;-</span> <span class="st">"ATGCGTACGTTGACT"</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rna_sequence <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(dna_sequence, <span class="st">"T"</span>, <span class="st">"U"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rna_sequence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -623,7 +624,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tidyverse-data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="tidyverse-data-frames">Tidyverse Data Frames</h3>
 <p>Tidyverse is a collection of R packages designed for data science, developed with a focus on simplicity, consistency, and ease of use. One of the key components of Tidyverse is the concept of tidy data frames.</p>
-<p>A tidyverse data frame is a rectangular table-like structure where: - Each row represents an observation. - Each column represents a variable. - Each cell holds a single value.</p>
+<p>A tidyverse data frame is a rectangular table-like structure where:</p>
+<ul>
+<li>Each row represents an observation.</li>
+<li>Each column represents a variable.</li>
+<li>Each cell holds a single value.</li>
+</ul>
 </section>
 <section id="principles-of-tidy-data" class="level3">
 <h3 class="anchored" data-anchor-id="principles-of-tidy-data">Principles of Tidy Data:</h3>
@@ -648,24 +654,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>tidyr</strong>: Offers tools for reshaping and tidying messy datasets, such as <code>gather()</code> and <code>spread()</code> functions for converting between wide and long formats.</p></li>
 <li><p><strong>ggplot2</strong>: Allows for the creation of sophisticated data visualizations using a layered grammar of graphics.</p></li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example dataset</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">95</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Science =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">89</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Original dataset</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Original dataset:"</span>)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data)</span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">librarY</span>(dplyr)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Example dataset</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Math =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">95</span>),</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Science =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">89</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy the dataset using gather() function from tidyr</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="ot">&lt;-</span> <span class="fu">gather</span>(data, Subject, Score, <span class="sc">-</span>ID, <span class="sc">-</span>Name)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidied dataset</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Tidied dataset:"</span>)</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Original dataset</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Original dataset:"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy the dataset using gather() function from tidyr</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="ot">&lt;-</span> <span class="fu">gather</span>(data, Subject, Score, <span class="sc">-</span>ID, <span class="sc">-</span>Name)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidied dataset</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Tidied dataset:"</span>)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="selecting-columns" class="level2">
@@ -719,11 +729,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="replacing-existing-columns" class="level3">
 <h3 class="anchored" data-anchor-id="replacing-existing-columns">Replacing existing columns</h3>
 <p>Transcription of DNA sequences into RNA sequences involves replacing thymine (T) with uracil (U).</p>
-<pre><code># Convert DNA to RNA
-sequences &lt;- sequences %&gt;%
-  mutate(rna = str_replace_all(dna, "T", "U"))
-
-print(sequences)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert DNA to RNA</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sequences <span class="ot">&lt;-</span> sequences <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rna =</span> <span class="fu">str_replace_all</span>(dna, <span class="st">"T"</span>, <span class="st">"U"</span>))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sequences)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="multiple-transformations" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-transformations">Multiple Transformations</h3>
@@ -753,17 +763,17 @@ print(sequences)</code></pre>
 <section id="definition" class="level2">
 <h2 class="anchored" data-anchor-id="definition">Definition</h2>
 <p>Functions (<code>function</code>) in R perform specific tasks. They take input (arguments), perform operations, and return output.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2, ...) {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Function body</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform operations</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a value (optional)</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>function_name: Name of the function.</li>
 <li>argument1, argument2, …: Arguments passed to the function (optional).</li>
 <li>Function body: Code block where you define what the function should do.</li>
 <li>Return a value (optional): Use the return() statement to specify what the function should return (optional).</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2, ...) {</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Function body</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform operations</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a value (optional)</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here, we define a function and call it!</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to calculate the square of a number</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
@@ -819,9 +829,9 @@ print(sequences)</code></pre>
 <p>Explanation</p>
 <ul>
 <li>Validation: The function starts by checking if the provided data is a tibble to ensure type safety.</li>
-<li>Filtering: Uses filter() to retain only TCR sequences longer than the specified length_threshold.</li>
-<li>Sorting: Uses arrange() to sort the data by clonality in descending order.</li>
-<li>String Manipulation: Adding has_motif Column: Uses mutate() combined with str_detect() from the stringr package to add a column that indicates whether each TCR sequence contains the motif “CASS”.</li>
+<li>Filtering: Uses <code>filter()</code> to retain only TCR sequences longer than the specified length_threshold.</li>
+<li>Sorting: Uses <code>arrange()</code> to sort the data by clonality in descending order.</li>
+<li>String Manipulation: Adding has_motif Column: Uses <code>mutate()</code> combined with <code>str_detect()</code> from the stringr package to add a column that indicates whether each TCR sequence contains the motif “CASS”.</li>
 <li>Return Value: Outputs a tibble that’s been filtered, sorted, and enhanced with additional string-based analysis.</li>
 </ul>
 </section>
