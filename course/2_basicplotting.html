@@ -235,9 +235,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#wide-to-long" id="toc-wide-to-long" class="nav-link" data-scroll-target="#wide-to-long">Wide to Long</a></li>
   <li><a href="#merging-data" id="toc-merging-data" class="nav-link" data-scroll-target="#merging-data">Merging Data</a>
   <ul class="collapse">
+  <li><a href="#joins-and-merging-of-data-in-tidyverse" id="toc-joins-and-merging-of-data-in-tidyverse" class="nav-link" data-scroll-target="#joins-and-merging-of-data-in-tidyverse">Joins and Merging of Data in Tidyverse</a>
+  <ul class="collapse">
   <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link" data-scroll-target="#types-of-joins">Types of Joins:</a></li>
   <li><a href="#merging-data-1" id="toc-merging-data-1" class="nav-link" data-scroll-target="#merging-data-1">Merging Data:</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example:</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a>
   <ul class="collapse">
@@ -281,13 +284,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Long and wide data formats are two common ways of structuring data, each with its own advantages and use cases.</p>
 <section id="long-format" class="level3">
 <h3 class="anchored" data-anchor-id="long-format">Long Format</h3>
-<p>In the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having: - Multiple rows, each corresponding to a single observation or measurement. - One column for the variable being measured. - Additional columns to store metadata or grouping variables.</p>
-<p><strong>Advantages</strong>: - Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R. - Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.</p>
+<p>In the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having:</p>
+<ul>
+<li>Multiple rows, each corresponding to a single observation or measurement.</li>
+<li>One column for the variable being measured.</li>
+<li>Additional columns to store metadata or grouping variables.</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R.</li>
+<li>Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.</li>
+</ul>
 </section>
 <section id="wide-format" class="level3">
 <h3 class="anchored" data-anchor-id="wide-format">Wide Format</h3>
-<p>In the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by: - One row per observation. - Each variable is represented by a separate column.</p>
-<p><strong>Advantages</strong>: - Can be easier to understand for simple datasets with few variables. - May be more convenient for certain types of analysis or visualization.</p>
+<p>In the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by:</p>
+<ul>
+<li>One row per observation.</li>
+<li>Each variable is represented by a separate column.</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Can be easier to understand for simple datasets with few variables.</li>
+<li>May be more convenient for certain types of analysis or visualization.</li>
+</ul>
 </section>
 <section id="choosing-between-long-and-wide-formats" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-between-long-and-wide-formats">Choosing Between Long and Wide Formats</h3>
@@ -330,10 +350,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="merging-data" class="level1">
 <h1>Merging Data</h1>
-<p>Merging allows combining data from different sources. This is common in analyzing biological data. ## Joins and Merging of Data in Tidyverse</p>
+<p>Merging allows combining data from different sources. This is common in analyzing biological data.</p>
+<section id="joins-and-merging-of-data-in-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="joins-and-merging-of-data-in-tidyverse">Joins and Merging of Data in Tidyverse</h2>
 <p>Joins and merging are common operations used to combine multiple datasets based on common variables or keys. In Tidyverse, these operations are typically performed using functions from the <code>dplyr</code> package.</p>
 <section id="types-of-joins" class="level3">
 <h3 class="anchored" data-anchor-id="types-of-joins">Types of Joins:</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="join_diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Types of Joins</figcaption>
+</figure>
+</div>
 <section id="inner-join-inner_join" class="level4">
 <h4 class="anchored" data-anchor-id="inner-join-inner_join">Inner Join (<code>inner_join()</code>):</h4>
 <p>An inner join combines rows from two datasets where there is a match based on a common key, retaining only the rows with matching keys from both datasets.</p>
@@ -391,6 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Anti-join</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>anti_merged <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 </section>
 <section id="plotting" class="level1">
