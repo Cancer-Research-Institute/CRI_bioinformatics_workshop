@@ -427,6 +427,17 @@
     ]
   },
   {
+    "objectID": "course/4_qctrouble.html#good-practices",
+    "href": "course/4_qctrouble.html#good-practices",
+    "title": "Common challenges and additional resources",
+    "section": "Good practices",
+    "text": "Good practices\n##Commenting your code Adding comments to your code is crucial for making it more understandable to yourself and others. Comments provide context and explanations for the code’s functionality, making it easier to troubleshoot and maintain.",
+    "crumbs": [
+      "Course",
+      "Common challenges and additional resources"
+    ]
+  },
+  {
     "objectID": "course/4_qctrouble.html#publicly-accessible-resources",
     "href": "course/4_qctrouble.html#publicly-accessible-resources",
     "title": "Common challenges and additional resources",
