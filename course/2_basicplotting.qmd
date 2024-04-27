@@ -242,6 +242,10 @@ ggplot(tcr_data, aes(x = cell_count)) +
 Let's simulate some gene expression data for key CD8 T cell genes.
 
 ```R
+# Define genes and number of cells
+genes <- c("GZMB", "GZMA", "GNLY", "PRF1", "TOX", "ENTPD1", "LAG3", "HAVCR2", "TIGIT", "CXCL13", "IL7R", "SELL", "LEF1", "TCF7")
+num_cells <- 20
+
 # Parameters for negative binomial
 size <- 2  # Dispersion parameter
 mu_pre <- 20  # Mean for pre-treatment
