@@ -399,6 +399,47 @@ This matrix is filled with the counts of cells with and without the specific TCR
  - The output includes a p-value which indicates the probability that any observed difference in proportions occurred by chance.
 
 
+# Additional Exercises
 
+```R
+# Load the iris dataset (saved as iris in base R)
+
+# Create a scatter plot of sepal length vs sepal width colored by species where the point size is determined from petal length.
+# Hint: Look at size arguments for aes. 
+# CODE YOUR ANSWER HERE
+
+# Add a legend to your scatter plot for the size of the points.
+# HINT: Look into the guides function and use guide_legend().
+# CODE YOUR ANSWER HERE
+
+# Create a histogram of the petal length by species with 20 bins and add transparency to the plot.
+# Hint: Look into the arguments for geom_hist
+# CODE YOUR ANSWER HERE
+
+# Create a density plot of the petal length colored by species.
+# HINT: Look up geom_density.
+# CODE YOUR ANSWER HERE
+
+# Create a 2 panel plot with a histogram and a scatter plot
+# HINT: use grid.arrange from the gridExtra package.
+# CODE YOUR ANSWER HERE
+
+# Combine the density and histogram plots
+# HINT: The histogram needs to be normalized to the density plot, look into "..density..".
+# CODE YOUR ANSWER HERE
+
+# Perform a t-test on sepal length between the species setosa and versicolor
+# HINT: Pull out the necessary values using subset
+# CODE YOUR ANSWER HERE
+
+# Perform linear regession on the sepal length vs petal length and summarize the results. 
+# HINT: Look into the lm function
+# CODE YOUR ANSWER HERE
+
+# Plot the regression line over a scatter plot of sepal vs petal length. 
+# HINT: Look into the geom_smooth
+# CODE YOUR ANSWER HERE
+
+```
 
 
