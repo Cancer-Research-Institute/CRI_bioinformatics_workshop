@@ -291,7 +291,7 @@ The `stringr` package in R simplifies these tasks with easy-to-use functions tha
 Finding specific sequences or motifs within biological sequences is a common task.
 ```R
 library(stringr)
-sequence <- "ATGCGTACGTTGAC"
+sequence <- "ATGCGTACGTTGACA"
 motif <- "CGT"
 str_locate(sequence, motif)
 ```
