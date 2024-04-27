@@ -275,7 +275,7 @@
     "href": "course/1_introR.html#filtering-rows",
     "title": "Introduction to R",
     "section": "Filtering Rows",
-    "text": "Filtering Rows\nFiltering rows allows you to subset your dataset based on specific conditions. It helps you extract only the rows that meet certain criteria.\n# Filtering rows based on conditions\nfiltered_data &lt;- filter(tidy_data, Math &gt; 90)\nprint(filtered_data)",
+    "text": "Filtering Rows\nFiltering rows allows you to subset your dataset based on specific conditions. It helps you extract only the rows that meet certain criteria.\n# Filtering rows based on conditions\nfiltered_data &lt;- filter(data, Math &gt; 90)\nprint(filtered_data)",
     "crumbs": [
       "Course",
       "Introduction to R"
@@ -286,7 +286,7 @@
     "href": "course/1_introR.html#summarizing-data",
     "title": "Introduction to R",
     "section": "Summarizing Data",
-    "text": "Summarizing Data\nSummarizing data involves calculating summary statistics or aggregating data to get a concise overview of your dataset. It helps you understand the overall characteristics of your data.\nsummary_data &lt;- summarize(tidy_data, \n                          Mean_Math = mean(Math), \n                          Mean_Science = mean(Science))\nprint(summary_data)",
+    "text": "Summarizing Data\nSummarizing data involves calculating summary statistics or aggregating data to get a concise overview of your dataset. It helps you understand the overall characteristics of your data.\nsummary_data &lt;- summarize(data, \n                          Mean_Math = mean(Math), \n                          Mean_Science = mean(Science))\nprint(summary_data)",
     "crumbs": [
       "Course",
       "Introduction to R"
@@ -297,7 +297,7 @@
     "href": "course/1_introR.html#sorting-arranging",
     "title": "Introduction to R",
     "section": "Sorting (Arranging)",
-    "text": "Sorting (Arranging)\nArranging rows involves sorting your dataset based on the values of one or more columns. It helps you reorder your data for better visualization or analysis.\narranged_data &lt;- arrange(tidy_data, desc(Math))\nprint(arranged_data)",
+    "text": "Sorting (Arranging)\nArranging rows involves sorting your dataset based on the values of one or more columns. It helps you reorder your data for better visualization or analysis.\narranged_data &lt;- arrange(data, desc(Math))\nprint(arranged_data)",
     "crumbs": [
       "Course",
       "Introduction to R"

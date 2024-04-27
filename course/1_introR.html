@@ -693,13 +693,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="filtering-rows">Filtering Rows</h2>
 <p>Filtering rows allows you to subset your dataset based on specific conditions. It helps you extract only the rows that meet certain criteria.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering rows based on conditions</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(tidy_data, Math <span class="sc">&gt;</span> <span class="dv">90</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Math <span class="sc">&gt;</span> <span class="dv">90</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(filtered_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="summarizing-data" class="level2">
 <h2 class="anchored" data-anchor-id="summarizing-data">Summarizing Data</h2>
 <p>Summarizing data involves calculating summary statistics or aggregating data to get a concise overview of your dataset. It helps you understand the overall characteristics of your data.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> <span class="fu">summarize</span>(tidy_data, </span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> <span class="fu">summarize</span>(data, </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Mean_Math =</span> <span class="fu">mean</span>(Math), </span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Mean_Science =</span> <span class="fu">mean</span>(Science))</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -707,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sorting-arranging" class="level2">
 <h2 class="anchored" data-anchor-id="sorting-arranging">Sorting (Arranging)</h2>
 <p>Arranging rows involves sorting your dataset based on the values of one or more columns. It helps you reorder your data for better visualization or analysis.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(tidy_data, <span class="fu">desc</span>(Math))</span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(data, <span class="fu">desc</span>(Math))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(arranged_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mutate" class="level2">
