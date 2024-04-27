@@ -429,7 +429,7 @@ Filtering rows allows you to subset your dataset based on specific conditions. I
 
 ```R
 # Filtering rows based on conditions
-filtered_data <- filter(tidy_data, Math > 90)
+filtered_data <- filter(data, Math > 90)
 print(filtered_data)
 ```
 
@@ -438,7 +438,7 @@ print(filtered_data)
 Summarizing data involves calculating summary statistics or aggregating data to get a concise overview of your dataset. It helps you understand the overall characteristics of your data.
 
 ```R
-summary_data <- summarize(tidy_data, 
+summary_data <- summarize(data, 
                           Mean_Math = mean(Math), 
                           Mean_Science = mean(Science))
 print(summary_data)
@@ -449,7 +449,7 @@ print(summary_data)
 Arranging rows involves sorting your dataset based on the values of one or more columns. It helps you reorder your data for better visualization or analysis.
 
 ```R
-arranged_data <- arrange(tidy_data, desc(Math))
+arranged_data <- arrange(data, desc(Math))
 print(arranged_data)
 ```
 
