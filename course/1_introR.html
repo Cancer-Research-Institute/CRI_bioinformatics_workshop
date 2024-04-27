@@ -287,7 +287,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
   <li><a href="#reading-in-files" id="toc-reading-in-files" class="nav-link" data-scroll-target="#reading-in-files">Reading in Files</a></li>
-  <li><a href="#additional-exercises" id="toc-additional-exercises" class="nav-link" data-scroll-target="#additional-exercises">Additional Exercises</a></li>
+  <li><a href="#additional-exercises" id="toc-additional-exercises" class="nav-link" data-scroll-target="#additional-exercises">Additional Exercises</a>
+  <ul class="collapse">
+  <li><a href="#bonus-challenge" id="toc-bonus-challenge" class="nav-link" data-scroll-target="#bonus-challenge">Bonus challenge</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -608,6 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Splitting sequences into arrays, useful for reading fasta files or analyzing codons.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>codons <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(sequence, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>), <span class="fu">seq</span>(<span class="dv">3</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>))</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(codons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Bonus Challenge:</strong> What if our sequence length wasn’t a multiple of three? For an example of how to approach this situation please check out the <a href="#bonus-challenge">Bonus challenge</a>.</p>
 </section>
 <section id="counting-specific-characters" class="level2">
 <h2 class="anchored" data-anchor-id="counting-specific-characters">Counting Specific Characters</h2>
@@ -900,9 +904,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="co"># that is present on your own computer. You can then read the file into your</span></span>
 <span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a><span class="co"># environment.</span></span>
 <span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="bonus-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-challenge">Bonus challenge</h2>
+<p>If our sequence isn’t length three, this code will throw an error because the function expects a sequence that is a multiple of 3:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="st">"ATGCGTACGTTGAC"</span> <span class="co"># Length 14</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence &lt;- "ATGCGTACGTTGACA" # Length 15</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>codons <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(sequence, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>), <span class="fu">seq</span>(<span class="dv">3</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `str_sub()`:</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! Can't recycle `string` (size 5) to match `end` (size 4).</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Run `rlang::last_trace()` to see where the error occurred.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Can you try to code up a solution to this problem?</p>
+<div class="cell">
+<details class="code-fold">
+<summary><strong>HINT</strong></summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use the modulus operator "%%". It yields the remainder when the first operand is divided by the second.</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="sc">%%</span> <span class="dv">3</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="sc">%%</span> <span class="dv">3</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Here are a few options for how to solve this (only peek after trying yourself).</p>
+<div class="cell">
+<details class="code-fold">
+<summary><strong>Show me the solution</strong></summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="st">"ATGCGTACGTTGAC"</span> <span class="co"># Length 14</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence &lt;- "ATGCGTACGTTGACA" # Length 15</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: Check for length 3 and make sure before running the code, otherwise print a warning.</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="ot">&lt;-</span> <span class="fu">nchar</span>(sequence) <span class="co"># Get sequence length</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (sequence_length <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Error! The sequence is length:"</span>, sequence_length))</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  codons <span class="ot">&lt;-</span> <span class="st">"ERROR"</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  codons <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="at">string =</span> sequence, </span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>), </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="fu">seq</span>(<span class="dv">3</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>))</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(codons)</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: Add N to the sequence to make in a multiple of 3, and then any seqeuence will run properly.</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (sequence_length <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  leftover <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">-</span> <span class="fu">nchar</span>(sequence) <span class="sc">%%</span> <span class="dv">3</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>  leftover_n <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">rep</span>(<span class="st">"N"</span>, leftover), <span class="at">collapse =</span> <span class="st">""</span>)</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>  sequence <span class="ot">&lt;-</span> <span class="fu">paste0</span>(sequence, leftover_n)</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>codons <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(sequence, <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>), <span class="fu">seq</span>(<span class="dv">3</span>, <span class="fu">str_length</span>(sequence), <span class="at">by =</span> <span class="dv">3</span>))</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(codons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p>The slides for this lecture are available <a href="https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%201%20AM.pdf">here</a>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

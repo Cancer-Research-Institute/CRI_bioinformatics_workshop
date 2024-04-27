@@ -231,7 +231,7 @@
     "href": "course/1_introR.html#splitting-strings",
     "title": "Introduction to R",
     "section": "Splitting Strings",
-    "text": "Splitting Strings\nSplitting sequences into arrays, useful for reading fasta files or analyzing codons.\ncodons &lt;- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))\nprint(codons)",
+    "text": "Splitting Strings\nSplitting sequences into arrays, useful for reading fasta files or analyzing codons.\ncodons &lt;- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))\nprint(codons)\nBonus Challenge: What if our sequence length wasn’t a multiple of three? For an example of how to approach this situation please check out the Bonus challenge.",
     "crumbs": [
       "Course",
       "Introduction to R"
@@ -331,6 +331,17 @@
     "title": "Introduction to R",
     "section": "Example",
     "text": "Example\nLet’s bring together concepts by writing the function analyze_tcr_data.\nThe function will:\n\nFilter T cell sequences based on a specified length threshold.\nSort the remaining data by clonality in descending order to identify the most prevalent TCRs.\nCreate a new column that indicates the presence of a specific motif within the TCR sequence, a common task in sequence analysis.\n\nlibrary(dplyr)\nlibrary(stringr)\n\n# Define the function\nanalyze_tcr_data &lt;- function(tcr_tibble, length_threshold) {\n  # Validate input\n  if (!inherits(tcr_tibble, \"tbl_df\")) {\n    stop(\"Input must be a tibble.\")\n  }\n  \n  # Filter TCR sequences longer than the threshold and sort by clonality\n  filtered_and_sorted &lt;- tcr_tibble %&gt;%\n    filter(str_length(tcr_sequence) &gt; length_threshold) %&gt;%\n    arrange(desc(clonality))\n  \n  # Add a column to indicate the presence of a specific motif (e.g., 'CASS')\n  enhanced_tcr_tibble &lt;- filtered_and_sorted %&gt;%\n    mutate(has_motif = if_else(str_detect(tcr_sequence, \"CASS\"), \"Yes\", \"No\"))\n  \n  # Return the transformed tibble\n  return(enhanced_tcr_tibble)\n}\n\n# Example usage\n# Assuming a tibble with TCR sequences and clonality metrics\ntcr_data &lt;- tibble(\n  tcr_sequence = c(\"CASSLGGTDTQYF\", \"CASSLGDETQYF\", \"CASSLG\", \"CASSEGTDTQYF\"),\n  clonality = c(0.25, 0.15, 0.05, 0.55)\n)\n\n# Apply the function with a length threshold of 10\nresult_data &lt;- analyze_tcr_data(tcr_data, 10)\nprint(result_data)\nExplanation\n\nValidation: The function starts by checking if the provided data is a tibble to ensure type safety.\nFiltering: Uses filter() to retain only TCR sequences longer than the specified length_threshold.\nSorting: Uses arrange() to sort the data by clonality in descending order.\nString Manipulation: Adding has_motif Column: Uses mutate() combined with str_detect() from the stringr package to add a column that indicates whether each TCR sequence contains the motif “CASS”.\nReturn Value: Outputs a tibble that’s been filtered, sorted, and enhanced with additional string-based analysis.",
+    "crumbs": [
+      "Course",
+      "Introduction to R"
+    ]
+  },
+  {
+    "objectID": "course/1_introR.html#bonus-challenge",
+    "href": "course/1_introR.html#bonus-challenge",
+    "title": "Introduction to R",
+    "section": "Bonus challenge",
+    "text": "Bonus challenge\nIf our sequence isn’t length three, this code will throw an error because the function expects a sequence that is a multiple of 3:\nlibrary(stringr)\nsequence &lt;- \"ATGCGTACGTTGAC\" # Length 14\n# sequence &lt;- \"ATGCGTACGTTGACA\" # Length 15\n\ncodons &lt;- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))\n\n#&gt; Error in `str_sub()`:\n#&gt; ! Can't recycle `string` (size 5) to match `end` (size 4).\n#&gt; Run `rlang::last_trace()` to see where the error occurred.\nCan you try to code up a solution to this problem?\n\n\nHINT\n# We can use the modulus operator \"%%\". It yields the remainder when the first operand is divided by the second.\n\n15 %% 3 \n#&gt; [1] 0\n\n14 %% 3\n#&gt; [1] 2\n\n\nHere are a few options for how to solve this (only peek after trying yourself).\n\n\nShow me the solution\nsequence &lt;- \"ATGCGTACGTTGAC\" # Length 14\n\n# sequence &lt;- \"ATGCGTACGTTGACA\" # Length 15\n\n# Option 1: Check for length 3 and make sure before running the code, otherwise print a warning.\n\nsequence_length &lt;- nchar(sequence) # Get sequence length\n\nif (sequence_length %% 3 != 0) {\n  print(paste(\"Error! The sequence is length:\", sequence_length))\n  codons &lt;- \"ERROR\"\n} else {\n  codons &lt;- str_sub(string = sequence, \n  start = seq(1, str_length(sequence), by = 3), \n  end = seq(3, str_length(sequence), by = 3))\n}\n\nprint(codons)\n\n# Option 2: Add N to the sequence to make in a multiple of 3, and then any seqeuence will run properly.\n\nif (sequence_length %% 3 != 0) {\n  leftover &lt;- 3 - nchar(sequence) %% 3\n  \n  leftover_n &lt;- paste(rep(\"N\", leftover), collapse = \"\")\n  \n  sequence &lt;- paste0(sequence, leftover_n)\n}\n\ncodons &lt;- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))\n\nprint(codons)\n\n\nThe slides for this lecture are available here.",
     "crumbs": [
       "Course",
       "Introduction to R"
