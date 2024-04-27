@@ -527,34 +527,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="boxplot" class="level2">
 <h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
 <p>Let’s simulate some gene expression data for key CD8 T cell genes.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for negative binomial</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">2</span>  <span class="co"># Dispersion parameter</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mu_pre <span class="ot">&lt;-</span> <span class="dv">20</span>  <span class="co"># Mean for pre-treatment</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>mu_post <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># Mean for post-treatment</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate gene expression data</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pre_treatment <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rep</span>(mu_pre, <span class="fu">length</span>(genes)), <span class="cf">function</span>(mu) <span class="fu">rnbinom</span>(num_cells, size, <span class="at">mu =</span> mu))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>post_treatment <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rep</span>(mu_post, <span class="fu">length</span>(genes)), <span class="cf">function</span>(mu) <span class="fu">rnbinom</span>(num_cells, size, <span class="at">mu =</span> mu))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure data frames have proper column names</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pre_treatment) <span class="ot">&lt;-</span> genes</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(post_treatment) <span class="ot">&lt;-</span> genes</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define genes and number of cells</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"GZMB"</span>, <span class="st">"GZMA"</span>, <span class="st">"GNLY"</span>, <span class="st">"PRF1"</span>, <span class="st">"TOX"</span>, <span class="st">"ENTPD1"</span>, <span class="st">"LAG3"</span>, <span class="st">"HAVCR2"</span>, <span class="st">"TIGIT"</span>, <span class="st">"CXCL13"</span>, <span class="st">"IL7R"</span>, <span class="st">"SELL"</span>, <span class="st">"LEF1"</span>, <span class="st">"TCF7"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>num_cells <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for negative binomial</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">2</span>  <span class="co"># Dispersion parameter</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>mu_pre <span class="ot">&lt;-</span> <span class="dv">20</span>  <span class="co"># Mean for pre-treatment</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>mu_post <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># Mean for post-treatment</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate gene expression data</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>pre_treatment <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rep</span>(mu_pre, <span class="fu">length</span>(genes)), <span class="cf">function</span>(mu) <span class="fu">rnbinom</span>(num_cells, size, <span class="at">mu =</span> mu))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>post_treatment <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rep</span>(mu_post, <span class="fu">length</span>(genes)), <span class="cf">function</span>(mu) <span class="fu">rnbinom</span>(num_cells, size, <span class="at">mu =</span> mu))</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Format as data frame</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>pre_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(pre_treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="st">"Pre"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Treatment, <span class="at">names_to =</span> <span class="st">"Gene"</span>, <span class="at">values_to =</span> <span class="st">"Expression"</span>)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>post_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(post_treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="st">"Post"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure data frames have proper column names</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pre_treatment) <span class="ot">&lt;-</span> genes</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(post_treatment) <span class="ot">&lt;-</span> genes</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Format as data frame</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>pre_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(pre_treatment) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="st">"Pre"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Treatment, <span class="at">names_to =</span> <span class="st">"Gene"</span>, <span class="at">values_to =</span> <span class="st">"Expression"</span>)</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the datasets</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(pre_data, post_data)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing to see the combined data (optional)</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>post_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(post_treatment) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="st">"Post"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Treatment, <span class="at">names_to =</span> <span class="st">"Gene"</span>, <span class="at">values_to =</span> <span class="st">"Expression"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the datasets</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(pre_data, post_data)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing to see the combined data (optional)</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now let’s use this data to build a boxplot of TOX expression pre and post treatment.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the TOX gene</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tox_data <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> </span>
