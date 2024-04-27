@@ -291,7 +291,7 @@ The `stringr` package in R simplifies these tasks with easy-to-use functions tha
 Finding specific sequences or motifs within biological sequences is a common task.
 ```R
 library(stringr)
-sequence <- "ATGCGTACGTTGAC"
+sequence <- "ATGCGTACGTTGACA"
 motif <- "CGT"
 str_locate(sequence, motif)
 ```
@@ -390,7 +390,7 @@ A tidyverse data frame is a rectangular table-like structure where:
 ```R
 library(ggplot2)
 library(tidyr)
-librarY(dplyr)
+library(dplyr)
 
 # Example dataset
 data <- data.frame(
@@ -417,7 +417,7 @@ print(tidy_data)
 Selecting columns allows you to choose specific columns from your dataset. It helps you focus on the variables of interest and ignore the rest.
 
 ```R
-selected_data <- select(tidy_data, ID, Math)
+selected_data <- select(data, ID, Math)
 print(selected_data)
 ```
 
