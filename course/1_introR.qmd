@@ -340,6 +340,8 @@ codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_len
 print(codons)
 ```
 
+**Bonus Challenge:** What if our sequence length wasn't a multiple of three? For an example of how to approach this situation please check out the [Bonus challenge].
+
 ## Counting Specific Characters
 
 Counting occurrences of specific nucleotides or amino acids.
@@ -664,6 +666,78 @@ iris %>%
 # environment.
 
 
+```
+
+## Bonus challenge
+
+If our sequence isn't length three, this code will throw an error because the function expects a sequence that is a multiple of 3:
+
+```R
+library(stringr)
+sequence <- "ATGCGTACGTTGAC" # Length 14
+# sequence <- "ATGCGTACGTTGACA" # Length 15
+
+codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))
+
+#> Error in `str_sub()`:
+#> ! Can't recycle `string` (size 5) to match `end` (size 4).
+#> Run `rlang::last_trace()` to see where the error occurred.
+```
+
+Can you try to code up a solution to this problem? 
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "**HINT**"
+
+# We can use the modulus operator "%%". It yields the remainder when the first operand is divided by the second.
+
+15 %% 3 
+#> [1] 0
+
+14 %% 3
+#> [1] 2
+```
+
+Here are a few options for how to solve this (only peek after trying yourself). 
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "**Show me the solution**"
+sequence <- "ATGCGTACGTTGAC" # Length 14
+
+# sequence <- "ATGCGTACGTTGACA" # Length 15
+
+# Option 1: Check for length 3 and make sure before running the code, otherwise print a warning.
+
+sequence_length <- nchar(sequence) # Get sequence length
+
+if (sequence_length %% 3 != 0) {
+  print(paste("Error! The sequence is length:", sequence_length))
+  codons <- "ERROR"
+} else {
+  codons <- str_sub(string = sequence, 
+  start = seq(1, str_length(sequence), by = 3), 
+  end = seq(3, str_length(sequence), by = 3))
+}
+
+print(codons)
+
+# Option 2: Add N to the sequence to make in a multiple of 3, and then any seqeuence will run properly.
+
+if (sequence_length %% 3 != 0) {
+  leftover <- 3 - nchar(sequence) %% 3
+  
+  leftover_n <- paste(rep("N", leftover), collapse = "")
+  
+  sequence <- paste0(sequence, leftover_n)
+}
+
+codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))
+
+print(codons)
 ```
 
 The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%201%20AM.pdf).
