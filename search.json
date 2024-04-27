@@ -176,7 +176,7 @@
     "href": "course/1_introR.html#finding-patterns",
     "title": "Introduction to R",
     "section": "Finding Patterns",
-    "text": "Finding Patterns\nFinding specific sequences or motifs within biological sequences is a common task.\nlibrary(stringr)\nsequence &lt;- \"ATGCGTACGTTGAC\"\nmotif &lt;- \"CGT\"\nstr_locate(sequence, motif)",
+    "text": "Finding Patterns\nFinding specific sequences or motifs within biological sequences is a common task.\nlibrary(stringr)\nsequence &lt;- \"ATGCGTACGTTGACA\"\nmotif &lt;- \"CGT\"\nstr_locate(sequence, motif)",
     "crumbs": [
       "Course",
       "Introduction to R"
