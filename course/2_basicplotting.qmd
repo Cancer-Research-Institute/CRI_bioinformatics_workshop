@@ -178,6 +178,7 @@ ggplot(df, aes(x = x, y = y, color = group)) +
   theme_minimal() +
   labs(title = "Scatter Plot Example", x = "X Axis", y = "Y Axis")
 ```
+![Scatter](scatter.png)
 
 ## Histogram
 
@@ -204,6 +205,7 @@ hist(tcr_data$cell_count,
      xlab="Clone Size (Number of Cells)", 
      ylab="Frequency")
 ```
+
 
 We can perform the same task using ``ggplot2``:
 ```R
@@ -233,19 +235,13 @@ ggplot(tcr_data, aes(x = cell_count)) +
     plot.title = element_text(hjust = 0.5)  # Center the plot title
   )
 ```
+![Histogram](hist.png)
 
 ## Boxplot
 
 Let's simulate some gene expression data for key CD8 T cell genes.
 
 ```R
-library(tidyverse)
-library(MASS)  # For negative binomial simulation
-
-# Define genes and number of cells
-genes <- c("GZMB", "GZMA", "GNLY", "PRF1", "TOX", "ENTPD1", "LAG3", "TIGIT", "HAVCR2", "TIGIT", "CXCL13", "IL7R", "SELL", "LEF1", "TCF7")
-num_cells <- 20
-
 # Parameters for negative binomial
 size <- 2  # Dispersion parameter
 mu_pre <- 20  # Mean for pre-treatment
@@ -256,17 +252,24 @@ set.seed(42)
 pre_treatment <- sapply(rep(mu_pre, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))
 post_treatment <- sapply(rep(mu_post, length(genes)), function(mu) rnbinom(num_cells, size, mu = mu))
 
-# Format as data frame
-pre_data <- as_tibble(pre_treatment, .name_repair = "minimal") %>% 
-  mutate(Treatment = "Pre") %>% 
-  pivot_longer(cols = -Treatment, names_to = "Gene", values_to = "Expression", names_prefix = "V")
+# Ensure data frames have proper column names
+colnames(pre_treatment) <- genes
+colnames(post_treatment) <- genes
 
-post_data <- as_tibble(post_treatment, .name_repair = "minimal") %>% 
+# Format as data frame
+pre_data <- as_tibble(pre_treatment) %>% 
+  mutate(Treatment = "Pre") %>% 
+  pivot_longer(cols = -Treatment, names_to = "Gene", values_to = "Expression")
+
+post_data <- as_tibble(post_treatment) %>% 
   mutate(Treatment = "Post") %>% 
-  pivot_longer(cols = -Treatment, names_to = "Gene", values_to = "Expression", names_prefix = "V")
+  pivot_longer(cols = -Treatment, names_to = "Gene", values_to = "Expression")
 
 # Combine the datasets
 combined_data <- bind_rows(pre_data, post_data)
+
+# Printing to see the combined data (optional)
+print(combined_data)
 ```
 
 Now let's use this data to build a boxplot of TOX expression pre and post treatment.
@@ -283,6 +286,8 @@ ggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +
   theme_minimal() +
   scale_fill_brewer(palette="Pastel1")  # Enhance aesthetics with color
 ```
+
+![Boxplot of TOX Expression](tox_expression.png)
 
 ## Violin plot
 
@@ -302,6 +307,7 @@ ggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +
   scale_fill_brewer(palette="Pastel1") +
   geom_boxplot(width=0.1, fill="white")  # Overlay boxplot to show median and quartiles
 ```
+![Violin of TOX Expression](tox_violin.png)
 
 # Statistics
 
@@ -309,8 +315,6 @@ ggplot(tox_data, aes(x=Treatment, y=Expression, fill=Treatment)) +
 A t-test could be used to compare the means of two groups, for example, the level of a specific immune marker in patients with and without a certain mutation.
 
 ```R
-R
-Copy code
 # Randomly generated sample data: Immune marker levels in two patient groups
 group1 <- rnorm(30, mean = 5, sd = 1.5) # Patients with a mutation
 group2 <- rnorm(30, mean = 4.5, sd = 1.2) # Patients without the mutation
@@ -320,6 +324,20 @@ test <- t.test(group1, group2)
 
 # Print the result
 print(test)
+```
+
+Output:
+```R
+Welch Two Sample t-test
+
+data:  group1 and group2
+t = 0.83457, df = 49.381, p-value = 0.408
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.3593549  0.8699988
+sample estimates:
+mean of x mean of y 
+ 4.951171  4.695849 
 ```
 
 ## Fisher's Exact Test
@@ -335,6 +353,12 @@ You also need the total number of cells sequenced at each timepoint to complete 
  - Total cells at Timepoint 2: `N_post`
 
  ```R
+ X <- 20
+ Y <- 300
+ 
+ N_pre <- 2450
+ N_post <- 3001
+ 
 # Number of cells with the specific clonotype at each timepoint
 cells_with_clone <- c(X, Y)  
 
@@ -353,6 +377,22 @@ test <- fisher.test(data)
 print(test)
  ```
  
+Output:
+```R
+	Fisher's Exact Test for Count Data
+
+data:  data
+p-value < 2.2e-16
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.04445414 0.11701865
+sample estimates:
+odds ratio 
+0.07410471 
+```
+
+
+
  - The matrix data has two rows ("With Clone" and "Without Clone") and two columns ("Pre-Treatment" and "Post-Treatment").
 This matrix is filled with the counts of cells with and without the specific TCR clonotype at each timepoint.
  - `fisher.test(data)` calculates whether the proportions of cells with the clonotype are significantly different between the two timepoints.
