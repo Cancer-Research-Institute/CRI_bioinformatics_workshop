@@ -397,6 +397,15 @@ ggscatter(df, x = "Gene1", y = "Gene2",
 # Run PCA, t-SNE, and UMAP on the simulated gene expression data.
 # CODE YOUR ANSWER HERE
 
+# Run pheatmap again on the expression dataset, apply k_means clustering using 2, 10, 50 k's and view how clusters change
+# Hint! type ?pheatmap to view function documentation in R
+# CODE YOUR ANSWER HERE
+
+# Save the pheatmap object to a variable, can you find which genes correspond to which clusters (use "$" to access object data)
+# what cluster does Gene 5 correspond to
+# CODE YOUR ANSWER HERE
+
+
 ```
 
 # Bonus Exercises: Heatmaps using ggplot2
