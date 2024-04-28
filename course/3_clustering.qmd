@@ -476,4 +476,6 @@ ggplot(reorder_plot, aes(x = Gene, y = Cell, fill = expression_value)) +
 
 ```
 
+# Lecture Slides
+
 The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%202%20AM.pdf).
