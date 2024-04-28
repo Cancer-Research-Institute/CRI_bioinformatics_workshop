@@ -11,7 +11,40 @@
     "href": "course/3_clustering.html",
     "title": "Clustering concepts and correlation",
     "section": "",
-    "text": "Clustering is a technique used to group similar objects or data points together based on their characteristics or features. For example, clustering can be applied to gene expression data to identify groups of genes that behave similarly under different experimental conditions. These clusters might ultimately inform cell types or subtypes. There are several different clustering techniques, including hierarchical or K-means clustering. It is important to understand the limitations or assumptions of a clustering algorithm when applying it to your data.\n\n\nK-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.\nK-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.",
+    "text": "Manhattan distance, or L1 distance, measures the distance between two points by summing the absolute differences of their Cartesian coordinates. It is equivalent to the total number of moves required to go from one point to another if only axis-aligned moves (up, down, left, right) are allowed, mimicking a city grid.\n\n\n\nLess influenced by outliers compared to Euclidean distance.\nUseful in high-dimensional spaces.\n\n\n\n\n\nEuclidean distance, also known as the L2 distance, is the most common metric used to measure the straight-line distance between two points in Euclidean space. It is the default distance measure in many analytical applications.\n\n\n\nMeasures the shortest path between points.\nSensitive to outliers.\nUsed in default settings for many algorithms like K-means clustering.\n\n\n\n\n\n# Load the iris dataset\ndata(iris)\niris_numeric &lt;- iris[, 1:4]  # Exclude the species column\n\n# Euclidean distance\neuclidean_distances &lt;- dist(iris_numeric, method = \"euclidean\")\n\n# Manhattan distance\nmanhattan_distances &lt;- dist(iris_numeric, method = \"manhattan\")",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#manhattan-distance",
+    "href": "course/3_clustering.html#manhattan-distance",
+    "title": "Clustering concepts and correlation",
+    "section": "",
+    "text": "Manhattan distance, or L1 distance, measures the distance between two points by summing the absolute differences of their Cartesian coordinates. It is equivalent to the total number of moves required to go from one point to another if only axis-aligned moves (up, down, left, right) are allowed, mimicking a city grid.\n\n\n\nLess influenced by outliers compared to Euclidean distance.\nUseful in high-dimensional spaces.",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#euclidean-distance",
+    "href": "course/3_clustering.html#euclidean-distance",
+    "title": "Clustering concepts and correlation",
+    "section": "",
+    "text": "Euclidean distance, also known as the L2 distance, is the most common metric used to measure the straight-line distance between two points in Euclidean space. It is the default distance measure in many analytical applications.\n\n\n\nMeasures the shortest path between points.\nSensitive to outliers.\nUsed in default settings for many algorithms like K-means clustering.",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#dist-in-r",
+    "href": "course/3_clustering.html#dist-in-r",
+    "title": "Clustering concepts and correlation",
+    "section": "",
+    "text": "# Load the iris dataset\ndata(iris)\niris_numeric &lt;- iris[, 1:4]  # Exclude the species column\n\n# Euclidean distance\neuclidean_distances &lt;- dist(iris_numeric, method = \"euclidean\")\n\n# Manhattan distance\nmanhattan_distances &lt;- dist(iris_numeric, method = \"manhattan\")",
     "crumbs": [
       "Course",
       "Clustering concepts and correlation"
@@ -21,8 +54,19 @@
     "objectID": "course/3_clustering.html#k-means-clustering",
     "href": "course/3_clustering.html#k-means-clustering",
     "title": "Clustering concepts and correlation",
-    "section": "",
-    "text": "K-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.\nK-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.",
+    "section": "K-means clustering",
+    "text": "K-means clustering\nK-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.\nK-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.\nRunning\n# Load data\ndata(iris)\niris_data &lt;- iris[, -5]\n\n# Run k-means\nset.seed(123)\nkmeans_result &lt;- kmeans(iris_data, centers = 3, nstart = 20)\n\n# Results\nprint(kmeans_result)\ntable(Cluster = kmeans_result$cluster, Species = iris$Species)\n\n# Visualization\nlibrary(ggplot2)\nggplot(iris, aes(Sepal.Length, Sepal.Width, color = factor(kmeans_result$cluster))) +\n  geom_point(alpha = 0.5) +\n  labs(color = 'Cluster') +\n  ggtitle(\"K-means Clustering of the Iris Dataset\")\n\n\n\nKmeans on iris data",
+    "crumbs": [
+      "Course",
+      "Clustering concepts and correlation"
+    ]
+  },
+  {
+    "objectID": "course/3_clustering.html#heirarchical-clustering",
+    "href": "course/3_clustering.html#heirarchical-clustering",
+    "title": "Clustering concepts and correlation",
+    "section": "Heirarchical Clustering",
+    "text": "Heirarchical Clustering\n# Install and load necessary packages\nif (!requireNamespace(\"stringdist\", quietly = TRUE)) {\n  install.packages(\"stringdist\")\n}\nlibrary(stringdist)\n\n# Define TCR sequences\ntcr_sequences &lt;- c(\"CASSLGTQYEQYF\", \"CASSLGTEAFF\", \"CASSQETQYEQYF\", \"CASSLRTDTQYF\")\nnames(tcr_sequences) &lt;- tcr_sequences  # Use sequences as labels\n\n# Calculate pairwise string distances using the Levenshtein method\ndist_matrix &lt;- stringdistmatrix(tcr_sequences, tcr_sequences, method = \"lv\")\n\n# Perform hierarchical clustering using the complete linkage method\nhc &lt;- hclust(as.dist(dist_matrix), method = \"complete\")\n\n# Plot the dendrogram\nplot(hc, main = \"Hierarchical Clustering of TCR Sequences\", sub = \"\", xlab = \"\", ylab = \"Distance\",\n     labels = names(tcr_sequences), hang = -1)  # Ensure labels hang below the plot\n\n\n\nSequence Distance Clustering\n\n\n# Install and load pheatmap if not already installed\nif (!requireNamespace(\"pheatmap\", quietly = TRUE)) {\n    install.packages(\"pheatmap\")\n}\nlibrary(pheatmap)\n\n# Set seed for reproducibility\nset.seed(42)\n\n# Define parameters\nnum_genes &lt;- 100\nnum_samples &lt;- 50  # 25 T cells + 25 Cancer cells\n\n# Simulate base gene expression\ngene_expression &lt;- matrix(rnorm(num_genes * num_samples, mean = 10, sd = 2), \n                          nrow = num_genes, ncol = num_samples)\n\n# Introduce differences in expression between the two groups\ngene_expression[81:100, 1:25] &lt;- gene_expression[81:100, 1:25] + 2  # T cells\ngene_expression[81:100, 26:50] &lt;- gene_expression[81:100, 26:50] - 2  # Cancer cells\n\n# Label rows and columns\nrownames(gene_expression) &lt;- paste(\"Gene\", 1:num_genes, sep = \"\")\ncolnames(gene_expression) &lt;- c(paste(\"T_Cell\", 1:25, sep = \"\"), paste(\"Cancer_Cell\", 1:25, sep = \"\"))\n\n# Transpose the gene expression matrix\ntransposed_gene_expression &lt;- t(gene_expression)\n\n# Creating a heatmap with clustering and annotation\npheatmap(transposed_gene_expression, \n         show_rownames = TRUE, \n         show_colnames = FALSE, \n         clustering_distance_rows = \"euclidean\",\n         cluster_rows  = TRUE,\n         cluster_cols  = FALSE,\n         main = \"Heatmap of Gene Expression with Clustering\")",
     "crumbs": [
       "Course",
       "Clustering concepts and correlation"
@@ -33,7 +77,7 @@
     "href": "course/3_clustering.html#principal-component-analysis-pca",
     "title": "Clustering concepts and correlation",
     "section": "Principal Component Analysis (PCA)",
-    "text": "Principal Component Analysis (PCA)\nPCA is a widely used dimension reduction technique that transforms high-dimensional data into a lower-dimensional representation by identifying the principal components that capture the maximum variance in the data. These principal components are orthogonal to each other and can be used to visualize the data in lower dimensions.",
+    "text": "Principal Component Analysis (PCA)\nPCA is a widely used dimension reduction technique that transforms high-dimensional data into a lower-dimensional representation by identifying the principal components that capture the maximum variance in the data. These principal components are orthogonal to each other and can be used to visualize the data in lower dimensions.\n# Load necessary packages\nlibrary(ggplot2)\n\n# Load data\ndata(iris)\niris_data &lt;- iris[, 1:4]\n\n# PCA\npca_results &lt;- prcomp(iris_data, center = TRUE, scale. = TRUE)\nprint(summary(pca_results))\n\n# Visualization\nbiplot(pca_results, scale = 0)\n\n# Scatter plot of the first two PCs\npc_df &lt;- data.frame(PC1 = pca_results$x[,1], PC2 = pca_results$x[,2], Species = iris$Species)\nggplot(pc_df, aes(x = PC1, y = PC2, color = Species)) +\n    geom_point() +\n    labs(title = \"PCA of Iris Dataset\",\n         x = \"Principal Component 1\",\n         y = \"Principal Component 2\") +\n    theme_minimal()",
     "crumbs": [
       "Course",
       "Clustering concepts and correlation"
