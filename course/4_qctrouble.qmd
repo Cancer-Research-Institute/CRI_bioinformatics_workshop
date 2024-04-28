@@ -31,6 +31,18 @@ ggplot(df, aes(x, y)) + geom_point()
 # Error: there is no package called 'ggplot2'
 ```
 
+There are two main package repositories within the R ecosystem, CRAN (Comprehensive R Archive Network) and Bioconductor. Natively `install.packages()` will look only in CRAN, there is a separate function to install packages from bioconductor. 
+
+```R
+# Instructions for Bioconductor to install the "GenomicRanges" library
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("GenomicRanges")
+```
+
+Copy/paste right from bioconductor will install the package, however to give a bit of an explanation of what is going on in the instructions above, you are first installing the "BiocManager" package from CRAN which is a bioconductor maintained package to install packages from the bioconductor itself. the `if` block is just saying to install "BiocManager" only if it is not already installed. The second piece of code works `BiocManager::install()` works as `install.packages()` just searching the bioconductor package repository, you might notice the `::`. This is a somewhat advanced R topic but you will often see it on stackoverflow or other help message boards. It simply is a way to refer to a funciton within a package without explicitly loading that package via the `library()` function.
+
 # Where do I go for help?
 
 ## Stack Exchange
