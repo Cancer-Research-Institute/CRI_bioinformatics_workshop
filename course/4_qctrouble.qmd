@@ -2,6 +2,36 @@
 title: "Common challenges and additional resources"
 ---
 
+# Where should you start with a new dataset?
+
+The key to accomplishing any analysis is to start by understand what your data looks like and how it's organized. This might include:
+
+- What type of files are you working with?
+- How do they get loaded into R?
+- What is the size of the dataset?
+- What types of questions can I ask of the data?
+
+```R
+
+library(dplyr)
+
+file <- "/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"
+print(file)
+
+# File is a "tsv" file -> Tab-delimited file
+read_tsv <- read.csv(file, sep = '\t')
+
+# Look at the file: View(), head(), or click on it to the right
+View(read_tsv)
+head(read_tsv)
+
+# Understand the variables and data structure: typeof(), str(), colnames()
+typeof(read_tsv)
+str(read_tsv)
+colnames(read_tsv)
+
+```
+
 # Common challenges
 
 ## *NaN* and missing data
@@ -20,6 +50,40 @@ df <- data.frame(
 sum(is.na(df))
 ```
 
+```R
+
+# Understanding missing or sparse information
+summary(read_tsv)
+read_tsv[!complete.cases(read_tsv),]
+
+```
+
+## Data organization and structure: Factors
+Columns that contain strings are automatically read in as character vectors and are arranged alphanumericall. *Factors* assign a logical order to a series of samples. 
+
+
+```R
+file <- "/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"
+print(file)
+
+# File is a "tsv" file -> Tab-delimited file
+read_tsv <- read.csv(file, sep = '\t')
+
+# Organize the chromosomes to the correct order
+# If CHROM is a character vector, the chromosomes are not ordered properly
+str(read_tsv) # Shows that CHROM variable is a character vector
+ggplot(read_tsv, aes(x = CHROM)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# make CHROM a factor
+read_tsv$CHROM <- factor(read_tsv$CHROM, levels = paste0("chr", c(1:22, 'X','Y')))
+str(read_tsv) # shows that CHROM variable is a factor with a set order of character strings
+ggplot(read_tsv, aes(x = CHROM)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 ## Missing packages or dependencies
 
 When running R code, you may encounter errors related to missing packages or dependencies. This occurs when you try to use functions or libraries that are not installed on your system. This will commonly look like a red error stating "There is no package..." Installing the required packages using *install.packages("package_name")* can resolve this issue.
@@ -31,17 +95,6 @@ ggplot(df, aes(x, y)) + geom_point()
 # Error: there is no package called 'ggplot2'
 ```
 
-There are two main package repositories within the R ecosystem, CRAN (Comprehensive R Archive Network) and Bioconductor. Natively `install.packages()` will look only in CRAN, there is a separate function to install packages from bioconductor. 
-
-```R
-# Instructions for Bioconductor to install the "GenomicRanges" library
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("GenomicRanges")
-```
-
-Copy/paste right from bioconductor will install the package, however to give a bit of an explanation of what is going on in the instructions above, you are first installing the "BiocManager" package from CRAN which is a bioconductor maintained package to install packages from the bioconductor itself. the `if` block is just saying to install "BiocManager" only if it is not already installed. The second piece of code works `BiocManager::install()` works as `install.packages()` just searching the bioconductor package repository, you might notice the `::`. This is a somewhat advanced R topic but you will often see it on stackoverflow or other help message boards. It simply is a way to refer to a funciton within a package without explicitly loading that package via the `library()` function.
 
 # Where do I go for help?
 
@@ -68,8 +121,14 @@ Github hosts numerous repositories containing R scripts, packages, and projects.
 
 Once you've learned R programming basics, applying the code to your own data involves understanding your data structure, identifying relevant functions and packages, and adapting example code to suit your specific analysis goals.
 
+# Additional practice
 
 ```R
+
+# Read in the file "/cloud/project/data/bulk_rna/GSE48035_ILMN.Counts.SampleSubset.ProteinCodingGenes.tsv"
+# Describe the size, shape, and organization of this data file.
+
+
 # Example: Applying code to your own data
 # Load your dataset
 my_data <- read.csv("my_data.csv")
