@@ -228,6 +228,11 @@ UMAP (Uniform Manifold Approximation and Projection) is a modern technique for d
 
 
 ```R
+# Install and load umap if not already installed
+if (!requireNamespace("umap", quietly = TRUE)) {
+    install.packages("umap")
+}
+
 library(umap)
 library(ggplot2)
 
