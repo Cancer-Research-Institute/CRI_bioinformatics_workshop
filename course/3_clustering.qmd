@@ -142,7 +142,7 @@ pheatmap(transposed_gene_expression,
 ![Expression Distance Clustering](gene_expression_dist.png)
 ![Expression Distance Clustering](gene_expression_heatmap.png)
 
-# Dimension Reduction
+# Dimensionality Reduction
 
 Dimension reduction is a crucial step in analyzing high-dimensional data, such as gene expression data, where the number of features (genes) is large compared to the number of samples (experimental conditions). Dimension reduction techniques aim to simplify the data while preserving its essential structure, simplifying hundreds or thousands of features into a two-dimensional space. For clustering cell types or samples, this approach enables the identification of which genes are the most different across groups or clusters.
 
@@ -162,8 +162,6 @@ iris_data <- iris[, 1:4]
 pca_results <- prcomp(iris_data, center = TRUE, scale. = TRUE)
 print(summary(pca_results))
 
-# Visualization
-biplot(pca_results, scale = 0)
 
 # Scatter plot of the first two PCs
 pc_df <- data.frame(PC1 = pca_results$x[,1], PC2 = pca_results$x[,2], Species = iris$Species)
@@ -175,6 +173,71 @@ ggplot(pc_df, aes(x = PC1, y = PC2, color = Species)) +
     theme_minimal()
 ```
 
+![PCA example](pca_iris.png)
+
+## t-SNE
+
+t-SNE (t-Distributed Stochastic Neighbor Embedding) is a machine learning algorithm used for dimensionality reduction and is particularly well suited for the visualization of high-dimensional datasets.
+
+
+```R
+# Load the Rtsne package
+library(Rtsne)
+
+unique_iris <- unique(iris[, 1:4])
+
+# Run t-SNE on the deduplicated data
+set.seed(42)  # for reproducibility
+tsne_results <- Rtsne(unique_iris, dims = 2, perplexity = 30, verbose = TRUE)
+
+# Create a data frame for plotting (assuming you want to include species labels)
+tsne_data <- data.frame(tsne_results$Y)
+
+# Assuming you want to add back the species information
+# This assumes that species information was not a factor in duplicates
+# If species data was part of the duplication, handle accordingly
+species_data <- iris[!duplicated(iris[, 1:4]), "Species"]
+tsne_data$Species <- species_data
+
+# Plot the results using ggplot2
+library(ggplot2)
+ggplot(tsne_data, aes(x = X1, y = X2, color = Species)) +
+  geom_point(alpha = 0.8) +
+  labs(title = "Iris dataset t-SNE plot",
+       x = "t-SNE 1", y = "t-SNE 2") +
+  theme_minimal()
+
+```
+![t-SNE example](tsne_iris.png)
+
+## UMAP
+
+UMAP (Uniform Manifold Approximation and Projection) is a modern technique for dimensionality reduction that is particularly useful for visualizing clusters or groups in high-dimensional data. Similar to t-SNE, UMAP focuses on preserving the local structure of the data but also tries to retain more of the global structure compared to t-SNE. UMAP is based on manifold learning and operates under the assumption that the data is uniformly distributed on a locally connected Riemannian manifold.
+
+
+```R
+library(umap)
+library(ggplot2)
+
+# Load data
+data(iris)
+
+# Run UMAP
+set.seed(42)  # for reproducibility
+umap_results <- umap(iris[, 1:4])
+
+# Create a data frame for plotting
+iris_umap <- data.frame(umap_results$layout)
+iris_umap$Species = iris$Species
+
+ggplot(iris_umap, aes(x = X1, y = X2, color = Species)) +
+  geom_point(alpha = 0.8) +
+  labs(title = "Iris Dataset UMAP Plot",
+       x = "UMAP 1", y = "UMAP 2") +
+  theme_minimal()
+```
+![UMAP example](umap_iris.png)
+
 # Correlation
 
 Correlation measures the strength and direction of the relationship between two variables. In bioinformatics, correlation analysis is often used to explore relationships between gene expression levels across different samples or experimental conditions.
@@ -182,7 +245,74 @@ Correlation measures the strength and direction of the relationship between two 
 ## Spearman vs. Pearson Correlation
 
 - **Pearson Correlation**: Measures the linear relationship between two variables. It assumes that the variables are normally distributed and have a linear relationship.
+
+```R
+# Generate example data
+set.seed(42)
+x <- rnorm(100)  # Generate 100 random numbers from a standard normal distribution
+y <- x + rnorm(100, mean = 0, sd = 0.5)  # Create y as a noisy version of x
+
+# Calculate Pearson correlation coefficient
+pearson_correlation <- cor(x, y, method = "pearson")
+print(paste("Pearson correlation coefficient:", round(pearson_correlation, 2)))
+```
+
+
 - **Spearman Correlation**: Measures the monotonic relationship between two variables. It does not assume linearity and is more robust to outliers and non-normal distributions.
+
+```R
+# Generate example data
+set.seed(42)
+x <- rnorm(100)  # Generate 100 random numbers from a standard normal distribution
+y <- x + rnorm(100, mean = 0, sd = 0.5)  # Create y as a noisy version of x
+
+# Calculate Spearman correlation coefficient
+spearman_correlation <- cor(x, y, method = "spearman")
+print(paste("Spearman correlation coefficient:", round(spearman_correlation, 2)))
+```
+
+## `geom_smooth`
+
+Simple example using iris.
+```R
+library(ggplot2)
+
+# Create a scatter plot with a smoothed line
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +  # Add scatter points
+  geom_smooth(method = "lm", se = FALSE) +  # Add linear regression line
+  labs(title = "Scatter Plot with Smoothed Line", x = "Sepal Length", y = "Sepal Width")
+```
+![geom_smooth iris](geom_smooth_iris.png)
+
+Simulate data points from two groups and use geom_smooth with a different model for each group.
+```R
+# Load required libraries
+library(ggplot2)
+
+# Generate example data
+set.seed(42)
+n <- 100  # Number of data points per group
+x <- 1:n  # x values
+group <- rep(c("linear", "sinusoidal"), each = n)  # Group labels
+y <- c(0.5 * x + rnorm(n, mean = 0, sd = 5),  # Group 'linear' with a linear trend
+       2 * sin(seq(0, 2 * pi, length.out = n)) + rnorm(n, mean = 0, sd = 0.5))  # Group 'sinusoidal' with a sinusoidal trend
+
+# Standardize y-values within each group
+y <- ave(y, group, FUN = scale)
+
+# Create a data frame
+df <- data.frame(x = rep(x, 2), y = y, group = rep(group, 2))
+
+# Plot the data with smoothed lines and confidence intervals for each group
+ggplot(data = df, aes(x = x, y = y, color = group)) +
+  geom_point() +  # Add scatter points
+  geom_smooth(data = subset(df, group == "linear"), method = "lm", se = TRUE) +  # Add linear smoothed line with confidence intervals
+  geom_smooth(data = subset(df, group == "sinusoidal"), method = "loess", se = TRUE) +  # Add sinusoidal smoothed line with confidence intervals
+  labs(title = "Scatter Plot with Smoothed Lines and Confidence Intervals by Group", x = "X", y = "Y (Standardized)") +
+  theme_minimal()
+```
+![geom_smooth Simulated](geom_smooth_simulated.png)
 
 ## Example Code
 
