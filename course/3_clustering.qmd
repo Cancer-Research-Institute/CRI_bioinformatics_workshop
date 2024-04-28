@@ -4,6 +4,8 @@ title: "Clustering concepts and correlation"
 
 # Distances
 
+Understanding distance metrics is critical for clustering and dimensionality reduction because these techniques heavily rely on measuring the similarity or dissimilarity between data points. Distance metrics define how "close" or "far" two points are in the feature space, and they play a crucial role in determining the grouping of similar points in clustering algorithms and the preservation of local and global structures in dimensionality reduction techniques.
+
 ## Manhattan Distance
 
 Manhattan distance, or L1 distance, measures the distance between two points by summing the absolute differences of their Cartesian coordinates. It is equivalent to the total number of moves required to go from one point to another if only axis-aligned moves (up, down, left, right) are allowed, mimicking a city grid.
@@ -39,7 +41,6 @@ manhattan_distances <- dist(iris_numeric, method = "manhattan")
 ```
 
 
-
 # Clustering
 
 *Clustering* is a technique used to group similar objects or data points together based on their characteristics or features. For example, clustering can be applied to gene expression data to identify groups of genes that behave similarly under different experimental conditions. These clusters might ultimately inform cell types or subtypes. There are several different clustering techniques, including hierarchical or K-means clustering. It is important to understand the limitations or assumptions of a clustering algorithm when applying it to your data.
@@ -50,7 +51,8 @@ K-means clustering is a popular unsupervised machine learning algorithm used for
 
 K-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.
 
-Running
+Running on K-means on the iris data set:
+
 ```R
 # Load data
 data(iris)
@@ -77,6 +79,12 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = factor(kmeans_result$cluster
 
 ## Heirarchical Clustering
 
+Hierarchical clustering is a method used in unsupervised learning to group similar data points into clusters based on their pairwise distances or similarities. The main idea behind hierarchical clustering is to build a hierarchy of clusters, where each data point starts in its own cluster and pairs of clusters are progressively merged until all points belong to a single cluster.
+
+The result of hierarchical clustering is often visualized using a dendrogram, which is a tree-like diagram that illustrates the hierarchical structure of the clusters.
+
+Lets use hclust on a set of TCR sequences, where the distance between each sequence is defined as the edit distance. We can plot a dendrogram highlighting sequence similarity.
+
 ```R
 # Install and load necessary packages
 if (!requireNamespace("stringdist", quietly = TRUE)) {
@@ -99,6 +107,9 @@ plot(hc, main = "Hierarchical Clustering of TCR Sequences", sub = "", xlab = "",
      labels = names(tcr_sequences), hang = -1)  # Ensure labels hang below the plot
 ```
 ![Sequence Distance Clustering](tcr_string_dist.png)
+
+We can create a more complex simulated dataset of simulated single cell gene expression data. In this case, we have two cell types, and expect that the resulting dendrogram produced from the clustering should show clear differences between these cell types. Finally, we can plot the expression values in heatmap to visualize the difference between the genes across cells. The ordering of the rows is dictated by the dendrogram, drawing more similar cells closer together, allowing us to see the expression patterns that define each cell type.
+
 
 ```R
 # Install and load pheatmap if not already installed
@@ -177,7 +188,8 @@ ggplot(pc_df, aes(x = PC1, y = PC2, color = Species)) +
 
 ## t-SNE
 
-t-SNE (t-Distributed Stochastic Neighbor Embedding) is a machine learning algorithm used for dimensionality reduction and is particularly well suited for the visualization of high-dimensional datasets.
+
+t-SNE (t-Distributed Stochastic Neighbor Embedding) is a dimensionality reduction technique commonly used in bioinformatics to visualize high-dimensional data, such as gene expression profiles or single-cell RNA sequencing (scRNA-seq) data, in a lower-dimensional space. t-SNE aims to preserve local structure and clusterings in the data by modeling similarities between data points in the high-dimensional space and embedding them into a lower-dimensional space. In t-SNE, similarities between data points are represented by conditional probabilities that two points are similar given their high-dimensional representations. t-SNE iteratively adjusts the positions of data points in the lower-dimensional space to minimize the difference between the conditional probabilities of pairwise similarities in the high-dimensional and low-dimensional spaces.
 
 
 ```R
@@ -314,6 +326,28 @@ ggplot(data = df, aes(x = x, y = y, color = group)) +
 ```
 ![geom_smooth Simulated](geom_smooth_simulated.png)
 
+## Linear Regression
+
+Statistical model to estimate the linear relationship between a dependent variable and a set of independent variables. The goal is find the best fit line by fitting the observed data to a linear equation.
+
+```R
+
+# Generate example data with more noise
+set.seed(42)
+df <- data.frame(x = 1:100,                    # Independent variable
+                 y = 2 * df$x + rnorm(100, mean = 0, sd = 30))    # Dependent variable with more noise
+
+model <- lm(y ~ x, data = df)
+
+# Visualize the data and fitted line
+ggplot(df, aes(x = x, y = y)) +
+  geom_point() +                              # Add scatter points
+  geom_smooth(method = "lm", se = FALSE) +    # Add fitted line
+  labs(title = "Linear Regression Example", x = "x", y = "y")
+```
+![Linear regression example](lm_example.png)
+
+
 ## Example Code
 
 ```R
@@ -352,4 +386,9 @@ ggscatter(df, x = "Gene1", y = "Gene2",
           cor.coeff.args = list(method = "spearman"))
 ```
 
+# Additional Exercises
+```R
+# Run PCA, t-SNE, and UMAP on the simulated gene expression data.
+# CODE YOUR ANSWER HERE
 
+```
