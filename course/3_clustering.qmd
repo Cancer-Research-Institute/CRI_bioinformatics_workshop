@@ -397,3 +397,5 @@ ggscatter(df, x = "Gene1", y = "Gene2",
 # CODE YOUR ANSWER HERE
 
 ```
+
+The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%202%20AM.pdf).
