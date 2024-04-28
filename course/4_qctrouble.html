@@ -244,6 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#how-do-i-apply-the-code-ive-learned-to-my-own-data" id="toc-how-do-i-apply-the-code-ive-learned-to-my-own-data" class="nav-link" data-scroll-target="#how-do-i-apply-the-code-ive-learned-to-my-own-data">How do I apply the code I’ve learned to my own data?</a></li>
   <li><a href="#additional-practice" id="toc-additional-practice" class="nav-link" data-scroll-target="#additional-practice">Additional practice</a></li>
+  <li><a href="#recreate-a-paper-figure-from-scratch" id="toc-recreate-a-paper-figure-from-scratch" class="nav-link" data-scroll-target="#recreate-a-paper-figure-from-scratch">Recreate a Paper Figure from Scratch</a></li>
   <li><a href="#where-do-i-go-for-practice" id="toc-where-do-i-go-for-practice" class="nav-link" data-scroll-target="#where-do-i-go-for-practice">Where do I go for practice?</a>
   <ul class="collapse">
   <li><a href="#codefights" id="toc-codefights" class="nav-link" data-scroll-target="#codefights">CodeFights</a></li>
@@ -401,6 +402,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Comment your code for clarity and future reference</span></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: Make your life easier when it comes time for reproducing your figures and filling in that "Data and Code Availability" section of your manuscript.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="recreate-a-paper-figure-from-scratch" class="level1">
+<h1>Recreate a Paper Figure from Scratch</h1>
+<p>Here we will recreate a figure from <a href="https://www.science.org/doi/10.1126/science.abj4008">Schmidt et al (Science 2022)</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2660320388.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:4in"></p>
+</figure>
+</div>
+<p>First we will load the data from the supplemental table (<a href="https://github.com/crigrants/CRI_bioinformatics_workshop/raw/c66ec1f1da51a4868b76433a32d0915af3629a8a/course/data/science.abj4008_table_s2.xlsx">download here</a>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>log2_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/science.abj4008_table_s2.xlsx"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Always good practice to check the data to ensure it was loaded correctly:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># head(log2_df)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The plot only contains the IL2 results from CRISPRa screens,</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># so we will filter down</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>log2_df_filter <span class="ot">&lt;-</span> log2_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Cytokine <span class="sc">==</span> <span class="st">"IL2"</span>, CRISPRa_or_i <span class="sc">==</span> <span class="st">"CRISPRa"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Select genes that we want to label based on top LFC</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>ngenes_label <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>label_genes <span class="ot">&lt;-</span> log2_df_filter <span class="sc">%&gt;%</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Screen_Version <span class="sc">==</span> <span class="st">"Primary"</span>) <span class="sc">%&gt;%</span> <span class="co"># For ease only use primary donor</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">sign</span>(LFC)) <span class="sc">%&gt;%</span> <span class="co"># Group by the sign (pos or neg) lfc</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(LFC))) <span class="sc">%&gt;%</span> <span class="co"># Sort by descending absolute lfc values</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> ngenes_label) <span class="sc">%&gt;%</span> <span class="co"># Take the top n genes</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Gene) <span class="co"># Pull these out from the data frame</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to pivot the Screen_Version variable (which is equivalent to Donor1 and Donor 2) into separate columns</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>log2_df_filter_wide <span class="ot">&lt;-</span> log2_df_filter <span class="sc">%&gt;%</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">"Gene"</span>, <span class="st">"Hit_Type"</span>), <span class="at">names_from =</span> <span class="st">"Screen_Version"</span>, <span class="at">values_from =</span> <span class="st">"LFC"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Primary), <span class="sc">!</span><span class="fu">is.na</span>(CD4_Supplement))</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder the factor so that we can plot the hits on top</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>log2_df_filter_wide<span class="sc">$</span>Hit_Type <span class="ot">&lt;-</span> <span class="fu">factor</span>(log2_df_filter_wide<span class="sc">$</span>Hit_Type,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Positive Hit"</span>, <span class="st">"Negative Hit"</span>, <span class="st">"NA"</span>),</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Positive Hit"</span>, <span class="st">"Negative Hit"</span>, <span class="st">"Not a Hit"</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can plot:</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> log2_df_filter_wide <span class="sc">%&gt;%</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This will order by the factor so the hits are plotted on top</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Hit_Type)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Primary, <span class="at">y =</span> CD4_Supplement)) <span class="sc">+</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Hit_Type)) <span class="sc">+</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_2d</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For this geom text, we filter the original data to only include</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># genes that we want labeled from the above filtering</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(log2_df_filter_wide, Gene <span class="sc">%in%</span> label_genes),</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> Gene, <span class="at">colour =</span> Hit_Type),</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">0.36</span> <span class="sc">*</span> <span class="dv">7</span>, <span class="at">show.legend =</span> F</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Positive Hit"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"Not a Hit"</span> <span class="ot">=</span> <span class="st">"grey80"</span>, <span class="st">"Negative Hit"</span> <span class="ot">=</span> <span class="st">"blue"</span>)) <span class="sc">+</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place legend inside the plot</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">0.15</span>),</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Change vertical spacing between legend items</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">3</span>, <span class="st">"mm"</span>),</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a box around the legend</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Donor 1, log2FoldChange"</span>,</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Donor 2, log2FoldChange"</span>,</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"IL-2 CRISPRa Screen"</span>,</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Screen Hit"</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co"># We can save our plot if desired</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(final_plot, <span class="at">file =</span> <span class="st">"my_pretty_plot.pdf"</span>, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="co"># And now view it</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>final_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_qctrouble_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="where-do-i-go-for-practice" class="level1">
 <h1>Where do I go for practice?</h1>
