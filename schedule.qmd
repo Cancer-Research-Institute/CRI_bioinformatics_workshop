@@ -4,8 +4,10 @@ title: "Schedule"
 
 The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 2024 at the Hilton Bonnett Creek, Orlando FL.
 
+:::{.column-body-outset}
+
 | Day      | Time            | Duration | Module                     | Topic                                                                        |
-|----------|-----------------|----------|----------------------------|------------------------------------------------------------------------------|
+|---------------|---------------------------------|----------|----------------------------|------------------------------------------------------------------------------|
 | 1 (Sat)  | 9:00AM-9:30AM   | 0:30     | R Workshop                 | Introduction to R and RStudio                                                |
 |          | 9:30AM-9:45AM   | 0:15     |                            | Break       			  					       |
 |          | 9:45AM-12:00PM  | 2:15     |                            | Hands-on: Reading, writing, and interpreting data structures                 |
@@ -61,3 +63,8 @@ The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 
 |          | 1:00PM-2:00PM   | 1:00     |                            | Quantifying spatial features from imaging data                               |
 |          | 2:00PM-3:45PM   | 1:45     |                            | Hands-on: Spatial feature extraction                                         |
 |          | 3:45PM-4:00PM   | 0:15     | Conclusion                 | Closing and feedback                                                         |
+
+: {.striped .hover}
+
+:::
+
