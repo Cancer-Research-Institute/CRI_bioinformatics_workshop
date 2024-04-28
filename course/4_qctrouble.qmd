@@ -238,3 +238,7 @@ final_plot
 
 CodeFights (now CodeSignal) offers coding challenges and exercises in R and other programming languages. Practicing coding problems can help reinforce your skills and improve your problem-solving abilities.
 
+# Lecture Slides
+
+The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/CRI%20Day%202%20PM.pdf).
+
