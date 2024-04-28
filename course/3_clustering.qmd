@@ -392,6 +392,7 @@ ggscatter(df, x = "Gene1", y = "Gene2",
 ```
 
 # Additional Exercises
+
 ```R
 # Run PCA, t-SNE, and UMAP on the simulated gene expression data.
 # CODE YOUR ANSWER HERE
@@ -407,6 +408,72 @@ ggscatter(df, x = "Gene1", y = "Gene2",
 
 ```
 
-# Lecture Slides
+# Bonus Exercises: Heatmaps using ggplot2
+
+```R
+library(ggdendro)
+library(ggplot2)
+library(tibble)
+
+# Manually perform hierarchical clustering to generate heatmap using ggplot2
+# Step 1. Perform distance functions
+gene_distances <- dist(gene_expression, method = 'euclidean')
+cell_distances <- dist(transposed_gene_expression, method = 'euclidean')
+
+# Step 2. Perform hierarchical clustering
+gene_clust <- hclust(gene_distances, method = 'complete')
+cell_clust <- hclust(cell_distances, method = 'complete')
+
+# Plot 1. Dendrograms
+ggdendrogram(gene_clust, rotate = FALSE, size = 2)
+ggdendrogram(cell_clust, rotate = FALSE, size = 2)
+
+# Plot 2. Heatmap in ggplot2
+gene_expression_df <- as.data.frame(gene_expression)
+# Add column with gene name to data frame (originally rownames)
+gene_expression_df <- rownames_to_column(gene_expression_df, "Gene")
+# Prepare for plotting
+for_plotting <- gene_expression_df %>%
+  gather(Cell, expression_value, -Gene)
+
+# Code for plotting
+ggplot(for_plotting, aes(x = Gene, y = Cell, fill = expression_value)) +
+  geom_tile() +
+  theme_bw() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+# Reorder based upon clustering order
+# Set Cell and Gene to factors (giving them a sorted order, based upon the hierarchical clustering)
+# The order given by clustering is provided by the hclust_object$labels
+reorder_plot <- for_plotting
+reorder_plot$Gene <- factor(reorder_plot$Gene, levels = gene_clust$labels)
+reorder_plot$Cell <- factor(reorder_plot$Cell, levels = cell_clust$labels)
+ggplot(reorder_plot, aes(x = Gene, y = Cell, fill = expression_value)) +
+  geom_tile() +
+  theme_bw() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+# How did the plot change?
+
+# Make it pretty
+ggplot(reorder_plot, aes(x = Gene, y = Cell, fill = expression_value)) +
+  geom_tile() +
+  scale_fill_viridis_c(option = 'rocket') +
+  coord_cartesian(expand = TRUE) + # removes blank space towards the edge
+  labs(fill = )
+  theme_bw() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+# How does the heatmap look different if you use other options for hierachical clustering?
+# Hint: Try "ward.D2" or "centroid" for the method parameter.
+# CODE YOUR ANSWER HERE
+
+
+# Do you have a gene expression matrix of your own? Try creating a heatmap from your data!
+# CODE YOUR ANSWER HERE
+
+```
 
 The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%202%20AM.pdf).
