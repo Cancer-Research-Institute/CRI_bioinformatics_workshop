@@ -227,13 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#view-the-de-results" id="toc-view-the-de-results" class="nav-link active" data-scroll-target="#view-the-de-results">view the DE results</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -318,87 +312,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and designs with interactions such as "~ genotype + treatment + genotype:treatment".</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> htseqCounts, <span class="at">colData =</span> metaData, <span class="at">design =</span> <span class="sc">~</span>Condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>```# run the DESeq2 analysis on the “dds” object dds &lt;- DESeq(dds)</p>
-<section id="view-the-de-results" class="level1">
-<h1>view the DE results</h1>
-<p>res &lt;- results(dds) View(res)</p>
-<pre><code>
-```R
-# shrink the log2 fold change estimates
-#   shrinkage of effect size (log fold change estimates) is useful for visualization and ranking of genes
-
-#   In simplistic terms, the goal of calculating "dispersion estimates" and "shrinkage" is also to account for the problem that
-#   genes with low mean counts across replicates tend of have higher variability than those with higher mean counts.
-#   Shrinkage attempts to correct for this. For a more detailed discussion of shrinkage refer to the DESeq2 vignette
-
-# first get the name of the coefficient (log fold change) to shrink
-resultsNames(dds)
-
-# now apply the shrinkage approach
-resLFC &lt;- lfcShrink(dds, coef="Condition_UHR_vs_HBR", type="apeglm")
-
-# make a copy of the shrinkage results to manipulate
-deGeneResult &lt;- resLFC
-
-#contrast the values for a few genes before and after shrinkage
-head(res)
-head(deGeneResult)</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in gene ID to name mappings (using "fread" an alternative to "read.table")</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mapping <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"ENSG_ID2Name.txt"</span>, <span class="at">header=</span>F)</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the DESeq2 analysis on the "dds" object</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view the DE results</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shrink the log2 fold change estimates</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   shrinkage of effect size (log fold change estimates) is useful for visualization and ranking of genes</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add names to the columns in the "mapping" dataframe</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(mapping, <span class="fu">c</span>(<span class="st">'ensemblID'</span>, <span class="st">'Symbol'</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># view the first few lines of the gene ID to name mappings</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mapping)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># merge on gene names</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>deGeneResult<span class="sc">$</span>ensemblID <span class="ot">&lt;-</span> <span class="fu">rownames</span>(deGeneResult)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(deGeneResult)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">&lt;-</span> <span class="fu">merge</span>(deGeneResult, mapping, <span class="at">by=</span><span class="st">'ensemblID'</span>, <span class="at">all.x=</span>T)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the original raw count values onto this final dataframe to aid interpretation</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>original_counts <span class="ot">=</span> <span class="fu">as.data.frame</span>(htseqCounts)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>original_counts[,<span class="st">"ensemblID"</span>] <span class="ot">=</span> <span class="fu">rownames</span>(htseqCounts)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">=</span> <span class="fu">merge</span>(deGeneResult, original_counts, <span class="at">by=</span><span class="st">'ensemblID'</span>, <span class="at">all.x=</span>T)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># view the final merged dataframe</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># based on the raw counts and fold change values what does a negative fold change mean with respect to our two conditions HBR and UHR?</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(deGeneResult)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view the top genes according to adjusted p-value</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>deGeneResult[<span class="fu">order</span>(deGeneResult<span class="sc">$</span>padj),]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   In simplistic terms, the goal of calculating "dispersion estimates" and "shrinkage" is also to account for the problem that</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   genes with low mean counts across replicates tend of have higher variability than those with higher mean counts.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   Shrinkage attempts to correct for this. For a more detailed discussion of shrinkage refer to the DESeq2 vignette</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># first get the name of the coefficient (log fold change) to shrink</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">resultsNames</span>(dds)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># now apply the shrinkage approach</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>resLFC <span class="ot">&lt;-</span> <span class="fu">lfcShrink</span>(dds, <span class="at">coef=</span><span class="st">"Condition_UHR_vs_HBR"</span>, <span class="at">type=</span><span class="st">"apeglm"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># make a copy of the shrinkage results to manipulate</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">&lt;-</span> resLFC</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#contrast the values for a few genes before and after shrinkage</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(deGeneResult)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in gene ID to name mappings (using "fread" an alternative to "read.table")</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mapping <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"ENSG_ID2Name.txt"</span>, <span class="at">header=</span>F)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view the top genes according to fold change</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>deGeneResult[<span class="fu">order</span>(deGeneResult<span class="sc">$</span>log2FoldChange),]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add names to the columns in the "mapping" dataframe</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(mapping, <span class="fu">c</span>(<span class="st">'ensemblID'</span>, <span class="st">'Symbol'</span>))</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># determine the number of up/down significant genes at FDR &lt; 0.05 significance level</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(deGeneResult)[<span class="dv">1</span>] <span class="co"># number of genes tested</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(deGeneResult[deGeneResult<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>])[<span class="dv">1</span>] <span class="co">#number of significant genes</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># order the DE results by adjusted p-value</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>deGeneResultSorted <span class="ot">=</span> deGeneResult[<span class="fu">order</span>(deGeneResult<span class="sc">$</span>padj),]</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create a filtered data frame that limits to only the significant DE genes (adjusted p.value &lt; 0.05)</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>deGeneResultSignificant <span class="ot">=</span> deGeneResultSorted[deGeneResultSorted<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the working directory to the output dir where we will store any results files</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(outdir)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># view the first few lines of the gene ID to name mappings</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mapping)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># merge on gene names</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>deGeneResult<span class="sc">$</span>ensemblID <span class="ot">&lt;-</span> <span class="fu">rownames</span>(deGeneResult)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(deGeneResult)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">&lt;-</span> <span class="fu">merge</span>(deGeneResult, mapping, <span class="at">by=</span><span class="st">'ensemblID'</span>, <span class="at">all.x=</span>T)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the original raw count values onto this final dataframe to aid interpretation</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>original_counts <span class="ot">=</span> <span class="fu">as.data.frame</span>(htseqCounts)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>original_counts[,<span class="st">"ensemblID"</span>] <span class="ot">=</span> <span class="fu">rownames</span>(htseqCounts)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>deGeneResult <span class="ot">=</span> <span class="fu">merge</span>(deGeneResult, original_counts, <span class="at">by=</span><span class="st">'ensemblID'</span>, <span class="at">all.x=</span>T)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># view the final merged dataframe</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># based on the raw counts and fold change values what does a negative fold change mean with respect to our two conditions HBR and UHR?</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(deGeneResult)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view the top genes according to adjusted p-value</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>deGeneResult[<span class="fu">order</span>(deGeneResult<span class="sc">$</span>padj),]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save the final DE result (all genes)  to an output file</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(deGeneResultSorted, <span class="at">file=</span><span class="st">'DE_all_genes_DESeq2.tsv'</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view the top genes according to fold change</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>deGeneResult[<span class="fu">order</span>(deGeneResult<span class="sc">$</span>log2FoldChange),]</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># save the final DE result (significant genes only)  to an output file</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(deGeneResultSignificant, <span class="at">file=</span><span class="st">'DE_sig_genes_DESeq2.tsv'</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save the DESeq2 objects for the data visualization section</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dds, <span class="st">'dds.rds'</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(res, <span class="st">'res.rds'</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(resLFC, <span class="st">'resLFC.rds'</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># to exit R type the following</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#quit(save="no")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># determine the number of up/down significant genes at FDR &lt; 0.05 significance level</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(deGeneResult)[<span class="dv">1</span>] <span class="co"># number of genes tested</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(deGeneResult[deGeneResult<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>])[<span class="dv">1</span>] <span class="co">#number of significant genes</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># order the DE results by adjusted p-value</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>deGeneResultSorted <span class="ot">=</span> deGeneResult[<span class="fu">order</span>(deGeneResult<span class="sc">$</span>padj),]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create a filtered data frame that limits to only the significant DE genes (adjusted p.value &lt; 0.05)</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>deGeneResultSignificant <span class="ot">=</span> deGeneResultSorted[deGeneResultSorted<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the working directory to the output dir where we will store any results files</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(outdir)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save the final DE result (all genes)  to an output file</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(deGeneResultSorted, <span class="at">file=</span><span class="st">'DE_all_genes_DESeq2.tsv'</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># save the final DE result (significant genes only)  to an output file</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(deGeneResultSignificant, <span class="at">file=</span><span class="st">'DE_sig_genes_DESeq2.tsv'</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save the DESeq2 objects for the data visualization section</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dds, <span class="st">'dds.rds'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(res, <span class="st">'res.rds'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(resLFC, <span class="st">'resLFC.rds'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># to exit R type the following</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#quit(save="no")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
