@@ -150,6 +150,52 @@
     ]
   },
   {
+    "objectID": "course/test_newfile.html",
+    "href": "course/test_newfile.html",
+    "title": "view the DE results",
+    "section": "",
+    "text": "# Install the latest version of DEseq2\n# if (!requireNamespace(\"BiocManager\", quietly = TRUE))\n#   install.packages(\"BiocManager\")\n# BiocManager::install(\"DESeq2\")\n\n# define working dir paths\ndatadir = \"/cloud/project/data/bulk_rna\"\noutdir = \"/cloud/project/outdir\"\n\n# load R libraries we will use in this section\nlibrary(DESeq2)\nlibrary(data.table)\n\n# set working directory to data dir\nsetwd(datadir)\n\n# read in the RNAseq read counts for each gene (produced by htseq-count)\nhtseqCounts &lt;- fread(\"gene_read_counts_table_all_final.tsv\")\n# view class of the data\nclass(htseqCounts)\n\n# convert the data.table to matrix format\nhtseqCounts &lt;- as.matrix(htseqCounts)\nclass(htseqCounts)\n\n# set the gene ID values to be the row names for the matrix\nrownames(htseqCounts) &lt;- htseqCounts[,\"GeneID\"]\n\n# now that the gene IDs are the row names, remove the redundant column that contains them\nhtseqCounts &lt;- htseqCounts[, colnames(htseqCounts) != \"GeneID\"]\n\n# convert the actual count values from strings (with spaces) to integers, because originally the gene column contained characters, the entire matrix was set to character\nclass(htseqCounts) &lt;- \"integer\"\n\n# view the first few lines of the gene count matrix\nhead(htseqCounts)\n\n# it can also be useful to view interactively (if in Rstudio)\nView(htseqCounts)\n# run a filtering step\n# i.e. require that for every gene: at least 1 of 6 samples must have counts greater than 10\n# get index of rows that meet this criterion and use that to subset the matrix\n# note the dimensions of the matrix before and after filtering with dim\n\ndim(htseqCounts)\nhtseqCounts &lt;- htseqCounts[which(rowSums(htseqCounts &gt;= 10) &gt;=1),]\ndim(htseqCounts)\n\n# Hint! if you find the above command confusing, break it into pieces and observe the result\n# \n# what does \"rowSums(htseqCounts &gt;= 10)\" do?\n#\n# what does \"rowSums(htseqCounts &gt;= 10) &gt;=1\" do?\n# construct a mapping of the meta data for our experiment (comparing UHR cell lines to HBR brain tissues)\n# in simple terms this is defining the biological condition/label for each experimental replicate\n# create a simple one column dataframe to start\nmetaData &lt;- data.frame('Condition'=c('UHR', 'UHR', 'UHR', 'HBR', 'HBR', 'HBR'))\n\n# convert the \"Condition\" column to a factor data type, this will determine the direction of log2 fold-changes for the genes (i.e. up or down regulated)\nmetaData$Condition &lt;- factor(metaData$Condition, levels=c('HBR', 'UHR'))\n\n# set the row names of the metaData dataframe to be the names of our sample replicates from the read counts matrix\nrownames(metaData) &lt;- colnames(htseqCounts)\n\n# view the metadata dataframe\nhead(metaData)\n\n# check that names of htseq count columns match the names of the meta data rows\n# use the \"all\" function which tests whether an entire logical vector is TRUE\nall(rownames(metaData) == colnames(htseqCounts))\n# make deseq2 data sets\n# here we are setting up our experiment by supplying: (1) the gene counts matrix, (2) the sample/replicate for each column, and (3) the biological conditions we wish to compare.\n# this is a simple example that works for many experiments but these can also get more complex\n# for example, including designs with multiple variables such as \"~ group + condition\",\n# and designs with interactions such as \"~ genotype + treatment + genotype:treatment\".\n\ndds &lt;- DESeqDataSetFromMatrix(countData = htseqCounts, colData = metaData, design = ~Condition)\n```# run the DESeq2 analysis on the “dds” object dds &lt;- DESeq(dds)\n\nview the DE results\nres &lt;- results(dds) View(res)\n\n```R\n# shrink the log2 fold change estimates\n#   shrinkage of effect size (log fold change estimates) is useful for visualization and ranking of genes\n\n#   In simplistic terms, the goal of calculating \"dispersion estimates\" and \"shrinkage\" is also to account for the problem that\n#   genes with low mean counts across replicates tend of have higher variability than those with higher mean counts.\n#   Shrinkage attempts to correct for this. For a more detailed discussion of shrinkage refer to the DESeq2 vignette\n\n# first get the name of the coefficient (log fold change) to shrink\nresultsNames(dds)\n\n# now apply the shrinkage approach\nresLFC &lt;- lfcShrink(dds, coef=\"Condition_UHR_vs_HBR\", type=\"apeglm\")\n\n# make a copy of the shrinkage results to manipulate\ndeGeneResult &lt;- resLFC\n\n#contrast the values for a few genes before and after shrinkage\nhead(res)\nhead(deGeneResult)\n# read in gene ID to name mappings (using \"fread\" an alternative to \"read.table\")\nmapping &lt;- fread(\"ENSG_ID2Name.txt\", header=F)\n\n# add names to the columns in the \"mapping\" dataframe\nsetnames(mapping, c('ensemblID', 'Symbol'))\n\n# view the first few lines of the gene ID to name mappings\nhead(mapping)\n\n# merge on gene names\ndeGeneResult$ensemblID &lt;- rownames(deGeneResult)\ndeGeneResult &lt;- as.data.table(deGeneResult)\ndeGeneResult &lt;- merge(deGeneResult, mapping, by='ensemblID', all.x=T)\n\n# merge the original raw count values onto this final dataframe to aid interpretation\noriginal_counts = as.data.frame(htseqCounts)\noriginal_counts[,\"ensemblID\"] = rownames(htseqCounts)\ndeGeneResult = merge(deGeneResult, original_counts, by='ensemblID', all.x=T)\n\n# view the final merged dataframe\n# based on the raw counts and fold change values what does a negative fold change mean with respect to our two conditions HBR and UHR?\nhead(deGeneResult)\n# view the top genes according to adjusted p-value\ndeGeneResult[order(deGeneResult$padj),]\n\n# view the top genes according to fold change\ndeGeneResult[order(deGeneResult$log2FoldChange),]\n\n# determine the number of up/down significant genes at FDR &lt; 0.05 significance level\ndim(deGeneResult)[1] # number of genes tested\ndim(deGeneResult[deGeneResult$padj &lt; 0.05])[1] #number of significant genes\n\n# order the DE results by adjusted p-value\ndeGeneResultSorted = deGeneResult[order(deGeneResult$padj),]\n\n# create a filtered data frame that limits to only the significant DE genes (adjusted p.value &lt; 0.05)\ndeGeneResultSignificant = deGeneResultSorted[deGeneResultSorted$padj &lt; 0.05]\n# set the working directory to the output dir where we will store any results files\nsetwd(outdir)\n\n# save the final DE result (all genes)  to an output file\nfwrite(deGeneResultSorted, file='DE_all_genes_DESeq2.tsv', sep=\"\\t\")\n\n# save the final DE result (significant genes only)  to an output file\nfwrite(deGeneResultSignificant, file='DE_sig_genes_DESeq2.tsv', sep=\"\\t\")\n\n# save the DESeq2 objects for the data visualization section\nsaveRDS(dds, 'dds.rds')\nsaveRDS(res, 'res.rds')\nsaveRDS(resLFC, 'resLFC.rds')\n\n# to exit R type the following\n#quit(save=\"no\")",
+    "crumbs": [
+      "Course",
+      "Install the latest version of DEseq2"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 2024 at the Hilton Bonnett Creek, Orlando FL.\n\n\n\n\n\n\n\n\n\n\n\nDay\nTime\nDuration\nModule\nTopic\n\n\n\n\n1 (Sat)\n9:00AM-9:30AM\n0:30\nR Workshop\nIntroduction to R and RStudio\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Reading, writing, and interpreting data structures\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nIntroduction to plotting and statistics\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Plotting information from data structures for real-time analysis\n\n\n2 (Sun)\n9:00AM-9:30AM\n0:30\nR Workshop\nTypes of analysis: Clustering concepts and correlation\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Dimension reduction methods, computing correlation\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nCommon challenges and resources\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Creating different types of plots, continued practice\n\n\n3 (Mon)\n9:00AM-9:45AM\n0:45\nBulk DNA/RNA sequencing\nIntroduction to sequencing data processing and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to rnabio.org\n\n\n\n10:30AM-10:45AM\n0:15\n\nIntroduction to bulk RNAseq dataset\n\n\n\n10:45AM-11:30AM\n0:45\n\nHands-on: Exploring RNAseq data in IGV\n\n\n\n11:30AM-12:00PM\n0:30\n\nHands-on: DE analysis with DESeq2\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: DE visualization with DESeq2\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:00PM\n1:00\n\nHands-on: DE visualization advanced\n\n\n\n3:00PM-4:00PM\n1:00\n\nHands-on: Pathway analysis\n\n\n\n4:00PM-4:45PM\n0:45\n\nHands-on: Batch correction\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 3 Summary/Questions\n\n\n4 (Tue)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nIntroduction to scRNAseq methods and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to scRNAseq dataset and loupe demonstration\n\n\n\n10:45AM-12:00PM\n1:15\n\nHands-on: Quality assesment and clustering\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: Cell typing\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:30PM\n1:30\n\nHands-on: DE analysis\n\n\n\n3:30PM-4:45PM\n1:15\n\nHands-on: Gene set and regulatory pathway\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 4 Summary/Questions\n\n\n5 (Wed)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nAdvanced analyses in scRNAseq and multi-omic integration\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-12:00PM\n2:00\n\nHands-on: Cancer cell identification\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:30PM\n1:30\n\nHands-on: Trajectory analysis\n\n\n\n2:30PM-2:45PM\n0:15\n\nBreak\n\n\n\n2:45PM-4:00PM\n1:15\n\nHands-on: TCR/BCR analysis\n\n\n\n4:00PM-4:30PM\n0:30\n\nvLoupe Browser demonstration\n\n\n\n4:30PM-5:00PM\n0:30\n\nDay 5 Summary/Questions\n\n\n6 (Thu)\n9:00AM-9:45AM\n0:45\nImaging\nOverview of spatial biology, types of imaging, experimental planning\n\n\n\n10:00AM-10:30AM\n0:30\n\nImaging file types, visualization platforms\n\n\n\n10:30AM-10:45AM\n0:15\n\nBreak\n\n\n\n10:45AM-11:30PM\n0:45\n\nHands-on: Exploring datasets\n\n\n\n11:30AM-12:00PM\n0:30\n\nMini-lecture and hands-on: Introduction to python\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:00PM\n1:00\n\nQuantifying spatial features from imaging data\n\n\n\n2:00PM-3:45PM\n1:45\n\nHands-on: Spatial feature extraction\n\n\n\n3:45PM-4:00PM\n0:15\nConclusion\nClosing and feedback"
+  },
+  {
+    "objectID": "authors.html#instructors",
+    "href": "authors.html#instructors",
+    "title": "Authors",
+    "section": "Instructors",
+    "text": "Instructors"
+  },
+  {
+    "objectID": "authors.html#teaching-assistants",
+    "href": "authors.html#teaching-assistants",
+    "title": "Authors",
+    "section": "Teaching Assistants",
+    "text": "Teaching Assistants"
+  },
+  {
+    "objectID": "course.html",
+    "href": "course.html",
+    "title": "Course overview",
+    "section": "",
+    "text": "R Workshop (Day 1, Sat. - Day 2, Sun.)\n\nIntroduction to R\nBasic plotting and statistics\nClustering concepts and correlation\nCommon challenges and additional resources\n\n\n\nBulk RNA sequence analysis (Day 3, Mon.)\n\nIntroduction to rnabio.org and bulk RNAseq dataset (Lead: Obi/Malachi)\nIntroduction to IGV (Lead: Malachi)\nDifferential Expression Analysis (DESeq2) (Lead: Zach) Code blocks for DE\nDifferential Expression Visualization (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (Advanced R) (Lead: Obi/Charles)\nPathway Analysis (Lead: Obi)\nBatch Correction (Lead: Malachi)\n\n\n\nSingle cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)\n\nIntroduction to scRNAseq dataset (Lead: Malachi)\nQA/QC and Clustering (Lead: Evelyn)\nCell Type Annotation (Lead: Kelsy)\nDifferential Expression (Lead: Kartik)\nGene Set Enrichment (Lead: Kartik)\nCancer Cell Identification (Lead: Kartik)\nTrajectory Analysis (Lead: Evelyn/Malachi)\nTCR/BCR Repertoire Analysis (Lead: Obi)\n\n\n\nImaging (Day 6, Thu.)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
     "objectID": "course/1_introR.html",
     "href": "course/1_introR.html",
     "title": "Introduction to R",
@@ -434,41 +480,6 @@
       "Course",
       "Introduction to R"
     ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "course.html",
-    "href": "course.html",
-    "title": "Course overview",
-    "section": "",
-    "text": "R Workshop (Day 1, Sat. - Day 2, Sun.)\n\nIntroduction to R\nBasic plotting and statistics\nClustering concepts and correlation\nCommon challenges and additional resources\n\n\n\nBulk RNA sequence analysis (Day 3, Mon.)\n\nIntroduction to rnabio.org and bulk RNAseq dataset (Lead: Obi/Malachi)\nIntroduction to IGV (Lead: Malachi)\nDifferential Expression Analysis (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (DESeq2) (Lead: Zach)\nDifferential Expression Visualization (Advanced R) (Lead: Obi/Charles)\nPathway Analysis (Lead: Obi)\nBatch Correction (Lead: Malachi)\n\n\n\nSingle cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)\n\nIntroduction to scRNAseq dataset (Lead: Malachi)\nQA/QC and Clustering (Lead: Evelyn)\nCell Type Annotation (Lead: Kelsy)\nDifferential Expression (Lead: Kartik)\nGene Set Enrichment (Lead: Kartik)\nCancer Cell Identification (Lead: Kartik)\nTrajectory Analysis (Lead: Evelyn/Malachi)\nTCR/BCR Repertoire Analysis (Lead: Obi)\n\n\n\nImaging (Day 6, Thu.)"
-  },
-  {
-    "objectID": "authors.html#instructors",
-    "href": "authors.html#instructors",
-    "title": "Authors",
-    "section": "Instructors",
-    "text": "Instructors"
-  },
-  {
-    "objectID": "authors.html#teaching-assistants",
-    "href": "authors.html#teaching-assistants",
-    "title": "Authors",
-    "section": "Teaching Assistants",
-    "text": "Teaching Assistants"
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 2024 at the Hilton Bonnett Creek, Orlando FL.\n\n\n\n\n\n\n\n\n\n\n\nDay\nTime\nDuration\nModule\nTopic\n\n\n\n\n1 (Sat)\n9:00AM-9:30AM\n0:30\nR Workshop\nIntroduction to R and RStudio\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Reading, writing, and interpreting data structures\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nIntroduction to plotting and statistics\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Plotting information from data structures for real-time analysis\n\n\n2 (Sun)\n9:00AM-9:30AM\n0:30\nR Workshop\nTypes of analysis: Clustering concepts and correlation\n\n\n\n9:30AM-9:45AM\n0:15\n\nBreak\n\n\n\n9:45AM-12:00PM\n2:15\n\nHands-on: Dimension reduction methods, computing correlation\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nCommon challenges and resources\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-4:30PM\n2:30\n\nHands-on: Creating different types of plots, continued practice\n\n\n3 (Mon)\n9:00AM-9:45AM\n0:45\nBulk DNA/RNA sequencing\nIntroduction to sequencing data processing and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to rnabio.org\n\n\n\n10:30AM-10:45AM\n0:15\n\nIntroduction to bulk RNAseq dataset\n\n\n\n10:45AM-11:30AM\n0:45\n\nHands-on: Exploring RNAseq data in IGV\n\n\n\n11:30AM-12:00PM\n0:30\n\nHands-on: DE analysis with DESeq2\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: DE visualization with DESeq2\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:00PM\n1:00\n\nHands-on: DE visualization advanced\n\n\n\n3:00PM-4:00PM\n1:00\n\nHands-on: Pathway analysis\n\n\n\n4:00PM-4:45PM\n0:45\n\nHands-on: Batch correction\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 3 Summary/Questions\n\n\n4 (Tue)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nIntroduction to scRNAseq methods and analysis\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-10:30AM\n0:30\n\nIntroduction to scRNAseq dataset and loupe demonstration\n\n\n\n10:45AM-12:00PM\n1:15\n\nHands-on: Quality assesment and clustering\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-1:45PM\n0:45\n\nHands-on: Cell typing\n\n\n\n1:45PM-2:00PM\n0:15\n\nBreak\n\n\n\n2:00PM-3:30PM\n1:30\n\nHands-on: DE analysis\n\n\n\n3:30PM-4:45PM\n1:15\n\nHands-on: Gene set and regulatory pathway\n\n\n\n4:45PM-5:00PM\n0:15\n\nDay 4 Summary/Questions\n\n\n5 (Wed)\n9:00AM-9:45AM\n0:45\nSingle cell RNA sequencing\nAdvanced analyses in scRNAseq and multi-omic integration\n\n\n\n9:45AM-10:00AM\n0:15\n\nBreak\n\n\n\n10:00AM-12:00PM\n2:00\n\nHands-on: Cancer cell identification\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:30PM\n1:30\n\nHands-on: Trajectory analysis\n\n\n\n2:30PM-2:45PM\n0:15\n\nBreak\n\n\n\n2:45PM-4:00PM\n1:15\n\nHands-on: TCR/BCR analysis\n\n\n\n4:00PM-4:30PM\n0:30\n\nvLoupe Browser demonstration\n\n\n\n4:30PM-5:00PM\n0:30\n\nDay 5 Summary/Questions\n\n\n6 (Thu)\n9:00AM-9:45AM\n0:45\nImaging\nOverview of spatial biology, types of imaging, experimental planning\n\n\n\n10:00AM-10:30AM\n0:30\n\nImaging file types, visualization platforms\n\n\n\n10:30AM-10:45AM\n0:15\n\nBreak\n\n\n\n10:45AM-11:30PM\n0:45\n\nHands-on: Exploring datasets\n\n\n\n11:30AM-12:00PM\n0:30\n\nMini-lecture and hands-on: Introduction to python\n\n\n\n12:00PM-1:00PM\n1:00\n\nLunch\n\n\n\n1:00PM-2:00PM\n1:00\n\nQuantifying spatial features from imaging data\n\n\n\n2:00PM-3:45PM\n1:45\n\nHands-on: Spatial feature extraction\n\n\n\n3:45PM-4:00PM\n0:15\nConclusion\nClosing and feedback"
   },
   {
     "objectID": "course/4_qctrouble.html",
