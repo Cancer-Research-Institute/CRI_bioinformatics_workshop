@@ -90,7 +90,8 @@ all(rownames(metaData) == colnames(htseqCounts))
 dds <- DESeqDataSetFromMatrix(countData = htseqCounts, colData = metaData, design = ~Condition)
 ```
 
-```# run the DESeq2 analysis on the "dds" object
+```R
+# run the DESeq2 analysis on the "dds" object
 dds <- DESeq(dds)
 
 # view the DE results
