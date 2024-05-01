@@ -37,6 +37,61 @@ website:
             - course/2_basicplotting.qmd
             - course/3_clustering.qmd
             - course/4_qctrouble.qmd
+        - section: "Bulk RNA Analysis"
+          contents:
+            - href: [https://rnabio.org/]
+              text: RNA Bio website
+              target: _blank
+            - href: [https://rnabio.org/module-01-inputs/0001/05/01/RNAseq_Data/]
+              text: Bulk RNAseq dataset
+              target: _blank
+            - href: [https://rnabio.org/module-02-alignment/0002/05/02/AlignVis_IGV/]
+              text: Intro to IGV
+              target: _blank
+            - href: [https://rnabio.org/module-03-expression/0003/03/03/Differential_Expression-DESeq2/]
+              text: Differential Expression Analysis (DESeq2)
+              target: _blank
+            - href: course/test_newfile.qmd
+              text: Code blocks for DE
+              target: _blank
+            - href: [https://rnabio.org/module-03-expression/0003/04/02/DE_Visualization-DESeq2/]
+              text: Differential Expression Visualization (DESeq2)
+              target: _blank
+            - href: [https://rnabio.org/module-03-expression/0003/04/03/DE_Visualization_AdvancedR/]
+              text: Differential Expression Visualization (Advanced R)
+              target: _blank
+            - href: [https://rnabio.org/module-03-expression/0003/05/01/DE_Pathway_Analysis/]
+              text: Pathway Analysis
+              target: _blank
+            - href: [https://rnabio.org/module-03-expression/0003/06/02/Batch-Correction/]
+              text: Batch Correction
+              target: _blank
+        - section: "Single Cell RNA Sequencing"
+          contents: 
+            - href: [https://rnabio.org/module-08-scrna/0008/01/02/scRNA_Data/]
+              text: Introduction to scRNAseq
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/02/01/QA_clustering/]
+              text: QA/QC and Clustering
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/03/01/Cell_annotation/]
+              text: Cell Type Annotation
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/04/01/DE_analysis/]
+              text: Differential Expression
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/05/01/Gene_set_enrichment/]
+              text: Gene Set Enrichment
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/06/01/Cancer_cell_identification/]
+              text: Cancer Cell Identification
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/07/01/Differentiation_trajectory/]
+              text: Trajectory Analysis
+              target: _blank
+            - href: [https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/]
+              text: TCR/BCR Repertoire Analysis
+              target: _blank
         - section: "Spatial Analysis"
           contents: 
             - course/python_tutorial.ipynb
