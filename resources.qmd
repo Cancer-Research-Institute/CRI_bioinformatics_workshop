@@ -22,3 +22,4 @@ Over the course of the workshop, teaching assistants ([TAs](authors.qmd)) will b
 -   [RNA-seq Bioinformatics](https://rnabio.org/course/)
 -   [Precision Medicine Bioinformatics](https://pmbio.org/)
 -   [Orchestrating Single-Cell Analysis with Bioconductor](https://bioconductor.org/books/release/OSCA/)
+-   [R for Data Science](https://r4ds.hadley.nz/)
