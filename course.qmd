@@ -50,3 +50,7 @@ title: "Course overview"
 
 # Imaging (Day 6, Thu.)
 
+1. [Intro to Python](course/python_tutorial.ipynb)
+
+2. [Spatial Analysis](course/spatial_demo.ipynb)
+

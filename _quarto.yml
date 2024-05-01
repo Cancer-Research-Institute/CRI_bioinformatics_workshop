@@ -3,6 +3,7 @@ project:
 
 website:
   title: "CRI Bioinformatics Workshop"
+  page-navigation: true
   navbar:
     tools:
     - icon: twitter
@@ -28,7 +29,18 @@ website:
   sidebar:
     - title: "Course"
       style: "docked"
-      contents: course
+      search: true
+      contents: 
+        - section: "Intro to R"
+          contents: 
+            - course/1_introR.qmd
+            - course/2_basicplotting.qmd
+            - course/3_clustering.qmd
+            - course/4_qctrouble.qmd
+        - section: "Spatial Analysis"
+          contents: 
+            - course/python_tutorial.ipynb
+            - course/spatial_demo.ipynb
 
 format:
   html:
