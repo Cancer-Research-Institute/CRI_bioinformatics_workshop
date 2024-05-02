@@ -14,6 +14,8 @@ title: "Course overview"
 
 # Bulk RNA sequence analysis (Day 3, Mon.)
 
+* [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day1-IntroToRNA%2BDNA.pdf)
+
 1. [Introduction to rnabio.org](https://rnabio.org/) and [bulk RNAseq dataset](https://rnabio.org/module-01-inputs/0001/05/01/RNAseq_Data/) (Lead: Obi/Malachi)
 
 2. [Introduction to IGV](https://rnabio.org/module-02-alignment/0002/05/02/AlignVis_IGV/) (Lead: Malachi)
@@ -30,6 +32,9 @@ title: "Course overview"
 7. [Batch Correction](https://rnabio.org/module-03-expression/0003/06/02/Batch-Correction/) (Lead: Malachi)
 
 # Single cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)
+
+* [Introduction to scRNA sequencing technology lecture slides (Obi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day2-IntroToSCRNA.pdf)
+* [Introduction to scRNA sequencing analysis lecture slides (Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day3-AdvancedSCRNA.pdf)
 
 1. [Introduction to scRNAseq dataset](https://rnabio.org/module-08-scrna/0008/01/02/scRNA_Data/) (Lead: Malachi)
 
