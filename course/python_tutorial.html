@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a href="https://twitter.com/CancerResearch" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
     <div class="dropdown">
       <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/crigrants/CRI_bioinformatics_workshop">
             Source Code
@@ -382,7 +382,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#importing-packages" id="toc-importing-packages" class="nav-link active" data-scroll-target="#importing-packages">Importing packages</a></li>
+  <li><a href="#intro-to-python" id="toc-intro-to-python" class="nav-link active" data-scroll-target="#intro-to-python">Intro to Python</a>
+  <ul class="collapse">
+  <li><a href="#importing-packages" id="toc-importing-packages" class="nav-link" data-scroll-target="#importing-packages">Importing packages</a></li>
   <li><a href="#basic-data-structures" id="toc-basic-data-structures" class="nav-link" data-scroll-target="#basic-data-structures">Basic data structures</a></li>
   <li><a href="#defining-functions" id="toc-defining-functions" class="nav-link" data-scroll-target="#defining-functions">Defining functions</a></li>
   <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy">Numpy</a></li>
@@ -390,6 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#matplotlib-and-seaborn" id="toc-matplotlib-and-seaborn" class="nav-link" data-scroll-target="#matplotlib-and-seaborn">Matplotlib and Seaborn</a></li>
   <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a></li>
   <li><a href="#additional-exercises" id="toc-additional-exercises" class="nav-link" data-scroll-target="#additional-exercises">Additional exercises</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -415,6 +418,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="intro-to-python" class="level1">
+<h1>Intro to Python</h1>
 <section id="importing-packages" class="level2">
 <h2 class="anchored" data-anchor-id="importing-packages">Importing packages</h2>
 <p>You can import packages using “import” (analogous to ‘library’ in R).</p>
@@ -722,6 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -814,11 +820,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -862,11 +863,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
