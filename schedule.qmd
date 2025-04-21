@@ -2,66 +2,61 @@
 title: "Schedule"
 ---
 
-The inaugural CRI Bioinformatics Bootcamp will take place April 27, 2024-May 2, 2024 at the Hilton Bonnett Creek, Orlando FL.
+The inaugural CRI Bioinformatics Bootcamp will take place Saturday, May 17, 2025 through Thursday, May 22, 2025.
 
 :::{.column-body-outset}
 
 | Day      | Time            | Duration | Module                     | Topic                                                                        |
 |---------------|---------------------------------|----------|----------------------------|------------------------------------------------------------------------------|
 | 1 (Sat)  | 9:00AM-9:30AM   | 0:30     | R Workshop                 | Introduction to R and RStudio                                                |
-|          | 9:30AM-9:45AM   | 0:15     |                            | Break       			  					       |
-|          | 9:45AM-12:00PM  | 2:15     |                            | Hands-on: Reading, writing, and interpreting data structures                 |
-|          | 12:00PM-1:00PM  | 1:00     |                            | Lunch                                                                        |
-|          | 1:00PM-1:45PM   | 0:45     |                            | Introduction to plotting and statistics                                      |
-|          | 1:45PM-2:00PM   | 0:15     |                            | Break                                                                        |
-|          | 2:00PM-4:30PM   | 2:30     |                            | Hands-on: Plotting information from data structures for real-time analysis   |
+|          | 9:30AM-12:00PM  | 2:30     |                            | Hands-on: Reading, writing, and interpreting data structures                 |
+|          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
+|          | 1:30PM-2:15PM   | 0:45     |                            | Introduction to plotting and statistics                                      |
+|          | 2:15PM-3:15PM   | 1:00     |                            | Hands-on: Plotting information from data structures for real-time analysis   |
+|          | 3:15PM-3:30PM   | 0:15     |                            | Break       								                                    |
+|          | 3:30PM-5:00PM   | 1:30     |                            | Hands-on (cont'd): Plotting                                                  |
 | 2 (Sun)  | 9:00AM-9:30AM   | 0:30     | R Workshop                 | Types of analysis: Clustering concepts and correlation                       |
-|          | 9:30AM-9:45AM   | 0:15     |                            | Break                                                                        |
-|          | 9:45AM-12:00PM  | 2:15     |                            | Hands-on: Dimension reduction methods, computing correlation                 |
-|          | 12:00PM-1:00PM  | 1:00     |                            | Lunch                                                                        |
-|          | 1:00PM-1:45PM   | 0:45     |                            | Common challenges and resources                                              |
-|          | 1:45PM-2:00PM   | 0:15     |                            | Break       								       |
-|          | 2:00PM-4:30PM   | 2:30     |                            | Hands-on: Creating different types of plots, continued practice              |
-| 3 (Mon)  | 9:00AM-9:45AM   | 0:45     | Bulk DNA/RNA sequencing    | Introduction to sequencing data processing and analysis                      |
-|          | 9:45AM-10:00AM  | 0:15     |                            | Break       								       |
-|          | 10:00AM-10:30AM | 0:30     |                            | Introduction to rnabio.org                                                   |
-|          | 10:30AM-10:45AM | 0:15     |                            | Introduction to bulk RNAseq dataset                                          |
-|          | 10:45AM-11:30AM | 0:45     |                            | Hands-on: Exploring RNAseq data in IGV                                       |
+|          | 9:45AM-12:00PM  | 2:30     |                            | Hands-on: Dimension reduction methods, computing correlation                 |
+|          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
+|          | 1:30PM-2:15PM   | 0:45     |                            | Common challenges and resources                                              |
+|          | 2:15PM-3:15PM   | 1:00     |                            | Hands-on: Creating different types of plots, continued practice              |
+|          | 3:15PM-3:30PM   | 0:15     |                            | Break       								     	     	     	     	    |
+|          | 3:30PM-5:00PM   | 1:30     |                            | Hands-on (cont'd): Continued practice                                        |
+| 3 (Mon)  | 9:00AM-9:45AM   | 0:45     | Bulk RNA sequencing        | Introduction to sequencing data processing and analysis                      |
+|          | 9:45AM-10:15AM  | 0:30     |                            | Introduction to rnabio.org       							       	        |
+|          | 10:15AM-10:30AM | 0:15     |                            | Introduction to bulk RNAseq dataset                                          |
+|          | 10:30AM-11:30AM | 1:00     |                            | Hands-on: Exploring RNAseq data in IGV                                       |
 |          | 11:30AM-12:00PM | 0:30     |                            | Hands-on: DE analysis with DESeq2                                            |
-|          | 12:00PM-1:00PM  | 1:00     |                            | Lunch                                                                        |
-|          | 1:00PM-1:45PM   | 0:45     |                            | Hands-on: DE visualization with DESeq2                                       |
-|          | 1:45PM-2:00PM   | 0:15     |                            | Break                                                                        |
-|          | 2:00PM-3:00PM   | 1:00     |                            | Hands-on: DE visualization advanced                                          |
-|          | 3:00PM-4:00PM   | 1:00     |                            | Hands-on: Pathway analysis                                                   |
-|          | 4:00PM-4:45PM   | 0:45     |                            | Hands-on: Batch correction                                                   |
-|          | 4:45PM-5:00PM   | 0:15     |                            | Day 3 Summary/Questions                                                      |
+|          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
+|          | 1:30PM-2:15PM   | 0:45     |                            | Hands-on: DE visualization with DESeq2                                       |
+|          | 2:15PM-3:15PM   | 1:00     |                            | Hands-on: DE visualization advanced                                          |
+|          | 3:15PM-4:45PM   | 1:30     |                            | Hands-on: Pathway analysis                                                   |
+|          | 4:45PM-5:00PM   | 0:15     |                            | Hands-on: Batch correction                                                   |
+|          | 5:30PM-7:00PM   | 1:30     |                            | Day 3 Summary/Questions                                                      |
 | 4 (Tue)  | 9:00AM-9:45AM   | 0:45     | Single cell RNA sequencing | Introduction to scRNAseq methods and analysis                                |
-|          | 9:45AM-10:00AM  | 0:15     |                            | Break                                                                        |
-|          | 10:00AM-10:30AM | 0:30     |                            | Introduction to scRNAseq dataset and loupe demonstration                     |
-|          | 10:45AM-12:00PM | 1:15     |                            | Hands-on: Quality assesment and clustering                                   |
-|          | 12:00PM-1:00PM  | 1:00     |                            | Lunch                                                                        |
-|          | 1:00PM-1:45PM   | 0:45     |                            | Hands-on: Cell typing                                                        |
-|          | 1:45PM-2:00PM   | 0:15     |                            | Break                                                                        |
-|          | 2:00PM-3:30PM   | 1:30     |                            | Hands-on: DE analysis                                                        |
+|          | 9:45AM-10:15AM  | 0:30     |                            | Introduction to scRNAseq dataset and loupe demonstration                     |
+|          | 10:15AM-12:00PM | 1:45     |                            | Hands-on: Quality assesment and clustering                                   |
+|          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
+|          | 1:30PM-2:15PM   | 0:45     |                            | Hands-on: Cell typing                                                        |
+|          | 2:15PM-3:30PM   | 1:15     |                            | Hands-on: DE analysis                                                        |
 |          | 3:30PM-4:45PM   | 1:15     |                            | Hands-on: Gene set and regulatory pathway                                    |
 |          | 4:45PM-5:00PM   | 0:15     |                            | Day 4 Summary/Questions                                                      |
+|          | 5:30PM-7:00PM   | 1:30     | Office hours               |                                                                              |
 | 5 (Wed)  | 9:00AM-9:45AM   | 0:45     | Single cell RNA sequencing | Advanced analyses in scRNAseq and multi-omic integration                     |
-|          | 9:45AM-10:00AM  | 0:15     |                            | Break                                                                        |
-|          | 10:00AM-12:00PM | 2:00     |                            | Hands-on: Cancer cell identification                                         |
-|          | 12:00PM-1:00PM  | 1:00     |                            | Lunch                                                                        |
-|          | 1:00PM-2:30PM   | 1:30     |                            | Hands-on: Trajectory analysis                                                |
-|          | 2:30PM-2:45PM   | 0:15     |                            | Break                                                                        |
-|          | 2:45PM-4:00PM   | 1:15     |                            | Hands-on: TCR/BCR analysis                                                   |
-|          | 4:00PM-4:30PM   | 0:30     |                            | vLoupe Browser demonstration                                                 |
-|          | 4:30PM-5:00PM   | 0:30     |                            | Day 5 Summary/Questions                                                      |
-| 6 (Thu)  | 9:00AM-9:45AM   | 0:45     | Imaging                    | Overview of spatial biology, types of imaging, experimental planning         |
-|          | 10:00AM-10:30AM | 0:30     |                            | Imaging file types, visualization platforms                                  |
-|          | 10:30AM-10:45AM | 0:15     |                            | Break                                                                        |
-|          | 10:45AM-11:30PM | 0:45     |                            | Hands-on: Exploring datasets                                                 |
-|          | 11:30AM-12:00PM | 0:30     |                            | Mini-lecture and hands-on: Introduction to python                            |
-|          | 12:00PM-1:00PM  | 1:00     |                            | Lunch                                                                        |
-|          | 1:00PM-2:00PM   | 1:00     |                            | Quantifying spatial features from imaging data                               |
-|          | 2:00PM-3:45PM   | 1:45     |                            | Hands-on: Spatial feature extraction                                         |
+|          | 9:45AM-12:00PM  | 2:00     |                            | Hands-on: Cancer cell identification                                         |
+|          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
+|          | 1:30PM-3:00PM   | 1:30     |                            | Hands-on: Trajectory analysis                                                |
+|          | 3:00PM-4:15PM   | 1:15     |                            | Hands-on: TCR/BCR analysis                                                   |
+|          | 4:15PM-4:45PM   | 0:30     |                            | vLoupe Browser demonstration                                                 |
+|          | 4:45PM-5:00PM   | 0:15     |                            | Day 5 Summary/Questions                                                      |
+| 6 (Thu)  | 9:00AM-10:00AM  | 1:00     | Spatial Transcriptomics    | Introduction to spatial transcriptomics: Visium, Xenium, CosMx               |
+|          | 10:00AM-10:30AM | 0:30     |                            | Sample pre-processing                                                        |
+|          | 10:30AM-11:30PM | 1:00     |                            | Seurat objects, motifs and neighborhood clustering (Banksy, Grafiti)         |
+|          | 11:30AM-12:00PM | 0:30     |                            | Custom binning                                                               |
+|          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
+|          | 1:30PM-2:00PM   | 0:30     |                            | Cell typing, CNV, trajectory analysis                                        |
+|          | 2:15PM-4:30PM   | 2:15     |                            | Hands-on: Unsupervised clustering, cell typing, loupe browser                |
+|          | 4:30PM-4:45PM   | 0:15     |                            | Day 6 Summary/Questions                                                      |
 |          | 3:45PM-4:00PM   | 0:15     | Conclusion                 | Closing and feedback                                                         |
 
 : {.striped .hover}
