@@ -1,5 +1,5 @@
 ---
-title: "CRI Bioinformatics Workshop 2024"
+title: "CRI Bioinformatics Workshop 2025"
 ---
 
 Welcome to the Cancer Research Institute Bioinformatics Bootcamp!
