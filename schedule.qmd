@@ -2,7 +2,7 @@
 title: "Schedule"
 ---
 
-The inaugural CRI Bioinformatics Bootcamp will take place Saturday, May 17, 2025 through Thursday, May 22, 2025.
+The  CRI Bioinformatics Bootcamp will take place Saturday, May 17, 2025 through Thursday, May 22, 2025 at Wyndham Grand Bonnet Creek in Orlando, Florida.
 
 :::{.column-body-outset}
 
