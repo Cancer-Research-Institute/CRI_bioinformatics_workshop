@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/schedule.html</loc>
-    <lastmod>2025-04-22T18:16:35.018Z</lastmod>
-  </url>
-  <url>
     <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course.html</loc>
-    <lastmod>2025-04-22T17:33:46.570Z</lastmod>
+    <lastmod>2025-04-22T18:18:27.596Z</lastmod>
   </url>
   <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/about.html</loc>
-    <lastmod>2025-04-21T19:29:03.920Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course_2024.html</loc>
-    <lastmod>2025-04-22T17:28:27.723Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/python_tutorial.html</loc>
-    <lastmod>2025-04-21T19:29:04.006Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/3_clustering.html</loc>
-    <lastmod>2025-04-21T19:29:03.923Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/4_qctrouble.html</loc>
-    <lastmod>2025-04-21T19:29:03.923Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/2_basicplotting.html</loc>
-    <lastmod>2025-04-21T19:29:03.922Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/test_newfile.html</loc>
-    <lastmod>2025-04-21T19:29:04.008Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/spatial_demo.html</loc>
-    <lastmod>2025-04-21T19:29:04.007Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/1_introR.html</loc>
-    <lastmod>2025-04-21T19:29:03.922Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/acknowledge.html</loc>
-    <lastmod>2025-04-21T19:29:03.920Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/4_qctrouble.html</loc>
-    <lastmod>2025-04-21T19:29:03.923Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/3_clustering.html</loc>
-    <lastmod>2025-04-21T19:29:03.923Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/python_tutorial.html</loc>
-    <lastmod>2025-04-21T19:29:04.006Z</lastmod>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/schedule.html</loc>
+    <lastmod>2025-04-22T18:18:27.840Z</lastmod>
   </url>
   <url>
     <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/1_introR.html</loc>
-    <lastmod>2025-04-21T19:29:03.922Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/spatial_demo.html</loc>
-    <lastmod>2025-04-21T19:29:04.007Z</lastmod>
+    <lastmod>2025-04-22T18:18:27.597Z</lastmod>
   </url>
   <url>
     <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/test_newfile.html</loc>
-    <lastmod>2025-04-21T19:29:04.008Z</lastmod>
+    <lastmod>2025-04-22T18:18:27.832Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/4_qctrouble.html</loc>
+    <lastmod>2025-04-22T18:18:27.597Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/spatial_demo.html</loc>
+    <lastmod>2025-04-22T18:18:27.713Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/3_clustering.html</loc>
+    <lastmod>2025-04-22T18:18:27.597Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/2_basicplotting.html</loc>
+    <lastmod>2025-04-22T18:18:27.597Z</lastmod>
   </url>
   <url>
     <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2_basicplotting.html</loc>
-    <lastmod>2025-04-21T19:29:03.922Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/index.html</loc>
-    <lastmod>2025-04-21T19:29:04.015Z</lastmod>
+    <lastmod>2025-04-22T18:18:27.716Z</lastmod>
   </url>
   <url>
     <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/authors.html</loc>
-    <lastmod>2025-04-22T18:17:28.022Z</lastmod>
+    <lastmod>2025-04-22T18:18:27.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/index.html</loc>
+    <lastmod>2025-04-22T18:18:27.838Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/acknowledge.html</loc>
+    <lastmod>2025-04-22T18:18:27.596Z</lastmod>
   </url>
   <url>
     <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/resources.html</loc>
-    <lastmod>2025-04-21T19:29:04.017Z</lastmod>
+    <lastmod>2025-04-22T18:18:27.840Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/about.html</loc>
+    <lastmod>2025-04-22T18:18:27.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/python_tutorial.html</loc>
+    <lastmod>2025-04-22T18:18:27.831Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/python_tutorial.html</loc>
+    <lastmod>2025-04-22T18:18:27.712Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/test_newfile.html</loc>
+    <lastmod>2025-04-22T18:18:27.713Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/2024/1_introR.html</loc>
+    <lastmod>2025-04-22T18:18:27.597Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/3_clustering.html</loc>
+    <lastmod>2025-04-22T18:18:27.716Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/spatial_demo.html</loc>
+    <lastmod>2025-04-22T18:18:27.831Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course/4_qctrouble.html</loc>
+    <lastmod>2025-04-22T18:18:27.716Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/course_2024.html</loc>
+    <lastmod>2025-04-22T18:18:27.834Z</lastmod>
   </url>
 </urlset>
