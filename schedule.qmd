@@ -54,8 +54,8 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 17, 2025 through 
 |          | 10:30AM-11:30PM | 1:00     |                            | Seurat objects, motifs and neighborhood clustering (Banksy, Grafiti)         |
 |          | 11:30AM-12:00PM | 0:30     |                            | Custom binning                                                               |
 |          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
-|          | 1:30PM-2:00PM   | 0:30     |                            | Cell typing, CNV, trajectory analysis                                        |
-|          | 2:15PM-4:30PM   | 2:15     |                            | Hands-on: Unsupervised clustering, cell typing, loupe browser                |
+|          | 1:30PM-2:30PM   | 1:00     |                            | Cell typing, CNV, trajectory analysis                                        |
+|          | 2:30PM-4:30PM   | 2:00     |                            | Hands-on: Unsupervised clustering, cell typing, loupe browser                |
 |          | 4:30PM-4:45PM   | 0:15     |                            | Day 6 Summary/Questions                                                      |
 |          | 3:45PM-4:00PM   | 0:15     | Conclusion                 | Closing and feedback                                                         |
 

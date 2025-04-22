@@ -1,0 +1,748 @@
+---
+title: "Introduction to R"
+---
+
+# RStudio: Introduction and Interface Orientation
+
+[RStudio](https://www.rstudio.com/) is an integrated development environment (IDE) for R. It provides a user-friendly interface for coding, debugging, and data analysis. We use RStudio for its convenience and powerful features.
+
+## Interface Orientation
+
+- **Console**: Where you can directly type and execute R commands.
+- **Script Editor**: Where you write and save your R scripts.
+- **Environment and History**: Displays objects in your workspace and your command history.
+- **Files and Plots**: Helps manage files and view plots.
+- **Packages**: Shows installed packages and allows you to install and load new ones.
+
+# Working Directory
+
+The working directory is the folder where R looks for files. It's important to set it correctly for consistency across Windows and Mac.
+
+```R
+# Get the current working directory
+current_dir <- getwd()
+print(paste("Current directory:", current_dir))
+
+# List files in the current directory
+files <- list.files()
+print("Files in the current directory:")
+print(files)
+
+# Change the current directory
+new_dir <- "path/to/new/directory"
+setwd(new_dir)
+print(paste("Changed directory to:", new_dir))
+```
+
+# Objects, Variables, and Environment
+
+In R, objects are created to store data. Variables are used to name and reference these objects. The environment is the current workspace where objects and variables are stored.
+
+## Numeric
+```R
+# Numeric variable
+num_var <- 10
+print(num_var)  # Output: 10
+
+# Arithmetic operations
+result <- num_var * 2
+print(result)  # Output: 20
+```
+
+## Character
+```R
+# Character variable
+char_var <- "Hello, World!"
+print(char_var)  # Output: Hello, World!
+
+# Concatenation
+new_string <- paste(char_var, "This is R programming.")
+print(new_string)  # Output: Hello, World! This is R programming.
+```
+
+## Integer
+```R
+# Integer variable
+int_var <- 20L  # The 'L' suffix indicates an integer
+print(int_var)  # Output: 20
+
+# Integer arithmetic
+result <- int_var / 5
+print(result)  # Output: 4
+```
+
+## Matrices
+
+Gene expression data from single-cell RNA sequencing (scRNA-seq) experiments is typically represented as a matrix, where rows correspond to genes and columns correspond to cells. Each cell contains the expression level of a gene, quantified as counts or normalized values. In R, there are several matrix data types commonly used for storing and manipulating gene expression data:
+
+- **Matrix (`matrix`)**: The basic matrix data type in R. It is a two-dimensional array with elements of the same data type.
+
+- **Data Frame (`data.frame`)**: A special type of matrix where columns can contain different data types (e.g., numeric, character, factor). Data frames are commonly used for storing tabular data, including gene expression matrices with additional metadata.
+
+- **Sparse Matrix (`Matrix` package)**: A matrix format optimized for storing large, sparse datasets with many zero values. It conserves memory and speeds up computation for large-scale analyses.
+
+### Basic Operations on Matrix Objects
+
+#### Creating a Matrix:
+```R
+# Create a matrix with random values
+mat <- matrix(rnorm(20), nrow = 4, ncol = 5)
+```
+
+Matrix operations
+```R
+element <- mat[1, 2]
+print(element)
+
+# Calculate row sums
+row_sums <- rowSums(mat)
+print(row_sums)
+
+# Calculate column sums
+col_sums <- colSums(mat)
+print(col_sums)
+
+# Create another matrix
+mat2 <- matrix(rnorm(20), nrow = 5, ncol = 4)
+print(mat2)
+
+# Perform matrix multiplication
+mat_mult <- mat %*% mat2
+print(mat_mult)
+
+# Transpose the matrix
+mat_transpose <- t(mat)
+print(mat_transpose)
+
+# Select the first two rows
+first_two_rows <- mat[1:2, ]
+print(first_two_rows)
+
+# Select the first three columns
+first_three_cols <- mat[, 1:3]
+print(first_three_cols)
+```
+
+## Logical
+```R
+# Logical variable
+logical_var <- TRUE
+print(logical_var)  # Output: TRUE
+
+# Logical operations
+result <- logical_var & FALSE
+print(result)  # Output: FALSE
+
+
+# Logical operations
+a <- TRUE
+b <- FALSE
+
+# AND operation
+result_and <- a & b
+print(result_and)  # Output: FALSE
+
+# OR operation
+result_or <- a | b
+print(result_or)   # Output: TRUE
+
+# NOT operation
+result_not <- !a
+print(result_not)  # Output: FALSE
+
+# Comparison operators
+x <- 5
+y <- 10
+
+# Greater than
+result_gt <- x > y
+print(result_gt)  # Output: FALSE
+
+# Less than
+result_lt <- x < y
+print(result_lt)  # Output: TRUE
+
+# Equal to
+result_eq <- x == y
+print(result_eq)  # Output: FALSE
+
+# Not equal to
+result_neq <- x != y
+print(result_neq)  # Output: TRUE
+```
+
+# Conditional Statment
+
+```R
+x <- 3
+if (x > 5) {
+  print("x is greater than 5")
+} else if (x == 5) {
+  print("x is equal to 5")
+} else {
+  print("x is less than 5")
+}
+```
+
+# Loops
+
+## `while`
+
+A while loop is a control flow statement that allows code to be executed repeatedly based on a given Boolean condition. The loop executes the loop body as long as the condition remains true. When the condition becomes false, the loop terminates.
+
+```R
+# Example of a while loop
+x <- 1
+while (x <= 5) {
+  print(x)
+  x <- x + 1
+}
+```
+
+#### Considerations:
+ - Ensure that the loop has an exit condition that is guaranteed to be met to avoid infinite loops.
+ - Avoid complex conditions that can make the loop difficult to read and maintain.
+ - Use while loops when the number of iterations is not known before the loop starts, as opposed to for loops, which are better suited for a known number of iterations.
+ - Manage loop variables carefully to ensure they are updated correctly and the loop condition changes as expected.
+
+## `for`
+
+A for loop is a control flow statement used in many programming languages to repeat a block of code multiple times. It is particularly useful for iterating over sequences (like lists, arrays, or strings) and executing a piece of code for each element in the sequence.
+
+```R
+# Example of a for loop
+for (i in 1:5) {
+  print(i)
+}
+```
+
+##### Considerations
+ - Ensure the loop has a condition that eventually becomes false to prevent infinite loops.
+ - Be careful with the loop's scope and variables to avoid unintended side effects.
+
+## `apply`
+
+The apply() function in R is a powerful tool for applying a function to the rows or columns of a matrix or data frame. It is particularly useful for performing operations across a dataset without needing to write explicit loops. The syntax for apply() is:
+
+
+```R
+apply(X, margin, function, ...)
+
+# X: This is the array or matrix on which you want to apply the function.
+# margin: A value that specifies whether to apply the function over rows (1), columns (2), or both (c(1, 2)).
+# function: The function you want to apply to each row or column.
+```
+
+To calculate the sum of each row in a matrix:
+```R
+# Create a matrix
+my_matrix <- matrix(1:9, nrow=3)
+
+# Apply sum function across rows
+row_sums <- apply(my_matrix, 1, sum)
+print(row_sums)
+```
+
+To find the mean of each column in a data frame:
+```R
+# Create a data frame
+df <- data.frame(a = c(1, 2, 3), b = c(4, 5, 6))
+
+# Apply mean function across columns
+column_means <- apply(df, 2, mean)
+print(column_means)
+```
+
+
+### `sapply` and `lappy`
+
+- `lapply()` returns a list, regardless of the output of each application of the function.
+- `sapply()` attempts to simplify the result into a vector or matrix if possible. If simplification is not possible, it returns a list similar to `lapply()`.
+
+Suppose you have a list of numerical vectors and you want to compute the sum of each vector. Here's how you could use lapply():
+```R
+# Define a list of vectors
+num_list <- list(c(1, 2, 3), c(4, 5), c(6, 7, 8, 9))
+
+# Use lapply to apply the sum function
+list_sums <- lapply(num_list, sum)
+print(list_sums)
+```
+
+Using the same list of numerical vectors, if you use sapply() to compute the sum, the function will try to simplify the output into a vector:
+
+```R
+# Use sapply to apply the sum function
+vector_sums <- sapply(num_list, sum)
+print(vector_sums)
+```
+
+When to Use Each
+ 
+ - `lapply()`: When you need the robustness of a list output, especially when dealing with heterogeneous data or when the function can return variable lengths or types.
+ - `sapply()`: When you are working with homogeneous data and prefer a simplified output such as a vector or matrix, assuming the lengths and types are consistent across elements.
+
+# String Manipulation
+
+The `stringr` package in R simplifies these tasks with easy-to-use functions that can handle typical string operations.
+
+## Finding Patterns
+
+Finding specific sequences or motifs within biological sequences is a common task.
+```R
+library(stringr)
+sequence <- "ATGCGTACGTTGACA"
+motif <- "CGT"
+str_locate(sequence, motif)
+```
+
+## Replacing Substrings
+
+Modifying sequences by replacing specific nucleotides or amino acids.
+
+```R
+dna_sequence <- "ATGCGTACGTTGACT"
+rna_sequence <- str_replace_all(dna_sequence, "T", "U")
+print(rna_sequence)
+```
+
+## Substring Extraction
+
+Extracting parts of sequences, such as cutting out genes or regions of interest.
+
+```R
+extracted_sequence <- str_sub(sequence, 3, 8)
+print(extracted_sequence)
+```
+
+## Length Calculation
+
+Determining the length of sequences.
+```R
+sequence_length <- str_length(sequence)
+print(sequence_length)
+```
+
+## Case Conversion
+
+Converting uppercase to lowercase, or vice versa.
+
+```R
+sequence_upper <- str_to_upper(sequence)
+print(sequence_upper)
+```
+
+## Splitting Strings
+
+Splitting sequences into arrays, useful for reading fasta files or analyzing codons.
+```R
+codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))
+print(codons)
+```
+
+**Bonus Challenge:** What if our sequence length wasn't a multiple of three? For an example of how to approach this situation please check out the [Bonus challenge].
+
+## Counting Specific Characters
+
+Counting occurrences of specific nucleotides or amino acids.
+```R
+guanine_count <- str_count(sequence, "G")
+print(guanine_count)
+```
+
+# Packages in R
+
+A package is a collection of R functions, data, and compiled code. Packages provide a way to organize and share code, making it easier for users to access specific tools and functions.
+
+## Tidyverse
+
+[Tidyverse](https://www.tidyverse.org/) is a collection of R packages designed for data science. It includes packages like `ggplot2` for data visualization and `dplyr` for data manipulation.
+
+### Tidyverse Data Frames
+
+Tidyverse is a collection of R packages designed for data science, developed with a focus on simplicity, consistency, and ease of use. One of the key components of Tidyverse is the concept of tidy data frames.
+
+A tidyverse data frame is a rectangular table-like structure where:
+
+- Each row represents an observation.
+- Each column represents a variable.
+- Each cell holds a single value.
+
+### Principles of Tidy Data:
+1. **Each variable forms a column**: In a tidy data frame, each variable is placed in its own column. This makes it easy to work with the dataset as each variable is explicitly represented.
+
+2. **Each observation forms a row**: Each row corresponds to a distinct observation, entity, or case. This makes it straightforward to perform operations on individual observations.
+
+3. **Each type of observational unit forms a table**: Different types of data should be stored in separate tables, with relationships between tables represented using unique identifiers.
+
+### Why Tidy Data Frames are Important:
+- **Ease of Analysis**: Tidy data frames make it easier to perform data manipulation, visualization, and analysis using Tidyverse packages such as `dplyr`, `ggplot2`, and `tidyr`.
+  
+- **Readability and Interpretability**: Tidy data frames have a consistent structure, making it easier for others to understand and interpret your data.
+
+- **Efficiency**: Tidy data frames facilitate efficient and concise code, reducing the complexity of data manipulation tasks.
+
+### Tidyverse Packages for Data Manipulation:
+- **dplyr**: Provides a grammar of data manipulation for data frames, enabling easy filtering, selecting, mutating, summarizing, and arranging of data.
+  
+- **tidyr**: Offers tools for reshaping and tidying messy datasets, such as `gather()` and `spread()` functions for converting between wide and long formats.
+  
+- **ggplot2**: Allows for the creation of sophisticated data visualizations using a layered grammar of graphics.
+
+```R
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+# Example dataset
+data <- data.frame(
+  ID = 1:3,
+  Name = c("Alice", "Bob", "Charlie"),
+  Math = c(90, 85, 95),
+  Science = c(88, 92, 89)
+)
+
+# Original dataset
+print("Original dataset:")
+print(data)
+
+# Tidy the dataset using gather() function from tidyr
+tidy_data <- gather(data, Subject, Score, -ID, -Name)
+
+# Tidied dataset
+print("Tidied dataset:")
+print(tidy_data)
+```
+
+## Selecting Columns
+
+Selecting columns allows you to choose specific columns from your dataset. It helps you focus on the variables of interest and ignore the rest.
+
+```R
+selected_data <- select(data, ID, Math)
+print(selected_data)
+```
+
+## Filtering Rows
+
+Filtering rows allows you to subset your dataset based on specific conditions. It helps you extract only the rows that meet certain criteria.
+
+```R
+# Filtering rows based on conditions
+filtered_data <- filter(data, Math > 90)
+print(filtered_data)
+```
+
+## Summarizing Data
+
+Summarizing data involves calculating summary statistics or aggregating data to get a concise overview of your dataset. It helps you understand the overall characteristics of your data.
+
+```R
+summary_data <- summarize(data, 
+                          Mean_Math = mean(Math), 
+                          Mean_Science = mean(Science))
+print(summary_data)
+```
+
+## Sorting (Arranging)
+
+Arranging rows involves sorting your dataset based on the values of one or more columns. It helps you reorder your data for better visualization or analysis.
+
+```R
+arranged_data <- arrange(data, desc(Math))
+print(arranged_data)
+```
+
+## Mutate
+
+The mutate() function in the dplyr package is essential for transforming data frames in R. It allows you to add new columns to a data frame or modify existing ones, using existing data. mutate() is part of the tidyverse, a collection of R packages designed for data science that makes data manipulation, exploration, and visualization easy and intuitive.
+
+### Adding columns
+Calculating the GC content of DNA sequences.
+```R
+library(dplyr)
+library(stringr)
+
+# Sample data
+sequences <- tibble(
+  id = c("seq1", "seq2", "seq3"),
+  dna = c("ATGCGC", "GCGTACGT", "ATATATAT")
+)
+
+# Calculate GC content
+sequences <- sequences %>%
+  mutate(gc_content = (str_count(dna, "[GC]") / str_length(dna)) * 100)
+
+print(sequences)
+```
+
+### Replacing existing columns
+
+Transcription of DNA sequences into RNA sequences involves replacing thymine (T) with uracil (U).
+
+```R
+# Convert DNA to RNA
+sequences <- sequences %>%
+  mutate(rna = str_replace_all(dna, "T", "U"))
+
+print(sequences)
+```
+
+
+### Multiple Transformations
+
+Identifying potential neoantigens by finding motifs associated with high mutation frequencies or specific mutation patterns.
+
+```R
+# Sample DNA sequences
+sequences <- tibble(
+  id = c("seq1", "seq2", "seq3"),
+  dna = c("ATGCGCATC", "GCGTACGTAGT", "ATATATATAT")
+)
+
+# Assume a simple motif that might indicate a neoantigen
+motif = "ATG"
+
+# Annotate sequences with potential neoantigen presence
+sequences <- sequences %>%
+  mutate(
+    start_position = str_locate(dna, motif)[,1],
+    is_neoantigen_candidate = ifelse(start_position > 0 & str_count(dna, "[GC]") / str_length(dna) > 0.5, "Yes", "No")
+  )
+
+print(sequences)
+```
+
+# Functions
+
+## Definition
+Functions (`function`) in R perform specific tasks. They take input (arguments), perform operations, and return output.
+
+```R
+function_name <- function(argument1, argument2, ...) {
+  # Function body
+  # Perform operations
+  # Return a value (optional)
+}
+```
+ - function_name: Name of the function.
+ - argument1, argument2, ...: Arguments passed to the function (optional).
+ - Function body: Code block where you define what the function should do.
+ - Return a value (optional): Use the return() statement to specify what the function should return (optional).
+
+Here, we define a function and call it!
+```R
+# Define a function to calculate the square of a number
+square <- function(x) {
+  return(x^2)
+}
+
+# Call the function
+result <- square(5)
+print(result)  # Output: 25
+```
+
+## Example
+
+Let's bring together concepts by writing the function `analyze_tcr_data`.
+
+
+The function will:
+
+ - Filter T cell sequences based on a specified length threshold.
+ - Sort the remaining data by clonality in descending order to identify the most prevalent TCRs.
+ - Create a new column that indicates the presence of a specific motif within the TCR sequence, a common task in sequence analysis.
+
+
+```R
+library(dplyr)
+library(stringr)
+
+# Define the function
+analyze_tcr_data <- function(tcr_tibble, length_threshold) {
+  # Validate input
+  if (!inherits(tcr_tibble, "tbl_df")) {
+    stop("Input must be a tibble.")
+  }
+  
+  # Filter TCR sequences longer than the threshold and sort by clonality
+  filtered_and_sorted <- tcr_tibble %>%
+    filter(str_length(tcr_sequence) > length_threshold) %>%
+    arrange(desc(clonality))
+  
+  # Add a column to indicate the presence of a specific motif (e.g., 'CASS')
+  enhanced_tcr_tibble <- filtered_and_sorted %>%
+    mutate(has_motif = if_else(str_detect(tcr_sequence, "CASS"), "Yes", "No"))
+  
+  # Return the transformed tibble
+  return(enhanced_tcr_tibble)
+}
+
+# Example usage
+# Assuming a tibble with TCR sequences and clonality metrics
+tcr_data <- tibble(
+  tcr_sequence = c("CASSLGGTDTQYF", "CASSLGDETQYF", "CASSLG", "CASSEGTDTQYF"),
+  clonality = c(0.25, 0.15, 0.05, 0.55)
+)
+
+# Apply the function with a length threshold of 10
+result_data <- analyze_tcr_data(tcr_data, 10)
+print(result_data)
+```
+
+Explanation
+
+ - Validation: The function starts by checking if the provided data is a tibble to ensure type safety.
+ - Filtering: Uses `filter()` to retain only TCR sequences longer than the specified length_threshold.
+ - Sorting: Uses `arrange()` to sort the data by clonality in descending order.
+ - String Manipulation: Adding has_motif Column: Uses `mutate()` combined with `str_detect()` from the stringr package to add a column that indicates whether each TCR sequence contains the motif "CASS".
+ - Return Value: Outputs a tibble that's been filtered, sorted, and enhanced with additional string-based analysis.
+
+# Reading in Files
+
+Reading files is a crucial part of data analysis. R provides functions for reading various file formats.
+
+```R
+# Read a CSV file into a data frame
+data <- read.csv("path/to/your/file.csv")
+
+# View the structure of the data frame
+print("Structure of the data frame:")
+print(str(data))
+
+# View the first few rows of the data frame
+print("First few rows of the data frame:")
+print(head(data))
+```
+
+# Additional Exercises
+
+```R
+# Load the iris dataset (saved as iris in base R)
+prac_data <- iris
+
+# What variables are measured in the iris dataset?
+# Hint: What do colnames(), str(), and summary() tell you about the data frame
+# CODE YOUR ANSWER HERE
+
+# How many sets of measurements were taken in the iris dataset?
+# Hint: What is the difference between nrow(), ncol(), dim(), and length()
+# CODE YOUR ANSWER HERE
+
+# What are the three unique types of species analyzed in the iris dataset?
+# Hint: How can unique() and table() be used to understand iris$Species
+# CODE YOUR ANSWER HERE
+
+# Filter the iris dataset to only those that are of the Species setosa
+# Save this dataframe as the variable "setosa"
+# CODE YOUR ANSWER HERE
+
+# What is the average sepal width of irises that are of the Species setosa?
+# Hint: Summary values of numeric vectors can be evaluated using min(), median(), max(), and summary()
+# CODE YOUR ANSWER HERE
+
+# Add a new column to setosa called "short_petal" that indicates TRUE if the 
+# Petal.Length is less than 5 and FALSE if the Petal.Length is at least 5
+# CODE YOUR ANSWER HERE
+
+# Create a function called "score" that checks whether the value of a numeric vector 
+# (input) is greater than the mean of all of the values, and returns a character vector
+# with "high" for the values greater than the mean and "low" for the values
+# less than the mean.
+
+# Create a new column for setosa called "sepal_length_score" that uses "high" and
+# "low" to indicate which values are greater than or less than the mean.
+# Hint: How can you use the function you create 
+
+# Advanced: What does the following block of code do
+iris %>%
+  group_by(Species) %>%
+  count()
+
+# Advanced: Do you have a *.csv, *.tsv, or *.txt file of your own that you
+# can add to your project?
+# Hint: There is an "Upload" option in the Files pane where you can add a file
+# that is present on your own computer. You can then read the file into your
+# environment.
+
+
+```
+
+## Bonus challenge
+
+If our sequence isn't length three, this code will throw an error because the function expects a sequence that is a multiple of 3:
+
+```R
+library(stringr)
+sequence <- "ATGCGTACGTTGAC" # Length 14
+# sequence <- "ATGCGTACGTTGACA" # Length 15
+
+codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))
+
+#> Error in `str_sub()`:
+#> ! Can't recycle `string` (size 5) to match `end` (size 4).
+#> Run `rlang::last_trace()` to see where the error occurred.
+```
+
+Can you try to code up a solution to this problem? 
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "**HINT**"
+
+# We can use the modulus operator "%%". It yields the remainder when the first operand is divided by the second.
+
+15 %% 3 
+#> [1] 0
+
+14 %% 3
+#> [1] 2
+```
+
+Here are a few options for how to solve this (only peek after trying yourself). 
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "**Show me the solution**"
+sequence <- "ATGCGTACGTTGAC" # Length 14
+
+# sequence <- "ATGCGTACGTTGACA" # Length 15
+
+# Option 1: Check for length 3 and make sure before running the code, otherwise print a warning.
+
+sequence_length <- nchar(sequence) # Get sequence length
+
+if (sequence_length %% 3 != 0) {
+  print(paste("Error! The sequence is length:", sequence_length))
+  codons <- "ERROR"
+} else {
+  codons <- str_sub(string = sequence, 
+  start = seq(1, str_length(sequence), by = 3), 
+  end = seq(3, str_length(sequence), by = 3))
+}
+
+print(codons)
+
+# Option 2: Add N to the sequence to make in a multiple of 3, and then any seqeuence will run properly.
+
+if (sequence_length %% 3 != 0) {
+  leftover <- 3 - nchar(sequence) %% 3
+  
+  leftover_n <- paste(rep("N", leftover), collapse = "")
+  
+  sequence <- paste0(sequence, leftover_n)
+}
+
+codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_length(sequence), by = 3))
+
+print(codons)
+```
+
+# Lecture Slides
+
+The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%201%20AM.pdf) 
+
+
+

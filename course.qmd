@@ -52,10 +52,22 @@ title: "Course overview"
 
 8. [TCR/BCR Repertoire Analysis](https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/) (Lead: Obi)
 
+# Spatial Transcriptomics
 
-# Imaging (Day 6, Thu.)
+1. Introduction to spatial transcriptomics: Visium, Xenium, CosMx
 
-1. [Intro to Python](course/python_tutorial.ipynb)
+2. Sample pre-processing
 
-2. [Spatial Analysis](course/spatial_demo.ipynb)
+3. Seurat objects, motifs and neighborhood clustering (Banksy, Grafiti)
+
+4. Custom binning
+
+5. Cell typing, CNV, trajectory analysis
+
+6. Unsupervise clustering, cell tying, loupe browser
+
+
+# Prior versions of the CRI Bioinformatics Bootcamp
+
+* [2024](course_2024.qmd)
 
