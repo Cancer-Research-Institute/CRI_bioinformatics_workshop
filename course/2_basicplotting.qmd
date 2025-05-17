@@ -3,6 +3,7 @@ title: "Basic plotting and statistics"
 format:
   html:
     code-link: true
+engine: knitr
 ---
 
 ## Long and Wide Data Formats

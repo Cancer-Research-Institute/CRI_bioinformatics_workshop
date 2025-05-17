@@ -3,6 +3,7 @@ title: "Introduction to R"
 format:
   html:
     code-link: true
+engine: knitr
 ---
 
 # RStudio: Introduction and Interface Orientation

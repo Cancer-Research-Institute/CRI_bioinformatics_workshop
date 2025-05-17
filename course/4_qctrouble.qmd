@@ -6,6 +6,7 @@ execute:
 format:
   html:
     code-link: true
+engine: knitr
 ---
 
 # Where should you start with a new dataset?
