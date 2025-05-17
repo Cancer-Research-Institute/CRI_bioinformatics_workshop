@@ -2,4 +2,20 @@
 title: "CRI Bioinformatics Workshop 2025"
 ---
 
-Welcome to the Cancer Research Institute Bioinformatics Bootcamp!
+Welcome to the 2025 Cancer Research Institute Bioinformatics Bootcamp!
+
+## Dates: May 17-22, 2025
+
+## Location: Wyndham Grand Orlando Resort Bonnet Creek, Orlando Florida
+
+Bonnet Creek Boardroom A/B
+
+![](img/WyndhamLocation.png){width=8in fig-align="center"}
+
+## Course Resources
+
+- [Course Overview](course.qmd)
+- [Schedule](schedule.qmd)
+- [RNAbio companion site](https://rnabio.org)
+- [Additional Resources](resources.qmd)
+
