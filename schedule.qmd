@@ -31,8 +31,8 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 17, 2025 through 
 |          | 1:30PM-2:15PM   | 0:45     |                            | Hands-on: DE visualization with DESeq2                                       |
 |          | 2:15PM-3:15PM   | 1:00     |                            | Hands-on: DE visualization advanced                                          |
 |          | 3:15PM-4:45PM   | 1:30     |                            | Hands-on: Pathway analysis                                                   |
-|          | 4:45PM-5:00PM   | 0:15     |                            | Hands-on: Batch correction                                                   |
-|          | 5:30PM-7:00PM   | 1:30     |                            | Day 3 Summary/Questions                                                      |
+|          | 4:45PM-5:00PM   | 0:15     |                            | Day 3 Summary/Questions                                                      |
+|          | 5:30PM-7:00PM   | 1:30     | Office Hours               |                                                                              |
 | 4 (Tue)  | 9:00AM-9:45AM   | 0:45     | Single cell RNA sequencing | Introduction to scRNAseq methods and analysis                                |
 |          | 9:45AM-10:15AM  | 0:30     |                            | Introduction to scRNAseq dataset and loupe demonstration                     |
 |          | 10:15AM-12:00PM | 1:45     |                            | Hands-on: Quality assesment and clustering                                   |
