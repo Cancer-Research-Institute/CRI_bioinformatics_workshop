@@ -14,7 +14,7 @@ title: "Course overview"
 
 # Bulk RNA sequence analysis (Day 3, Mon.)
 
-* [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day1-IntroToRNA%2BDNA.pdf)
+* [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day3-IntroToRNA%2BDNA.pdf)
 
 1. [Introduction to rnabio.org](https://rnabio.org/) and [bulk RNAseq dataset](https://rnabio.org/module-01-inputs/0001/05/01/RNAseq_Data/) (Lead: Obi/Malachi)
 
