@@ -567,7 +567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a>
   <ul class="collapse">
 <li><a href="#spearman-vs.-pearson-correlation" id="toc-spearman-vs.-pearson-correlation" class="nav-link" data-scroll-target="#spearman-vs.-pearson-correlation">Spearman vs.&nbsp;Pearson Correlation</a></li>
-  <li><a href="#geom_smooth" id="toc-geom_smooth" class="nav-link" data-scroll-target="#geom_smooth"><code>geom_smooth</code></a></li>
+  <li><a href="#geom_smooth" id="toc-geom_smooth" class="nav-link" data-scroll-target="#geom_smooth"><code>geom_smooth()</code></a></li>
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a></li>
   <li><a href="#example-code" id="toc-example-code" class="nav-link" data-scroll-target="#example-code">Example Code</a></li>
   </ul>
@@ -610,21 +610,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Used in default settings for many algorithms like K-means clustering.</li>
 </ul></section></section><section id="dist-in-r" class="level2"><h2 class="anchored" data-anchor-id="dist-in-r">
 <code>dist</code> in R</h2>
+<div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load the iris dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
-<span><span class="va">iris_numeric</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>  <span class="co"># Exclude the species column</span></span>
+<span><span class="va">iris_numeric</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="co"># Exclude the species column</span></span>
 <span></span>
 <span><span class="co"># Euclidean distance</span></span>
 <span><span class="va">euclidean_distances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">iris_numeric</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Manhattan distance</span></span>
 <span><span class="va">manhattan_distances</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">iris_numeric</span>, method <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section></section><section id="clustering" class="level1"><h1>Clustering</h1>
 <p><em>Clustering</em> is a technique used to group similar objects or data points together based on their characteristics or features. For example, clustering can be applied to gene expression data to identify groups of genes that behave similarly under different experimental conditions. These clusters might ultimately inform cell types or subtypes. There are several different clustering techniques, including hierarchical or K-means clustering. It is important to understand the limitations or assumptions of a clustering algorithm when applying it to your data.</p>
 <section id="k-means-clustering" class="level2"><h2 class="anchored" data-anchor-id="k-means-clustering">K-means clustering</h2>
 <p>K-means clustering is a popular unsupervised machine learning algorithm used for partitioning a dataset into a predetermined number of clusters. The goal of k-means clustering is to group data points into clusters such that data points within the same cluster are more similar to each other than to those in other clusters. The algorithm works iteratively to assign each data point to the nearest cluster centroid (center point of a cluster) and then update the centroid based on the mean of all data points assigned to that cluster. This process continues until the centroids no longer change significantly, or a specified number of iterations is reached.</p>
 <p>K-means has some limitations, such as sensitivity to the initial random selection of centroids and the need to specify the number of clusters beforehand. Additionally, k-means may not perform well on datasets with non-spherical or irregularly shaped clusters.</p>
 <p>Running on K-means on the iris data set:</p>
+<div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="va">iris_data</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span></span>
@@ -634,24 +637,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">kmeans_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">iris_data</span>, centers <span class="op">=</span> <span class="fl">3</span>, nstart <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">kmeans_result</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>Cluster <span class="op">=</span> <span class="va">kmeans_result</span><span class="op">$</span><span class="va">cluster</span>, Species <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Visualization</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">kmeans_result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>K-means clustering with 3 clusters of sizes 62, 38, 50
+
+Cluster means:
+  Sepal.Length Sepal.Width Petal.Length Petal.Width
+1     5.901613    2.748387     4.393548    1.433871
+2     6.850000    3.073684     5.742105    2.071053
+3     5.006000    3.428000     1.462000    0.246000
+
+Clustering vector:
+  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ [38] 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [75] 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 2 1 2 2 2 2
+[112] 2 2 1 1 2 2 2 2 1 2 1 2 1 2 2 1 1 2 2 2 2 2 1 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+[149] 2 1
+
+Within cluster sum of squares by cluster:
+[1] 39.82097 23.87947 15.15100
+ (between_SS / total_SS =  88.4 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      </code></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>Cluster <span class="op">=</span> <span class="va">kmeans_result</span><span class="op">$</span><span class="va">cluster</span>, Species <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Species
+Cluster setosa versicolor virginica
+      1      0         48        14
+      2      0          2        36
+      3     50          0         0</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Visualization</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">kmeans_result</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'Cluster'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Cluster"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"K-means Clustering of the Iris Dataset"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="kmeans.png" class="img-fluid figure-img"></p>
-<figcaption>Kmeans on iris data</figcaption></figure>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section><section id="heirarchical-clustering" class="level2"><h2 class="anchored" data-anchor-id="heirarchical-clustering">Heirarchical Clustering</h2>
 <p>Hierarchical clustering is a method used in unsupervised learning to group similar data points into clusters based on their pairwise distances or similarities. The main idea behind hierarchical clustering is to build a hierarchy of clusters, where each data point starts in its own cluster and pairs of clusters are progressively merged until all points belong to a single cluster.</p>
 <p>The result of hierarchical clustering is often visualized using a dendrogram, which is a tree-like diagram that illustrates the hierarchical structure of the clusters.</p>
 <p>Lets use hclust on a set of TCR sequences, where the distance between each sequence is defined as the edit distance. We can plot a dendrogram highlighting sequence similarity.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Install and load necessary packages</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Install and load necessary packages</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"stringdist"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"stringdist"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -659,7 +697,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># Define TCR sequences</span></span>
 <span><span class="va">tcr_sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CASSLGTQYEQYF"</span>, <span class="st">"CASSLGTEAFF"</span>, <span class="st">"CASSQETQYEQYF"</span>, <span class="st">"CASSLRTDTQYF"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tcr_sequences</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">tcr_sequences</span>  <span class="co"># Use sequences as labels</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tcr_sequences</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">tcr_sequences</span> <span class="co"># Use sequences as labels</span></span>
 <span></span>
 <span><span class="co"># Calculate pairwise string distances using the Levenshtein method</span></span>
 <span><span class="va">dist_matrix</span> <span class="op">&lt;-</span> <span class="fu">stringdistmatrix</span><span class="op">(</span><span class="va">tcr_sequences</span>, <span class="va">tcr_sequences</span>, method <span class="op">=</span> <span class="st">"lv"</span><span class="op">)</span></span>
@@ -668,16 +706,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span><span class="op">(</span><span class="va">dist_matrix</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot the dendrogram</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hc</span>, main <span class="op">=</span> <span class="st">"Hierarchical Clustering of TCR Sequences"</span>, sub <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">"Distance"</span>,</span>
-<span>     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tcr_sequences</span><span class="op">)</span>, hang <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span>  <span class="co"># Ensure labels hang below the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="tcr_string_dist.png" class="img-fluid figure-img"></p>
-<figcaption>Sequence Distance Clustering</figcaption></figure>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hc</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">"Hierarchical Clustering of TCR Sequences"</span>, sub <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">"Distance"</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tcr_sequences</span><span class="op">)</span>, hang <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span><span class="op">)</span> <span class="co"># Ensure labels hang below the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>We can create a more complex simulated dataset of simulated single cell gene expression data. In this case, we have two cell types, and expect that the resulting dendrogram produced from the clustering should show clear differences between these cell types. Finally, we can plot the expression values in heatmap to visualize the difference between the genes across cells. The ordering of the rows is dictated by the dendrogram, drawing more similar cells closer together, allowing us to see the expression patterns that define each cell type.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Install and load pheatmap if not already installed</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Install and load pheatmap if not already installed</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"pheatmap"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pheatmap"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pheatmap"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pheatmap</span><span class="op">)</span></span>
 <span></span>
@@ -686,15 +730,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># Define parameters</span></span>
 <span><span class="va">num_genes</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
-<span><span class="va">num_samples</span> <span class="op">&lt;-</span> <span class="fl">50</span>  <span class="co"># 25 T cells + 25 Cancer cells</span></span>
+<span><span class="va">num_samples</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="co"># 25 T cells + 25 Cancer cells</span></span>
 <span></span>
 <span><span class="co"># Simulate base gene expression</span></span>
-<span><span class="va">gene_expression</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">num_genes</span> <span class="op">*</span> <span class="va">num_samples</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, </span>
-<span>                          nrow <span class="op">=</span> <span class="va">num_genes</span>, ncol <span class="op">=</span> <span class="va">num_samples</span><span class="op">)</span></span>
+<span><span class="va">gene_expression</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">num_genes</span> <span class="op">*</span> <span class="va">num_samples</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  nrow <span class="op">=</span> <span class="va">num_genes</span>, ncol <span class="op">=</span> <span class="va">num_samples</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Introduce differences in expression between the two groups</span></span>
-<span><span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">]</span> <span class="op">+</span> <span class="fl">2</span>  <span class="co"># T cells</span></span>
-<span><span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">26</span><span class="op">:</span><span class="fl">50</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">26</span><span class="op">:</span><span class="fl">50</span><span class="op">]</span> <span class="op">-</span> <span class="fl">2</span>  <span class="co"># Cancer cells</span></span>
+<span><span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">]</span> <span class="op">+</span> <span class="fl">2</span> <span class="co"># T cells</span></span>
+<span><span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">26</span><span class="op">:</span><span class="fl">50</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">gene_expression</span><span class="op">[</span><span class="fl">81</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">26</span><span class="op">:</span><span class="fl">50</span><span class="op">]</span> <span class="op">-</span> <span class="fl">2</span> <span class="co"># Cancer cells</span></span>
 <span></span>
 <span><span class="co"># Label rows and columns</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">gene_expression</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Gene"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">num_genes</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
@@ -704,19 +749,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">transposed_gene_expression</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">gene_expression</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Creating a heatmap with clustering and annotation</span></span>
-<span><span class="fu">pheatmap</span><span class="op">(</span><span class="va">transposed_gene_expression</span>, </span>
-<span>         show_rownames <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>         show_colnames <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>         clustering_distance_rows <span class="op">=</span> <span class="st">"euclidean"</span>,</span>
-<span>         cluster_rows  <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>         cluster_cols  <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>         main <span class="op">=</span> <span class="st">"Heatmap of Gene Expression with Clustering"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="gene_expression_dist.png" class="img-fluid" alt="Expression Distance Clustering"><img src="gene_expression_heatmap.png" class="img-fluid" alt="Expression Distance Clustering"></p>
+<span><span class="fu">pheatmap</span><span class="op">(</span><span class="va">transposed_gene_expression</span>,</span>
+<span>  show_rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  show_colnames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  clustering_distance_rows <span class="op">=</span> <span class="st">"euclidean"</span>,</span>
+<span>  cluster_rows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cluster_cols <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">"Heatmap of Gene Expression with Clustering"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section><section id="dimensionality-reduction" class="level1"><h1>Dimensionality Reduction</h1>
 <p>Dimension reduction is a crucial step in analyzing high-dimensional data, such as gene expression data, where the number of features (genes) is large compared to the number of samples (experimental conditions). Dimension reduction techniques aim to simplify the data while preserving its essential structure, simplifying hundreds or thousands of features into a two-dimensional space. For clustering cell types or samples, this approach enables the identification of which genes are the most different across groups or clusters.</p>
 <section id="principal-component-analysis-pca" class="level2"><h2 class="anchored" data-anchor-id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h2>
 <p>PCA is a widely used dimension reduction technique that transforms high-dimensional data into a lower-dimensional representation by identifying the principal components that capture the maximum variance in the data. These principal components are orthogonal to each other and can be used to visualize the data in lower dimensions.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load necessary packages</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load necessary packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load data</span></span>
@@ -725,33 +778,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># PCA</span></span>
 <span><span class="va">pca_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">iris_data</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">pca_results</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co"># Scatter plot of the first two PCs</span></span>
-<span><span class="va">pc_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>PC1 <span class="op">=</span> <span class="va">pca_results</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, PC2 <span class="op">=</span> <span class="va">pca_results</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, Species <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">pca_results</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4
+Standard deviation     1.7084 0.9560 0.38309 0.14393
+Proportion of Variance 0.7296 0.2285 0.03669 0.00518
+Cumulative Proportion  0.7296 0.9581 0.99482 1.00000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Scatter plot of the first two PCs</span></span>
+<span><span class="va">pc_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>PC1 <span class="op">=</span> <span class="va">pca_results</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, PC2 <span class="op">=</span> <span class="va">pca_results</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, Species <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pc_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">PC1</span>, y <span class="op">=</span> <span class="va">PC2</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"PCA of Iris Dataset"</span>,</span>
-<span>         x <span class="op">=</span> <span class="st">"Principal Component 1"</span>,</span>
-<span>         y <span class="op">=</span> <span class="st">"Principal Component 2"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="pca_iris.png" class="img-fluid figure-img"></p>
-<figcaption>PCA example</figcaption></figure>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"PCA of Iris Dataset"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Principal Component 1"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Principal Component 2"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section><section id="t-sne" class="level2"><h2 class="anchored" data-anchor-id="t-sne">t-SNE</h2>
 <p>t-SNE (t-Distributed Stochastic Neighbor Embedding) is a dimensionality reduction technique commonly used in bioinformatics to visualize high-dimensional data, such as gene expression profiles or single-cell RNA sequencing (scRNA-seq) data, in a lower-dimensional space. t-SNE aims to preserve local structure and clusterings in the data by modeling similarities between data points in the high-dimensional space and embedding them into a lower-dimensional space. In t-SNE, similarities between data points are represented by conditional probabilities that two points are similar given their high-dimensional representations. t-SNE iteratively adjusts the positions of data points in the lower-dimensional space to minimize the difference between the conditional probabilities of pairwise similarities in the high-dimensional and low-dimensional spaces.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load the Rtsne package</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load the Rtsne package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jkrijthe/Rtsne">Rtsne</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">unique_iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Run t-SNE on the deduplicated data</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>  <span class="co"># for reproducibility</span></span>
-<span><span class="va">tsne_results</span> <span class="op">&lt;-</span> <span class="fu">Rtsne</span><span class="op">(</span><span class="va">unique_iris</span>, dims <span class="op">=</span> <span class="fl">2</span>, perplexity <span class="op">=</span> <span class="fl">30</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Create a data frame for plotting (assuming you want to include species labels)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="co"># for reproducibility</span></span>
+<span><span class="va">tsne_results</span> <span class="op">&lt;-</span> <span class="fu">Rtsne</span><span class="op">(</span><span class="va">unique_iris</span>, dims <span class="op">=</span> <span class="fl">2</span>, perplexity <span class="op">=</span> <span class="fl">30</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Performing PCA
+Read the 149 x 4 data matrix successfully!
+Using no_dims = 2, perplexity = 30.000000, and theta = 0.500000
+Computing input similarities...
+Building tree...
+Done in 0.01 seconds (sparsity = 0.709067)!
+Learning embedding...
+Iteration 50: error is 43.497353 (50 iterations in 0.01 seconds)
+Iteration 100: error is 43.761732 (50 iterations in 0.02 seconds)
+Iteration 150: error is 45.596069 (50 iterations in 0.02 seconds)
+Iteration 200: error is 44.171561 (50 iterations in 0.02 seconds)
+Iteration 250: error is 45.601410 (50 iterations in 0.01 seconds)
+Iteration 300: error is 0.257111 (50 iterations in 0.01 seconds)
+Iteration 350: error is 0.127160 (50 iterations in 0.01 seconds)
+Iteration 400: error is 0.124022 (50 iterations in 0.01 seconds)
+Iteration 450: error is 0.123273 (50 iterations in 0.01 seconds)
+Iteration 500: error is 0.123686 (50 iterations in 0.01 seconds)
+Iteration 550: error is 0.122445 (50 iterations in 0.01 seconds)
+Iteration 600: error is 0.121704 (50 iterations in 0.01 seconds)
+Iteration 650: error is 0.120104 (50 iterations in 0.01 seconds)
+Iteration 700: error is 0.118276 (50 iterations in 0.01 seconds)
+Iteration 750: error is 0.117021 (50 iterations in 0.01 seconds)
+Iteration 800: error is 0.116558 (50 iterations in 0.01 seconds)
+Iteration 850: error is 0.114659 (50 iterations in 0.01 seconds)
+Iteration 900: error is 0.113433 (50 iterations in 0.01 seconds)
+Iteration 950: error is 0.114671 (50 iterations in 0.01 seconds)
+Iteration 1000: error is 0.115401 (50 iterations in 0.01 seconds)
+Fitting performed in 0.26 seconds.</code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for plotting (assuming you want to include species labels)</span></span>
 <span><span class="va">tsne_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tsne_results</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Assuming you want to add back the species information</span></span>
@@ -764,18 +859,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tsne_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X1</span>, y <span class="op">=</span> <span class="va">X2</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Iris dataset t-SNE plot"</span>,</span>
-<span>       x <span class="op">=</span> <span class="st">"t-SNE 1"</span>, y <span class="op">=</span> <span class="st">"t-SNE 2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Iris dataset t-SNE plot"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"t-SNE 1"</span>, y <span class="op">=</span> <span class="st">"t-SNE 2"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="tsne_iris.png" class="img-fluid figure-img"></p>
-<figcaption>t-SNE example</figcaption></figure>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section><section id="umap" class="level2"><h2 class="anchored" data-anchor-id="umap">UMAP</h2>
 <p>UMAP (Uniform Manifold Approximation and Projection) is a modern technique for dimensionality reduction that is particularly useful for visualizing clusters or groups in high-dimensional data. Similar to t-SNE, UMAP focuses on preserving the local structure of the data but also tries to retain more of the global structure compared to t-SNE. UMAP is based on manifold learning and operates under the assumption that the data is uniformly distributed on a locally connected Riemannian manifold.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Install and load umap if not already installed</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Install and load umap if not already installed</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"umap"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"umap"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"umap"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tkonopka/umap">umap</a></span><span class="op">)</span></span>
@@ -785,21 +886,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Run UMAP</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>  <span class="co"># for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="co"># for reproducibility</span></span>
 <span><span class="va">umap_results</span> <span class="op">&lt;-</span> <span class="fu">umap</span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Create a data frame for plotting</span></span>
 <span><span class="va">iris_umap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">umap_results</span><span class="op">$</span><span class="va">layout</span><span class="op">)</span></span>
-<span><span class="va">iris_umap</span><span class="op">$</span><span class="va">Species</span> <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span></span>
+<span><span class="va">iris_umap</span><span class="op">$</span><span class="va">Species</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">$</span><span class="va">Species</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">iris_umap</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X1</span>, y <span class="op">=</span> <span class="va">X2</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Iris Dataset UMAP Plot"</span>,</span>
-<span>       x <span class="op">=</span> <span class="st">"UMAP 1"</span>, y <span class="op">=</span> <span class="st">"UMAP 2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Iris Dataset UMAP Plot"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"UMAP 1"</span>, y <span class="op">=</span> <span class="st">"UMAP 2"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="umap_iris.png" class="img-fluid figure-img"></p>
-<figcaption>UMAP example</figcaption></figure>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section></section><section id="correlation" class="level1"><h1>Correlation</h1>
 <p>Correlation measures the strength and direction of the relationship between two variables. In bioinformatics, correlation analysis is often used to explore relationships between gene expression levels across different samples or experimental conditions.</p>
@@ -808,50 +914,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <strong>Pearson Correlation</strong>: Measures the linear relationship between two variables. It assumes that the variables are normally distributed and have a linear relationship.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Generate example data</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Generate example data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>  <span class="co"># Generate 100 random numbers from a standard normal distribution</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>  <span class="co"># Create y as a noisy version of x</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span> <span class="co"># Generate 100 random numbers from a standard normal distribution</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="co"># Create y as a noisy version of x</span></span>
 <span></span>
 <span><span class="co"># Calculate Pearson correlation coefficient</span></span>
 <span><span class="va">pearson_correlation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Pearson correlation coefficient:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">pearson_correlation</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Pearson correlation coefficient: 0.92"</code></pre>
+</div>
+</div>
 <ul>
 <li>
 <strong>Spearman Correlation</strong>: Measures the monotonic relationship between two variables. It does not assume linearity and is more robust to outliers and non-normal distributions.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Generate example data</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Generate example data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>  <span class="co"># Generate 100 random numbers from a standard normal distribution</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>  <span class="co"># Create y as a noisy version of x</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span> <span class="co"># Generate 100 random numbers from a standard normal distribution</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="co"># Create y as a noisy version of x</span></span>
 <span></span>
 <span><span class="co"># Calculate Spearman correlation coefficient</span></span>
 <span><span class="va">spearman_correlation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Spearman correlation coefficient:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">spearman_correlation</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="geom_smooth" class="level2"><h2 class="anchored" data-anchor-id="geom_smooth"><code>geom_smooth</code></h2>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Spearman correlation coefficient: 0.9"</code></pre>
+</div>
+</div>
+</section><section id="geom_smooth" class="level2"><h2 class="anchored" data-anchor-id="geom_smooth"><code>geom_smooth()</code></h2>
 <p>Simple example using iris.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Create a scatter plot with a smoothed line</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Length</span>, y <span class="op">=</span> <span class="va">Sepal.Width</span>, color <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add scatter points</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add linear regression line</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add scatter points</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add linear regression line</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Scatter Plot with Smoothed Line"</span>, x <span class="op">=</span> <span class="st">"Sepal Length"</span>, y <span class="op">=</span> <span class="st">"Sepal Width"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="geom_smooth_iris.png" class="img-fluid figure-img"></p>
-<figcaption>geom_smooth iris</figcaption></figure>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Simulate data points from two groups and use geom_smooth with a different model for each group.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load required libraries</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load required libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Generate example data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
-<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>  <span class="co"># Number of data points per group</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span>  <span class="co"># x values</span></span>
-<span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"linear"</span>, <span class="st">"sinusoidal"</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">n</span><span class="op">)</span>  <span class="co"># Group labels</span></span>
-<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,  <span class="co"># Group 'linear' with a linear trend</span></span>
-<span>       <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, length.out <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Group 'sinusoidal' with a sinusoidal trend</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="co"># Number of data points per group</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="co"># x values</span></span>
+<span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"linear"</span>, <span class="st">"sinusoidal"</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="co"># Group labels</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="fl">0.5</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="co"># Group 'linear' with a linear trend</span></span>
+<span>  <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span>, length.out <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="co"># Group 'sinusoidal' with a sinusoidal trend</span></span>
 <span></span>
 <span><span class="co"># Standardize y-values within each group</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ave.html">ave</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">group</span>, FUN <span class="op">=</span> <span class="va">scale</span><span class="op">)</span></span>
@@ -861,36 +984,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># Plot the data with smoothed lines and confidence intervals for each group</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add scatter points</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">group</span> <span class="op">==</span> <span class="st">"linear"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add linear smoothed line with confidence intervals</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">group</span> <span class="op">==</span> <span class="st">"sinusoidal"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"loess"</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add sinusoidal smoothed line with confidence intervals</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add scatter points</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">group</span> <span class="op">==</span> <span class="st">"linear"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add linear smoothed line with confidence intervals</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">group</span> <span class="op">==</span> <span class="st">"sinusoidal"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"loess"</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add sinusoidal smoothed line with confidence intervals</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Scatter Plot with Smoothed Lines and Confidence Intervals by Group"</span>, x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">"Y (Standardized)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="geom_smooth_simulated.png" class="img-fluid figure-img"></p>
-<figcaption>geom_smooth Simulated</figcaption></figure>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section><section id="linear-regression" class="level2"><h2 class="anchored" data-anchor-id="linear-regression">Linear Regression</h2>
 <p>Statistical model to estimate the linear relationship between a dependent variable and a set of independent variables. The goal is find the best fit line by fitting the observed data to a linear equation.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># Generate example data with more noise</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Generate example data with more noise</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>,                    <span class="co"># Independent variable</span></span>
-<span>                 y <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">df</span><span class="op">$</span><span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span>    <span class="co"># Dependent variable with more noise</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="co"># Independent variable</span></span>
+<span>  y <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">df</span><span class="op">$</span><span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="co"># Dependent variable with more noise</span></span>
 <span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Visualize the data and fitted line</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>                              <span class="co"># Add scatter points</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>    <span class="co"># Add fitted line</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add scatter points</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Add fitted line</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Linear Regression Example"</span>, x <span class="op">=</span> <span class="st">"x"</span>, y <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="lm_example.png" class="img-fluid figure-img"></p>
-<figcaption>Linear regression example</figcaption></figure>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section><section id="example-code" class="level2"><h2 class="anchored" data-anchor-id="example-code">Example Code</h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load required libraries</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load required libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Example dataframe</span></span>
@@ -906,25 +1038,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># Plot PCA</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pca_result</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">pca_result</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, </span>
 <span>     xlab <span class="op">=</span> <span class="st">"PC1"</span>, ylab <span class="op">=</span> <span class="st">"PC2"</span>, </span>
-<span>     main <span class="op">=</span> <span class="st">"PCA Plot"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Perform clustering</span></span>
+<span>     main <span class="op">=</span> <span class="st">"PCA Plot"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform clustering</span></span>
 <span><span class="co"># Example clustering algorithm: k-means</span></span>
 <span><span class="va">kmeans_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">df</span>, centers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot clustering</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span>, col <span class="op">=</span> <span class="va">kmeans_result</span><span class="op">$</span><span class="va">cluster</span>, </span>
-<span>     main <span class="op">=</span> <span class="st">"Clustering Plot"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Add correlation statistics to a plot</span></span>
+<span>     main <span class="op">=</span> <span class="st">"Clustering Plot"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Add correlation statistics to a plot</span></span>
 <span><span class="co"># Example plot</span></span>
 <span><span class="fu">ggscatter</span><span class="op">(</span><span class="va">df</span>, x <span class="op">=</span> <span class="st">"Gene1"</span>, y <span class="op">=</span> <span class="st">"Gene2"</span>, </span>
 <span>          add <span class="op">=</span> <span class="st">"reg.line"</span>, </span>
 <span>          cor.coef <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>          cor.method <span class="op">=</span> <span class="st">"spearman"</span>, </span>
 <span>          cor.coeff.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section><section id="additional-exercises" class="level1"><h1>Additional Exercises</h1>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Run PCA, t-SNE, and UMAP on the simulated gene expression data.</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Run PCA, t-SNE, and UMAP on the simulated gene expression data.</span></span>
 <span><span class="co"># CODE YOUR ANSWER HERE</span></span>
 <span></span>
 <span><span class="co"># Run pheatmap again on the expression dataset, apply k_means clustering using 2, 10, 50 k's and view how clusters change</span></span>
@@ -935,8 +1084,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># what cluster does Gene 5 correspond to</span></span>
 <span><span class="co"># CODE YOUR ANSWER HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="bonus-exercises-heatmaps-using-ggplot2" class="level1"><h1>Bonus Exercises: Heatmaps using ggplot2</h1>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://andrie.github.io/ggdendro/">ggdendro</a></span><span class="op">)</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://andrie.github.io/ggdendro/">ggdendro</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Manually perform hierarchical clustering to generate heatmap using ggplot2</span></span>
@@ -949,25 +1100,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">cell_clust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">cell_distances</span>, method <span class="op">=</span> <span class="st">'complete'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot 1. Dendrograms</span></span>
-<span><span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">gene_clust</span>, rotate <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">cell_clust</span>, rotate <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Plot 2. Heatmap in ggplot2</span></span>
+<span><span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">gene_clust</span>, rotate <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">cell_clust</span>, rotate <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot 2. Heatmap in ggplot2</span></span>
 <span><span class="va">gene_expression_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">gene_expression</span><span class="op">)</span></span>
 <span><span class="co"># Add column with gene name to data frame (originally rownames)</span></span>
 <span><span class="va">gene_expression_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="va">gene_expression_df</span>, <span class="st">"Gene"</span><span class="op">)</span></span>
 <span><span class="co"># Prepare for plotting</span></span>
 <span><span class="va">for_plotting</span> <span class="op">&lt;-</span> <span class="va">gene_expression_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">gather</span><span class="op">(</span><span class="va">Cell</span>, <span class="va">expression_value</span>, <span class="op">-</span><span class="va">Gene</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="va">Cell</span>, <span class="va">expression_value</span>, <span class="op">-</span><span class="va">Gene</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Code for plotting</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">for_plotting</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gene</span>, y <span class="op">=</span> <span class="va">Cell</span>, fill <span class="op">=</span> <span class="va">expression_value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Reorder based upon clustering order</span></span>
+<span>        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-15-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reorder based upon clustering order</span></span>
 <span><span class="co"># Set Cell and Gene to factors (giving them a sorted order, based upon the hierarchical clustering)</span></span>
 <span><span class="co"># The order given by clustering is provided by the hclust_object$labels</span></span>
 <span><span class="va">reorder_plot</span> <span class="op">&lt;-</span> <span class="va">for_plotting</span></span>
@@ -977,26 +1144,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># How did the plot change?</span></span>
+<span>        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-15-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># How did the plot change?</span></span>
 <span></span>
 <span><span class="co"># Make it pretty</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">reorder_plot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Gene</span>, y <span class="op">=</span> <span class="va">Cell</span>, fill <span class="op">=</span> <span class="va">expression_value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">'rocket'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="co"># removes blank space towards the edge</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Expression"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># How does the heatmap look different if you use other options for hierachical clustering?</span></span>
+<span>        axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="3_clustering_files/figure-html/unnamed-chunk-15-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># How does the heatmap look different if you use other options for hierachical clustering?</span></span>
 <span><span class="co"># Hint: Try "ward.D2" or "centroid" for the method parameter.</span></span>
 <span><span class="co"># CODE YOUR ANSWER HERE</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Do you have a gene expression matrix of your own? Try creating a heatmap from your data!</span></span>
 <span><span class="co"># CODE YOUR ANSWER HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section><section id="lecture-slides" class="level1"><h1>Lecture Slides</h1>
 <p>The slides for this lecture are available <a href="https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%202%20AM.pdf">here</a>.</p>
 

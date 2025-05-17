@@ -917,9 +917,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"blue"</span>, high <span class="op">=</span> <span class="st">"red"</span>, mid <span class="op">=</span> <span class="st">"white"</span>, midpoint <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="cn">NULL</span>, x <span class="op">=</span> <span class="st">"Samples"</span>, y <span class="op">=</span> <span class="st">"Genes"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html">guide_axis</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="fl">3</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="fl">3</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="va">heatmap_plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -955,32 +957,42 @@ What does <code>plot.margin</code> do?
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nanx.me/ggsci/">ggsci</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Options for legend width and heights</span></span>
-<span><span class="va">guide_kwd</span> <span class="op">=</span> <span class="fl">0.5</span></span>
-<span><span class="va">guide_kht</span> <span class="op">=</span> <span class="fl">0.5</span></span>
+<span><span class="va">guide_kwd</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
+<span><span class="va">guide_kht</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
 <span><span class="co"># Create metadata plot</span></span>
 <span><span class="va">metadata_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metadata</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">Sample</span>, <span class="va">ordered_samples</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Condition"</span>, fill <span class="op">=</span> <span class="va">Condition</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Here we tell the order of the legends</span></span>
-<span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_nejm.html">scale_fill_nejm</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>order <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>                                 keywidth <span class="op">=</span> <span class="va">guide_kwd</span>, </span>
-<span>                                 keyheight <span class="op">=</span> <span class="va">guide_kht</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_nejm.html">scale_fill_nejm</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span></span>
+<span>    order <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    keywidth <span class="op">=</span> <span class="va">guide_kwd</span>,</span>
+<span>    keyheight <span class="op">=</span> <span class="va">guide_kht</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggnewscale</span><span class="fu">::</span><span class="fu"><a href="https://eliocamp.github.io/ggnewscale/reference/new_scale.html">new_scale_fill</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Drug"</span>, fill <span class="op">=</span> <span class="va">Drug</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_aaas.html">scale_fill_aaas</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>order <span class="op">=</span> <span class="fl">2</span>, </span>
-<span>                                 keywidth <span class="op">=</span> <span class="va">guide_kwd</span>, </span>
-<span>                                 keyheight <span class="op">=</span> <span class="va">guide_kht</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_aaas.html">scale_fill_aaas</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span></span>
+<span>    order <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    keywidth <span class="op">=</span> <span class="va">guide_kwd</span>,</span>
+<span>    keyheight <span class="op">=</span> <span class="va">guide_kht</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggnewscale</span><span class="fu">::</span><span class="fu"><a href="https://eliocamp.github.io/ggnewscale/reference/new_scale.html">new_scale_fill</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Gender"</span>, fill <span class="op">=</span> <span class="va">Gender</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_npg.html">scale_fill_npg</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>order <span class="op">=</span> <span class="fl">2</span>, </span>
-<span>                                 keywidth <span class="op">=</span> <span class="va">guide_kwd</span>, </span>
-<span>                                 keyheight <span class="op">=</span> <span class="va">guide_kht</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://nanx.me/ggsci/reference/scale_npg.html">scale_fill_npg</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span></span>
+<span>    order <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    keywidth <span class="op">=</span> <span class="va">guide_kwd</span>,</span>
+<span>    keyheight <span class="op">=</span> <span class="va">guide_kht</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Limits set the order of the main panel</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Condition"</span>, <span class="st">"Drug"</span>, <span class="st">"Gender"</span><span class="op">)</span>, </span>
-<span>                   expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span></span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Condition"</span>, <span class="st">"Drug"</span>, <span class="st">"Gender"</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Adjust theme elements to remove redundant text etc</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        legend.position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    legend.position <span class="op">=</span> <span class="st">"right"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html">guide_axis</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1011,14 +1023,16 @@ Why do we use <code>ggnewscale</code>?
 <p>Merge the metadata and heatmap plots together</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute relative heights of main and metadata plot</span></span>
-<span><span class="va">rel_height</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span> <span class="co"># Since we have 3 metadata categories</span></span>
+<span><span class="va">rel_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span> <span class="co"># Since we have 3 metadata categories</span></span>
 <span></span>
 <span><span class="co"># Adjust the formatting to adjust the plot margin, remove the axis text and ticks</span></span>
-<span><span class="va">metadata_plot</span> <span class="op">&lt;-</span> <span class="va">metadata_plot</span>  <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text.x  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">0</span>, l <span class="op">=</span> <span class="fl">3</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">metadata_plot</span> <span class="op">&lt;-</span> <span class="va">metadata_plot</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">0</span>, l <span class="op">=</span> <span class="fl">3</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co"># Combine plots with patchwork</span></span>
-<span><span class="va">combined_plot</span> <span class="op">&lt;-</span> <span class="va">metadata_plot</span> <span class="op">+</span> <span class="va">heatmap_plot</span> <span class="op">+</span> </span>
+<span><span class="va">combined_plot</span> <span class="op">&lt;-</span> <span class="va">metadata_plot</span> <span class="op">+</span> <span class="va">heatmap_plot</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Print the combined plot</span></span>
@@ -1053,11 +1067,13 @@ Tip
 <span><span class="va">dendro_top</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">hclust_samples</span>, rotate <span class="op">=</span> <span class="cn">FALSE</span>, theme_dendro <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># This expands the y axis to fill the full panel below, and 5% extra space above</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># We need to null the x to remove the space </span></span>
+<span>  <span class="co"># We need to null the x to remove the space</span></span>
 <span>  <span class="co"># between the dendrogram and the plot</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co"># Layout</span></span>
 <span><span class="va">dendro_top</span> <span class="op">+</span> <span class="va">metadata_plot</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1073,12 +1089,14 @@ Tip
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dendro_side</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">hclust_genes</span>, rotate <span class="op">=</span> <span class="cn">TRUE</span>, theme_dendro <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># This expands the x axis to fill the full panel below, and 5% extra space above</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># We need to null the x to remove the space </span></span>
+<span>  <span class="co"># We need to null the x to remove the space</span></span>
 <span>  <span class="co"># between the dendrogram and the plot</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">0</span>, l <span class="op">=</span> <span class="fl">0</span> , unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">0</span>, l <span class="op">=</span> <span class="fl">0</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co"># Layout</span></span>
 <span><span class="op">(</span><span class="va">heatmap_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">dendro_side</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span>, axes <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1104,9 +1122,9 @@ Tip
 <span></span>
 <span><span class="co"># Plot the plot!</span></span>
 <span><span class="va">dendro_top</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span></span>
-<span><span class="va">metadata_plot</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span></span>
-<span><span class="va">heatmap_plot</span> <span class="op">+</span> <span class="va">dendro_side</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="va">metadata_plot</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span></span>
+<span>  <span class="va">heatmap_plot</span> <span class="op">+</span> <span class="va">dendro_side</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
@@ -1133,8 +1151,10 @@ Bonus Challenge Solution
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">genexp_boxplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Expression</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">Gene</span>, <span class="va">ordered_genes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Expression"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="va">genexp_boxplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1153,18 +1173,20 @@ Bonus Challenge Solution
 <span><span class="va">heatmap_plot</span> <span class="op">&lt;-</span> <span class="va">heatmap_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dendro_side</span> <span class="op">&lt;-</span> <span class="va">dendro_side</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Also remove the axis text. We kept to verify the gene ordering</span></span>
-<span><span class="va">genexp_boxplot</span> <span class="op">&lt;-</span> <span class="va">genexp_boxplot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                                         axis.ticks.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                                         plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">genexp_boxplot</span> <span class="op">&lt;-</span> <span class="va">genexp_boxplot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>  axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  axis.ticks.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co"># The default plot spacer has too much space for our purposes so we set</span></span>
 <span><span class="co"># plot.margin to be 0</span></span>
 <span><span class="va">ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot the plot!</span></span>
 <span><span class="va">dendro_top</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span></span>
-<span><span class="va">metadata_plot</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span></span>
-<span><span class="va">heatmap_plot</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/free.html">free</a></span><span class="op">(</span><span class="va">genexp_boxplot</span>, type <span class="op">=</span> <span class="st">"label"</span>, side <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">+</span> <span class="va">dendro_side</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="va">metadata_plot</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span> <span class="va">ps</span> <span class="op">+</span></span>
+<span>  <span class="va">heatmap_plot</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/free.html">free</a></span><span class="op">(</span><span class="va">genexp_boxplot</span>, type <span class="op">=</span> <span class="st">"label"</span>, side <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span> <span class="op">+</span> <span class="va">dendro_side</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
@@ -1181,10 +1203,12 @@ Bonus Challenge Solution
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Note that ComplexHeatmap uses the matrix directly</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span>matrix <span class="op">=</span> <span class="va">expression_data</span>, </span>
-<span>        name <span class="op">=</span> <span class="st">"Expression"</span>, </span>
-<span>        clustering_method_columns <span class="op">=</span> <span class="st">"ward.D2"</span>, </span>
-<span>        clustering_method_rows <span class="op">=</span> <span class="st">"ward.D2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
+<span>  matrix <span class="op">=</span> <span class="va">expression_data</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"Expression"</span>,</span>
+<span>  clustering_method_columns <span class="op">=</span> <span class="st">"ward.D2"</span>,</span>
+<span>  clustering_method_rows <span class="op">=</span> <span class="st">"ward.D2"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
@@ -1199,24 +1223,34 @@ Bonus Challenge Solution
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span><span class="st">"Sample"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">meta_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Condition"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Case"</span> <span class="op">=</span> <span class="st">"#BC3C29FF"</span>, </span>
-<span>                  <span class="st">"Control"</span> <span class="op">=</span> <span class="st">"#0072B5FF"</span><span class="op">)</span>,</span>
-<span>  <span class="st">"Drug"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DrugA"</span> <span class="op">=</span> <span class="st">"#3B4992FF"</span>,</span>
-<span>             <span class="st">"DrugB"</span> <span class="op">=</span> <span class="st">"#EE0000FF"</span>,</span>
-<span>             <span class="st">"DrugC"</span> <span class="op">=</span> <span class="st">"#008B45FF"</span>,</span>
-<span>             <span class="st">"DrugD"</span> <span class="op">=</span> <span class="st">"#631879FF"</span><span class="op">)</span>,</span>
-<span>  <span class="st">"Sex"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span> <span class="op">=</span> <span class="st">"#E64B35FF"</span>,</span>
-<span>            <span class="st">"Female"</span> <span class="op">=</span> <span class="st">"#4DBBD5FF"</span><span class="op">)</span></span>
+<span>  <span class="st">"Condition"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Case"</span> <span class="op">=</span> <span class="st">"#BC3C29FF"</span>,</span>
+<span>    <span class="st">"Control"</span> <span class="op">=</span> <span class="st">"#0072B5FF"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="st">"Drug"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"DrugA"</span> <span class="op">=</span> <span class="st">"#3B4992FF"</span>,</span>
+<span>    <span class="st">"DrugB"</span> <span class="op">=</span> <span class="st">"#EE0000FF"</span>,</span>
+<span>    <span class="st">"DrugC"</span> <span class="op">=</span> <span class="st">"#008B45FF"</span>,</span>
+<span>    <span class="st">"DrugD"</span> <span class="op">=</span> <span class="st">"#631879FF"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="st">"Sex"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Male"</span> <span class="op">=</span> <span class="st">"#E64B35FF"</span>,</span>
+<span>    <span class="st">"Female"</span> <span class="op">=</span> <span class="st">"#4DBBD5FF"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">top_anno</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">meta_ht</span>,</span>
-<span>                       col <span class="op">=</span> <span class="va">meta_cols</span><span class="op">)</span></span>
+<span><span class="va">top_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span></span>
+<span>  df <span class="op">=</span> <span class="va">meta_ht</span>,</span>
+<span>  col <span class="op">=</span> <span class="va">meta_cols</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span>matrix <span class="op">=</span> <span class="va">expression_data</span>, </span>
-<span>        name <span class="op">=</span> <span class="st">"Expression"</span>, </span>
-<span>        clustering_method_columns <span class="op">=</span> <span class="st">"ward.D2"</span>, </span>
-<span>        clustering_method_rows <span class="op">=</span> <span class="st">"ward.D2"</span>, </span>
-<span>        top_annotation <span class="op">=</span> <span class="va">top_anno</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
+<span>  matrix <span class="op">=</span> <span class="va">expression_data</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"Expression"</span>,</span>
+<span>  clustering_method_columns <span class="op">=</span> <span class="st">"ward.D2"</span>,</span>
+<span>  clustering_method_rows <span class="op">=</span> <span class="st">"ward.D2"</span>,</span>
+<span>  top_annotation <span class="op">=</span> <span class="va">top_anno</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="576"></p>
@@ -1229,12 +1263,14 @@ Bonus Challenge Solution
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Expects sample names in rows</span></span>
 <span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span>matrix <span class="op">=</span> <span class="va">expression_data</span>, </span>
-<span>        name <span class="op">=</span> <span class="st">"Expression"</span>, </span>
-<span>        clustering_method_columns <span class="op">=</span> <span class="st">"ward.D2"</span>, </span>
-<span>        clustering_method_rows <span class="op">=</span> <span class="st">"ward.D2"</span>, </span>
-<span>        top_annotation <span class="op">=</span> <span class="va">top_anno</span>,</span>
-<span>        right_annotation <span class="op">=</span> <span class="va">right_anno</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
+<span>  matrix <span class="op">=</span> <span class="va">expression_data</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"Expression"</span>,</span>
+<span>  clustering_method_columns <span class="op">=</span> <span class="st">"ward.D2"</span>,</span>
+<span>  clustering_method_rows <span class="op">=</span> <span class="st">"ward.D2"</span>,</span>
+<span>  top_annotation <span class="op">=</span> <span class="va">top_anno</span>,</span>
+<span>  right_annotation <span class="op">=</span> <span class="va">right_anno</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
