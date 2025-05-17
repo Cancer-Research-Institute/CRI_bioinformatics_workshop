@@ -2,7 +2,6 @@
 title: "Common challenges and additional resources"
 execute:
   warning: false
-  error: false
 format:
   html:
     code-link: true
@@ -291,10 +290,14 @@ Now we have a matrix of gene expression values:
 ```{r}
 #| echo: false
 library(DT)
-datatable(data = round(expression_data, digits = 2),
-          caption = 'Expression Matrix', 
-          options = list(dom = 't',
-          pageLength = 5))
+datatable(
+  data = round(expression_data, digits = 2),
+  caption = "Expression Matrix",
+  options = list(
+    dom = "t",
+    pageLength = 5
+  )
+)
 ```
 
 
@@ -303,11 +306,15 @@ And associated metadata:
 
 ```{r}
 #| echo: false
-datatable(data = metadata,
-          caption = 'Metadata Table', 
-          options = list(dom = 't',
-          pageLength = 5),
-          filter = list(position = "top"))
+datatable(
+  data = metadata,
+  caption = "Metadata Table",
+  options = list(
+    dom = "t",
+    pageLength = 5
+  ),
+  filter = list(position = "top")
+)
 ```
 
 
@@ -331,11 +338,15 @@ Now we have a data frame with each row representing the expression of a single g
 #| echo: false
 exp_long <- expression_long %>%
   mutate(Expression = round(Expression, digits = 2))
-datatable(data = exp_long,
-          caption = 'Longform Expression Table', 
-          options = list(dom = 't',
-          pageLength = 5),
-          filter = list(position = "top"))
+datatable(
+  data = exp_long,
+  caption = "Longform Expression Table",
+  options = list(
+    dom = "t",
+    pageLength = 5
+  ),
+  filter = list(position = "top")
+)
 ```
 We plot using the `tile` geom from ggplot2.
 
@@ -390,9 +401,11 @@ heatmap_plot <- ggplot(expression_long, aes(x = fct_relevel(Sample, ordered_samp
   scale_fill_gradient2(low = "blue", high = "red", mid = "white", midpoint = 0) +
   labs(title = NULL, x = "Samples", y = "Genes") +
   guides(x = guide_axis(angle = 90)) +
-  theme(axis.line = element_blank(),
-        panel.background = element_blank(),
-        plot.margin = margin(t = 0, r = 3, b = 3, l = 3, unit = "mm"))
+  theme(
+    axis.line = element_blank(),
+    panel.background = element_blank(),
+    plot.margin = margin(t = 0, r = 3, b = 3, l = 3, unit = "mm")
+  )
 heatmap_plot
 ```
 
@@ -419,32 +432,42 @@ library(ggnewscale)
 library(ggsci)
 
 # Options for legend width and heights
-guide_kwd = 0.5
-guide_kht = 0.5
+guide_kwd <- 0.5
+guide_kht <- 0.5
 # Create metadata plot
 metadata_plot <- ggplot(metadata, aes(x = fct_relevel(Sample, ordered_samples))) +
   geom_tile(aes(y = "Condition", fill = Condition), color = "black") +
   # Here we tell the order of the legends
-  scale_fill_nejm(guide = guide_legend(order = 1, 
-                                 keywidth = guide_kwd, 
-                                 keyheight = guide_kht)) +
+  scale_fill_nejm(guide = guide_legend(
+    order = 1,
+    keywidth = guide_kwd,
+    keyheight = guide_kht
+  )) +
   ggnewscale::new_scale_fill() +
   geom_tile(aes(y = "Drug", fill = Drug), color = "black") +
-  scale_fill_aaas(guide = guide_legend(order = 2, 
-                                 keywidth = guide_kwd, 
-                                 keyheight = guide_kht)) +
+  scale_fill_aaas(guide = guide_legend(
+    order = 2,
+    keywidth = guide_kwd,
+    keyheight = guide_kht
+  )) +
   ggnewscale::new_scale_fill() +
   geom_tile(aes(y = "Gender", fill = Gender), color = "black") +
-  scale_fill_npg(guide = guide_legend(order = 2, 
-                                 keywidth = guide_kwd, 
-                                 keyheight = guide_kht)) +
+  scale_fill_npg(guide = guide_legend(
+    order = 2,
+    keywidth = guide_kwd,
+    keyheight = guide_kht
+  )) +
   # Limits set the order of the main panel
-  scale_y_discrete(limits = c("Condition", "Drug", "Gender"), 
-                   expand = c(0,0)) +
+  scale_y_discrete(
+    limits = c("Condition", "Drug", "Gender"),
+    expand = c(0, 0)
+  ) +
   # Adjust theme elements to remove redundant text etc
-  theme(axis.line = element_blank(),
-        panel.background = element_blank(),
-        legend.position = "right") +
+  theme(
+    axis.line = element_blank(),
+    panel.background = element_blank(),
+    legend.position = "right"
+  ) +
   labs(x = NULL, y = NULL) +
   guides(x = guide_axis(angle = 90))
 
@@ -463,14 +486,16 @@ Merge the metadata and heatmap plots together
 #| fig-width: 5
 #| fig-height: 9
 # Compute relative heights of main and metadata plot
-rel_height = nrow(expression_data) / 3 # Since we have 3 metadata categories
+rel_height <- nrow(expression_data) / 3 # Since we have 3 metadata categories
 
 # Adjust the formatting to adjust the plot margin, remove the axis text and ticks
-metadata_plot <- metadata_plot  +
-  theme(axis.ticks.x = element_blank(), axis.text.x  = element_blank(),
-        plot.margin = margin(t = 0, r = 3, b = 0, l = 3, unit = "mm"))
+metadata_plot <- metadata_plot +
+  theme(
+    axis.ticks.x = element_blank(), axis.text.x = element_blank(),
+    plot.margin = margin(t = 0, r = 3, b = 0, l = 3, unit = "mm")
+  )
 # Combine plots with patchwork
-combined_plot <- metadata_plot + heatmap_plot + 
+combined_plot <- metadata_plot + heatmap_plot +
   plot_layout(heights = c(1, rel_height), ncol = 1, guides = "collect")
 
 # Print the combined plot
@@ -492,11 +517,13 @@ library(ggdendro)
 dendro_top <- ggdendrogram(hclust_samples, rotate = FALSE, theme_dendro = TRUE) +
   # This expands the y axis to fill the full panel below, and 5% extra space above
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
-  # We need to null the x to remove the space 
+  # We need to null the x to remove the space
   # between the dendrogram and the plot
   labs(x = NULL, y = NULL) +
-  theme(axis.text.y = element_blank(),
-        axis.text.x = element_blank())
+  theme(
+    axis.text.y = element_blank(),
+    axis.text.x = element_blank()
+  )
 # Layout
 dendro_top + metadata_plot + plot_layout(ncol = 1, heights = c(0.5, 1)) &
   scale_x_discrete(expand = expansion(mult = c(0.05, 0.05)))
@@ -510,12 +537,14 @@ Likewise for genes:
 dendro_side <- ggdendrogram(hclust_genes, rotate = TRUE, theme_dendro = TRUE) +
   # This expands the x axis to fill the full panel below, and 5% extra space above
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
-  # We need to null the x to remove the space 
+  # We need to null the x to remove the space
   # between the dendrogram and the plot
   labs(x = NULL, y = NULL) +
   scale_x_discrete(expand = expansion(mult = c(0.01, 0.01))) +
-  theme(axis.text.x = element_blank(), axis.text.y.left = element_blank(),
-        plot.margin = margin(t = 0, r = 3, b = 0, l = 0 , unit = "mm"))
+  theme(
+    axis.text.x = element_blank(), axis.text.y.left = element_blank(),
+    plot.margin = margin(t = 0, r = 3, b = 0, l = 0, unit = "mm")
+  )
 # Layout
 (heatmap_plot + scale_y_discrete(expand = expansion(mult = c(0, 0)))) + dendro_side + plot_layout(nrow = 1, widths = c(1, 0.25), guides = "collect", axes = "collect")
 ```
@@ -540,9 +569,9 @@ ps <- plot_spacer() + theme(plot.margin = margin())
 
 # Plot the plot!
 dendro_top + ps +
-metadata_plot + ps +
-heatmap_plot + dendro_side +
-plot_layout(ncol = 2, widths = c(1, 0.25), heights = c(1, 1, rel_height), guides = "collect")
+  metadata_plot + ps +
+  heatmap_plot + dendro_side +
+  plot_layout(ncol = 2, widths = c(1, 0.25), heights = c(1, 1, rel_height), guides = "collect")
 ```
 
 
@@ -561,8 +590,10 @@ First create the boxplot using the long form expression data. Note that because 
 genexp_boxplot <- ggplot(expression_long, aes(x = Expression, y = fct_relevel(Gene, ordered_genes))) +
   geom_boxplot() +
   geom_vline(xintercept = 0, linetype = "dotted") +
-  theme(panel.background = element_blank(),
-        panel.border = element_rect(fill = NA)) +
+  theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(fill = NA)
+  ) +
   labs(x = "Expression", y = NULL)
 genexp_boxplot
 ```
@@ -579,18 +610,20 @@ metadata_plot <- metadata_plot + theme(plot.margin = margin())
 heatmap_plot <- heatmap_plot + theme(plot.margin = margin())
 dendro_side <- dendro_side + theme(plot.margin = margin())
 # Also remove the axis text. We kept to verify the gene ordering
-genexp_boxplot <- genexp_boxplot + theme(axis.text.y = element_blank(),
-                                         axis.ticks.y = element_blank(),
-                                         plot.margin = margin())
+genexp_boxplot <- genexp_boxplot + theme(
+  axis.text.y = element_blank(),
+  axis.ticks.y = element_blank(),
+  plot.margin = margin()
+)
 # The default plot spacer has too much space for our purposes so we set
 # plot.margin to be 0
 ps <- plot_spacer() + theme(plot.margin = margin())
 
 # Plot the plot!
 dendro_top + ps + ps +
-metadata_plot + ps + ps +
-heatmap_plot + free(genexp_boxplot, type = "label", side = "b") + dendro_side +
-plot_layout(ncol = 3, widths = c(1, 0.25, 0.25), heights = c(1, 1, rel_height), guides = "collect")
+  metadata_plot + ps + ps +
+  heatmap_plot + free(genexp_boxplot, type = "label", side = "b") + dendro_side +
+  plot_layout(ncol = 3, widths = c(1, 0.25, 0.25), heights = c(1, 1, rel_height), guides = "collect")
 ```
 :::
 
@@ -606,10 +639,12 @@ Another great package for composing complex heatmaps is the aptly named [`Comple
 library(ComplexHeatmap)
 
 # Note that ComplexHeatmap uses the matrix directly
-Heatmap(matrix = expression_data, 
-        name = "Expression", 
-        clustering_method_columns = "ward.D2", 
-        clustering_method_rows = "ward.D2")
+Heatmap(
+  matrix = expression_data,
+  name = "Expression",
+  clustering_method_columns = "ward.D2",
+  clustering_method_rows = "ward.D2"
+)
 ```
 
 Add the column annotation following the instructions provided by the `ComplexHeatmap` authors [here](https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html).
@@ -622,24 +657,34 @@ meta_ht <- metadata %>%
   column_to_rownames("Sample")
 
 meta_cols <- list(
-  "Condition" = c("Case" = "#BC3C29FF", 
-                  "Control" = "#0072B5FF"),
-  "Drug" = c("DrugA" = "#3B4992FF",
-             "DrugB" = "#EE0000FF",
-             "DrugC" = "#008B45FF",
-             "DrugD" = "#631879FF"),
-  "Sex" = c("Male" = "#E64B35FF",
-            "Female" = "#4DBBD5FF")
+  "Condition" = c(
+    "Case" = "#BC3C29FF",
+    "Control" = "#0072B5FF"
+  ),
+  "Drug" = c(
+    "DrugA" = "#3B4992FF",
+    "DrugB" = "#EE0000FF",
+    "DrugC" = "#008B45FF",
+    "DrugD" = "#631879FF"
+  ),
+  "Sex" = c(
+    "Male" = "#E64B35FF",
+    "Female" = "#4DBBD5FF"
+  )
 )
 
-top_anno = HeatmapAnnotation(df = meta_ht,
-                       col = meta_cols)
+top_anno <- HeatmapAnnotation(
+  df = meta_ht,
+  col = meta_cols
+)
 
-Heatmap(matrix = expression_data, 
-        name = "Expression", 
-        clustering_method_columns = "ward.D2", 
-        clustering_method_rows = "ward.D2", 
-        top_annotation = top_anno)
+Heatmap(
+  matrix = expression_data,
+  name = "Expression",
+  clustering_method_columns = "ward.D2",
+  clustering_method_rows = "ward.D2",
+  top_annotation = top_anno
+)
 ```
 
 
@@ -651,12 +696,14 @@ Add the boxplot
 # Expects sample names in rows
 right_anno <- HeatmapAnnotation(Expression = anno_boxplot(expression_data), which = "row")
 
-Heatmap(matrix = expression_data, 
-        name = "Expression", 
-        clustering_method_columns = "ward.D2", 
-        clustering_method_rows = "ward.D2", 
-        top_annotation = top_anno,
-        right_annotation = right_anno)
+Heatmap(
+  matrix = expression_data,
+  name = "Expression",
+  clustering_method_columns = "ward.D2",
+  clustering_method_rows = "ward.D2",
+  top_annotation = top_anno,
+  right_annotation = right_anno
+)
 ```
 
 There are many additional parameters and ways to customize `ComplexHeatmap` plots. Refer to the [extensive documentation](https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html). In many cases it may be easier to see if you can achieve the type of plot you want with `ComplexHeatmap` before attempting one with `ggplot2`. It may help with more rapid data exploration as well since it tends to take far less code to get to a figure.
@@ -670,4 +717,3 @@ CodeFights (now CodeSignal) offers coding challenges and exercises in R and othe
 # Lecture Slides
 
 The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/CRI%20Day%202%20PM.pdf).
-
