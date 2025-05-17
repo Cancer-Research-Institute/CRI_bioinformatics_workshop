@@ -213,7 +213,7 @@ final_plot <- log2_df_filter_wide %>%
   geom_text_repel(
     data = filter(log2_df_filter_wide, Gene %in% label_genes),
     aes(label = Gene, colour = Hit_Type),
-    size = 0.36 * 7, show.legend = F
+    size = 0.36 * 7, show.legend = F, max.overlaps = Inf
   ) +
   scale_colour_manual(values = c("Positive Hit" = "red", "Not a Hit" = "grey80", "Negative Hit" = "blue")) +
   theme_bw() +
@@ -290,7 +290,11 @@ Now we have a matrix of gene expression values:
 
 ```{r}
 #| echo: false
-reactable::reactable(round(expression_data, digits = 2), defaultPageSize = 5, showPageSizeOptions = T)
+library(DT)
+datatable(data = round(expression_data, digits = 2),
+          caption = 'Expression Matrix', 
+          options = list(dom = 't',
+          pageLength = 5))
 ```
 
 
@@ -299,7 +303,11 @@ And associated metadata:
 
 ```{r}
 #| echo: false
-reactable::reactable(metadata, defaultPageSize = 5, showPageSizeOptions = T)
+datatable(data = metadata,
+          caption = 'Metadata Table', 
+          options = list(dom = 't',
+          pageLength = 5),
+          filter = list(position = "top"))
 ```
 
 
@@ -321,7 +329,13 @@ Now we have a data frame with each row representing the expression of a single g
 
 ```{r}
 #| echo: false
-reactable::reactable(expression_long, defaultPageSize = 5)
+exp_long <- expression_long %>%
+  mutate(Expression = round(Expression, digits = 2))
+datatable(data = exp_long,
+          caption = 'Longform Expression Table', 
+          options = list(dom = 't',
+          pageLength = 5),
+          filter = list(position = "top"))
 ```
 We plot using the `tile` geom from ggplot2.
 
