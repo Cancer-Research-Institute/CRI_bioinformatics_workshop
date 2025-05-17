@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.31">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Basic plotting and statistics – CRI Bioinformatics Workshop</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,7 +54,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -80,8 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-083966fab483341b80272ffbd41d3d84.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-50e486611be19e4f29225c18ed88561d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-083966fab483341b80272ffbd41d3d84.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-083966fab483341b80272ffbd41d3d84.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -107,12 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
-<link rel="stylesheet" href="../styles.css">
+}</script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -278,13 +269,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../img/cri_logo.png" alt="" class="navbar-logo">
-    </a>
+    <img src="../img/cri_logo.png" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">CRI Bioinformatics Workshop</span>
     </a>
@@ -295,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -316,25 +304,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools tools-wide">
     <a href="https://twitter.com/CancerResearch" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
     <div class="dropdown">
       <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop">
             Source Code
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -345,20 +331,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Intro to R</span></a>
@@ -366,8 +348,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course/1_introR.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to R</span></a>
@@ -392,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
@@ -401,8 +383,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://rnabio.org/" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">RNA Bio website</span></a>
@@ -457,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -466,8 +448,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://rnabio.org/module-08-scrna/0008/01/02/scRNA_Data/" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Introduction to scRNAseq</span></a>
@@ -516,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
@@ -525,8 +507,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course/python_tutorial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Intro to Python</span></a>
@@ -539,57 +521,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#long-and-wide-data-formats" id="toc-long-and-wide-data-formats" class="nav-link active" data-scroll-target="#long-and-wide-data-formats">Long and Wide Data Formats</a>
+<li>
+<a href="#long-and-wide-data-formats" id="toc-long-and-wide-data-formats" class="nav-link active" data-scroll-target="#long-and-wide-data-formats">Long and Wide Data Formats</a>
   <ul class="collapse">
-  <li><a href="#long-format" id="toc-long-format" class="nav-link" data-scroll-target="#long-format">Long Format</a></li>
+<li><a href="#long-format" id="toc-long-format" class="nav-link" data-scroll-target="#long-format">Long Format</a></li>
   <li><a href="#wide-format" id="toc-wide-format" class="nav-link" data-scroll-target="#wide-format">Wide Format</a></li>
   <li><a href="#choosing-between-long-and-wide-formats" id="toc-choosing-between-long-and-wide-formats" class="nav-link" data-scroll-target="#choosing-between-long-and-wide-formats">Choosing Between Long and Wide Formats</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#long-to-wide" id="toc-long-to-wide" class="nav-link" data-scroll-target="#long-to-wide">Long to Wide</a></li>
   <li><a href="#wide-to-long" id="toc-wide-to-long" class="nav-link" data-scroll-target="#wide-to-long">Wide to Long</a></li>
-  <li><a href="#merging-data" id="toc-merging-data" class="nav-link" data-scroll-target="#merging-data">Merging Data</a>
+  <li>
+<a href="#merging-data" id="toc-merging-data" class="nav-link" data-scroll-target="#merging-data">Merging Data</a>
   <ul class="collapse">
-  <li><a href="#joins-and-merging-of-data-in-tidyverse" id="toc-joins-and-merging-of-data-in-tidyverse" class="nav-link" data-scroll-target="#joins-and-merging-of-data-in-tidyverse">Joins and Merging of Data in Tidyverse</a>
+<li>
+<a href="#joins-and-merging-of-data-in-tidyverse" id="toc-joins-and-merging-of-data-in-tidyverse" class="nav-link" data-scroll-target="#joins-and-merging-of-data-in-tidyverse">Joins and Merging of Data in Tidyverse</a>
   <ul class="collapse">
-  <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link" data-scroll-target="#types-of-joins">Types of Joins:</a></li>
+<li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link" data-scroll-target="#types-of-joins">Types of Joins:</a></li>
   <li><a href="#merging-data-1" id="toc-merging-data-1" class="nav-link" data-scroll-target="#merging-data-1">Merging Data:</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example:</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a>
+  </ul>
+</li>
+  </ul>
+</li>
+  <li>
+<a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a>
   <ul class="collapse">
-  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><code>ggplot2</code></a></li>
+<li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><code>ggplot2</code></a></li>
   <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">Histogram</a></li>
   <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot">Boxplot</a></li>
   <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot">Violin plot</a></li>
-  </ul></li>
-  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a>
+  </ul>
+</li>
+  <li>
+<a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a>
   <ul class="collapse">
-  <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test">t-Test</a></li>
+<li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test">t-Test</a></li>
   <li><a href="#fishers-exact-test" id="toc-fishers-exact-test" class="nav-link" data-scroll-target="#fishers-exact-test">Fisher’s Exact Test</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#additional-exercises" id="toc-additional-exercises" class="nav-link" data-scroll-target="#additional-exercises">Additional Exercises</a></li>
   <li><a href="#lecture-slides" id="toc-lecture-slides" class="nav-link" data-scroll-target="#lecture-slides">Lecture Slides</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/1_introR.html">Intro to R</a></li><li class="breadcrumb-item"><a href="../course/2_basicplotting.html">Basic plotting and statistics</a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/1_introR.html">Intro to R</a></li><li class="breadcrumb-item"><a href="../course/2_basicplotting.html">Basic plotting and statistics</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Basic plotting and statistics</h1>
 </div>
 
@@ -604,14 +589,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="long-and-wide-data-formats" class="level2">
-<h2 class="anchored" data-anchor-id="long-and-wide-data-formats">Long and Wide Data Formats</h2>
+</header><section id="long-and-wide-data-formats" class="level2"><h2 class="anchored" data-anchor-id="long-and-wide-data-formats">Long and Wide Data Formats</h2>
 <p>Long and wide data formats are two common ways of structuring data, each with its own advantages and use cases.</p>
-<section id="long-format" class="level3">
-<h3 class="anchored" data-anchor-id="long-format">Long Format</h3>
+<section id="long-format" class="level3"><h3 class="anchored" data-anchor-id="long-format">Long Format</h3>
 <p>In the long format, also known as the “tidy” format, each observation is represented by a single row in the dataset. This format is characterized by having:</p>
 <ul>
 <li>Multiple rows, each corresponding to a single observation or measurement.</li>
@@ -622,10 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Facilitates easy analysis and manipulation, especially when using tools like Tidyverse packages in R.</li>
 <li>Suitable for data that follow the “one observation per row” principle, such as time series or longitudinal data.</li>
-</ul>
-</section>
-<section id="wide-format" class="level3">
-<h3 class="anchored" data-anchor-id="wide-format">Wide Format</h3>
+</ul></section><section id="wide-format" class="level3"><h3 class="anchored" data-anchor-id="wide-format">Wide Format</h3>
 <p>In the wide format, each observation is represented by a single row, but with multiple columns corresponding to different variables. This format is characterized by:</p>
 <ul>
 <li>One row per observation.</li>
@@ -635,125 +612,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Can be easier to understand for simple datasets with few variables.</li>
 <li>May be more convenient for certain types of analysis or visualization.</li>
-</ul>
-</section>
-<section id="choosing-between-long-and-wide-formats" class="level3">
-<h3 class="anchored" data-anchor-id="choosing-between-long-and-wide-formats">Choosing Between Long and Wide Formats</h3>
+</ul></section><section id="choosing-between-long-and-wide-formats" class="level3"><h3 class="anchored" data-anchor-id="choosing-between-long-and-wide-formats">Choosing Between Long and Wide Formats</h3>
 <p>The choice between long and wide formats depends on factors such as the nature of the data, the analysis tasks, and personal preference. Long format is often preferred for its flexibility and compatibility with modern data analysis tools, while wide format may be suitable for simpler datasets or specific analysis requirements.</p>
-</section>
-</section>
-<section id="long-to-wide" class="level2">
-<h2 class="anchored" data-anchor-id="long-to-wide">Long to Wide</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example long format data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>long_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Subject =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Time =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Measurement =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">12</span>, <span class="dv">18</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert long format data to wide format</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> <span class="fu">spread</span>(long_data, <span class="at">key =</span> Time, <span class="at">value =</span> Measurement)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># View the wide format data</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wide_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="wide-to-long" class="level2">
-<h2 class="anchored" data-anchor-id="wide-to-long">Wide to Long</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example wide format data</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Subject =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Time1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Time2 =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">18</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert wide format data to long format</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>long_data <span class="ot">&lt;-</span> <span class="fu">gather</span>(wide_data, <span class="at">key =</span> Time, <span class="at">value =</span> Measurement, <span class="sc">-</span>Subject)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># View the long format data</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(long_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="merging-data" class="level1">
-<h1>Merging Data</h1>
+</section></section><section id="long-to-wide" class="level2"><h2 class="anchored" data-anchor-id="long-to-wide">Long to Wide</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Example long format data</span></span>
+<span><span class="va">long_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Subject <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
+<span>  Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  Measurement <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">12</span>, <span class="fl">18</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert long format data to wide format</span></span>
+<span><span class="va">wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">long_data</span>, key <span class="op">=</span> <span class="va">Time</span>, value <span class="op">=</span> <span class="va">Measurement</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># View the wide format data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">wide_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="wide-to-long" class="level2"><h2 class="anchored" data-anchor-id="wide-to-long">Wide to Long</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Example wide format data</span></span>
+<span><span class="va">wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Subject <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
+<span>  Time1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span><span class="op">)</span>,</span>
+<span>  Time2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">18</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert wide format data to long format</span></span>
+<span><span class="va">long_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="va">wide_data</span>, key <span class="op">=</span> <span class="va">Time</span>, value <span class="op">=</span> <span class="va">Measurement</span>, <span class="op">-</span><span class="va">Subject</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># View the long format data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">long_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="merging-data" class="level1"><h1>Merging Data</h1>
 <p>Merging allows combining data from different sources. This is common in analyzing biological data.</p>
-<section id="joins-and-merging-of-data-in-tidyverse" class="level2">
-<h2 class="anchored" data-anchor-id="joins-and-merging-of-data-in-tidyverse">Joins and Merging of Data in Tidyverse</h2>
+<section id="joins-and-merging-of-data-in-tidyverse" class="level2"><h2 class="anchored" data-anchor-id="joins-and-merging-of-data-in-tidyverse">Joins and Merging of Data in Tidyverse</h2>
 <p>Joins and merging are common operations used to combine multiple datasets based on common variables or keys. In Tidyverse, these operations are typically performed using functions from the <code>dplyr</code> package.</p>
-<section id="types-of-joins" class="level3">
-<h3 class="anchored" data-anchor-id="types-of-joins">Types of Joins:</h3>
+<section id="types-of-joins" class="level3"><h3 class="anchored" data-anchor-id="types-of-joins">Types of Joins:</h3>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="join_diagram.png" class="img-fluid figure-img"></p>
-<figcaption>Types of Joins</figcaption>
-</figure>
+<figure class="figure"><p><img src="join_diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Types of Joins</figcaption></figure>
 </div>
-<section id="inner-join-inner_join" class="level4">
-<h4 class="anchored" data-anchor-id="inner-join-inner_join">Inner Join (<code>inner_join()</code>):</h4>
+<section id="inner-join-inner_join" class="level4"><h4 class="anchored" data-anchor-id="inner-join-inner_join">Inner Join (<code>inner_join()</code>):</h4>
 <p>An inner join combines rows from two datasets where there is a match based on a common key, retaining only the rows with matching keys from both datasets.</p>
-</section>
-<section id="left-join-left_join" class="level4">
-<h4 class="anchored" data-anchor-id="left-join-left_join">Left Join (<code>left_join()</code>):</h4>
+</section><section id="left-join-left_join" class="level4"><h4 class="anchored" data-anchor-id="left-join-left_join">Left Join (<code>left_join()</code>):</h4>
 <p>A left join combines all rows from the first (left) dataset with matching rows from the second (right) dataset based on a common key. If there is no match in the second dataset, missing values are filled in.</p>
-</section>
-<section id="right-join-right_join" class="level4">
-<h4 class="anchored" data-anchor-id="right-join-right_join">Right Join (<code>right_join()</code>):</h4>
+</section><section id="right-join-right_join" class="level4"><h4 class="anchored" data-anchor-id="right-join-right_join">Right Join (<code>right_join()</code>):</h4>
 <p>Similar to a left join, but it retains all rows from the second (right) dataset and fills in missing values for non-matching rows from the first (left) dataset.</p>
-</section>
-<section id="full-join-full_join" class="level4">
-<h4 class="anchored" data-anchor-id="full-join-full_join">Full Join (<code>full_join()</code>):</h4>
+</section><section id="full-join-full_join" class="level4"><h4 class="anchored" data-anchor-id="full-join-full_join">Full Join (<code>full_join()</code>):</h4>
 <p>A full join combines all rows from both datasets, filling in missing values where there are no matches.</p>
-</section>
-<section id="semi-join-semi_join" class="level4">
-<h4 class="anchored" data-anchor-id="semi-join-semi_join">Semi-Join (<code>semi_join()</code>):</h4>
+</section><section id="semi-join-semi_join" class="level4"><h4 class="anchored" data-anchor-id="semi-join-semi_join">Semi-Join (<code>semi_join()</code>):</h4>
 <p>A semi-join returns only rows from the first dataset where there are matching rows in the second dataset, based on a common key.</p>
-</section>
-<section id="anti-join-anti_join" class="level4">
-<h4 class="anchored" data-anchor-id="anti-join-anti_join">Anti-Join (<code>anti_join()</code>):</h4>
+</section><section id="anti-join-anti_join" class="level4"><h4 class="anchored" data-anchor-id="anti-join-anti_join">Anti-Join (<code>anti_join()</code>):</h4>
 <p>An anti-join returns only rows from the first dataset that do not have matching rows in the second dataset, based on a common key.</p>
-</section>
-</section>
-<section id="merging-data-1" class="level3">
-<h3 class="anchored" data-anchor-id="merging-data-1">Merging Data:</h3>
-<section id="merge-merge" class="level4">
-<h4 class="anchored" data-anchor-id="merge-merge">Merge (<code>merge()</code>):</h4>
-<p>The <code>merge()</code> function is a base R function used to merge datasets based on common columns or keys. It performs similar operations to joins in <code>dplyr</code>, but with slightly different syntax and behavior.</p>
-</section>
-</section>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example:</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example datasets</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Inner join</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>inner_merged <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Left join</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>left_merged <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Right join</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>right_merged <span class="ot">&lt;-</span> <span class="fu">right_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Full join</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>full_merged <span class="ot">&lt;-</span> <span class="fu">full_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Semi-join</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>semi_merged <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Anti-join</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>anti_merged <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(df1, df2, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-</section>
-<section id="plotting" class="level1">
-<h1>Plotting</h1>
-<section id="ggplot2" class="level2">
-<h2 class="anchored" data-anchor-id="ggplot2"><code>ggplot2</code></h2>
+</section></section><section id="merging-data-1" class="level3"><h3 class="anchored" data-anchor-id="merging-data-1">Merging Data:</h3>
+<section id="merge-merge" class="level4"><h4 class="anchored" data-anchor-id="merge-merge">Merge (<code>merge()</code>):</h4>
+<p>The <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code> function is a base R function used to merge datasets based on common columns or keys. It performs similar operations to joins in <code>dplyr</code>, but with slightly different syntax and behavior.</p>
+</section></section><section id="example" class="level3"><h3 class="anchored" data-anchor-id="example">Example:</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Example datasets</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, Name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, Score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">85</span>, <span class="fl">90</span>, <span class="fl">95</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Inner join</span></span>
+<span><span class="va">inner_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Left join</span></span>
+<span><span class="va">left_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Right join</span></span>
+<span><span class="va">right_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Full join</span></span>
+<span><span class="va">full_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Semi-join</span></span>
+<span><span class="va">semi_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Anti-join</span></span>
+<span><span class="va">anti_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section></section><section id="plotting" class="level1"><h1>Plotting</h1>
+<section id="ggplot2" class="level2"><h2 class="anchored" data-anchor-id="ggplot2"><code>ggplot2</code></h2>
 <p>The core idea behind <code>ggplot2</code> is the concept of a “grammar of graphics”. This concept provides a systematic way to describe and build graphical presentations such as charts and plots. The grammar itself is a set of independent components that can be composed in many different ways. This grammar includes elements like:</p>
 <ul>
 <li>Data: The raw data that you want to visualize.</li>
@@ -767,181 +707,163 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Here’s how you generally use ggplot2 to create a plot:</p>
 <ul>
-<li>Start with <code>ggplot()</code>: Set up the data and, optionally, define default mappings between variables and their aesthetics.</li>
-<li>Add layers: Add layers to the plot using geom_ functions, such as <code>geom_point()</code> for scatter plots, <code>geom_line()</code> for line graphs, and so on.<br>
+<li>Start with <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>: Set up the data and, optionally, define default mappings between variables and their aesthetics.</li>
+<li>Add layers: Add layers to the plot using geom_ functions, such as <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> for scatter plots, <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> for line graphs, and so on.<br>
 </li>
 <li>Adjust the scales: Customize the scales used for aesthetics such as color, size, and x-y coordinates.</li>
 <li>Modify the coordinate system: Choose a coordinate system.</li>
 <li>Add facets: If necessary, add facets to create a multi-panel plot.</li>
 <li>Apply a theme: Customize the appearance of the plot using themes.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">each =</span> <span class="dv">50</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatter plot</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> group)) <span class="sc">+</span> </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter Plot Example"</span>, <span class="at">x =</span> <span class="st">"X Axis"</span>, <span class="at">y =</span> <span class="st">"Y Axis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Sample data</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,</span>
+<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,</span>
+<span>  group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, each <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Creating a scatter plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Scatter Plot Example"</span>, x <span class="op">=</span> <span class="st">"X Axis"</span>, y <span class="op">=</span> <span class="st">"Y Axis"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="scatter.png" class="img-fluid figure-img"></p>
-<figcaption>Scatter</figcaption>
-</figure>
+<figure class="figure"><p><img src="scatter.png" class="img-fluid figure-img"></p>
+<figcaption>Scatter</figcaption></figure>
 </div>
-</section>
-<section id="histogram" class="level2">
-<h2 class="anchored" data-anchor-id="histogram">Histogram</h2>
+</section><section id="histogram" class="level2"><h2 class="anchored" data-anchor-id="histogram">Histogram</h2>
 <p>Let’s simulate some TCR clonotype data. We will create a dataset where each TCR has a randomly generated number of cells associated with it, representing the clone size. After generating the data, we’ll use the hist() function from base R to plot a histogram of the clone sizes.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Simulate data</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Set seed for reproducibility</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>num_clonotypes <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Specify the number of different clonotypes</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with random cell counts for each clonotype</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>tcr_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">clonotype =</span> <span class="fu">paste</span>(<span class="st">"TCR"</span>, <span class="fu">seq_len</span>(num_clonotypes), <span class="at">sep=</span><span class="st">""</span>),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">cell_count =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, num_clonotypes, <span class="at">replace=</span><span class="cn">TRUE</span>)  <span class="co"># Random cell counts between 1 and 1000</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Create a histogram of clone sizes</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tcr_data<span class="sc">$</span>cell_count, </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks=</span><span class="dv">20</span>,  <span class="co"># You can adjust the number of breaks to change bin sizes</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"skyblue"</span>, </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of TCR Clone Sizes"</span>, </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Clone Size (Number of Cells)"</span>, </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Step 1: Simulate data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>  <span class="co"># Set seed for reproducibility</span></span>
+<span><span class="va">num_clonotypes</span> <span class="op">&lt;-</span> <span class="fl">100</span>  <span class="co"># Specify the number of different clonotypes</span></span>
+<span></span>
+<span><span class="co"># Create a data frame with random cell counts for each clonotype</span></span>
+<span><span class="va">tcr_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  clonotype <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"TCR"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">num_clonotypes</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  cell_count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, <span class="va">num_clonotypes</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># Random cell counts between 1 and 1000</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Step 2: Create a histogram of clone sizes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">tcr_data</span><span class="op">$</span><span class="va">cell_count</span>, </span>
+<span>     breaks<span class="op">=</span><span class="fl">20</span>,  <span class="co"># You can adjust the number of breaks to change bin sizes</span></span>
+<span>     col<span class="op">=</span><span class="st">"skyblue"</span>, </span>
+<span>     main<span class="op">=</span><span class="st">"Histogram of TCR Clone Sizes"</span>, </span>
+<span>     xlab<span class="op">=</span><span class="st">"Clone Size (Number of Cells)"</span>, </span>
+<span>     ylab<span class="op">=</span><span class="st">"Frequency"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can perform the same task using <code>ggplot2</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Simulate data</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Set seed for reproducibility</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>num_clonotypes <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Specify the number of different clonotypes</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with random cell counts for each clonotype</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>tcr_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">clonotype =</span> <span class="fu">paste</span>(<span class="st">"TCR"</span>, <span class="fu">seq_len</span>(num_clonotypes), <span class="at">sep=</span><span class="st">""</span>),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">cell_count =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, num_clonotypes, <span class="at">replace=</span><span class="cn">TRUE</span>)  <span class="co"># Random cell counts between 1 and 1000</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Create a histogram using ggplot2</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tcr_data, <span class="fu">aes</span>(<span class="at">x =</span> cell_count)) <span class="sc">+</span> </span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> </span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of TCR Clone Sizes"</span>,</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Clone Size (Number of Cells)"</span>,</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)  <span class="co"># Center the plot title</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Step 1: Simulate data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>  <span class="co"># Set seed for reproducibility</span></span>
+<span><span class="va">num_clonotypes</span> <span class="op">&lt;-</span> <span class="fl">100</span>  <span class="co"># Specify the number of different clonotypes</span></span>
+<span></span>
+<span><span class="co"># Create a data frame with random cell counts for each clonotype</span></span>
+<span><span class="va">tcr_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  clonotype <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"TCR"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">num_clonotypes</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  cell_count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, <span class="va">num_clonotypes</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># Random cell counts between 1 and 1000</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Step 2: Create a histogram using ggplot2</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tcr_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cell_count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"skyblue"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Histogram of TCR Clone Sizes"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Clone Size (Number of Cells)"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Frequency"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>  <span class="co"># Center the plot title</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hist.png" class="img-fluid figure-img"></p>
-<figcaption>Histogram</figcaption>
-</figure>
+<figure class="figure"><p><img src="hist.png" class="img-fluid figure-img"></p>
+<figcaption>Histogram</figcaption></figure>
 </div>
-</section>
-<section id="boxplot" class="level2">
-<h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
+</section><section id="boxplot" class="level2"><h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
 <p>Let’s simulate some gene expression data for key CD8 T cell genes.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define genes and number of cells</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"GZMB"</span>, <span class="st">"GZMA"</span>, <span class="st">"GNLY"</span>, <span class="st">"PRF1"</span>, <span class="st">"TOX"</span>, <span class="st">"ENTPD1"</span>, <span class="st">"LAG3"</span>, <span class="st">"HAVCR2"</span>, <span class="st">"TIGIT"</span>, <span class="st">"CXCL13"</span>, <span class="st">"IL7R"</span>, <span class="st">"SELL"</span>, <span class="st">"LEF1"</span>, <span class="st">"TCF7"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>num_cells <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for negative binomial</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">2</span>  <span class="co"># Dispersion parameter</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>mu_pre <span class="ot">&lt;-</span> <span class="dv">20</span>  <span class="co"># Mean for pre-treatment</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>mu_post <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># Mean for post-treatment</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate gene expression data</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>pre_treatment <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rep</span>(mu_pre, <span class="fu">length</span>(genes)), <span class="cf">function</span>(mu) <span class="fu">rnbinom</span>(num_cells, size, <span class="at">mu =</span> mu))</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>post_treatment <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">rep</span>(mu_post, <span class="fu">length</span>(genes)), <span class="cf">function</span>(mu) <span class="fu">rnbinom</span>(num_cells, size, <span class="at">mu =</span> mu))</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure data frames have proper column names</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pre_treatment) <span class="ot">&lt;-</span> genes</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(post_treatment) <span class="ot">&lt;-</span> genes</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Format as data frame</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>pre_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(pre_treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="st">"Pre"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Treatment, <span class="at">names_to =</span> <span class="st">"Gene"</span>, <span class="at">values_to =</span> <span class="st">"Expression"</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>post_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(post_treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="st">"Post"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Treatment, <span class="at">names_to =</span> <span class="st">"Gene"</span>, <span class="at">values_to =</span> <span class="st">"Expression"</span>)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the datasets</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(pre_data, post_data)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing to see the combined data (optional)</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define genes and number of cells</span></span>
+<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GZMB"</span>, <span class="st">"GZMA"</span>, <span class="st">"GNLY"</span>, <span class="st">"PRF1"</span>, <span class="st">"TOX"</span>, <span class="st">"ENTPD1"</span>, <span class="st">"LAG3"</span>, <span class="st">"HAVCR2"</span>, <span class="st">"TIGIT"</span>, <span class="st">"CXCL13"</span>, <span class="st">"IL7R"</span>, <span class="st">"SELL"</span>, <span class="st">"LEF1"</span>, <span class="st">"TCF7"</span><span class="op">)</span></span>
+<span><span class="va">num_cells</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
+<span></span>
+<span><span class="co"># Parameters for negative binomial</span></span>
+<span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">2</span>  <span class="co"># Dispersion parameter</span></span>
+<span><span class="va">mu_pre</span> <span class="op">&lt;-</span> <span class="fl">20</span>  <span class="co"># Mean for pre-treatment</span></span>
+<span><span class="va">mu_post</span> <span class="op">&lt;-</span> <span class="fl">30</span>  <span class="co"># Mean for post-treatment</span></span>
+<span></span>
+<span><span class="co"># Simulate gene expression data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">pre_treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">mu_pre</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">mu</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">rnbinom</a></span><span class="op">(</span><span class="va">num_cells</span>, <span class="va">size</span>, mu <span class="op">=</span> <span class="va">mu</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">post_treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">mu_post</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">mu</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html">rnbinom</a></span><span class="op">(</span><span class="va">num_cells</span>, <span class="va">size</span>, mu <span class="op">=</span> <span class="va">mu</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Ensure data frames have proper column names</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">pre_treatment</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">genes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">post_treatment</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">genes</span></span>
+<span></span>
+<span><span class="co"># Format as data frame</span></span>
+<span><span class="va">pre_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">pre_treatment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Treatment <span class="op">=</span> <span class="st">"Pre"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">Treatment</span>, names_to <span class="op">=</span> <span class="st">"Gene"</span>, values_to <span class="op">=</span> <span class="st">"Expression"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">post_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">post_treatment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Treatment <span class="op">=</span> <span class="st">"Post"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">Treatment</span>, names_to <span class="op">=</span> <span class="st">"Gene"</span>, values_to <span class="op">=</span> <span class="st">"Expression"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Combine the datasets</span></span>
+<span><span class="va">combined_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">pre_data</span>, <span class="va">post_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Printing to see the combined data (optional)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">combined_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now let’s use this data to build a boxplot of TOX expression pre and post treatment.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the TOX gene</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tox_data <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">"TOX"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tox_data, <span class="fu">aes</span>(<span class="at">x=</span>Treatment, <span class="at">y=</span>Expression, <span class="at">fill=</span>Treatment)) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Expression of TOX pre and post treatment"</span>, <span class="at">x=</span><span class="st">"Treatment Condition"</span>, <span class="at">y=</span><span class="st">"Expression Level"</span>) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Pastel1"</span>)  <span class="co"># Enhance aesthetics with color</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Filter data for the TOX gene</span></span>
+<span><span class="va">tox_data</span> <span class="op">&lt;-</span> <span class="va">combined_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Gene</span> <span class="op">==</span> <span class="st">"TOX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tox_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Treatment</span>, y<span class="op">=</span><span class="va">Expression</span>, fill<span class="op">=</span><span class="va">Treatment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Expression of TOX pre and post treatment"</span>, x<span class="op">=</span><span class="st">"Treatment Condition"</span>, y<span class="op">=</span><span class="st">"Expression Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette<span class="op">=</span><span class="st">"Pastel1"</span><span class="op">)</span>  <span class="co"># Enhance aesthetics with color</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="tox_expression.png" class="img-fluid figure-img"></p>
-<figcaption>Boxplot of TOX Expression</figcaption>
-</figure>
+<figure class="figure"><p><img src="tox_expression.png" class="img-fluid figure-img"></p>
+<figcaption>Boxplot of TOX Expression</figcaption></figure>
 </div>
-</section>
-<section id="violin-plot" class="level2">
-<h2 class="anchored" data-anchor-id="violin-plot">Violin plot</h2>
+</section><section id="violin-plot" class="level2"><h2 class="anchored" data-anchor-id="violin-plot">Violin plot</h2>
 <p>Same thing a violin plot.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the TOX gene</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>tox_data <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">"TOX"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the violin plot</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tox_data, <span class="fu">aes</span>(<span class="at">x=</span>Treatment, <span class="at">y=</span>Expression, <span class="at">fill=</span>Treatment)) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim=</span><span class="cn">FALSE</span>) <span class="sc">+</span>  <span class="co"># Trim set to FALSE to show the full range of data</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Expression of TOX pre and post treatment"</span>, <span class="at">x=</span><span class="st">"Treatment Condition"</span>, <span class="at">y=</span><span class="st">"Expression Level"</span>) <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Pastel1"</span>) <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width=</span><span class="fl">0.1</span>, <span class="at">fill=</span><span class="st">"white"</span>)  <span class="co"># Overlay boxplot to show median and quartiles</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filter data for the TOX gene</span></span>
+<span><span class="va">tox_data</span> <span class="op">&lt;-</span> <span class="va">combined_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Gene</span> <span class="op">==</span> <span class="st">"TOX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the violin plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tox_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Treatment</span>, y<span class="op">=</span><span class="va">Expression</span>, fill<span class="op">=</span><span class="va">Treatment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>trim<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Trim set to FALSE to show the full range of data</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Expression of TOX pre and post treatment"</span>, x<span class="op">=</span><span class="st">"Treatment Condition"</span>, y<span class="op">=</span><span class="st">"Expression Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette<span class="op">=</span><span class="st">"Pastel1"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">0.1</span>, fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span>  <span class="co"># Overlay boxplot to show median and quartiles</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="tox_violin.png" class="img-fluid figure-img"></p>
-<figcaption>Violin of TOX Expression</figcaption>
-</figure>
+<figure class="figure"><p><img src="tox_violin.png" class="img-fluid figure-img"></p>
+<figcaption>Violin of TOX Expression</figcaption></figure>
 </div>
-</section>
-</section>
-<section id="statistics" class="level1">
-<h1>Statistics</h1>
-<section id="t-test" class="level2">
-<h2 class="anchored" data-anchor-id="t-test">t-Test</h2>
+</section></section><section id="statistics" class="level1"><h1>Statistics</h1>
+<section id="t-test" class="level2"><h2 class="anchored" data-anchor-id="t-test">t-Test</h2>
 <p>A t-test could be used to compare the means of two groups, for example, the level of a specific immune marker in patients with and without a certain mutation.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly generated sample data: Immune marker levels in two patient groups</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="fl">1.5</span>) <span class="co"># Patients with a mutation</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="fl">4.5</span>, <span class="at">sd =</span> <span class="fl">1.2</span>) <span class="co"># Patients without the mutation</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a t-test</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(group1, group2)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Randomly generated sample data: Immune marker levels in two patient groups</span></span>
+<span><span class="va">group1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">5</span>, sd <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="co"># Patients with a mutation</span></span>
+<span><span class="va">group2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">4.5</span>, sd <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="co"># Patients without the mutation</span></span>
+<span></span>
+<span><span class="co"># Perform a t-test</span></span>
+<span><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print the result</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Welch Two Sample t<span class="sc">-</span>test</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -953,9 +875,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>mean of x mean of y </span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> <span class="fl">4.951171</span>  <span class="fl">4.695849</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fishers-exact-test" class="level2">
-<h2 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s Exact Test</h2>
+</section><section id="fishers-exact-test" class="level2"><h2 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s Exact Test</h2>
 <p>Assume you’ve identified a TCR clonotype and quantified the number of cells expressing this clonotype at two timepoints:</p>
 <ul>
 <li>Timepoint 1 (Pre-treatment): <code>X</code> number of cells</li>
@@ -963,31 +883,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>You also need the total number of cells sequenced at each timepoint to complete the contingency table for the Fisher’s Exact Test. Let’s say:</p>
 <ul>
-<li>Total cells at Timepoint 1: <code>N_pre</code></li>
-<li>Total cells at Timepoint 2: <code>N_post</code></li>
+<li>Total cells at Timepoint 1: <code>N_pre</code>
+</li>
+<li>Total cells at Timepoint 2: <code>N_post</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">300</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>N_pre <span class="ot">&lt;-</span> <span class="dv">2450</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>N_post <span class="ot">&lt;-</span> <span class="dv">3001</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of cells with the specific clonotype at each timepoint</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>cells_with_clone <span class="ot">&lt;-</span> <span class="fu">c</span>(X, Y)  </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of cells without the clonotype (total cells minus cells with the clonotype)</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>cells_without_clone <span class="ot">&lt;-</span> <span class="fu">c</span>(N_pre <span class="sc">-</span> X, N_post <span class="sc">-</span> Y)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the contingency table</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(cells_with_clone, cells_without_clone), <span class="at">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"With Clone"</span>, <span class="st">"Without Clone"</span>),</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">c</span>(<span class="st">"Pre-Treatment"</span>, <span class="st">"Post-Treatment"</span>)))</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform Fisher's Exact Test</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">fisher.test</span>(data)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fl">300</span></span>
+<span></span>
+<span><span class="va">N_pre</span> <span class="op">&lt;-</span> <span class="fl">2450</span></span>
+<span><span class="va">N_post</span> <span class="op">&lt;-</span> <span class="fl">3001</span></span>
+<span></span>
+<span><span class="co"># Number of cells with the specific clonotype at each timepoint</span></span>
+<span><span class="va">cells_with_clone</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="co"># Number of cells without the clonotype (total cells minus cells with the clonotype)</span></span>
+<span><span class="va">cells_without_clone</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">N_pre</span> <span class="op">-</span> <span class="va">X</span>, <span class="va">N_post</span> <span class="op">-</span> <span class="va">Y</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the contingency table</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">cells_with_clone</span>, <span class="va">cells_without_clone</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>              dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"With Clone"</span>, <span class="st">"Without Clone"</span><span class="op">)</span>,</span>
+<span>                              <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pre-Treatment"</span>, <span class="st">"Post-Treatment"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Perform Fisher's Exact Test</span></span>
+<span><span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print the result</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    Fisher<span class="st">'s Exact Test for Count Data</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1001,60 +923,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">0.07410471 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The matrix data has two rows (“With Clone” and “Without Clone”) and two columns (“Pre-Treatment” and “Post-Treatment”). This matrix is filled with the counts of cells with and without the specific TCR clonotype at each timepoint.</li>
-<li><code>fisher.test(data)</code> calculates whether the proportions of cells with the clonotype are significantly different between the two timepoints.</li>
+<li>
+<code>fisher.test(data)</code> calculates whether the proportions of cells with the clonotype are significantly different between the two timepoints.</li>
 <li>The output includes a p-value which indicates the probability that any observed difference in proportions occurred by chance.</li>
-</ul>
-</section>
-</section>
-<section id="additional-exercises" class="level1">
-<h1>Additional Exercises</h1>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the iris dataset (saved as iris in base R)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot of sepal length vs sepal width colored by species where the point size is determined from petal length.</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Look at size arguments for aes. </span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend to your scatter plot for the size of the points.</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: Look into the guides function and use guide_legend().</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the petal length by species with 20 bins and add transparency to the plot.</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: Look into the arguments for geom_hist</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a density plot of the petal length colored by species.</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: Look up geom_density.</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2 panel plot with a histogram and a scatter plot</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: use grid.arrange from the gridExtra package.</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the density and histogram plots</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: The histogram needs to be normalized to the density plot, look into "..density..".</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a t-test on sepal length between the species setosa and versicolor</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: Pull out the necessary values using subset</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regession on the sepal length vs petal length and summarize the results. </span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: Look into the lm function</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the regression line over a scatter plot of sepal vs petal length. </span></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co"># HINT: Look into the geom_smooth</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co"># CODE YOUR ANSWER HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="lecture-slides" class="level1">
-<h1>Lecture Slides</h1>
+</ul></section></section><section id="additional-exercises" class="level1"><h1>Additional Exercises</h1>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load the iris dataset (saved as iris in base R)</span></span>
+<span></span>
+<span><span class="co"># Create a scatter plot of sepal length vs sepal width colored by species where the point size is determined from petal length.</span></span>
+<span><span class="co"># Hint: Look at size arguments for aes. </span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Add a legend to your scatter plot for the size of the points.</span></span>
+<span><span class="co"># HINT: Look into the guides function and use guide_legend().</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Create a histogram of the petal length by species with 20 bins and add transparency to the plot.</span></span>
+<span><span class="co"># Hint: Look into the arguments for geom_hist</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Create a density plot of the petal length colored by species.</span></span>
+<span><span class="co"># HINT: Look up geom_density.</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Create a 2 panel plot with a histogram and a scatter plot</span></span>
+<span><span class="co"># HINT: use grid.arrange from the gridExtra package.</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Combine the density and histogram plots</span></span>
+<span><span class="co"># HINT: The histogram needs to be normalized to the density plot, look into "..density..".</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Perform a t-test on sepal length between the species setosa and versicolor</span></span>
+<span><span class="co"># HINT: Pull out the necessary values using subset</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Perform linear regession on the sepal length vs petal length and summarize the results. </span></span>
+<span><span class="co"># HINT: Look into the lm function</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span>
+<span></span>
+<span><span class="co"># Plot the regression line over a scatter plot of sepal vs petal length. </span></span>
+<span><span class="co"># HINT: Look into the geom_smooth</span></span>
+<span><span class="co"># CODE YOUR ANSWER HERE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="lecture-slides" class="level1"><h1>Lecture Slides</h1>
 <p>The slides for this lecture are available <a href="https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%201%20PM.pdf">here</a>.</p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1472,9 +1386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../course/1_introR.html" class="pagination-link" aria-label="Introduction to R">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to R</span>
       </a>          
@@ -1486,7 +1398,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
