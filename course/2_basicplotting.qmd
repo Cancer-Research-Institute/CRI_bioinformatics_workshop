@@ -1,5 +1,8 @@
 ---
 title: "Basic plotting and statistics"
+format:
+  html:
+    code-link: true
 ---
 
 ## Long and Wide Data Formats

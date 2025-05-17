@@ -1,5 +1,8 @@
 ---
 title: "Clustering concepts and correlation"
+format:
+  html:
+    code-link: true
 ---
 
 # Distances
