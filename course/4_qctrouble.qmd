@@ -226,7 +226,7 @@ final_plot <- log2_df_filter_wide %>%
     color = "Screen Hit"
   )
 # We can save our plot if desired
-ggsave(final_plot, file = "my_pretty_plot.pdf", width = 5, height = 4)
+# ggsave(final_plot, file = "my_pretty_plot.pdf", width = 5, height = 4)
 
 # And now view it
 final_plot
