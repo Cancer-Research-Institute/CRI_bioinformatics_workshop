@@ -360,7 +360,7 @@ To view the structure in the data we will first cluster on samples:
 ```{r}
 # Perform hierarchical clustering:
 ## 1. Compute a sample-wise distance matrix
-dist_matrix_samples <- dist(t(expression_data), method = "euclidean")
+dist_matrix_samples <- dist(t(scale(expression_data)), method = "euclidean")
 ## 2. Perform hierarchical clustering
 hclust_samples <- hclust(dist_matrix_samples, method = "ward.D2")
 ## 3. Pull out the order of the samples from the hclust object
@@ -372,7 +372,7 @@ And then cluster on genes. Note that here we don't `t()` to transpose the matrix
 ```{r}
 # Perform hierarchical clustering:
 ## 1. Compute a sample-wise distance matrix
-dist_matrix_genes <- dist(expression_data, method = "euclidean")
+dist_matrix_genes <- dist(scale(expression_data), method = "euclidean")
 ## 2. Perform hierarchical clustering
 hclust_genes <- hclust(dist_matrix_genes, method = "ward.D2")
 ## 3. Pull out the order of the genes from the hclust object
