@@ -22,11 +22,11 @@ title: "Course overview"
 
 2. [Introduction to IGV](https://rnabio.org/module-02-alignment/0002/05/02/AlignVis_IGV/) (Lead: Malachi)
 
-3. [Differential Expression Analysis (DESeq2)](https://rnabio.org/module-03-expression/0003/03/03/Differential_Expression-DESeq2/) (Lead: Zach)
+3. [Differential Expression Analysis (DESeq2)](https://rnabio.org/module-03-expression/0003/03/03/Differential_Expression-DESeq2/) (Lead: Malachi)
 
 4. [Differential Expression Visualization (DESeq2)](https://rnabio.org/module-03-expression/0003/04/02/DE_Visualization-DESeq2/) (Lead: Zach)
 
-5. [Differential Expression Visualization (Advanced R)](https://rnabio.org/module-03-expression/0003/04/03/DE_Visualization_AdvancedR/) (Lead: Obi/Charles)
+5. [Differential Expression Visualization (Advanced R)](https://rnabio.org/module-03-expression/0003/04/03/DE_Visualization_AdvancedR/) (Lead: Obi)
 
 6. [Pathway Analysis](https://rnabio.org/module-03-expression/0003/05/01/DE_Pathway_Analysis/) (Lead: Obi)
 
