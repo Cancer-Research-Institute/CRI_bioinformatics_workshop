@@ -267,8 +267,9 @@ ggplot(iris_umap, aes(x = X1, y = X2, color = Species)) +
   theme_minimal()
 ```
 
-
-For additional insight into UMAP and t-SNE paramters and the theory behind them see this great [post](https://pair-code.github.io/understanding-umap/).
+::: {.callout-tip}
+For additional insight into UMAP and t-SNE paramters and the theory behind them see this great [article](https://pair-code.github.io/understanding-umap/).
+:::
 
 # Correlation
 
