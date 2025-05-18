@@ -568,7 +568,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#custom-heatmap" id="toc-custom-heatmap" class="nav-link" data-scroll-target="#custom-heatmap">Custom Heatmap</a>
   <ul class="collapse">
-<li><a href="#perform-clustering" id="toc-perform-clustering" class="nav-link" data-scroll-target="#perform-clustering">Perform clustering</a></li>
+<li><a href="#setup-toy-data" id="toc-setup-toy-data" class="nav-link" data-scroll-target="#setup-toy-data">Setup Toy Data</a></li>
+  <li><a href="#perform-clustering" id="toc-perform-clustering" class="nav-link" data-scroll-target="#perform-clustering">Perform clustering</a></li>
   <li><a href="#metadata-plot" id="toc-metadata-plot" class="nav-link" data-scroll-target="#metadata-plot">Metadata plot</a></li>
   <li><a href="#add-dendrograms" id="toc-add-dendrograms" class="nav-link" data-scroll-target="#add-dendrograms">Add Dendrograms</a></li>
   <li><a href="#put-it-all-together" id="toc-put-it-all-together" class="nav-link" data-scroll-target="#put-it-all-together">Put it all together</a></li>
@@ -611,29 +612,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>What is the size of the dataset?</li>
 <li>What types of questions can I ask of the data?</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># File is a "tsv" file -&gt; Tab-delimited file</span></span>
-<span><span class="va">read_tsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">file</span>, sep <span class="op">=</span> <span class="st">'\t'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Look at the file: View(), head(), or click on it to the right</span></span>
+<span><span class="va">variant_file</span> <span class="op">&lt;-</span> <span class="st">"/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">variant_file</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"</code></pre>
+</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># File is a "tsv" file -&gt; Tab-delimited file</span></span>
+<span><span class="va">read_tsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">variant_file</span>, sep <span class="op">=</span> <span class="st">'\t'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can explore the file we just loaded:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Look at the file: View(), head(), or click on it to the right</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Understand the variables and data structure: typeof(), str(), colnames()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  CHROM     POS REF ALT                    set NORMAL.GT NORMAL.AD NORMAL.AF
+1  chr1 4347274   T   A mutect-varscan-strelka       T/T     122,0         0
+2  chr1 4347386   C   A mutect-varscan-strelka       C/C      96,0         0
+3  chr1 4830263   C   T mutect-varscan-strelka       C/C     195,0         0
+4  chr1 5084567   C   T mutect-varscan-strelka       C/C      61,0         0
+5  chr1 6247967   T   G mutect-varscan-strelka       T/T      79,0         0
+6  chr1 6249819   T   A mutect-varscan-strelka       T/T     189,0         0
+  NORMAL.DP TUMOR.GT TUMOR.AD TUMOR.AF TUMOR.DP
+1       122      T/A    44,48  0.52174       92
+2        96      C/A    42,42  0.50000       84
+3       195      C/T    79,64  0.44755      143
+4        62      C/T    26,19  0.42222       45
+5        79      T/G    24,18  0.42857       42
+6       189      T/A    58,57  0.49565      115
+                           Consequence  SYMBOL Feature_type
+1                     missense_variant     Rp1   Transcript
+2                     missense_variant     Rp1   Transcript
+3 splice_region_variant&amp;intron_variant  Lypla1   Transcript
+4 splice_region_variant&amp;intron_variant Atp6v1h   Transcript
+5                       intron_variant  Rb1cc1   Transcript
+6                     missense_variant  Rb1cc1   Transcript
+                Feature cDNA_position CDS_position Protein_position Amino_acids
+1  ENSMUST00000027032.5          3741         3614             1205         N/I
+2  ENSMUST00000027032.5          3629         3502             1168         V/F
+3 ENSMUST00000027036.10                                                        
+4 ENSMUST00000044369.12                                                        
+5 ENSMUST00000027040.12                                                        
+6 ENSMUST00000027040.12          3928         3461             1154         V/D
+   Codons NORMAL.REF.AD NORMAL.ALT.AD TUMOR.REF.AD TUMOR.ALT.AD
+1 aAt/aTt           122             0           44           48
+2 Gtt/Ttt            96             0           42           42
+3                   195             0           79           64
+4                    61             0           26           19
+5                    79             0           24           18
+6 gTt/gAt           189             0           58           57</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Understand the variables and data structure: typeof(), str(), colnames()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   10427 obs. of  26 variables:
+ $ CHROM           : chr  "chr1" "chr1" "chr1" "chr1" ...
+ $ POS             : int  4347274 4347386 4830263 5084567 6247967 6249819 6264623 6842242 6842967 6844056 ...
+ $ REF             : chr  "T" "C" "C" "C" ...
+ $ ALT             : chr  "A" "A" "T" "T" ...
+ $ set             : chr  "mutect-varscan-strelka" "mutect-varscan-strelka" "mutect-varscan-strelka" "mutect-varscan-strelka" ...
+ $ NORMAL.GT       : chr  "T/T" "C/C" "C/C" "C/C" ...
+ $ NORMAL.AD       : chr  "122,0" "96,0" "195,0" "61,0" ...
+ $ NORMAL.AF       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ NORMAL.DP       : int  122 96 195 62 79 189 83 60 86 77 ...
+ $ TUMOR.GT        : chr  "T/A" "C/A" "C/T" "C/T" ...
+ $ TUMOR.AD        : chr  "44,48" "42,42" "79,64" "26,19" ...
+ $ TUMOR.AF        : num  0.522 0.5 0.448 0.422 0.429 ...
+ $ TUMOR.DP        : int  92 84 143 45 42 115 63 33 55 43 ...
+ $ Consequence     : chr  "missense_variant" "missense_variant" "splice_region_variant&amp;intron_variant" "splice_region_variant&amp;intron_variant" ...
+ $ SYMBOL          : chr  "Rp1" "Rp1" "Lypla1" "Atp6v1h" ...
+ $ Feature_type    : chr  "Transcript" "Transcript" "Transcript" "Transcript" ...
+ $ Feature         : chr  "ENSMUST00000027032.5" "ENSMUST00000027032.5" "ENSMUST00000027036.10" "ENSMUST00000044369.12" ...
+ $ cDNA_position   : chr  "3741" "3629" "" "" ...
+ $ CDS_position    : chr  "3614" "3502" "" "" ...
+ $ Protein_position: chr  "1205" "1168" "" "" ...
+ $ Amino_acids     : chr  "N/I" "V/F" "" "" ...
+ $ Codons          : chr  "aAt/aTt" "Gtt/Ttt" "" "" ...
+ $ NORMAL.REF.AD   : int  122 96 195 61 79 189 83 60 86 77 ...
+ $ NORMAL.ALT.AD   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ TUMOR.REF.AD    : int  44 42 79 26 24 58 35 11 24 21 ...
+ $ TUMOR.ALT.AD    : int  48 42 64 19 18 57 28 22 31 22 ...</code></pre>
+</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "CHROM"            "POS"              "REF"              "ALT"             
+ [5] "set"              "NORMAL.GT"        "NORMAL.AD"        "NORMAL.AF"       
+ [9] "NORMAL.DP"        "TUMOR.GT"         "TUMOR.AD"         "TUMOR.AF"        
+[13] "TUMOR.DP"         "Consequence"      "SYMBOL"           "Feature_type"    
+[17] "Feature"          "cDNA_position"    "CDS_position"     "Protein_position"
+[21] "Amino_acids"      "Codons"           "NORMAL.REF.AD"    "NORMAL.ALT.AD"   
+[25] "TUMOR.REF.AD"     "TUMOR.ALT.AD"    </code></pre>
+</div>
+</div>
 </section><section id="common-challenges" class="level1"><h1>Common challenges</h1>
 <section id="nan-and-missing-data" class="level2"><h2 class="anchored" data-anchor-id="nan-and-missing-data">
 <em>NaN</em> and missing data</h2>
 <p>Dealing with missing data and NaN (Not a Number) values is a common challenge in R programming. These values can affect the results of your analyses and visualizations. It’s essential to handle missing data appropriately, either by imputing them or excluding them from the analysis, depending on the context.</p>
 <p><strong>Example</strong>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Creating a dataframe with missing values</span></span>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Creating a dataframe with missing values</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="cn">NA</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="cn">NA</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span></span>
@@ -641,39 +725,186 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># Check for missing values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># Understanding missing or sparse information</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span>
-<span><span class="va">read_tsv</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Understanding missing or sparse information</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    CHROM                POS                REF                ALT           
+ Length:10427       Min.   :  2107407   Length:10427       Length:10427      
+ Class :character   1st Qu.: 38008521   Class :character   Class :character  
+ Mode  :character   Median : 73553346   Mode  :character   Mode  :character  
+                    Mean   : 75250958                                        
+                    3rd Qu.:107567817                                        
+                    Max.   :195169782                                        
+                    NA's   :1                                                
+     set             NORMAL.GT          NORMAL.AD           NORMAL.AF        
+ Length:10427       Length:10427       Length:10427       Min.   :0.0000000  
+ Class :character   Class :character   Class :character   1st Qu.:0.0000000  
+ Mode  :character   Mode  :character   Mode  :character   Median :0.0000000  
+                                                          Mean   :0.0001637  
+                                                          3rd Qu.:0.0000000  
+                                                          Max.   :0.0408200  
+                                                          NA's   :1          
+   NORMAL.DP        TUMOR.GT           TUMOR.AD            TUMOR.AF      
+ Min.   :  31.0   Length:10427       Length:10427       Min.   :0.05063  
+ 1st Qu.:  67.0   Class :character   Class :character   1st Qu.:0.41860  
+ Median :  97.0   Mode  :character   Mode  :character   Median :0.48247  
+ Mean   : 118.3                                         Mean   :0.48403  
+ 3rd Qu.: 148.0                                         3rd Qu.:0.54217  
+ Max.   :1351.0                                         Max.   :1.00000  
+ NA's   :2                                              NA's   :1        
+    TUMOR.DP      Consequence           SYMBOL          Feature_type      
+ Min.   : 31.00   Length:10427       Length:10427       Length:10427      
+ 1st Qu.: 45.00   Class :character   Class :character   Class :character  
+ Median : 65.00   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 79.68                                                           
+ 3rd Qu.: 98.00                                                           
+ Max.   :813.00                                                           
+ NA's   :2                                                                
+   Feature          cDNA_position      CDS_position       Protein_position  
+ Length:10427       Length:10427       Length:10427       Length:10427      
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ Amino_acids           Codons          NORMAL.REF.AD    NORMAL.ALT.AD    
+ Length:10427       Length:10427       Min.   :  30.0   Min.   :0.00000  
+ Class :character   Class :character   1st Qu.:  67.0   1st Qu.:0.00000  
+ Mode  :character   Mode  :character   Median :  97.0   Median :0.00000  
+                                       Mean   : 118.2   Mean   :0.01928  
+                                       3rd Qu.: 148.0   3rd Qu.:0.00000  
+                                       Max.   :1350.0   Max.   :2.00000  
+                                       NA's   :2        NA's   :2        
+  TUMOR.REF.AD     TUMOR.ALT.AD   
+ Min.   :  0.00   Min.   :  4.00  
+ 1st Qu.: 23.00   1st Qu.: 21.00  
+ Median : 34.00   Median : 31.00  
+ Mean   : 41.68   Mean   : 37.96  
+ 3rd Qu.: 52.00   3rd Qu.: 47.00  
+ Max.   :691.00   Max.   :229.00  
+ NA's   :2        NA's   :2       </code></pre>
+</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">read_tsv</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      CHROM      POS   REF  ALT            set   NORMAL.GT NORMAL.AD NORMAL.AF
+9862   chr9 53503887 AACAC  AAC mutect-varscan AACAC/AACAC      &lt;NA&gt;     0.014
+10272  &lt;NA&gt;       NA  &lt;NA&gt; &lt;NA&gt;           &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;        NA
+      NORMAL.DP TUMOR.GT TUMOR.AD TUMOR.AF TUMOR.DP    Consequence SYMBOL
+9862         NA  AACAC/.     &lt;NA&gt;    0.184       NA intron_variant    Atm
+10272        NA     &lt;NA&gt;     &lt;NA&gt;       NA       NA           &lt;NA&gt;   &lt;NA&gt;
+      Feature_type              Feature cDNA_position CDS_position
+9862    Transcript ENSMUST00000232179.1                           
+10272         &lt;NA&gt;                 &lt;NA&gt;          &lt;NA&gt;         &lt;NA&gt;
+      Protein_position Amino_acids Codons NORMAL.REF.AD NORMAL.ALT.AD
+9862                                                 NA            NA
+10272             &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;            NA            NA
+      TUMOR.REF.AD TUMOR.ALT.AD
+9862            NA           NA
+10272           NA           NA</code></pre>
+</div>
+</div>
 </section><section id="data-organization-and-structure-factors" class="level2"><h2 class="anchored" data-anchor-id="data-organization-and-structure-factors">Data organization and structure: Factors</h2>
 <p>Columns that contain strings are automatically read in as character vectors and are arranged alphanumericall. <em>Factors</em> assign a logical order to a series of samples.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># File is a "tsv" file -&gt; Tab-delimited file</span></span>
-<span><span class="va">read_tsv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">file</span>, sep <span class="op">=</span> <span class="st">'\t'</span><span class="op">)</span></span>
-<span></span>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="co"># Organize the chromosomes to the correct order</span></span>
 <span><span class="co"># If CHROM is a character vector, the chromosomes are not ordered properly</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span> <span class="co"># Shows that CHROM variable is a character vector</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">read_tsv</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">CHROM</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># make CHROM a factor</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span> <span class="co"># Shows that CHROM variable is a character vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   10427 obs. of  26 variables:
+ $ CHROM           : chr  "chr1" "chr1" "chr1" "chr1" ...
+ $ POS             : int  4347274 4347386 4830263 5084567 6247967 6249819 6264623 6842242 6842967 6844056 ...
+ $ REF             : chr  "T" "C" "C" "C" ...
+ $ ALT             : chr  "A" "A" "T" "T" ...
+ $ set             : chr  "mutect-varscan-strelka" "mutect-varscan-strelka" "mutect-varscan-strelka" "mutect-varscan-strelka" ...
+ $ NORMAL.GT       : chr  "T/T" "C/C" "C/C" "C/C" ...
+ $ NORMAL.AD       : chr  "122,0" "96,0" "195,0" "61,0" ...
+ $ NORMAL.AF       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ NORMAL.DP       : int  122 96 195 62 79 189 83 60 86 77 ...
+ $ TUMOR.GT        : chr  "T/A" "C/A" "C/T" "C/T" ...
+ $ TUMOR.AD        : chr  "44,48" "42,42" "79,64" "26,19" ...
+ $ TUMOR.AF        : num  0.522 0.5 0.448 0.422 0.429 ...
+ $ TUMOR.DP        : int  92 84 143 45 42 115 63 33 55 43 ...
+ $ Consequence     : chr  "missense_variant" "missense_variant" "splice_region_variant&amp;intron_variant" "splice_region_variant&amp;intron_variant" ...
+ $ SYMBOL          : chr  "Rp1" "Rp1" "Lypla1" "Atp6v1h" ...
+ $ Feature_type    : chr  "Transcript" "Transcript" "Transcript" "Transcript" ...
+ $ Feature         : chr  "ENSMUST00000027032.5" "ENSMUST00000027032.5" "ENSMUST00000027036.10" "ENSMUST00000044369.12" ...
+ $ cDNA_position   : chr  "3741" "3629" "" "" ...
+ $ CDS_position    : chr  "3614" "3502" "" "" ...
+ $ Protein_position: chr  "1205" "1168" "" "" ...
+ $ Amino_acids     : chr  "N/I" "V/F" "" "" ...
+ $ Codons          : chr  "aAt/aTt" "Gtt/Ttt" "" "" ...
+ $ NORMAL.REF.AD   : int  122 96 195 61 79 189 83 60 86 77 ...
+ $ NORMAL.ALT.AD   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ TUMOR.REF.AD    : int  44 42 79 26 24 58 35 11 24 21 ...
+ $ TUMOR.ALT.AD    : int  48 42 64 19 18 57 28 22 31 22 ...</code></pre>
+</div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">read_tsv</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">CHROM</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># make CHROM a factor</span></span>
 <span><span class="va">read_tsv</span><span class="op">$</span><span class="va">CHROM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">$</span><span class="va">CHROM</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">22</span>, <span class="st">'X'</span>,<span class="st">'Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span> <span class="co"># shows that CHROM variable is a factor with a set order of character strings</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">read_tsv</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">CHROM</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">read_tsv</span><span class="op">)</span> <span class="co"># shows that CHROM variable is a factor with a set order of character strings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   10427 obs. of  26 variables:
+ $ CHROM           : Factor w/ 24 levels "chr1","chr2",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ POS             : int  4347274 4347386 4830263 5084567 6247967 6249819 6264623 6842242 6842967 6844056 ...
+ $ REF             : chr  "T" "C" "C" "C" ...
+ $ ALT             : chr  "A" "A" "T" "T" ...
+ $ set             : chr  "mutect-varscan-strelka" "mutect-varscan-strelka" "mutect-varscan-strelka" "mutect-varscan-strelka" ...
+ $ NORMAL.GT       : chr  "T/T" "C/C" "C/C" "C/C" ...
+ $ NORMAL.AD       : chr  "122,0" "96,0" "195,0" "61,0" ...
+ $ NORMAL.AF       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ NORMAL.DP       : int  122 96 195 62 79 189 83 60 86 77 ...
+ $ TUMOR.GT        : chr  "T/A" "C/A" "C/T" "C/T" ...
+ $ TUMOR.AD        : chr  "44,48" "42,42" "79,64" "26,19" ...
+ $ TUMOR.AF        : num  0.522 0.5 0.448 0.422 0.429 ...
+ $ TUMOR.DP        : int  92 84 143 45 42 115 63 33 55 43 ...
+ $ Consequence     : chr  "missense_variant" "missense_variant" "splice_region_variant&amp;intron_variant" "splice_region_variant&amp;intron_variant" ...
+ $ SYMBOL          : chr  "Rp1" "Rp1" "Lypla1" "Atp6v1h" ...
+ $ Feature_type    : chr  "Transcript" "Transcript" "Transcript" "Transcript" ...
+ $ Feature         : chr  "ENSMUST00000027032.5" "ENSMUST00000027032.5" "ENSMUST00000027036.10" "ENSMUST00000044369.12" ...
+ $ cDNA_position   : chr  "3741" "3629" "" "" ...
+ $ CDS_position    : chr  "3614" "3502" "" "" ...
+ $ Protein_position: chr  "1205" "1168" "" "" ...
+ $ Amino_acids     : chr  "N/I" "V/F" "" "" ...
+ $ Codons          : chr  "aAt/aTt" "Gtt/Ttt" "" "" ...
+ $ NORMAL.REF.AD   : int  122 96 195 61 79 189 83 60 86 77 ...
+ $ NORMAL.ALT.AD   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ TUMOR.REF.AD    : int  44 42 79 26 24 58 35 11 24 21 ...
+ $ TUMOR.ALT.AD    : int  48 42 64 19 18 57 28 22 31 22 ...</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">read_tsv</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">CHROM</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section><section id="missing-packages-or-dependencies" class="level2"><h2 class="anchored" data-anchor-id="missing-packages-or-dependencies">Missing packages or dependencies</h2>
 <p>When running R code, you may encounter errors related to missing packages or dependencies. This occurs when you try to use functions or libraries that are not installed on your system. This will commonly look like a red error stating “There is no package…” Installing the required packages using <em>install.packages(“package_name”)</em> can resolve this issue.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Trying to use a function from an uninstalled package</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Trying to use a function from an uninstalled package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># Error: there is no package called 'ggplot2'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section><section id="where-do-i-go-for-help" class="level1"><h1>Where do I go for help?</h1>
 <section id="stack-exchange" class="level2"><h2 class="anchored" data-anchor-id="stack-exchange">Stack Exchange</h2>
-<p>Online communities like Stack Exchange, particularly the Stack Overflow platform, are excellent resources for getting help with R programming. You can search for solutions to specific problems or ask questions if you’re facing challenges. If you attempt to Google what you’re trying to accomplish with your dataset, StackExchange often includes responses from others who may have gone through this effort before. With the open crowdsourcing of troubleshooting, these responses that work for others are “upvoted” so that you can try to adapt the code to work for your dataset. Importantly, take care to change the names of variables and file paths in any code that you try to implement from others.</p>
+<p>Online communities like <a href="https://stackexchange.com/tour">Stack Exchange</a>, particularly the <a href="https://stackoverflow.com/questions">Stack Overflow</a> platform, are excellent resources for getting help with R programming. You can search for solutions to specific problems or ask questions if you’re facing challenges. If you attempt to Google what you’re trying to accomplish with your dataset, StackExchange often includes responses from others who may have gone through this effort before. With the open crowdsourcing of troubleshooting, these responses that work for others are “upvoted” so that you can try to adapt the code to work for your dataset. Importantly, take care to change the names of variables and file paths in any code that you try to implement from others.</p>
 </section><section id="chatgpt" class="level2"><h2 class="anchored" data-anchor-id="chatgpt">ChatGPT</h2>
 <p>ChatGPT is an AI assistant that can provide guidance and answer questions related to R programming. You can ask for clarification on concepts, debugging assistance, or advice on best practices. If you copy/paste an error into ChatGPT, it often tries to debug without any other preface. However, if you try to explain exactly what your code is trying to accomplish, it can be a helpful way to debug your help.</p>
 </section><section id="good-practices" class="level2"><h2 class="anchored" data-anchor-id="good-practices">Good practices</h2>
@@ -684,8 +915,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section></section></section><section id="how-do-i-apply-the-code-ive-learned-to-my-own-data" class="level1"><h1>How do I apply the code I’ve learned to my own data?</h1>
 <p>Once you’ve learned R programming basics, applying the code to your own data involves understanding your data structure, identifying relevant functions and packages, and adapting example code to suit your specific analysis goals.</p>
 </section><section id="additional-practice" class="level1"><h1>Additional practice</h1>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="co"># Read in the file "/cloud/project/data/bulk_rna/GSE48035_ILMN.Counts.SampleSubset.ProteinCodingGenes.tsv"</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Read in the file "/cloud/project/data/bulk_rna/GSE48035_ILMN.Counts.SampleSubset.ProteinCodingGenes.tsv"</span></span>
 <span><span class="co"># Describe the size, shape, and organization of this data file.</span></span>
 <span></span>
 <span></span>
@@ -715,7 +945,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>First we will load the data from the supplemental table (<a href="https://github.com/crigrants/CRI_bioinformatics_workshop/raw/c66ec1f1da51a4868b76433a32d0915af3629a8a/course/data/science.abj4008_table_s2.xlsx">download here</a>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span>
 <span></span>
@@ -791,24 +1021,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">final_plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="480"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </section><section id="custom-heatmap" class="level2"><h2 class="anchored" data-anchor-id="custom-heatmap">Custom Heatmap</h2>
 <p>Here we will use the excellent R package <a href="https://patchwork.data-imaginist.com/"><code>patchwork</code></a> to compose a complex heatmap, that is both clustered and plotted next to relevant sample metadata and dendrograms.</p>
+<p><img src="ggplot_heatmap.png" class="img-fluid"></p>
+<section id="setup-toy-data" class="level3"><h3 class="anchored" data-anchor-id="setup-toy-data">Setup Toy Data</h3>
+<p>NOTE: This is not important for understanding how to plot, but kept here in case you want to adjust some of these parameters to see what happens!</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load necessary libraries</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load necessary libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Set seed for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">### GENERATE TOY DATA ###</span></span>
-<span><span class="co"># NOTE: This is not important for understanding how to plot, but kept here</span></span>
-<span><span class="co"># in case you want to adjust some of these parameters to see what happens!</span></span>
 <span></span>
 <span><span class="co"># Generate gene expression data</span></span>
 <span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Gene"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></span>
@@ -852,9 +1081,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/json" data-for="htmlwidget-a91001e7ffd9ca98e1fb">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Metadata Table<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["Sample1","Sample2","Sample3","Sample4","Sample5","Sample6","Sample7","Sample8","Sample9","Sample10","Sample11","Sample12","Sample13","Sample14","Sample15","Sample16","Sample17","Sample18","Sample19","Sample20"],["Case","Case","Case","Case","Case","Case","Case","Case","Case","Case","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control"],["Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female"],["DrugA","DrugA","DrugA","DrugA","DrugA","DrugB","DrugB","DrugB","DrugB","DrugB","DrugC","DrugC","DrugC","DrugC","DrugC","DrugD","DrugD","DrugD","DrugD","DrugD"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sample<\/th>\n      <th>Condition<\/th>\n      <th>Gender<\/th>\n      <th>Drug<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","pageLength":5,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Sample","targets":1},{"name":"Condition","targets":2},{"name":"Gender","targets":3},{"name":"Drug","targets":4}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Let’s reshape our data into long format to make it possible to plot with <code>ggplot2</code></p>
+<p>Let’s reshape our data into long format to make it possible to plot with <code>ggplot2</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reshape the data into long format for ggplot2. Here we use the tidyverse</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Reshape the data into long format for ggplot2. Here we use the tidyverse</span></span>
 <span><span class="co"># family of packages but there are many ways to approach this reshaping of data</span></span>
 <span><span class="va">expression_long</span> <span class="op">&lt;-</span> <span class="va">expression_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="co"># Convert the matrix to a data frame</span></span>
@@ -873,7 +1102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We plot using the <code>tile</code> geom from ggplot2.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heatmap_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sample</span>, y <span class="op">=</span> <span class="va">Gene</span>, fill <span class="op">=</span> <span class="va">Expression</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heatmap_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sample</span>, y <span class="op">=</span> <span class="va">Gene</span>, fill <span class="op">=</span> <span class="va">Expression</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"blue"</span>, high <span class="op">=</span> <span class="st">"red"</span>, mid <span class="op">=</span> <span class="st">"white"</span>, midpoint <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html">guide_axis</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -882,16 +1111,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">heatmap_plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="480"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="perform-clustering" class="level3"><h3 class="anchored" data-anchor-id="perform-clustering">Perform clustering</h3>
+</section><section id="perform-clustering" class="level3"><h3 class="anchored" data-anchor-id="perform-clustering">Perform clustering</h3>
 <p>It seems there are some patterns in the data, but at this point the samples and genes are not yet clustered.</p>
 <p>To view the structure in the data we will first cluster on samples:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform hierarchical clustering:</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform hierarchical clustering:</span></span>
 <span><span class="co">## 1. Compute a sample-wise distance matrix</span></span>
 <span><span class="va">dist_matrix_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span>
 <span><span class="co">## 2. Perform hierarchical clustering</span></span>
@@ -901,7 +1130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>And then cluster on genes. Note that here we don’t <code><a href="https://rdrr.io/r/base/t.html">t()</a></code> to transpose the matrix, and this cluster on genes instead of samples. These functions expect the variable being clustered to be in the rows of the corresponding matrix.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform hierarchical clustering:</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform hierarchical clustering:</span></span>
 <span><span class="co">## 1. Compute a sample-wise distance matrix</span></span>
 <span><span class="va">dist_matrix_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span>
 <span><span class="co">## 2. Perform hierarchical clustering</span></span>
@@ -909,9 +1138,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## 3. Pull out the order of the genes from the hclust object</span></span>
 <span><span class="va">ordered_genes</span> <span class="op">&lt;-</span> <span class="va">hclust_genes</span><span class="op">$</span><span class="va">labels</span><span class="op">[</span><span class="va">hclust_genes</span><span class="op">$</span><span class="va">order</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we can reorder the input data as we plot using the <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code></p>
+<p>Now we can reorder the input data as we plot using <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code></p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot heatmap using ggplot2</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plot heatmap using ggplot2</span></span>
 <span><span class="va">heatmap_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">Sample</span>, <span class="va">ordered_samples</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">Gene</span>, <span class="va">ordered_genes</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">Expression</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"blue"</span>, high <span class="op">=</span> <span class="st">"red"</span>, mid <span class="op">=</span> <span class="st">"white"</span>, midpoint <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
@@ -925,7 +1154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">heatmap_plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="480"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -943,7 +1172,7 @@ What does <code>plot.margin</code> do?
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>To improve aesthetics, we carefully control the spacing around plots using the theme element <code>plot.margin</code>. This option is specified by using a function called <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code> and tells ggplot how much space to leave around your plots:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
 <span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0</span>, r <span class="op">=</span> <span class="fl">3</span>, b <span class="op">=</span> <span class="fl">3</span>, l <span class="op">=</span> <span class="fl">3</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -953,7 +1182,7 @@ What does <code>plot.margin</code> do?
 </section><section id="metadata-plot" class="level3"><h3 class="anchored" data-anchor-id="metadata-plot">Metadata plot</h3>
 <p>Create the metadata plot in ggplot.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://eliocamp.github.io/ggnewscale/">ggnewscale</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://eliocamp.github.io/ggnewscale/">ggnewscale</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nanx.me/ggsci/">ggsci</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Options for legend width and heights</span></span>
@@ -999,7 +1228,7 @@ What does <code>plot.margin</code> do?
 <span><span class="va">metadata_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># We add coord fixed just to fit with legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="480"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1022,7 +1251,7 @@ Why do we use <code>ggnewscale</code>?
 </div>
 <p>Merge the metadata and heatmap plots together</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute relative heights of main and metadata plot</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Compute relative heights of main and metadata plot</span></span>
 <span><span class="va">rel_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span> <span class="co"># Since we have 3 metadata categories</span></span>
 <span></span>
 <span><span class="co"># Adjust the formatting to adjust the plot margin, remove the axis text and ticks</span></span>
@@ -1039,7 +1268,7 @@ Why do we use <code>ggnewscale</code>?
 <span><span class="va">combined_plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="480"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1063,7 +1292,7 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://andrie.github.io/ggdendro/">ggdendro</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://andrie.github.io/ggdendro/">ggdendro</a></span><span class="op">)</span></span>
 <span><span class="va">dendro_top</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">hclust_samples</span>, rotate <span class="op">=</span> <span class="cn">FALSE</span>, theme_dendro <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># This expands the y axis to fill the full panel below, and 5% extra space above</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1079,14 +1308,14 @@ Tip
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Likewise for genes:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dendro_side</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">hclust_genes</span>, rotate <span class="op">=</span> <span class="cn">TRUE</span>, theme_dendro <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dendro_side</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/ggdendrogram.html">ggdendrogram</a></span><span class="op">(</span><span class="va">hclust_genes</span>, rotate <span class="op">=</span> <span class="cn">TRUE</span>, theme_dendro <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># This expands the x axis to fill the full panel below, and 5% extra space above</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># We need to null the x to remove the space</span></span>
@@ -1101,7 +1330,7 @@ Tip
 <span><span class="op">(</span><span class="va">heatmap_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">dendro_side</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span>, axes <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1109,7 +1338,7 @@ Tip
 </section><section id="put-it-all-together" class="level3"><h3 class="anchored" data-anchor-id="put-it-all-together">Put it all together</h3>
 <p>Now we need to combine all of these plots together. We think of each plot as a patch in a grid, and also use the <code><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer()</a></code> function from <code>patchwork</code> to fill in the empty gap in this figure.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># To help we are going to customize each plot margin now to make sure things fit nicely</span></span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># To help we are going to customize each plot margin now to make sure things fit nicely</span></span>
 <span><span class="co"># Note the default for margin is 0 space on all sides</span></span>
 <span><span class="va">dendro_top</span> <span class="op">&lt;-</span> <span class="va">dendro_top</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">metadata_plot</span> <span class="op">&lt;-</span> <span class="va">metadata_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -1127,7 +1356,7 @@ Tip
 <span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1148,7 +1377,7 @@ Bonus Challenge Solution
 <div class="callout-body-container callout-body">
 <p>First create the boxplot using the long form expression data. Note that because the boxplot is going to be horizontal, the x-axis represents the numeric expression values, while the y-axis represents the individual genes. Also, don’t forget to reorder the genes</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">genexp_boxplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Expression</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">Gene</span>, <span class="va">ordered_genes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">genexp_boxplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Expression</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">Gene</span>, <span class="va">ordered_genes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
@@ -1159,14 +1388,14 @@ Bonus Challenge Solution
 <span><span class="va">genexp_boxplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="288"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="288"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Now we add this into our big patchwork. Note: we also have to add extra spacers since our patchwork has an extra column. Finally, we use the <code><a href="https://patchwork.data-imaginist.com/reference/free.html">free()</a></code> function from patchwork to make sure our expression boxplot label is ‘free’ to move next to the plot. Remove this piece of code to see what happens to the label.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># To help we are going to customize each plot margin now to make sure things fit nicely</span></span>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># To help we are going to customize each plot margin now to make sure things fit nicely</span></span>
 <span><span class="co"># Note the default for margin is 0 space on all sides</span></span>
 <span><span class="va">dendro_top</span> <span class="op">&lt;-</span> <span class="va">dendro_top</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">metadata_plot</span> <span class="op">&lt;-</span> <span class="va">metadata_plot</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -1189,7 +1418,7 @@ Bonus Challenge Solution
 <span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="va">rel_height</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1200,7 +1429,7 @@ Bonus Challenge Solution
 </section><section id="other-options" class="level3"><h3 class="anchored" data-anchor-id="other-options">Other options</h3>
 <p>Another great package for composing complex heatmaps is the aptly named <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/"><code>ComplexHeatmap</code></a>. While some like the customization and syntax of <code>ggplot2</code>, <code>ComplexHeatmap</code> can accomplish this figure with arguably far less effort. See the example below using the same code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Note that ComplexHeatmap uses the matrix directly</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
@@ -1211,14 +1440,14 @@ Bonus Challenge Solution
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Add the column annotation following the instructions provided by the <code>ComplexHeatmap</code> authors <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html">here</a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Expects sample names in rows</span></span>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Expects sample names in rows</span></span>
 <span><span class="va">meta_ht</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span><span class="st">"Sample"</span><span class="op">)</span></span>
 <span></span>
@@ -1254,14 +1483,14 @@ Bonus Challenge Solution
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Add the boxplot</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
 <span>  matrix <span class="op">=</span> <span class="va">expression_data</span>,</span>
@@ -1273,7 +1502,7 @@ Bonus Challenge Solution
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
