@@ -12,6 +12,8 @@ title: "Course overview"
 
 4.  [Reading, navigating, and plotting data](course/4_qctrouble.qmd)
 
+    [**Lecture Slides Available Here**](https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/tree/main/course/slides)
+
 # Bulk RNA sequence analysis (Day 3, Mon.)
 
 * [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day3-IntroToRNA%2BDNA.pdf)

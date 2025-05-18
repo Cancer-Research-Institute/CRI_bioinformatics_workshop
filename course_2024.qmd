@@ -12,8 +12,6 @@ title: "CRI Bioinformatics Bootcamp 2024"
 
 4.  [Common challenges and additional resources](course/2024/4_qctrouble.qmd)
 
-    [**Lecture Slides Available Here**](https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/tree/main/course/slides)
-
 # Bulk RNA sequence analysis (Day 3, Mon.)
 
 * [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day1-IntroToRNA%2BDNA.pdf)
