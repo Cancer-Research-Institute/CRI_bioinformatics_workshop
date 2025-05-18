@@ -1198,7 +1198,7 @@ Bonus Challenge Solution
 </div>
 </div>
 </section><section id="other-options" class="level3"><h3 class="anchored" data-anchor-id="other-options">Other options</h3>
-<p>Another great package for composing complex heatmaps is the aptly named <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/"><code>ComplexHeatmap</code></a>. While some like the customization and syntax of <code>ggplot2</code>, the <code>ComplexHeatmap</code> can accomplish this figure with arguably far less effort. See the example below using the same code:</p>
+<p>Another great package for composing complex heatmaps is the aptly named <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/"><code>ComplexHeatmap</code></a>. While some like the customization and syntax of <code>ggplot2</code>, <code>ComplexHeatmap</code> can accomplish this figure with arguably far less effort. See the example below using the same code:</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
 <span></span>
@@ -1222,6 +1222,7 @@ Bonus Challenge Solution
 <span><span class="va">meta_ht</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span><span class="st">"Sample"</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Set up the colors</span></span>
 <span><span class="va">meta_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  <span class="st">"Condition"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Case"</span> <span class="op">=</span> <span class="st">"#BC3C29FF"</span>,</span>
@@ -1260,8 +1261,7 @@ Bonus Challenge Solution
 </div>
 <p>Add the boxplot</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Expects sample names in rows</span></span>
-<span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
 <span>  matrix <span class="op">=</span> <span class="va">expression_data</span>,</span>
@@ -1278,7 +1278,7 @@ Bonus Challenge Solution
 </div>
 </div>
 </div>
-<p>There are many additional parameters and ways to customize <code>ComplexHeatmap</code> plots. Refer to the <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html">extensive documentation</a>. In many cases it may be easier to see if you can achieve the type of plot you want with <code>ComplexHeatmap</code> before attempting one with <code>ggplot2</code>. It may help with more rapid data exploration as well since it tends to take far less code to get to a figure.</p>
+<p>There are many additional parameters and ways to customize <code>ComplexHeatmap</code> plots. Refer to the <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html">extensive documentation</a>. In many cases it may be easier to see if you can achieve the type of plot you want with <code>ComplexHeatmap</code> before attempting one with <code>ggplot2</code>. It may help with more rapid data exploration as well since it tends to take far less code to get to a quality figure.</p>
 </section></section></section><section id="where-do-i-go-for-practice" class="level1"><h1>Where do I go for practice?</h1>
 <section id="codefights" class="level2"><h2 class="anchored" data-anchor-id="codefights">CodeFights</h2>
 <p>CodeFights (now CodeSignal) offers coding challenges and exercises in R and other programming languages. Practicing coding problems can help reinforce your skills and improve your problem-solving abilities.</p>
