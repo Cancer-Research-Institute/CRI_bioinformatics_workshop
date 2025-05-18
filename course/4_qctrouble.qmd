@@ -631,7 +631,7 @@ dendro_top + ps + ps +
 
 ### Other options
 
-Another great package for composing complex heatmaps is the aptly named [`ComplexHeatmap`](https://jokergoo.github.io/ComplexHeatmap-reference/book/). While some like the customization and syntax of `ggplot2`, the `ComplexHeatmap` can accomplish this figure with arguably far less effort. See the example below using the same code:
+Another great package for composing complex heatmaps is the aptly named [`ComplexHeatmap`](https://jokergoo.github.io/ComplexHeatmap-reference/book/). While some like the customization and syntax of `ggplot2`, `ComplexHeatmap` can accomplish this figure with arguably far less effort. See the example below using the same code:
 
 ```{r}
 #| fig-width: 6
@@ -656,6 +656,7 @@ Add the column annotation following the instructions provided by the `ComplexHea
 meta_ht <- metadata %>%
   column_to_rownames("Sample")
 
+# Set up the colors
 meta_cols <- list(
   "Condition" = c(
     "Case" = "#BC3C29FF",
@@ -693,7 +694,6 @@ Add the boxplot
 ```{r}
 #| fig-width: 7
 #| fig-height: 9
-# Expects sample names in rows
 right_anno <- HeatmapAnnotation(Expression = anno_boxplot(expression_data), which = "row")
 
 Heatmap(
@@ -706,7 +706,7 @@ Heatmap(
 )
 ```
 
-There are many additional parameters and ways to customize `ComplexHeatmap` plots. Refer to the [extensive documentation](https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html). In many cases it may be easier to see if you can achieve the type of plot you want with `ComplexHeatmap` before attempting one with `ggplot2`. It may help with more rapid data exploration as well since it tends to take far less code to get to a figure.
+There are many additional parameters and ways to customize `ComplexHeatmap` plots. Refer to the [extensive documentation](https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html). In many cases it may be easier to see if you can achieve the type of plot you want with `ComplexHeatmap` before attempting one with `ggplot2`. It may help with more rapid data exploration as well since it tends to take far less code to get to a quality figure.
 
 # Where do I go for practice?
 
