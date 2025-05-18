@@ -499,29 +499,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Spatial Analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../course/python_tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro to Python</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../course/spatial_demo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro to Spatial Analysis</span></a>
-  </div>
-</li>
-      </ul>
-</li>
     </ul>
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
@@ -824,26 +801,26 @@ Building tree...
 Done in 0.01 seconds (sparsity = 0.709067)!
 Learning embedding...
 Iteration 50: error is 43.497353 (50 iterations in 0.02 seconds)
-Iteration 100: error is 43.761732 (50 iterations in 0.02 seconds)
-Iteration 150: error is 45.596069 (50 iterations in 0.02 seconds)
-Iteration 200: error is 44.171561 (50 iterations in 0.02 seconds)
-Iteration 250: error is 45.601410 (50 iterations in 0.02 seconds)
+Iteration 100: error is 43.761732 (50 iterations in 0.03 seconds)
+Iteration 150: error is 45.596069 (50 iterations in 0.03 seconds)
+Iteration 200: error is 44.171561 (50 iterations in 0.03 seconds)
+Iteration 250: error is 45.601410 (50 iterations in 0.03 seconds)
 Iteration 300: error is 0.257111 (50 iterations in 0.02 seconds)
-Iteration 350: error is 0.127160 (50 iterations in 0.01 seconds)
-Iteration 400: error is 0.124022 (50 iterations in 0.01 seconds)
-Iteration 450: error is 0.123273 (50 iterations in 0.01 seconds)
-Iteration 500: error is 0.123686 (50 iterations in 0.01 seconds)
-Iteration 550: error is 0.122445 (50 iterations in 0.01 seconds)
-Iteration 600: error is 0.121704 (50 iterations in 0.01 seconds)
-Iteration 650: error is 0.120104 (50 iterations in 0.01 seconds)
-Iteration 700: error is 0.118276 (50 iterations in 0.01 seconds)
+Iteration 350: error is 0.127160 (50 iterations in 0.02 seconds)
+Iteration 400: error is 0.124022 (50 iterations in 0.02 seconds)
+Iteration 450: error is 0.123273 (50 iterations in 0.02 seconds)
+Iteration 500: error is 0.123686 (50 iterations in 0.02 seconds)
+Iteration 550: error is 0.122445 (50 iterations in 0.02 seconds)
+Iteration 600: error is 0.121704 (50 iterations in 0.02 seconds)
+Iteration 650: error is 0.120104 (50 iterations in 0.02 seconds)
+Iteration 700: error is 0.118276 (50 iterations in 0.02 seconds)
 Iteration 750: error is 0.117021 (50 iterations in 0.01 seconds)
 Iteration 800: error is 0.116558 (50 iterations in 0.01 seconds)
 Iteration 850: error is 0.114659 (50 iterations in 0.01 seconds)
 Iteration 900: error is 0.113433 (50 iterations in 0.01 seconds)
 Iteration 950: error is 0.114671 (50 iterations in 0.01 seconds)
 Iteration 1000: error is 0.115401 (50 iterations in 0.01 seconds)
-Fitting performed in 0.27 seconds.</code></pre>
+Fitting performed in 0.38 seconds.</code></pre>
 </div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for plotting (assuming you want to include species labels)</span></span>
 <span><span class="va">tsne_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tsne_results</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span></span>
@@ -906,6 +883,7 @@ Fitting performed in 0.27 seconds.</code></pre>
 </div>
 </div>
 </div>
+<p>For additional insight into UMAP and t-SNE paramters and the theory behind them see this great <a href="https://pair-code.github.io/understanding-umap/">post</a>.</p>
 </section></section><section id="correlation" class="level1"><h1>Correlation</h1>
 <p>Correlation measures the strength and direction of the relationship between two variables. In bioinformatics, correlation analysis is often used to explore relationships between gene expression levels across different samples or experimental conditions.</p>
 <section id="spearman-vs.-pearson-correlation" class="level2"><h2 class="anchored" data-anchor-id="spearman-vs.-pearson-correlation">Spearman vs.&nbsp;Pearson Correlation</h2>
