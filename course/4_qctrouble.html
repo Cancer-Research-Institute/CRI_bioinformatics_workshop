@@ -517,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#where-should-you-start-with-a-new-dataset" id="toc-where-should-you-start-with-a-new-dataset" class="nav-link active" data-scroll-target="#where-should-you-start-with-a-new-dataset">Where should you start with a new dataset?</a></li>
   <li>
 <a href="#common-challenges" id="toc-common-challenges" class="nav-link" data-scroll-target="#common-challenges">Common challenges</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#nan-and-missing-data" id="toc-nan-and-missing-data" class="nav-link" data-scroll-target="#nan-and-missing-data"><em>NaN</em> and missing data</a></li>
   <li><a href="#data-organization-and-structure-factors" id="toc-data-organization-and-structure-factors" class="nav-link" data-scroll-target="#data-organization-and-structure-factors">Data organization and structure: Factors</a></li>
   <li><a href="#missing-packages-or-dependencies" id="toc-missing-packages-or-dependencies" class="nav-link" data-scroll-target="#missing-packages-or-dependencies">Missing packages or dependencies</a></li>
@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
   <li>
 <a href="#where-do-i-go-for-help" id="toc-where-do-i-go-for-help" class="nav-link" data-scroll-target="#where-do-i-go-for-help">Where do I go for help?</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#stack-exchange" id="toc-stack-exchange" class="nav-link" data-scroll-target="#stack-exchange">Stack Exchange</a></li>
   <li><a href="#chatgpt" id="toc-chatgpt" class="nav-link" data-scroll-target="#chatgpt">ChatGPT</a></li>
   <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices">Good practices</a></li>
@@ -540,25 +540,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-do-i-apply-the-code-ive-learned-to-my-own-data" id="toc-how-do-i-apply-the-code-ive-learned-to-my-own-data" class="nav-link" data-scroll-target="#how-do-i-apply-the-code-ive-learned-to-my-own-data">How do I apply the code I’ve learned to my own data?</a></li>
   <li>
 <a href="#additional-practice" id="toc-additional-practice" class="nav-link" data-scroll-target="#additional-practice">Additional practice</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#recreate-a-paper-figure-from-scratch" id="toc-recreate-a-paper-figure-from-scratch" class="nav-link" data-scroll-target="#recreate-a-paper-figure-from-scratch">Recreate a Paper Figure from Scratch</a></li>
   <li>
 <a href="#create-a-custom-heatmap" id="toc-create-a-custom-heatmap" class="nav-link" data-scroll-target="#create-a-custom-heatmap">Create a Custom Heatmap</a>
   <ul class="collapse">
 <li><a href="#setup-toy-data" id="toc-setup-toy-data" class="nav-link" data-scroll-target="#setup-toy-data">Setup Toy Data</a></li>
-  <li><a href="#perform-clustering" id="toc-perform-clustering" class="nav-link" data-scroll-target="#perform-clustering">Perform clustering</a></li>
+  <li>
+<a href="#approach-1---ggplot2" id="toc-approach-1---ggplot2" class="nav-link" data-scroll-target="#approach-1---ggplot2">Approach 1 - <code>ggplot2</code></a>
+  <ul class="collapse">
+<li><a href="#perform-clustering" id="toc-perform-clustering" class="nav-link" data-scroll-target="#perform-clustering">Perform clustering</a></li>
   <li><a href="#metadata-plot" id="toc-metadata-plot" class="nav-link" data-scroll-target="#metadata-plot">Metadata plot</a></li>
   <li><a href="#add-dendrograms" id="toc-add-dendrograms" class="nav-link" data-scroll-target="#add-dendrograms">Add Dendrograms</a></li>
   <li><a href="#put-it-all-together" id="toc-put-it-all-together" class="nav-link" data-scroll-target="#put-it-all-together">Put it all together</a></li>
   <li><a href="#bonus-challenge" id="toc-bonus-challenge" class="nav-link" data-scroll-target="#bonus-challenge">Bonus Challenge</a></li>
-  <li><a href="#other-options" id="toc-other-options" class="nav-link" data-scroll-target="#other-options">Other options</a></li>
+  </ul>
+</li>
+  <li><a href="#approach-2---live-recreation-using-ggplot2" id="toc-approach-2---live-recreation-using-ggplot2" class="nav-link" data-scroll-target="#approach-2---live-recreation-using-ggplot2">Approach 2 - Live Recreation using <code>ggplot2</code></a></li>
+  <li><a href="#approach-3---complexheatmap" id="toc-approach-3---complexheatmap" class="nav-link" data-scroll-target="#approach-3---complexheatmap">Approach 3 - <code>ComplexHeatmap</code></a></li>
   </ul>
 </li>
   </ul>
 </li>
   <li>
 <a href="#where-do-i-go-for-practice" id="toc-where-do-i-go-for-practice" class="nav-link" data-scroll-target="#where-do-i-go-for-practice">Where do I go for practice?</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#codefights" id="toc-codefights" class="nav-link" data-scroll-target="#codefights">CodeFights</a></li>
   </ul>
 </li>
@@ -1046,7 +1052,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  Drug <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"DrugA"</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"DrugB"</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"DrugC"</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"DrugD"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we have a matrix of gene expression values:</p>
+</section><section id="approach-1---ggplot2" class="level3"><h3 class="anchored" data-anchor-id="approach-1---ggplot2">Approach 1 - <code>ggplot2</code>
+</h3>
+<p>We have a matrix of gene expression values:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="datatables html-widget html-fill-item" id="htmlwidget-b1cd96b95228713638ca" style="width:100%;height:auto;"></div>
@@ -1095,7 +1103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="perform-clustering" class="level3"><h3 class="anchored" data-anchor-id="perform-clustering">Perform clustering</h3>
+<section id="perform-clustering" class="level4"><h4 class="anchored" data-anchor-id="perform-clustering">Perform clustering</h4>
 <p>It seems there are some patterns in the data, but at this point the samples and genes are not yet clustered.</p>
 <p>To view the structure in the data we will first cluster on samples:</p>
 <div class="cell">
@@ -1158,7 +1166,7 @@ What does <code>plot.margin</code> do?
 </div>
 </div>
 </div>
-</section><section id="metadata-plot" class="level3"><h3 class="anchored" data-anchor-id="metadata-plot">Metadata plot</h3>
+</section><section id="metadata-plot" class="level4"><h4 class="anchored" data-anchor-id="metadata-plot">Metadata plot</h4>
 <p>Create the metadata plot in ggplot.</p>
 <div class="cell">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://eliocamp.github.io/ggnewscale/">ggnewscale</a></span><span class="op">)</span></span>
@@ -1252,7 +1260,7 @@ Why do we use <code>ggnewscale</code>?
 </div>
 </div>
 </div>
-</section><section id="add-dendrograms" class="level3"><h3 class="anchored" data-anchor-id="add-dendrograms">Add Dendrograms</h3>
+</section><section id="add-dendrograms" class="level4"><h4 class="anchored" data-anchor-id="add-dendrograms">Add Dendrograms</h4>
 <p>Now we will use <a href="https://andrie.github.io/ggdendro/"><code>ggdendro</code></a> to add dendrograms in the margins.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -1332,7 +1340,7 @@ Plot alignment tip using <code><a href="https://ggplot2.tidyverse.org/reference/
 </div>
 </div>
 </div>
-</section><section id="put-it-all-together" class="level3"><h3 class="anchored" data-anchor-id="put-it-all-together">Put it all together</h3>
+</section><section id="put-it-all-together" class="level4"><h4 class="anchored" data-anchor-id="put-it-all-together">Put it all together</h4>
 <p>Now we need to combine all of these plots together. We think of each plot as a patch in a grid, and also use the <code><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer()</a></code> function from <code>patchwork</code> to fill in the empty gap in this figure.</p>
 <div class="cell">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># To help we are going to customize each plot margin now to make sure things fit nicely</span></span>
@@ -1370,7 +1378,7 @@ Plot alignment tip using <code><a href="https://ggplot2.tidyverse.org/reference/
 </div>
 </div>
 </div>
-</section><section id="bonus-challenge" class="level3"><h3 class="anchored" data-anchor-id="bonus-challenge">Bonus Challenge</h3>
+</section><section id="bonus-challenge" class="level4"><h4 class="anchored" data-anchor-id="bonus-challenge">Bonus Challenge</h4>
 <p>Can you add a boxplot summarizing the mean expression of each gene to the right of this plot (in between the dendrogram and the main heatmap)? Think carefully about which data should be input to create this plot. Give it a try before opening up the solution below:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -1431,10 +1439,112 @@ Bonus Challenge Solution
 </div>
 </div>
 </div>
-</section><section id="other-options" class="level3"><h3 class="anchored" data-anchor-id="other-options">Other options</h3>
+</section></section><section id="approach-2---live-recreation-using-ggplot2" class="level3"><h3 class="anchored" data-anchor-id="approach-2---live-recreation-using-ggplot2">Approach 2 - Live Recreation using <code>ggplot2</code>
+</h3>
+<p>Recreated live with just the input data and final plot. Note the similarities and differences to the first approach.</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://andrie.github.io/ggdendro/">ggdendro</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">expression_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"Gene"</span><span class="op">)</span></span>
+<span><span class="va">expression_long</span> <span class="op">&lt;-</span> <span class="va">expression_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="va">Sample_ID</span>, <span class="va">Expression</span>, <span class="op">-</span><span class="va">Gene</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">expression_data</span>, method <span class="op">=</span> <span class="st">'euclidean'</span><span class="op">)</span></span>
+<span><span class="va">hclust_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">dist_mat</span>, method <span class="op">=</span> <span class="st">'ward.D2'</span><span class="op">)</span></span>
+<span><span class="va">dendro_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hclust_mat</span><span class="op">)</span></span>
+<span><span class="co"># Convert the dendrogram object to a data frame for ggplot2</span></span>
+<span><span class="va">dendro_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/dendro_data.html">dendro_data</a></span><span class="op">(</span><span class="va">dendro_mat</span><span class="op">)</span></span>
+<span><span class="va">order_genes</span> <span class="op">&lt;-</span> <span class="va">dendro_mat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">expression_long</span><span class="op">$</span><span class="va">Gene</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">expression_long</span><span class="op">$</span><span class="va">Gene</span>, levels <span class="op">=</span> <span class="va">order_genes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the ggplot2 object: Gene dendrogram </span></span>
+<span><span class="va">for_gene_dendro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/segment.html">segment</a></span><span class="op">(</span><span class="va">dendro_data</span><span class="op">)</span></span>
+<span><span class="va">gene_dendrogram</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">for_gene_dendro</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, xend <span class="op">=</span> <span class="va">xend</span>, yend <span class="op">=</span> <span class="va">yend</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">for_gene_dendro</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">+</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">for_gene_dendro</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">*</span><span class="fl">1.05</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span><span class="co"># Optional: Flip the dendrogram horizontally</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span><span class="co"># Adjust vertical axis</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">'euclidean'</span><span class="op">)</span></span>
+<span><span class="va">hclust_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">dist_mat</span>, method <span class="op">=</span> <span class="st">'ward.D2'</span><span class="op">)</span></span>
+<span><span class="va">dendro_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html">as.dendrogram</a></span><span class="op">(</span><span class="va">hclust_mat</span><span class="op">)</span></span>
+<span><span class="co"># Convert the dendrogram object to a data frame for ggplot2</span></span>
+<span><span class="va">dendro_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/dendro_data.html">dendro_data</a></span><span class="op">(</span><span class="va">dendro_mat</span><span class="op">)</span></span>
+<span><span class="va">order_samples</span> <span class="op">&lt;-</span> <span class="va">dendro_mat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the ggplot2 object</span></span>
+<span><span class="va">for_sample_dendro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://andrie.github.io/ggdendro/reference/segment.html">segment</a></span><span class="op">(</span><span class="va">dendro_data</span><span class="op">)</span></span>
+<span><span class="va">sample_dendrogram</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">for_sample_dendro</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, xend <span class="op">=</span> <span class="va">xend</span>, yend <span class="op">=</span> <span class="va">yend</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">for_sample_dendro</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">+</span><span class="fl">0.5</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">for_sample_dendro</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">*</span><span class="fl">1.05</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">expression_long</span><span class="op">$</span><span class="va">Sample_ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">expression_long</span><span class="op">$</span><span class="va">Sample_ID</span>, levels <span class="op">=</span> <span class="va">order_samples</span><span class="op">)</span></span>
+<span><span class="va">heatmap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">expression_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sample_ID</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Gene</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">Expression</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">'white'</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">order_genes</span><span class="op">)</span>, labels <span class="op">=</span> <span class="va">order_genes</span>,</span>
+<span>                     sec.axis <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html">sec_axis</a></span><span class="op">(</span><span class="op">~</span> <span class="va">.</span>, breaks <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">order_genes</span><span class="op">)</span>, labels <span class="op">=</span> <span class="va">order_genes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_distiller</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">'RdBu'</span>, </span>
+<span>                       limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">6.5</span>, <span class="fl">6.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.title.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.ticks.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.text.y.right <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">'italic'</span><span class="op">)</span>,</span>
+<span>        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># </span></span>
+<span><span class="va">metas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Condition'</span>,<span class="st">'Gender'</span>,<span class="st">'Drug'</span><span class="op">)</span></span>
+<span><span class="va">metadata</span><span class="op">$</span><span class="va">Sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">Sample</span>, levels <span class="op">=</span> <span class="va">order_samples</span><span class="op">)</span></span>
+<span><span class="va">color_palettes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">'Condition'</span> <span class="op">=</span> <span class="st">'Set1'</span>,</span>
+<span>                       <span class="st">'Gender'</span> <span class="op">=</span> <span class="st">'Set2'</span>,</span>
+<span>                       <span class="st">'Drug'</span> <span class="op">=</span> <span class="st">'Dark2'</span><span class="op">)</span></span>
+<span><span class="va">meta_plots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">metas</span>, <span class="kw">function</span><span class="op">(</span><span class="va">variable</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">metadata</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sample</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_.html">aes_string</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">variable</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">'white'</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="va">color_palettes</span><span class="op">[[</span><span class="va">variable</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, label <span class="op">=</span> <span class="va">variable</span>,</span>
+<span>                       sec.axis <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html">sec_axis</a></span><span class="op">(</span><span class="op">~</span> <span class="va">.</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, label <span class="op">=</span> <span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.text.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.title.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          axis.ticks.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>          plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, unit <span class="op">=</span> <span class="st">'line'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="va">meta_plots_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">wrap_plots</a></span><span class="op">(</span><span class="va">meta_plots</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">sample_dendrogram</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">meta_plots_full</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">meta_plots_full</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">meta_plots_full</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>  <span class="va">gene_dendrogram</span> <span class="op">+</span> <span class="va">heatmap</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html">plot_layout</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">order_genes</span><span class="op">)</span><span class="op">)</span>, guides <span class="op">=</span> <span class="st">'collect'</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, <span class="st">'line'</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="approach-3---complexheatmap" class="level3"><h3 class="anchored" data-anchor-id="approach-3---complexheatmap">Approach 3 - <code>ComplexHeatmap</code>
+</h3>
 <p>Another great package for composing complex heatmaps is the aptly named <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/"><code>ComplexHeatmap</code></a>. While some like the customization and syntax of <code>ggplot2</code>, <code>ComplexHeatmap</code> can accomplish this figure with arguably far less effort. See the example below using the same code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/ComplexHeatmap">ComplexHeatmap</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Note that ComplexHeatmap uses the matrix directly</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
@@ -1445,14 +1555,14 @@ Bonus Challenge Solution
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Add the column annotation following the instructions provided by the <code>ComplexHeatmap</code> authors <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html">here</a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Expects sample names in rows</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Expects sample names in rows</span></span>
 <span><span class="va">meta_ht</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">column_to_rownames</a></span><span class="op">(</span><span class="st">"Sample"</span><span class="op">)</span></span>
 <span></span>
@@ -1488,14 +1598,14 @@ Bonus Challenge Solution
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Add the boxplot</p>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">right_anno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/HeatmapAnnotation.html">HeatmapAnnotation</a></span><span class="op">(</span>Expression <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/anno_boxplot.html">anno_boxplot</a></span><span class="op">(</span><span class="va">expression_data</span><span class="op">)</span>, which <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html">Heatmap</a></span><span class="op">(</span></span>
 <span>  matrix <span class="op">=</span> <span class="va">expression_data</span>,</span>
@@ -1507,7 +1617,7 @@ Bonus Challenge Solution
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="4_qctrouble_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
