@@ -267,6 +267,9 @@ ggplot(iris_umap, aes(x = X1, y = X2, color = Species)) +
   theme_minimal()
 ```
 
+
+For additional insight into UMAP and t-SNE paramters and the theory behind them see this great [post](https://pair-code.github.io/understanding-umap/).
+
 # Correlation
 
 Correlation measures the strength and direction of the relationship between two variables. In bioinformatics, correlation analysis is often used to explore relationships between gene expression levels across different samples or experimental conditions.

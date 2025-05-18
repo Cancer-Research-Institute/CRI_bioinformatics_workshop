@@ -96,10 +96,6 @@ website:
             - href: [https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/]
               text: TCR/BCR Repertoire Analysis
               target: _blank
-        - section: "Spatial Analysis"
-          contents: 
-            - course/python_tutorial.ipynb
-            - course/spatial_demo.ipynb
 
 format:
   html:
