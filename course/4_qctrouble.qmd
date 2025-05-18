@@ -573,19 +573,31 @@ Now we need to combine all of these plots together. We think of each plot as a p
 #| fig-height: 11
 # To help we are going to customize each plot margin now to make sure things fit nicely
 # Note the default for margin is 0 space on all sides
-dendro_top <- dendro_top + theme(plot.margin = margin())
-metadata_plot <- metadata_plot + theme(plot.margin = margin())
-heatmap_plot <- heatmap_plot + theme(plot.margin = margin())
-dendro_side <- dendro_side + theme(plot.margin = margin())
+dendro_top_final <- dendro_top + 
+  theme(plot.margin = margin()) + 
+  scale_x_discrete(expand = expansion(mult = c(0.025, 0.025)))
+
+metadata_plot_final <- metadata_plot + 
+  theme(plot.margin = margin()) + 
+  scale_x_discrete(expand = c(0,0))
+
+heatmap_plot_final <- heatmap_plot + 
+  theme(plot.margin = margin()) + 
+  scale_x_discrete(expand = expansion(mult = c(0, 0))) +
+  scale_y_discrete(expand = c(0, 0))
+
+dendro_side_final <- dendro_side + 
+  theme(plot.margin = margin()) + 
+  scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)))
 
 # The default plot spacer has too much space for our purposes so we set
 # plot.margin to be 0
 ps <- plot_spacer() + theme(plot.margin = margin())
 
 # Plot the plot!
-dendro_top + ps +
-  metadata_plot + ps +
-  heatmap_plot + dendro_side +
+dendro_top_final + ps +
+  metadata_plot_final + ps +
+  heatmap_plot_final + dendro_side_final +
   plot_layout(ncol = 2, widths = c(1, 0.25), heights = c(1, 1, rel_height), guides = "collect")
 ```
 
@@ -618,31 +630,26 @@ Now we add this into our big patchwork. Note: we also have to add extra spacers 
 ```{r}
 #| fig-width: 7
 #| fig-height: 11
-# To help we are going to customize each plot margin now to make sure things fit nicely
-# Note the default for margin is 0 space on all sides
-dendro_top <- dendro_top + theme(plot.margin = margin())
-metadata_plot <- metadata_plot + theme(plot.margin = margin())
-heatmap_plot <- heatmap_plot + theme(plot.margin = margin())
-dendro_side <- dendro_side + theme(plot.margin = margin())
+
 # Also remove the axis text. We kept to verify the gene ordering
-genexp_boxplot <- genexp_boxplot + theme(
-  axis.text.y = element_blank(),
-  axis.ticks.y = element_blank(),
-  plot.margin = margin()
-)
+genexp_boxplot_final <- genexp_boxplot + 
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    plot.margin = margin()
+    )
+
 # The default plot spacer has too much space for our purposes so we set
 # plot.margin to be 0
 ps <- plot_spacer() + theme(plot.margin = margin())
 
 # Plot the plot!
-dendro_top + ps + ps +
-  metadata_plot + ps + ps +
-  heatmap_plot + free(genexp_boxplot, type = "label", side = "b") + dendro_side +
+dendro_top_final + ps + ps +
+  metadata_plot_final + ps + ps +
+  heatmap_plot_final + free(genexp_boxplot_final, type = "label", side = "b") + dendro_side_final +
   plot_layout(ncol = 3, widths = c(1, 0.25, 0.25), heights = c(1, 1, rel_height), guides = "collect")
 ```
 :::
-
-
 
 ### Other options
 
