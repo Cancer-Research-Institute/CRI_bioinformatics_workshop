@@ -34,8 +34,8 @@ title: "Course overview"
 
 # Single cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)
 
-* [Introduction to scRNA sequencing technology lecture slides (Obi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day2-IntroToSCRNA.pdf)
-* [Introduction to scRNA sequencing analysis lecture slides (Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/Day3-AdvancedSCRNA.pdf)
+* [Introduction to scRNA sequencing technology lecture slides (Obi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day4-IntroToSCRNA.pdf)
+* [Introduction to scRNA sequencing analysis lecture slides (Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day5-AdvancedSCRNA.pdf)
 
 1. [Introduction to scRNAseq dataset](https://rnabio.org/module-08-scrna/0008/01/02/scRNA_Data/) (Lead: Malachi)
 
@@ -49,7 +49,7 @@ title: "Course overview"
 
 6. [Cancer Cell Identification](https://rnabio.org/module-08-scrna/0008/06/01/Cancer_cell_identification/) (Lead: Kartik)
 
-7. [Trajectory Analysis](https://rnabio.org/module-08-scrna/0008/07/01/Differentiation_trajectory/) (Lead: Evelyn/Malachi)
+7. [Trajectory Analysis](https://rnabio.org/module-08-scrna/0008/07/01/Differentiation_trajectory/) (Lead: Evelyn)
 
 8. [TCR/BCR Repertoire Analysis](https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/) (Lead: Obi)
 
