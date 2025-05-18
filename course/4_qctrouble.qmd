@@ -246,7 +246,7 @@ final_plot
 
 Here we will use the excellent R package [`patchwork`](https://patchwork.data-imaginist.com/) to compose a complex heatmap, that is both clustered and plotted next to relevant sample metadata and dendrograms.
 
-![](ggplot_heatmap.png)
+![](ggplot_heatmap.png){width=4in fig-align="center"}
 
 ### Setup Toy Data
 
@@ -510,7 +510,7 @@ combined_plot
 Now we will use [`ggdendro`](https://andrie.github.io/ggdendro/) to add dendrograms in the margins. 
 
 ::: {.callout-tip collapse="true"}
-Another good package for plotting 'tree' (aka hierarchical trees) data this is [`ggtree`](https://bioconductor.org/packages/release/bioc/html/ggtree.html).
+Another good package for plotting 'tree' (aka hierarchical trees) data is [`ggtree`](https://bioconductor.org/packages/release/bioc/html/ggtree.html).
 :::
 
 ```{r}
