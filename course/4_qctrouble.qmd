@@ -7,7 +7,7 @@ format:
     code-link: true
     other-links:
       - text: Lecture Slides
-        href: https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/blob/40bb4c89f64949742992527fa8c3e2081bee4117/course/slides/CRI%20Bioinformatics%20Bootcamp%202025%20Day%202PM.pdf
+        href: https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/blob/main/course/slides/CRI%20Bioinformatics%20Bootcamp%202025%20Day%202PM.pdf
 engine: knitr
 ---
 
