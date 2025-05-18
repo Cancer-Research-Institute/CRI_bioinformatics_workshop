@@ -1,5 +1,5 @@
 ---
-title: "Common challenges and additional resources"
+title: "Reading, navigating, and plotting data"
 execute:
   warning: false
 format:
@@ -242,7 +242,7 @@ final_plot <- log2_df_filter_wide %>%
 final_plot
 ```
 
-## Custom Heatmap
+## Create a Custom Heatmap
 
 Here we will use the excellent R package [`patchwork`](https://patchwork.data-imaginist.com/) to compose a complex heatmap, that is both clustered and plotted next to relevant sample metadata and dendrograms.
 
@@ -552,6 +552,15 @@ dendro_side <- ggdendrogram(hclust_genes, rotate = TRUE, theme_dendro = TRUE) +
 (heatmap_plot + scale_y_discrete(expand = expansion(mult = c(0, 0)))) + dendro_side + plot_layout(nrow = 1, widths = c(1, 0.25), guides = "collect", axes = "collect")
 ```
 
+::: {.callout-tip collapse="true"}
+### Plot alignment tip using `expansion()`:
+What is `scale_y_continuous(expand = expansion(mult = c(0, 0.05)))` doing? 
+
+We use this to adjust the total space the given axis takes up in the panel -- either stretching the axis to fill the plot, or leave a slight gap either below/above (for the y-axis) or left/right (for the x-axis). See the function [documentation](https://ggplot2.tidyverse.org/reference/expansion.html) for more explanation and examples.
+
+So why do we need this? This is needed because we want to ensure the dendrogram is aligned with the main heatmap plot. In this case it required a bit of tweaking to get the values correct. Feel free to adjust the values or remove these adjustments entirely to see what happens!
+:::
+
 ### Put it all together
 
 Now we need to combine all of these plots together. We think of each plot as a patch in a grid, and also use the `plot_spacer()` function from `patchwork` to fill in the empty gap in this figure.
@@ -717,6 +726,3 @@ There are many additional parameters and ways to customize `ComplexHeatmap` plot
 
 CodeFights (now CodeSignal) offers coding challenges and exercises in R and other programming languages. Practicing coding problems can help reinforce your skills and improve your problem-solving abilities.
 
-# Lecture Slides
-
-The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/CRI%20Day%202%20PM.pdf).

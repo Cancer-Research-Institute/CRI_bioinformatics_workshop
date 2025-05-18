@@ -743,10 +743,3 @@ codons <- str_sub(sequence, seq(1, str_length(sequence), by = 3), seq(3, str_len
 
 print(codons)
 ```
-
-# Lecture Slides
-
-The slides for this lecture are available [here](https://github.com/crigrants/CRI_bioinformatics_workshop/blob/main/course/R%20workshop%20Day%201%20AM.pdf) 
-
-
-

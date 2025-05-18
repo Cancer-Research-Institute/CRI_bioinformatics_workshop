@@ -10,7 +10,7 @@ title: "Course overview"
 
 3.  [Clustering concepts and correlation](course/3_clustering.qmd)
 
-4.  [Common challenges and additional resources](course/4_qctrouble.qmd)
+4.  [Reading, navigating, and plotting data](course/4_qctrouble.qmd)
 
 # Bulk RNA sequence analysis (Day 3, Mon.)
 
