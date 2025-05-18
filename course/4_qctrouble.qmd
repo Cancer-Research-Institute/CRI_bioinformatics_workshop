@@ -17,16 +17,27 @@ The key to accomplishing any analysis is to start by understand what your data l
 -   What is the size of the dataset?
 -   What types of questions can I ask of the data?
 
-``` r
-
+```{r}
 library(dplyr)
 
-file <- "/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"
-print(file)
+variant_file <- "/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"
+print(variant_file)
+```
 
+
+```r
 # File is a "tsv" file -> Tab-delimited file
-read_tsv <- read.csv(file, sep = '\t')
+read_tsv <- read.csv(variant_file, sep = '\t')
+```
 
+```{r}
+#| include: false
+read_tsv <- read.csv(file = "data/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv", sep = "\t")
+```
+
+Now we can explore the file we just loaded:
+
+```{r}
 # Look at the file: View(), head(), or click on it to the right
 View(read_tsv)
 head(read_tsv)
@@ -45,7 +56,7 @@ Dealing with missing data and NaN (Not a Number) values is a common challenge in
 
 **Example**:
 
-``` r
+```{r}
 # Creating a dataframe with missing values
 df <- data.frame(
   x = c(1, 2, NA, 4),
@@ -56,8 +67,7 @@ df <- data.frame(
 sum(is.na(df))
 ```
 
-``` r
-
+```{r}
 # Understanding missing or sparse information
 summary(read_tsv)
 read_tsv[!complete.cases(read_tsv),]
@@ -67,13 +77,8 @@ read_tsv[!complete.cases(read_tsv),]
 
 Columns that contain strings are automatically read in as character vectors and are arranged alphanumericall. *Factors* assign a logical order to a series of samples.
 
-``` r
-file <- "/cloud/project/data/single_cell_rna/cancer_cell_id/mcb6c-exome-somatic.variants.annotated.clean.filtered.tsv"
-print(file)
-
-# File is a "tsv" file -> Tab-delimited file
-read_tsv <- read.csv(file, sep = '\t')
-
+```{r}
+library(ggplot2)
 # Organize the chromosomes to the correct order
 # If CHROM is a character vector, the chromosomes are not ordered properly
 str(read_tsv) # Shows that CHROM variable is a character vector
@@ -103,7 +108,7 @@ ggplot(df, aes(x, y)) + geom_point()
 
 ## Stack Exchange
 
-Online communities like Stack Exchange, particularly the Stack Overflow platform, are excellent resources for getting help with R programming. You can search for solutions to specific problems or ask questions if you're facing challenges. If you attempt to Google what you're trying to accomplish with your dataset, StackExchange often includes responses from others who may have gone through this effort before. With the open crowdsourcing of troubleshooting, these responses that work for others are "upvoted" so that you can try to adapt the code to work for your dataset. Importantly, take care to change the names of variables and file paths in any code that you try to implement from others.
+Online communities like [Stack Exchange](https://stackexchange.com/tour), particularly the [Stack Overflow](https://stackoverflow.com/questions) platform, are excellent resources for getting help with R programming. You can search for solutions to specific problems or ask questions if you're facing challenges. If you attempt to Google what you're trying to accomplish with your dataset, StackExchange often includes responses from others who may have gone through this effort before. With the open crowdsourcing of troubleshooting, these responses that work for others are "upvoted" so that you can try to adapt the code to work for your dataset. Importantly, take care to change the names of variables and file paths in any code that you try to implement from others.
 
 ## ChatGPT
 
@@ -126,7 +131,6 @@ Once you've learned R programming basics, applying the code to your own data inv
 # Additional practice
 
 ``` r
-
 # Read in the file "/cloud/project/data/bulk_rna/GSE48035_ILMN.Counts.SampleSubset.ProteinCodingGenes.tsv"
 # Describe the size, shape, and organization of this data file.
 
@@ -242,6 +246,12 @@ final_plot
 
 Here we will use the excellent R package [`patchwork`](https://patchwork.data-imaginist.com/) to compose a complex heatmap, that is both clustered and plotted next to relevant sample metadata and dendrograms.
 
+![](ggplot_heatmap.png)
+
+### Setup Toy Data
+
+NOTE: This is not important for understanding how to plot, but kept here in case you want to adjust some of these parameters to see what happens!
+
 ```{r}
 # Load necessary libraries
 library(tidyverse)
@@ -249,10 +259,6 @@ library(patchwork)
 
 # Set seed for reproducibility
 set.seed(3)
-
-### GENERATE TOY DATA ###
-# NOTE: This is not important for understanding how to plot, but kept here
-# in case you want to adjust some of these parameters to see what happens!
 
 # Generate gene expression data
 genes <- paste0("Gene", 1:50)
@@ -283,9 +289,7 @@ metadata <- data.frame(
 )
 ```
 
-
 Now we have a matrix of gene expression values:
-
 
 ```{r}
 #| echo: false
@@ -300,9 +304,7 @@ datatable(
 )
 ```
 
-
 And associated metadata:
-
 
 ```{r}
 #| echo: false
@@ -318,7 +320,7 @@ datatable(
 ```
 
 
-Let's reshape our data into long format to make it possible to plot with `ggplot2`
+Let's reshape our data into long format to make it possible to plot with `ggplot2`:
 
 ```{r}
 # Reshape the data into long format for ggplot2. Here we use the tidyverse
@@ -348,6 +350,7 @@ datatable(
   filter = list(position = "top")
 )
 ```
+
 We plot using the `tile` geom from ggplot2.
 
 ```{r}
@@ -390,7 +393,7 @@ hclust_genes <- hclust(dist_matrix_genes, method = "ward.D2")
 ordered_genes <- hclust_genes$labels[hclust_genes$order]
 ```
 
-Now we can reorder the input data as we plot using the `fct_relevel()`
+Now we can reorder the input data as we plot using `fct_relevel()`
 
 ```{r}
 #| fig-width: 5
