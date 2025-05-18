@@ -5,6 +5,7 @@ execute:
 format:
   html:
     code-link: true
+    toc-depth: 4
     other-links:
       - text: Lecture Slides
         href: https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/blob/main/course/slides/CRI%20Bioinformatics%20Bootcamp%202025%20Day%202PM.pdf
@@ -292,7 +293,9 @@ metadata <- data.frame(
 )
 ```
 
-Now we have a matrix of gene expression values:
+### Approach 1 - `ggplot2`
+
+We have a matrix of gene expression values:
 
 ```{r}
 #| echo: false
@@ -368,7 +371,7 @@ heatmap_plot <- ggplot(expression_long, aes(x = Sample, y = Gene, fill = Express
 heatmap_plot
 ```
 
-### Perform clustering
+####  Perform clustering
 
 It seems there are some patterns in the data, but at this point the samples and genes are not yet clustered. 
 
@@ -416,7 +419,7 @@ heatmap_plot
 ```
 
 ::: {.callout-tip collapse="true"}
-### What does `plot.margin` do?
+#### What does `plot.margin` do?
 
 To improve aesthetics, we carefully control the spacing around plots using the theme element `plot.margin`. This option is specified by using a function called `margin()` and tells ggplot how much space to leave around your plots:
 ```r
@@ -427,7 +430,7 @@ plot +
 ```
 :::
 
-### Metadata plot
+#### Metadata plot
 
 Create the metadata plot in ggplot.
 
@@ -481,7 +484,7 @@ metadata_plot + coord_fixed() # We add coord fixed just to fit with legend
 ```
 
 ::: {.callout-tip collapse="true"}
-### Why do we use `ggnewscale`?
+#### Why do we use `ggnewscale`?
 
 We are using a package called [`ggnewscale`](https://eliocamp.github.io/ggnewscale/) to specify three distinct color scales for the seperate `geom_tile()` metadata rows. We then set `guide=...` within the `geom_tile()` function to specify the order of the legends. If we didn't do this, the legends would be merged across all metadata categories, which we don't want.
 :::
@@ -508,7 +511,7 @@ combined_plot <- metadata_plot + heatmap_plot +
 combined_plot
 ```
 
-### Add Dendrograms
+#### Add Dendrograms
 
 Now we will use [`ggdendro`](https://andrie.github.io/ggdendro/) to add dendrograms in the margins. 
 
@@ -556,7 +559,7 @@ dendro_side <- ggdendrogram(hclust_genes, rotate = TRUE, theme_dendro = TRUE) +
 ```
 
 ::: {.callout-tip collapse="true"}
-### Plot alignment tip using `expansion()`:
+#### Plot alignment tip using `expansion()`:
 What is `scale_y_continuous(expand = expansion(mult = c(0, 0.05)))` doing? 
 
 We use this to adjust the total space the given axis takes up in the panel -- either stretching the axis to fill the plot, or leave a slight gap either below/above (for the y-axis) or left/right (for the x-axis). See the function [documentation](https://ggplot2.tidyverse.org/reference/expansion.html) for more explanation and examples.
@@ -564,7 +567,7 @@ We use this to adjust the total space the given axis takes up in the panel -- ei
 So why do we need this? This is needed because we want to ensure the dendrogram is aligned with the main heatmap plot. In this case it required a bit of tweaking to get the values correct. Feel free to adjust the values or remove these adjustments entirely to see what happens!
 :::
 
-### Put it all together
+#### Put it all together
 
 Now we need to combine all of these plots together. We think of each plot as a patch in a grid, and also use the `plot_spacer()` function from `patchwork` to fill in the empty gap in this figure.
 
@@ -601,13 +604,12 @@ dendro_top_final + ps +
   plot_layout(ncol = 2, widths = c(1, 0.25), heights = c(1, 1, rel_height), guides = "collect")
 ```
 
-
-###  Bonus Challenge
+####  Bonus Challenge
 
 Can you add a boxplot summarizing the mean expression of each gene to the right of this plot (in between the dendrogram and the main heatmap)? Think carefully about which data should be input to create this plot. Give it a try before opening up the solution below:
 
 ::: {.callout-note collapse="true"}
-### Bonus Challenge Solution
+#### Bonus Challenge Solution
 
 First create the boxplot using the long form expression data. Note that because the boxplot is going to be horizontal, the x-axis represents the numeric expression values, while the y-axis represents the individual genes. Also, don't forget to reorder the genes
 
@@ -651,7 +653,107 @@ dendro_top_final + ps + ps +
 ```
 :::
 
-### Other options
+### Approach 2 - Live Recreation using `ggplot2`
+
+Recreated live with just the input data and final plot. Note the similarities and differences to the first approach.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 9
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggdendro)
+library(patchwork)
+
+expression_df <- as.data.frame(expression_data) %>% 
+  tibble::rownames_to_column("Gene")
+expression_long <- expression_df %>% 
+  gather(Sample_ID, Expression, -Gene)
+
+dist_mat <- dist(expression_data, method = 'euclidean')
+hclust_mat <- hclust(dist_mat, method = 'ward.D2')
+dendro_mat <- as.dendrogram(hclust_mat)
+# Convert the dendrogram object to a data frame for ggplot2
+dendro_data <- dendro_data(dendro_mat)
+order_genes <- dendro_mat %>% labels(.)
+#
+expression_long$Gene <- factor(expression_long$Gene, levels = order_genes)
+
+# Create the ggplot2 object: Gene dendrogram 
+for_gene_dendro <- segment(dendro_data)
+gene_dendrogram <- ggplot(for_gene_dendro) +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) +
+  scale_x_continuous(limits = c(0.5, max(for_gene_dendro$x)+0.5)) +
+  scale_y_continuous(limits = c(0, max(for_gene_dendro$y)*1.05)) +
+  coord_flip(expand = 0) +# Optional: Flip the dendrogram horizontally
+  scale_y_reverse() +# Adjust vertical axis
+  theme_void()
+#
+dist_mat <- dist(t(expression_data), method = 'euclidean')
+hclust_mat <- hclust(dist_mat, method = 'ward.D2')
+dendro_mat <- as.dendrogram(hclust_mat)
+# Convert the dendrogram object to a data frame for ggplot2
+dendro_data <- dendro_data(dendro_mat)
+order_samples <- dendro_mat %>% labels(.)
+
+# Create the ggplot2 object
+for_sample_dendro <- segment(dendro_data)
+sample_dendrogram <- ggplot(for_sample_dendro) +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) +
+  scale_x_continuous(limits = c(0.5, max(for_sample_dendro$x)+0.5), expand = c(0,0)) +
+  scale_y_continuous(limits = c(0, max(for_sample_dendro$y)*1.05)) +
+  theme_void()
+
+expression_long$Sample_ID <- factor(expression_long$Sample_ID, levels = order_samples)
+heatmap <- ggplot(expression_long, aes(x = Sample_ID, y = as.numeric(Gene), fill = Expression)) +
+  geom_tile(colour = 'white', linewidth = 0.1) +
+  scale_y_continuous(breaks = 1:length(order_genes), labels = order_genes,
+                     sec.axis = sec_axis(~ ., breaks = 1:length(order_genes), labels = order_genes)) +
+  coord_cartesian(expand = 0) +
+  scale_fill_distiller(palette = 'RdBu', 
+                       limits = c(-6.5, 6.5)) +
+  theme(axis.text.y.left = element_blank(),
+        axis.title.y.left = element_blank(),
+        axis.ticks.y.left = element_blank(),
+        axis.text.y.right = element_text(face = 'italic'),
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+# 
+metas <- c('Condition','Gender','Drug')
+metadata$Sample <- factor(metadata$Sample, levels = order_samples)
+color_palettes <- list('Condition' = 'Set1',
+                       'Gender' = 'Set2',
+                       'Drug' = 'Dark2')
+meta_plots <- lapply(metas, function(variable){
+  ggplot(metadata, aes(x = Sample, y = 1)) +
+    geom_tile(aes_string(fill = variable), colour = 'white', linewidth = 0.1) +
+    scale_fill_brewer(palette = color_palettes[[variable]]) +
+    scale_y_continuous(breaks = c(1), label = variable,
+                       sec.axis = sec_axis(~ ., breaks = c(1), label = variable)) +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.y.left = element_blank(),
+          axis.title.y.left = element_blank(),
+          axis.ticks.y.left = element_blank(),
+          plot.margin = margin(0, 0, 0, 0, unit = 'line'))
+})
+meta_plots_full <- wrap_plots(meta_plots) +
+  plot_layout(ncol = 1)
+
+plot_spacer() + sample_dendrogram +
+  plot_spacer() + meta_plots_full[[1]] + 
+  plot_spacer() + meta_plots_full[[2]] + 
+  plot_spacer() + meta_plots_full[[3]] + 
+  gene_dendrogram + heatmap +
+  plot_layout(ncol = 2, widths = c(1, 8), heights = c(3, 1, 1, 1, length(order_genes)), guides = 'collect') &
+  theme(plot.margin = unit(c(0,0,0,0), 'line'))
+```
+
+
+### Approach 3 - `ComplexHeatmap`
 
 Another great package for composing complex heatmaps is the aptly named [`ComplexHeatmap`](https://jokergoo.github.io/ComplexHeatmap-reference/book/). While some like the customization and syntax of `ggplot2`, `ComplexHeatmap` can accomplish this figure with arguably far less effort. See the example below using the same code:
 
