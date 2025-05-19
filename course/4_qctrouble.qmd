@@ -832,9 +832,3 @@ Heatmap(
 
 There are many additional parameters and ways to customize `ComplexHeatmap` plots. Refer to the [extensive documentation](https://jokergoo.github.io/ComplexHeatmap-reference/book/index.html). In many cases it may be easier to see if you can achieve the type of plot you want with `ComplexHeatmap` before attempting one with `ggplot2`. It may help with more rapid data exploration as well since it tends to take far less code to get to a quality figure.
 
-# Where do I go for practice?
-
-## CodeFights
-
-CodeFights (now CodeSignal) offers coding challenges and exercises in R and other programming languages. Practicing coding problems can help reinforce your skills and improve your problem-solving abilities.
-

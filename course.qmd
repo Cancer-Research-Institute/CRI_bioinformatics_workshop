@@ -16,7 +16,7 @@ title: "Course overview"
 
 # Bulk RNA sequence analysis (Day 3, Mon.)
 
-* [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day3-IntroToRNA%2BDNA.pdf)
+* [Slides - Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day3-IntroToRNA%2BDNA.pdf)
 
 1. [Introduction to rnabio.org](https://rnabio.org/) and [bulk RNAseq dataset](https://rnabio.org/module-01-inputs/0001/05/01/RNAseq_Data/) (Lead: Obi/Malachi)
 
@@ -34,8 +34,8 @@ title: "Course overview"
 
 # Single cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)
 
-* [Introduction to scRNA sequencing technology lecture slides (Obi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day4-IntroToSCRNA.pdf)
-* [Introduction to scRNA sequencing analysis lecture slides (Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day5-AdvancedSCRNA.pdf)
+* [Slides - Introduction to scRNA sequencing technology lecture slides (Obi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day4-IntroToSCRNA.pdf)
+* [Slides - Introduction to scRNA sequencing analysis lecture slides (Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day5-AdvancedSCRNA.pdf)
 
 1. [Introduction to scRNAseq dataset](https://rnabio.org/module-08-scrna/0008/01/02/scRNA_Data/) (Lead: Malachi)
 
@@ -65,7 +65,7 @@ title: "Course overview"
 
 5. Cell typing, CNV, trajectory analysis
 
-6. Unsupervise clustering, cell tying, loupe browser
+6. Unsupervised clustering, cell tying, loupe browser
 
 
 # Prior versions of the CRI Bioinformatics Bootcamp
