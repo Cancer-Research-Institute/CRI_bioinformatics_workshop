@@ -6,4 +6,7 @@
 
 /.quarto/
 /_site/
+site_libs/
 course/2024/my_pretty_plot.pdf
+
+raw_data/
