@@ -791,7 +791,7 @@ Cumulative Proportion  0.7296 0.9581 0.99482 1.00000</code></pre>
 <span></span>
 <span><span class="co"># Run t-SNE on the deduplicated data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="co"># for reproducibility</span></span>
-<span><span class="va">tsne_results</span> <span class="op">&lt;-</span> <span class="fu">Rtsne</span><span class="op">(</span><span class="va">unique_iris</span>, dims <span class="op">=</span> <span class="fl">2</span>, perplexity <span class="op">=</span> <span class="fl">30</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">tsne_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Rtsne/man/Rtsne.html">Rtsne</a></span><span class="op">(</span><span class="va">unique_iris</span>, dims <span class="op">=</span> <span class="fl">2</span>, perplexity <span class="op">=</span> <span class="fl">30</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Performing PCA
 Read the 149 x 4 data matrix successfully!
