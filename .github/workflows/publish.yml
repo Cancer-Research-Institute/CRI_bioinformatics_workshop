@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libpng-dev libx11-dev pandoc
+          sudo apt-get install libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libpng-dev libx11-dev libmagick++-dev pandoc
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -31,6 +31,8 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
