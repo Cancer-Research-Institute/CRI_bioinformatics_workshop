@@ -103,6 +103,12 @@ object <- readRDS("objects/Visium_DCIS_zoomed.rds")
 pt_size_factor <- 8
 ```
 
+Let's take a look at this object
+
+```{r}
+object
+```
+
 We can plot some quality metrics like total counts, genes detected, and mitochondrial gene count per bin:
 
 ```{r}
@@ -122,7 +128,8 @@ counts_spatial <- SpatialFeaturePlot(
   pt.size.factor = pt_size_factor,
   image.alpha = 0.8,
   alpha = c(1, 1)
-)
+) +
+  theme(legend.position = "right")
 
 genes_violin <- VlnPlot(
   object,
@@ -138,7 +145,8 @@ genes_spatial <- SpatialFeaturePlot(
   pt.size.factor = pt_size_factor,
   image.alpha = 0.8,
   alpha = c(1, 1)
-)
+) +
+  theme(legend.position = "right")
 
 mt_violin <- VlnPlot(
   object,
@@ -155,7 +163,8 @@ mt_spatial <- SpatialFeaturePlot(
   max.cutoff = "q99",
   image.alpha = 0.8,
   alpha = c(1, 1)
-)
+) +
+  theme(legend.position = "right")
 
 # Combine the plots using 'patchwork'
 p0 <- (counts_violin | counts_spatial) /
@@ -214,7 +223,9 @@ object
 
 ## Clustering
 
-Above, we normalized the counts, and found the variable features as you would in a normal scRNA analysis workflow using Seurat. However, in spatial data, we use clustering methods like [Banksy](https://prabhakarlab.github.io/Banksy/) which make use of the spatial information when defining clusters. Check the documentation for the `RunBanksy()` command for more information.
+### Banksy
+
+Above, we normalized the counts, and found the variable features as you would in a normal scRNA analysis workflow using Seurat. However, in spatial data, we use clustering methods like [Banksy](https://prabhakarlab.github.io/Banksy/) which make use of the spatial information when defining clusters. Check the documentation for the [`RunBanksy()`](https://rdrr.io/github/satijalab/seurat-wrappers/man/RunBanksy.html) command for more information.
 
 ```{r}
 # Run Banksy
@@ -275,7 +286,7 @@ object <- RunUMAP(object,
 #| fig-height: 4
 # Define distinct colors
 Idents(object) <- "banksy_cluster"
-distinct_palette <- c(
+banksy_clst_cols <- c(
   "0" = "#1f77b4",
   "1" = "#ff7f0e",
   "2" = "#2ca02c",
@@ -291,7 +302,7 @@ distinct_palette <- c(
   "12" = "#8c6d31"
 )
 
-object$banksy_cluster <- factor(object$banksy_cluster, levels = names(distinct_palette))
+object$banksy_cluster <- factor(object$banksy_cluster, levels = names(banksy_clst_cols))
 
 p2 <- SpatialDimPlot(object,
   group.by = "banksy_cluster",
@@ -301,7 +312,7 @@ p2 <- SpatialDimPlot(object,
   image.alpha = 0.2,
   alpha = c(1, 1)
 ) +
-  scale_fill_manual(values = distinct_palette) +
+  scale_fill_manual(values = banksy_clst_cols) +
   ggtitle("Banksy Neighborhood Clustering") +
   theme(
     legend.position = "right",
@@ -312,8 +323,13 @@ p2 <- SpatialDimPlot(object,
 DefaultAssay(object) <- "BANKSY"
 Idents(object) <- "banksy_cluster"
 
-p3 <- DimPlot(object, reduction = "umap.banksy", label = TRUE, label.size = 2, raster = FALSE) +
-  scale_color_manual(values = distinct_palette) +
+p3 <- DimPlot(object,
+  reduction = "umap.banksy",
+  label = TRUE,
+  label.size = 2,
+  raster = FALSE
+) +
+  scale_color_manual(values = banksy_clst_cols) +
   ggtitle("Banksy Neighborhood Clustering") +
   theme(
     legend.position = "right",
@@ -326,16 +342,16 @@ final_plot <- wrap_plots(p2, p3, ncol = 2)
 final_plot
 ```
 
-## Sketching and Projection
+### Sketching and Projection
 
 Seurat V5 introduced the concept of [data sketching](https://satijalab.org/seurat/articles/seurat5_sketch_analysis). Briefly, this approach will 'sketch' a representative subset of your dataset (importantly preserving rare cell types), prior to performing dimensional reduction, clustering, and computing a UMAP. It then 'projects' the rest of your data into this reduced space so that the complete dataset can be utilized in downstream analysis.
 
 ::: callout-note
-In our example dataset we already subset to \~50,000 bins, so sketching here is just for demonstration of the code. In full VisiumHD datasets, which typically contain 500k or more bins, this is almost always required as the processing will take a very long time otherwise.
+In our example dataset we already subset to \~50,000 bins, so sketching here is just for demonstration of the code. In full VisiumHD datasets, which typically contain 500k or more bins, this is almost always required as the processing will take a very long time otherwise, and the results are typically comparable.
 :::
 
 ::: callout-warning
-This type of clustering is *not* spatially aware! It treats the data as you would a conventional scRNA dataset, not taking into account the spatial localization of different cell types. This isn't inherently a bad thing, but it is important to know when interpreting the results.
+Unlike `Banksy`, this type of clustering is *not* spatially aware! It treats the data as you would a conventional scRNA dataset, not taking into account the spatial localization of different cell types. This isn't inherently a bad thing, but it is important to know when interpreting the results.
 :::
 
 ```{r}
@@ -357,7 +373,7 @@ Now if we look at the object we see that the `sketch` assay is now active
 object
 ```
 
-We proceed analyzing
+We proceed analyzing as we typically would for an scRNA dataset:
 
 ```{r}
 # switch analysis to sketched cells
@@ -369,9 +385,21 @@ object <- ScaleData(object)
 object <- RunPCA(object, assay = "sketch", reduction.name = "pca.sketch")
 ElbowPlot(object, reduction = "pca.sketch")
 
-object <- FindNeighbors(object, assay = "sketch", reduction = "pca.sketch", dims = 1:15)
-object <- FindClusters(object, cluster.name = "seurat_cluster.sketched", resolution = 0.2)
-object <- RunUMAP(object, reduction = "pca.sketch", reduction.name = "umap.sketch", return.model = T, dims = 1:15)
+object <- FindNeighbors(object,
+  assay = "sketch",
+  reduction = "pca.sketch",
+  dims = 1:15
+)
+object <- FindClusters(object,
+  cluster.name = "seurat_cluster.sketched",
+  resolution = 0.2
+)
+object <- RunUMAP(object,
+  reduction = "pca.sketch",
+  reduction.name = "umap.sketch",
+  return.model = T,
+  dims = 1:15
+)
 ```
 
 Now that we have run the processing on the 'sketched' data subset, we project the rest of the data into this space
@@ -390,7 +418,7 @@ object <- ProjectData(
   refdata = list(seurat_cluster.projected = "seurat_cluster.sketched")
 )
 
-distinct_palette <- c(
+seurat_clst_cols <- c(
   "0" = "#1f77b4",
   "1" = "#ff7f0e",
   "2" = "#2ca02c",
@@ -403,16 +431,21 @@ distinct_palette <- c(
   "9" = "#17becf"
 )
 
-object$seurat_cluster.projected <- factor(object$seurat_cluster.projected, levels = names(distinct_palette))
+object$seurat_cluster.projected <- factor(
+  object$seurat_cluster.projected,
+  levels = names(seurat_clst_cols)
+)
 
 DefaultAssay(object) <- "sketch"
 Idents(object) <- "seurat_cluster.sketched"
 
 p4 <- DimPlot(object, reduction = "umap.sketch", label = T, raster = F) +
-  scale_color_manual(values = distinct_palette) +
+  scale_color_manual(values = seurat_clst_cols) +
   ggtitle("Sketched clustering (30,000 cells)") +
-  theme(legend.key.size = unit(0.5, "cm"),
-        aspect.ratio = 1) +
+  theme(
+    legend.key.size = unit(0.5, "cm"),
+    aspect.ratio = 1
+  ) +
   guides(fill = guide_legend(override.aes = list(size = 5)))
 
 # switch to full dataset
@@ -420,15 +453,19 @@ DefaultAssay(object) <- "Spatial.008um"
 Idents(object) <- "seurat_cluster.projected"
 
 p5 <- DimPlot(object, reduction = "full.umap.sketch", label = T, raster = F) +
-  scale_color_manual(values = distinct_palette) +
+  scale_color_manual(values = seurat_clst_cols) +
   ggtitle("Projected clustering (full dataset)") +
-  theme(legend.key.size = unit(0.5, "cm"),
-        aspect.ratio = 1) +
+  theme(
+    legend.key.size = unit(0.5, "cm"),
+    aspect.ratio = 1
+  ) +
   guides(fill = guide_legend(override.aes = list(size = 5)))
 
 final_plot <- wrap_plots(p4, p5, ncol = 2)
 final_plot
 ```
+
+### Comparison
 
 No we can compare the Banksy spatially aware clustering with the non-spatial aware 'default' Seurat clustering:
 
@@ -444,7 +481,7 @@ p6 <- SpatialDimPlot(object,
   image.alpha = 0.2,
   alpha = c(1, 1)
 ) +
-  scale_fill_manual(values = distinct_palette) +
+  scale_fill_manual(values = seurat_clst_cols) +
   ggtitle("Projected clustering (full dataset)") +
   theme(legend.key.size = unit(0.5, "cm")) +
   guides(fill = guide_legend(override.aes = list(size = 5)))
@@ -476,11 +513,22 @@ ComplexHeatmap::Heatmap(prop_table,
 )
 ```
 
-We can see that there is some overlap, but many differences as well.
+::: callout-note
+We can see that there is some overlap, but many differences as well. Why is this?
+
+It is important to consider what we want out of spatial clustering:
+
+- Do we want discrete cell type clusters?
+- Do we want clusters of cell neighborhoods?
+
+Many spatially aware clustering methods are being published as the field is relatively new, and technologies are constantly being improved. As such, there is not yet a gold standard approach to solving these problems. As you can appreciate, `Banksy` seems to preserve more of the tissue architecture, whereas the conventional `Seurat` approach does not utilize the spatial information. How exactly you process and interpret your own data will depend on the types of questions you seek to answer.
+:::
 
 ## Cell type identification
 
-Now we'd like to identify the constituent cell types in our sample. This analysis proceeds according to the conventional workflow of selecting the clusters of interest, and runnning Seurat's FindAllMarkers.
+### Denovo marker identification
+
+Now we'd like to identify the constituent cell types in our sample. This analysis proceeds according to the conventional workflow of selecting the clusters of interest, and running Seurat's `FindAllMarkers()`.
 
 ```{r}
 # Ensure the spatial count data is the active assay prior to proceeding
@@ -495,32 +543,37 @@ banksy_markers <- FindAllMarkers(object,
   min.pct = 0.1,
   verbose = TRUE
 )
+```
 
+Now we can plot a heatmap of the top 10 markers per cluster using Seurat's `DoHeatmap()`
+
+```{r}
+#| fig-width: 5
+#| fig-height: 7
+top_n_genes <- 5 # Select how many top genes to plot
 # Select the top markers by cluster
-top10 <- banksy_markers %>%
+top_genes <- banksy_markers %>%
   group_by(cluster) %>%
   dplyr::filter(p_val_adj < 0.05 & avg_log2FC > 1) %>%
-  slice_head(n = 10) %>%
+  slice_head(n = top_n_genes) %>%
   ungroup()
 
 # Scale the data for these genes
-object <- ScaleData(object, assay = "Spatial.008um", features = top10$gene)
+object <- ScaleData(object, assay = "Spatial.008um", features = top_genes$gene)
 
 # Plot a heatmap using Seurat's DoHeatmap
 p1 <- DoHeatmap(
-  object,
+  # We subsample our object when we plot to 100 cells per
+  # banksy cluster, otherwise plot will not generate
+  object = subset(object, downsample = 100),
   group.by = "banksy_cluster",
+  group.colors = banksy_clst_cols,
   assay = "Spatial.008um",
-  features = top10$gene,
-  raster = F,
+  features = top_genes$gene,
+  raster = T,
   size = 2.5
 ) +
-  theme(
-    panel.grid = element_blank(),
-    panel.border = element_blank(),
-    axis.text = element_text(size = 5),
-    legend.text = element_text(size = 8)
-  )
+  scale_fill_viridis_c()
 p1
 ```
 
@@ -545,6 +598,8 @@ p <- DotPlot(object, features = top_list, group.by = "banksy_cluster") +
   guides(x = guide_axis(angle = 90))
 p
 ```
+
+### Using curated celltype markers
 
 We can also load a manually curated marker list for cell types
 
@@ -573,12 +628,25 @@ for (cell_type in names(marker_list)) {
   )
 }
 
+# Here we just remove the '1' appended to the column names
+colnames(object@meta.data) <- gsub(
+  "_score1$", "_score",
+  colnames(object@meta.data)
+)
+
+score_names <- grep(
+  pattern = "_score",
+  x = colnames(object@meta.data),
+  value = T
+)
+
 # Identify the cell type for each cell based on the highest module score
 object$cell_type <- apply(
-  object@meta.data[, grep("_score1$", colnames(object@meta.data))],
-  1,
-  function(scores) {
-    if (max(scores) < 0.1) {
+  X = object@meta.data[, grep("_score$", colnames(object@meta.data))],
+  MARGIN = 1,
+  FUN = function(scores) {
+    # If the maximum score is <0.05 we don't assign a celltype
+    if (max(scores) < 0.05) {
       return("Other")
     } else {
       return(names(scores)[which.max(scores)])
@@ -586,13 +654,12 @@ object$cell_type <- apply(
   }
 )
 
-# Clean up the '_score1' suffix
-object@meta.data[["cell_type"]] <- gsub("_score1", "", object@meta.data[["cell_type"]])
+# Clean up the '_score' suffix
+object@meta.data[["cell_type"]] <- gsub("_score", "", object@meta.data[["cell_type"]])
 
-# DefaultAssay(object) <- "Spatial.008um"
 Idents(object) <- "cell_type"
 
-distinct_palette <- c(
+celltype_cols <- c(
   "CD8.T.cells" = "green4",
   "CD4.T.cells" = "blue",
   "B.cell" = "#F781BF",
@@ -614,7 +681,7 @@ distinct_palette <- c(
   "Other" = "lightgrey"
 )
 
-object$cell_type <- factor(object$cell_type, levels = names(distinct_palette))
+object$cell_type <- factor(object$cell_type, levels = names(celltype_cols))
 
 p1 <- SpatialDimPlot(object,
   group.by = "cell_type",
@@ -624,7 +691,7 @@ p1 <- SpatialDimPlot(object,
   image.alpha = 0.2,
   alpha = c(1, 1)
 ) +
-  scale_fill_manual(values = distinct_palette) +
+  scale_fill_manual(values = celltype_cols) +
   ggtitle("Major Cell Types") +
   theme(legend.key.size = unit(0.1, "cm")) +
   guides(fill = guide_legend(override.aes = list(size = 3)))
@@ -632,23 +699,121 @@ p1 <- SpatialDimPlot(object,
 p2 <- DimPlot(object,
   reduction = "umap.banksy",
   label = F,
-  pt.size = 0.01,
-  raster = F
+  pt.size = 0.05,
+  raster = F # For large datasets set to T
 ) +
-  scale_color_manual(values = distinct_palette) +
+  scale_color_manual(values = celltype_cols) +
   ggtitle("Major Cell Types") +
-  theme(legend.key.size = unit(0.2, "cm"),
-        aspect.ratio = 1)
+  theme(
+    legend.key.size = unit(0.2, "cm"),
+    aspect.ratio = 1
+  )
 
 final_plot <- wrap_plots(p1, p2, ncol = 2)
 final_plot
 ```
 
-Now we can use lapply() to loop through each cell type and plot it on the image
+We can look at the proportion of cell types within each Banksy cluster.
 
 ```{r}
-cell_types <- unique(object$cell_type)
-celltype_plots <- lapply(X = cell_types, FUN = function(ct) {
+object@meta.data %>%
+  ggplot(aes(x = banksy_cluster)) +
+  geom_bar(aes(fill = cell_type), position = "fill") +
+  scale_fill_manual(values = celltype_cols) +
+  theme_classic() +
+  guides(fill = guide_legend(keywidth = 0.5, keyheight = 0.5)) +
+  labs(y = "Proportion", fill = "Cell Type")
+```
+
+::: callout-note
+Remember these are cell neighborhood clusters, and as such contain a mixture of different cell types
+:::
+
+Let's plot the raw signature values over each assigned cell type
+
+```{r}
+celltypes <- sort(unique(object$cell_type))
+celltypes <- celltypes[celltypes != "Other"]
+celltype_score_vlnplots <- VlnPlot(
+  object,
+  features = score_names,
+  pt.size = 0,
+  group.by = "cell_type",
+  cols = celltype_cols,
+  sort = T,
+  combine = F # This will return a list instead of a patchwork
+)
+
+names(celltype_score_vlnplots) <- gsub("_score", "", score_names)
+
+celltype_score_umapplots <- FeaturePlot(
+  object = object,
+  features = score_names,
+  reduction = "umap.banksy",
+  pt.size = 0.05,
+  combine = F,
+  # This will compress the color scale to bring out cells
+  min.cutoff = "q1",
+  max.cutoff = "q99",
+  # Bring the points with higher values on top
+  order = T,
+  raster = F # For large datasets set to T
+)
+names(celltype_score_umapplots) <- gsub("_score", "", score_names)
+```
+
+Now we can loop through and plot the signatures as violins and atop the Banksy UMAP
+
+```{r}
+#| eval: false
+
+for (ct in as.character(celltypes)) {
+  p1 <- celltype_score_umapplots[[ct]] +
+    scale_color_viridis_c()
+
+  p2 <- celltype_score_vlnplots[[ct]] +
+    NoLegend()
+
+  pcomb <- free(p1, type = "label", side = "b") +
+    p2 + plot_layout(nrow = 1, widths = c(1, 2.5))
+  print(pcomb)
+}
+```
+
+
+::: {.panel-tabset}
+
+```{r}
+#| results: asis
+#| fig-width: 10
+#| fig-height: 5
+
+for (ct in as.character(celltypes)) {
+  cat("## ", ct, "\n\n")
+
+  p1 <- celltype_score_umapplots[[ct]]
+  p1$scales$scales <- list()
+  p1 <- p1 +
+    scale_color_viridis_c()
+
+  p2 <- celltype_score_vlnplots[[ct]] +
+    NoLegend()
+
+  pcomb <- free(p1, type = "label", side = "b") +
+    p2 + plot_layout(nrow = 1, widths = c(1, 2.5))
+
+  print(pcomb)
+
+  cat("\n\n")
+}
+```
+:::
+
+
+We can also use `lapply()` to loop through each cell type and plot it on the image
+
+```{r}
+celltype_plots <- lapply(X = celltypes, FUN = function(ct) {
   # Subset object for the current cell type
   subsetobject <- object[, object$cell_type == ct]
 
@@ -660,7 +825,7 @@ celltype_plots <- lapply(X = cell_types, FUN = function(ct) {
     label = FALSE,
     image.alpha = 0.2,
     alpha = c(1, 0.2),
-    cols = distinct_palette
+    cols = celltype_cols
   ) +
     NoLegend() +
     ggtitle(ct) +
@@ -668,7 +833,7 @@ celltype_plots <- lapply(X = cell_types, FUN = function(ct) {
   return(p)
 })
 
-names(celltype_plots) <- cell_types
+names(celltype_plots) <- celltypes
 ```
 
 Now we have a list of cell type specific plots
@@ -689,4 +854,489 @@ final_plot <- wrap_plots(celltype_plots, ncol = 5)
 
 # Display the final combined plot
 final_plot
+```
+
+## Advanced Analysis
+
+### Subset epithelial
+
+Now we will subset for only epithelial cells and run pseudotime analysis using [`Monocle3`](https://cole-trapnell-lab.github.io/monocle3/)
+
+```{r}
+# Subset for epithelial cells only
+object_epi <- subset(object, idents = c("Luminal.progenitor", "Luminal.mature", "Tumor", "Basal_Myoepithelial"))
+
+DefaultAssay(object_epi) <- "Spatial.008um"
+
+# Because we've subset, we'll redo FindVariableFeatures()
+object_epi <- FindVariableFeatures(object_epi)
+# object_epi <- UpdateSeuratObject(object)
+object_epi
+```
+
+Rerun the Banksy workflow on this subset
+
+```{r}
+# Run Banksy
+object_epi <- RunBanksy(object_epi,
+  lambda = 0.8,
+  verbose = TRUE,
+  assay = "Spatial.008um",
+  slot = "data",
+  features = "variable",
+  k_geom = 24
+)
+
+object_epi <- RunPCA(object_epi,
+  assay = "BANKSY",
+  reduction.name = "pca.banksy",
+  features = rownames(object_epi),
+  npcs = 20
+)
+
+ElbowPlot(object_epi, reduction = "pca.banksy")
+
+object_epi <- FindNeighbors(object_epi,
+  reduction = "pca.banksy",
+  dims = 1:15
+)
+
+object_epi <- FindClusters(object_epi,
+  cluster.name = "banksy_cluster",
+  resolution = 0.2
+)
+
+object_epi <- RunUMAP(object_epi,
+  reduction = "pca.banksy",
+  reduction.name = "umap.banksy",
+  return.model = T,
+  dims = 1:15
+)
+
+# Define distinct colors
+epi_banksy_cols <- c(
+  "0" = "#1f77b4",
+  "1" = "#ff7f0e",
+  "2" = "#2ca02c",
+  "3" = "#d62728",
+  "4" = "#9467bd",
+  "5" = "#8c564b",
+  "6" = "#ff99cc",
+  "7" = "#7f7f7f",
+  "8" = "#bcbd22",
+  "9" = "#17becf"
+)
+
+
+object_epi$banksy_cluster <- factor(
+  object_epi$banksy_cluster,
+  levels = names(epi_banksy_cols)
+)
+```
+
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+p2 <- SpatialDimPlot(object_epi,
+  group.by = "banksy_cluster",
+  pt.size.factor = pt_size_factor,
+  label = F,
+  label.size = 5,
+  image.alpha = 0.2,
+  alpha = c(1, 1)
+) +
+  scale_fill_manual(values = epi_banksy_cols) +
+  ggtitle("Banksy Neighborhood Clustering") +
+  theme(legend.key.size = unit(0.5, "cm")) +
+  guides(fill = guide_legend(override.aes = list(size = 5)))
+
+# Idents(object) <- "banksy_cluster"
+
+p3 <- DimPlot(object_epi,
+  group.by = "banksy_cluster",
+  reduction = "umap.banksy",
+  label = TRUE,
+  label.size = 2,
+  raster = FALSE
+) +
+  scale_color_manual(values = epi_banksy_cols) +
+  ggtitle("Banksy Neighborhood Clustering") +
+  theme(legend.key.size = unit(0.5, "cm")) +
+  guides(fill = guide_legend(override.aes = list(size = 5)))
+
+final_plot <- wrap_plots(p2, p3, ncol = 2)
+final_plot
+```
+
+
+Refind markers
+
+```{r}
+# DefaultAssay(object) <- "Spatial.008um"
+#
+# markers_epi <- FindAllMarkers(
+#   object_epi,
+#   assay = "Spatial.008um",
+#   only.pos = T,
+#   logfc.threshold = 0.4,
+#   min.pct = 0.1,
+#   verbose = TRUE)
+#
+#
+# markers %>%
+#   group_by(cluster) %>%
+#   dplyr::filter(p_val_adj < 0.05 & avg_log2FC > 1) %>%
+#   slice_head(n = 10) %>%
+#   ungroup() -> top10
+#
+# # Save heatmap
+# object <- ScaleData(object, assay = "Spatial.008um", features = top10$gene)
+#
+# distinct_palette <- c(
+#   "0"= "#1f77b4",
+#   "1"= "#ff7f0e",
+#   "2"= "#2ca02c",
+#   "3"= "#d62728",
+#   "4"= "#9467bd",
+#   "5"= "#8c564b",
+#   "6"= "#ff99cc",
+#   "7"= "#bcbd22")
+#
+# object$banksy_cluster <- factor(object$banksy_cluster, levels = names(distinct_palette))
+#
+# p1 <- DoHeatmap(object, assay = "Spatial.008um", features = top10$gene, size = 2.5, group.colors = distinct_palette) +
+#   theme(
+#     legend.position = "right",
+#     legend.key.size = unit(0.5, "cm"),
+#     plot.title = element_text(size = 12, family = "Arial"),
+#     legend.text = element_text(size = 10, family = "Arial"),
+#     axis.text = element_text(size = 10, family = "Arial"),
+#     legend.title = element_text(size = 10, family = "Arial"),
+#     axis.title = element_text(size = 10, family = "Arial"))
+#
+# ggsave(filename = file.path(sample_dir, "heatmap_top10_banksy_epi.png"), plot = p1, width = 8, height = 6, dpi = 300)
+```
+
+### Pseudotime analysis
+
+```{r}
+library(monocle3)
+
+# Create Monocle CDS
+expression_matrix <- object_epi@assays[["Spatial.008um"]]@layers[["counts"]]
+colnames(expression_matrix) <- colnames(object_epi@assays[["Spatial.008um"]])
+rownames(expression_matrix) <- rownames(object_epi@assays[["Spatial.008um"]])
+
+metadata <- object@meta.data[colnames(expression_matrix), ]
+
+# Monocle3 complains otherwise
+metadata$sample_name <- NULL
+
+gene_annotation <- data.frame(gene_short_name = rownames(expression_matrix))
+rownames(gene_annotation) <- rownames(expression_matrix)
+
+cds <- new_cell_data_set(expression_matrix,
+  cell_metadata = metadata,
+  gene_metadata = gene_annotation
+)
+
+cds <- estimate_size_factors(cds)
+cds <- preprocess_cds(cds, num_dim = 10)
+cds <- reduce_dimension(cds)
+```
+
+```{r}
+plot_cells(cds,
+  label_groups_by_cluster = FALSE,
+  color_cells_by = "cell_type"
+)
+```
+
+
+```{r}
+cds <- cluster_cells(cds,
+  reduction_method = "UMAP",
+  max_clusters = 6
+)
+```
+
+```{r}
+plot_cells(cds, color_cells_by = "partition")
+```
+
+```{r}
+cds <- learn_graph(cds)
+```
+
+```{r}
+plot_cells(cds,
+  color_cells_by = "cell_type",
+  label_groups_by_cluster = FALSE,
+  label_leaves = FALSE,
+  label_branch_points = FALSE
+)
+```
+
+
+
+```{r}
+# a helper function to identify the root principal points:
+get_earliest_principal_node <- function(
+    cds,
+    time_bin = c("Basal_Myoepithelial", "Luminal.progenitor")) {
+  cell_ids <- which(colData(cds)[, "cell_type"] == time_bin)
+
+  closest_vertex <-
+    cds@principal_graph_aux[["UMAP"]]$pr_graph_cell_proj_closest_vertex
+  closest_vertex <- as.matrix(closest_vertex[colnames(cds), ])
+  root_pr_nodes <-
+    igraph::V(principal_graph(cds)[["UMAP"]])$name[as.numeric(names
+    (which.max(table(closest_vertex[cell_ids, ]))))]
+
+  root_pr_nodes
+}
+cds <- order_cells(cds, root_pr_nodes = get_earliest_principal_node(cds))
+```
+
+
+```{r}
+plot_cells(cds,
+  color_cells_by = "pseudotime",
+  label_cell_groups = FALSE,
+  label_leaves = FALSE,
+  label_branch_points = FALSE,
+  graph_label_size = 1.5
+)
+```
+
+
+
+```{r}
+# View available metadata columns
+
+plot_cells(cds,
+  color_cells_by = c("pseudotime"),
+  label_groups_by_cluster = F,
+  label_leaves = F,
+  label_branch_points = F
+) +
+  theme(legend.position = "right")
+```
+
+
+```{r}
+plot_cells(cds,
+  color_cells_by = "cluster",
+  label_groups_by_cluster = F, # Ensures clusters are labeled
+  label_leaves = FALSE,
+  label_branch_points = FALSE,
+  group_label_size = 4
+) +
+  theme(legend.position = "right") # Controls legend placement
+
+# Generate the plot as a real ggplot object
+plot_cells(
+  cds,
+  color_cells_by = "banksy_cluster",
+  label_groups_by_cluster = FALSE,
+  label_leaves = FALSE,
+  label_branch_points = FALSE,
+  group_label_size = 4
+)
+
+plot_cells(cds,
+  color_cells_by = "pseudotime",
+  label_groups_by_cluster = F,
+  label_leaves = F,
+  label_branch_points = F
+) +
+  facet_wrap(~cell_type, nrow = ) +
+  theme(legend.position = "right") +
+  scale_color_gradientn(
+    colors = c("blue3", "palegreen3", "yellow", "tomato", "firebrick")
+  )
+
+plot_cells(cds,
+  color_cells_by = "pseudotime",
+  label_groups_by_cluster = F,
+  label_leaves = F,
+  label_branch_points = F
+) +
+  facet_wrap(~banksy_cluster, nrow = 4) +
+  theme(legend.position = "right") +
+  scale_color_gradientn(
+    colors = c("blue3", "palegreen3", "yellow", "tomato", "firebrick")
+  )
+
+
+cluster_colors <- c(
+  "0" = "#1f77b4",
+  "1" = "#ff7f0e",
+  "2" = "#2ca02c",
+  "3" = "#d62728",
+  "4" = "#9467bd",
+  "5" = "#8c564b",
+  "6" = "#ff99cc",
+  "7" = "#bcbd22"
+)
+
+plot_cells(cds,
+  color_cells_by = c("banksy_cluster"),
+  label_cell_groups = FALSE,
+  label_groups_by_cluster = F,
+  label_leaves = F,
+  label_branch_points = F
+) +
+  theme(legend.position = "right") + scale_color_manual(values = cluster_colors)
+
+cluster_colors <- c(
+  "Basal_Myoepithelial" = "mediumseagreen",
+  "Luminal.progenitor" = "navy",
+  "Luminal.mature" = "#bcbd22",
+  "Tumor" = "magenta"
+)
+
+plot_cells(cds,
+  color_cells_by = c("cell_type"),
+  label_cell_groups = FALSE,
+  label_groups_by_cluster = F,
+  label_leaves = F,
+  label_branch_points = F
+) +
+  theme(legend.position = "right") + scale_color_manual(values = cluster_colors)
+```
+
+
+Add this back to our original object
+
+```{r}
+clusters <- cds@clusters@listData[["UMAP"]][["clusters"]]
+pseudotime <- cds@principal_graph_aux@listData[["UMAP"]][["pseudotime"]]
+
+object_epi <- AddMetaData(object_epi,
+  metadata = clusters,
+  col.name = "monocle3_cluster"
+)
+object_epi <- AddMetaData(object_epi,
+  metadata = pseudotime,
+  col.name = "monocle3_pseudotime"
+)
+
+## Plot
+DefaultAssay(object) <- "Spatial.008um"
+Idents(object) <- "monocle3_cluster"
+
+summary(object_epi$monocle3_pseudotime)
+
+max_finite <- max(object_epi$monocle3_pseudotime[is.finite(object_epi$monocle3_pseudotime)], na.rm = TRUE)
+
+object_epi$monocle3_pseudotime[is.infinite(object_epi$monocle3_pseudotime)] <- max_finite
+```
+
+
+```{r}
+FeaturePlot(object_epi, features = "monocle3_pseudotime") +
+  scale_color_gradientn(
+    colors = c("blue3", "palegreen3", "yellow", "tomato", "firebrick"),
+    name = "monocle3_pseudotime"
+  ) +
+  ggtitle("Monocle Pseudotime") +
+  theme(
+    legend.position = "right",
+    legend.key.size = unit(0.4, "cm"),
+    plot.title = element_text(size = 14, family = "Arial"),
+    legend.text = element_text(size = 10, family = "Arial"),
+    axis.text = element_text(size = 12, family = "Arial"),
+    legend.title = element_text(size = 10, family = "Arial"),
+    axis.title = element_text(size = 12, family = "Arial")
+  )
+```
+
+
+```{r}
+# Generate the SpatialDimPlot
+plots <- SpatialFeaturePlot(
+  object_epi,
+  features = "monocle3_pseudotime",
+  pt.size.factor = pt_size_factor,
+  image.alpha = 0.2,
+  alpha = c(1, 1)
+) +
+  scale_color_gradientn(colors = c("blue3", "palegreen3", "yellow", "tomato", "firebrick")) +
+  ggtitle("Monocle Pseudotime") +
+  theme(
+    legend.position = "right",
+    legend.key.size = unit(0.5, "cm")
+  ) +
+  labs(color = "pseudotime") +
+  guides(color = guide_colorbar(barwidth = 0.5, barheight = 4))
+plots
+```
+
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+DefaultAssay(object) <- "Spatial.008um"
+Idents(object) <- "monocle3_cluster"
+distinct_palette <- c(
+  "1" = "#ff7f0e",
+  "2" = "#2ca02c",
+  "3" = "#d62728",
+  "4" = "#9467bd",
+  "5" = "#8c564b",
+  "6" = "#ff99cc",
+  "7" = "#7f7f7f",
+  "8" = "#bcbd22",
+  "9" = "#1f77b4"
+)
+
+# object$monocle3_cluster <- factor(object$monocle3_cluster, levels = names(distinct_palette))
+
+p2 <- SpatialDimPlot(object_epi,
+  group.by = "monocle3_cluster",
+  pt.size.factor = 8,
+  label = F,
+  label.size = 5,
+  image.alpha = 0.2,
+  alpha = c(1, 1)
+) +
+  scale_fill_manual(values = distinct_palette) +
+  ggtitle("Monocle3 Clustering") +
+  theme(legend.key.size = unit(0.5, "cm")) +
+  guides(fill = guide_legend(override.aes = list(size = 5)))
+
+DefaultAssay(object) <- "Spatial.008um"
+Idents(object) <- "monocle3_cluster"
+
+p3 <- DimPlot(object_epi,
+  reduction = "umap.banksy",
+  label = TRUE,
+  label.size = 2,
+  raster = FALSE
+) +
+  scale_color_manual(values = distinct_palette) +
+  ggtitle("Monocle3 Clustering") +
+  theme(legend.key.size = unit(0.5, "cm")) +
+  guides(fill = guide_legend(override.aes = list(size = 5)))
+
+final_plot <- wrap_plots(p2, p3, ncol = 2)
+final_plot
+```
+
+To extract csv files of the cell types and clusters to add to Loupe Browser
+
+```{r}
+# metadata <- object@meta.data[, c("seurat_cluster.projected", "banksy_cluster", "cell_type")] %>%
+#   tibble::rownames_to_column(var = "CellID")
+#
+# export_cluster_proj <- metadata[, c("CellID", "seurat_cluster.projected")]
+# export_cluster_banksy <- metadata[, c("CellID", "banksy_cluster")]
+# export_celltype <- metadata[, c("CellID", "cell_type")]
+
+# Write to CSV
+# write.csv(export_cluster_proj, file = file.path(sample_dir, paste0(sample_names, "_cluster_proj.csv")), row.names = FALSE)
+# write.csv(export_cluster_banksy, file = file.path(sample_dir, paste0(sample_names, "_cluster_banksy.csv")), row.names = FALSE)
+# write.csv(export_celltype, file = file.path(sample_dir, paste0(sample_names, "_cell_type.csv")), row.names = FALSE)
 ```
