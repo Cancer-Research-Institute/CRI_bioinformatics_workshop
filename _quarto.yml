@@ -27,8 +27,6 @@ website:
         file: authors.qmd
       - text: "Resources"
         file: resources.qmd
-      # - text: "Acknowledgements"
-      #   file: acknowledge.qmd
         
   sidebar:
     - title: "Course"
@@ -96,6 +94,9 @@ website:
             - href: [https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/]
               text: TCR/BCR Repertoire Analysis
               target: _blank
+        - section: "Spatial Transcriptomics"
+          contents: 
+            - course/spatial/01_spatial_intro.qmd
 
 format:
   html:
@@ -104,5 +105,5 @@ format:
       dark: darkly
     css: styles.css
     toc: true
-    link-external-icon: true
+    link-external-icon: false
     link-external-newwindow: true

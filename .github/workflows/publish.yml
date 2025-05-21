@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install cmake gsfonts libglpk-dev libhdf5-dev libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libpng-dev libx11-dev libmagick++-dev pandoc
+          sudo apt-get install cmake gsfonts gdal-bin libgdal-dev libudunits2-dev libglpk-dev libhdf5-dev libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libpng-dev libx11-dev libmagick++-dev pandoc
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

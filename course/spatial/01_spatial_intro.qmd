@@ -67,7 +67,7 @@ saveRDS(object, file.path(outs_path, "Visium_DCIS.rds"))
 ```
 
 
-For the purposes of the tutorial we subset the dataset to smaller section of tissue to save size and computational time.
+For the purposes of the tutorial we subset the dataset to smaller section of tissue to save size and computational time. This code is not relevant to the course, but is available below if you are interested
 
 ```{r}
 #| eval: false
@@ -150,6 +150,13 @@ celltype_cols <- c(
   "Mast.cells" = "green2",
   "Adipocytes" = "lightgrey",
   "Other" = "lightgrey"
+)
+
+epi_type_cols <- c(
+  "Basal_Myoepithelial" = "mediumseagreen",
+  "Luminal.progenitor" = "navy",
+  "Luminal.mature" = "#bcbd22",
+  "Tumor" = "magenta"
 )
 ```
 
@@ -236,7 +243,7 @@ table(object$QCFilter)
 Take a look at the low quality bins using `SpatialDimPlot()`
 
 ```{r}
-#| fig-width: 5
+#| fig-width: 10
 #| fig-height: 4
 p1 <- SpatialDimPlot(object,
   group.by = "QCFilter",
@@ -245,7 +252,7 @@ p1 <- SpatialDimPlot(object,
   alpha = c(1, 0.2)
 ) +
   guides(fill = guide_legend(override.aes = list(size = 4)))
-p1
+counts_spatial | p1
 ```
 
 Filter our object for only high quality bins
@@ -305,6 +312,11 @@ Look at the elbow plot to help determine the `k` for `RunPCA()`
 ```{r}
 ElbowPlot(object, reduction = "pca.banksy")
 ```
+
+
+::: callout-note
+Normally we use the above plot to determine the number of dimensions to use for downstream kNN and clustering. Here, because we've subset it looks like we should pick fewer than the first 15 PCs, but in practice...
+:::
 
 Similar to conventional scRNA analysis, we now run `FindNeighbors()`, `FindClusters()`, and then `RunUMAP()`
 
@@ -419,10 +431,12 @@ object <- FindNeighbors(object,
   reduction = "pca.sketch",
   dims = 1:15
 )
+
 object <- FindClusters(object,
   cluster.name = "seurat_cluster.sketched",
-  resolution = 0.2
+  resolution = 0.5
 )
+
 object <- RunUMAP(object,
   reduction = "pca.sketch",
   reduction.name = "umap.sketch",
@@ -454,10 +468,11 @@ object
 DefaultAssay(object) <- "sketch"
 Idents(object) <- "seurat_cluster.sketched"
 
-p4 <- DimPlot(object, 
-              reduction = "umap.sketch", 
-              label = T, 
-              raster = F) +
+p4 <- DimPlot(object,
+  reduction = "umap.sketch",
+  label = T,
+  raster = F
+) +
   scale_color_manual(values = distinct_palette) +
   ggtitle("Sketched clustering (10,000 cells)") +
   theme(
@@ -470,10 +485,11 @@ p4 <- DimPlot(object,
 DefaultAssay(object) <- "Spatial.008um"
 Idents(object) <- "seurat_cluster.projected"
 
-p5 <- DimPlot(object, 
-              reduction = "full.umap.sketch", 
-              label = T, 
-              raster = F) +
+p5 <- DimPlot(object,
+  reduction = "full.umap.sketch",
+  label = T,
+  raster = F
+) +
   scale_color_manual(values = distinct_palette) +
   ggtitle("Projected clustering (full dataset)") +
   theme(
@@ -671,8 +687,7 @@ score_names <- grep(
 Now we can see we've added these signature scores to our objects metadata slot
 
 ```{r}
-object@meta.data[,score_names] %>% 
-  head()
+object@meta.data[1:5, score_names[1:5]]
 ```
 
 Now we ask, for each cell, what is the maximum scoring cell signature? Assuming this score is above a lower threshold, we assign the cell to that type
@@ -842,7 +857,7 @@ celltype_plots <- lapply(X = celltypes_to_plot, FUN = function(ct) {
   p <- SpatialDimPlot(
     subsetobject,
     group.by = "cell_type",
-    pt.size.factor = pt_size_factor,
+    pt.size.factor = pt_size_factor+5, # Slightly higher
     label = FALSE,
     image.alpha = 0.2,
     alpha = c(1, 0.2),
@@ -930,7 +945,7 @@ object_epi <- FindNeighbors(object_epi,
 
 object_epi <- FindClusters(object_epi,
   cluster.name = "banksy_cluster",
-  resolution = 0.2
+  resolution = 0.15
 )
 
 object_epi <- RunUMAP(object_epi,
@@ -940,6 +955,8 @@ object_epi <- RunUMAP(object_epi,
   dims = 1:15
 )
 ```
+
+Now we can see what this looks like
 
 ```{r}
 #| fig-width: 10
@@ -957,8 +974,6 @@ p2 <- SpatialDimPlot(object_epi,
   theme(legend.key.size = unit(0.5, "cm")) +
   guides(fill = guide_legend(override.aes = list(size = 5)))
 
-# Idents(object) <- "banksy_cluster"
-
 p3 <- DimPlot(object_epi,
   group.by = "banksy_cluster",
   reduction = "umap.banksy",
@@ -975,7 +990,7 @@ final_plot <- wrap_plots(p2, p3, ncol = 2)
 final_plot
 ```
 
-#### Run `monocle3`
+#### `Monocle3` Analysis
 
 Now we run the [`monocle3`](https://cole-trapnell-lab.github.io/monocle3/) pseudotime analysis tool. First we create the `monocle3` specific `cell_data_set` object. See the [documentation](https://cole-trapnell-lab.github.io/monocle3/docs/getting_started/) for more information.
 
@@ -1005,6 +1020,7 @@ cds
 Now, we run preprocessing, dimension reduction, cell clustering and learn the cell principal graph within the `monocle3` framework
 
 ```{r}
+#| output: false
 cds <- preprocess_cds(cds, num_dim = 10)
 
 cds <- reduce_dimension(cds)
@@ -1014,34 +1030,33 @@ cds <- cluster_cells(cds,
   max_clusters = 6
 )
 
-cds <- learn_graph(cds)
+cds <- learn_graph(cds, use_partition = F)
 ```
 
-Let's see what the UMAP looks like
+Let's see what the UMAP looks like with the celltypes
 
 ```{r}
+#| fig-width: 5
+#| fig-height: 3
 plot_cells(cds,
-  # show_trajectory_graph = FALSE,
-  # label_groups_by_cluster = FALSE,
-  # label_branch_points = FALSE,
-  # label_principal_points = FALSE,
+  show_trajectory_graph = FALSE,
+  label_groups_by_cluster = FALSE,
+  label_branch_points = FALSE,
+  label_principal_points = FALSE,
   color_cells_by = "cell_type"
-)
+) +
+  scale_color_manual(values = epi_type_cols) +
+  theme(legend.position = "right")
 ```
 
 
-```{r}
-plot_cells(cds, color_cells_by = "partition")
-```
-
-
-We define a function to identify the root principal points
+As per [monocle3's documentation](https://cole-trapnell-lab.github.io/monocle3/docs/trajectories/#learn-graph): It's often desirable to specify the root of the trajectory programmatically, rather than manually picking it. The function below does so by first grouping the cells according to which trajectory graph node they are nearest to. Then, it calculates what fraction of the cells at each node come from the earliest time point. Then it picks the node that is most heavily occupied by early cells and returns that as the root.
 
 ```{r}
 # a helper function to identify the root principal points:
 get_earliest_principal_node <- function(
     cds,
-    time_bin = c("Basal_Myoepithelial", "Luminal.progenitor")) {
+    time_bin = c("Luminal.mature", "Luminal.progenitor")) {
   cell_ids <- which(colData(cds)[, "cell_type"] == time_bin)
 
   closest_vertex <-
@@ -1056,42 +1071,63 @@ get_earliest_principal_node <- function(
 cds <- order_cells(cds, root_pr_nodes = get_earliest_principal_node(cds))
 ```
 
+Now let's plot the cells with pseudotime overlaid. We can create a nice patchworked plot
+
 ```{r}
-plot_cells(cds,
+#| fig-width: 8
+#| fig-height: 6
+p0 <- plot_cells(cds,
+  show_trajectory_graph = FALSE,
+  label_groups_by_cluster = FALSE,
+  label_branch_points = FALSE,
+  label_principal_points = FALSE,
+  color_cells_by = "cell_type"
+) +
+  theme(legend.position = "right") +
+  scale_color_manual(values = epi_type_cols) +
+  labs(title = "Cell Type", color = NULL)
+
+p1 <- plot_cells(cds,
   color_cells_by = "pseudotime",
   label_cell_groups = FALSE,
   label_leaves = FALSE,
   label_branch_points = FALSE,
   graph_label_size = 1.5
-)
-```
+) +
+  labs(title = "Pseudotime")
 
-
-```{r}
-plot_cells(cds,
+p2 <- plot_cells(cds,
   color_cells_by = "cluster",
   label_groups_by_cluster = F, # Ensures clusters are labeled
   label_leaves = FALSE,
   label_branch_points = FALSE,
   group_label_size = 4
-)
-```
+) +
+  scale_color_manual(values = distinct_palette) +
+  theme(legend.position = "right") +
+  labs(title = "Monocle3 Cluster")
 
-
-```{r}
-# Generate the plot as a real ggplot object
-plot_cells(
-  cds,
+p3 <- plot_cells(cds,
   color_cells_by = "banksy_cluster",
   label_groups_by_cluster = FALSE,
   label_leaves = FALSE,
   label_branch_points = FALSE,
   group_label_size = 4
-)
+) +
+  scale_color_manual(values = distinct_palette) +
+  theme(legend.position = "right") +
+  labs(title = "Banksy Cluster")
+
+pfinal <- p0 + p1 + p2 + p3 + plot_layout(ncol = 2)
+pfinal
 ```
 
 
+Split by cell type with pseudotime overlaid
+
 ```{r}
+#| fig-width: 6
+#| fig-height: 5
 plot_cells(cds,
   color_cells_by = "pseudotime",
   label_groups_by_cluster = F,
@@ -1099,62 +1135,31 @@ plot_cells(cds,
   label_branch_points = F
 ) +
   facet_wrap(~cell_type, nrow = 2) +
-  theme(legend.position = "right") +
   scale_color_gradientn(
     colors = c("blue3", "palegreen3", "yellow", "tomato", "firebrick")
-  )
+  ) +
+  labs(color = "Pseudotime")
 ```
 
+Split by banksy clusters
 
 ```{r}
+#| fig-width: 8
+#| fig-height: 4
 plot_cells(cds,
   color_cells_by = "pseudotime",
   label_groups_by_cluster = F,
   label_leaves = F,
   label_branch_points = F
 ) +
-  facet_wrap(~banksy_cluster, nrow = 4) +
-  theme(legend.position = "right") +
+  facet_wrap(~banksy_cluster, ncol = 4) +
   scale_color_gradientn(
     colors = c("blue3", "palegreen3", "yellow", "tomato", "firebrick")
-  )
+  ) +
+  labs(color = "Pseudotime")
 ```
 
 
-```{r}
-plot_cells(cds,
-  color_cells_by = c("banksy_cluster"),
-  label_cell_groups = FALSE,
-  label_groups_by_cluster = F,
-  label_leaves = F,
-  label_branch_points = F
-) +
-  theme(legend.position = "right") + 
-  scale_color_manual(values = distinct_palette)
-```
-
-
-```{r}
-cluster_colors <- c(
-  "Basal_Myoepithelial" = "mediumseagreen",
-  "Luminal.progenitor" = "navy",
-  "Luminal.mature" = "#bcbd22",
-  "Tumor" = "magenta"
-)
-```
-
-
-```{r}
-plot_cells(cds,
-  color_cells_by = c("cell_type"),
-  label_cell_groups = FALSE,
-  label_groups_by_cluster = F,
-  label_leaves = F,
-  label_branch_points = F
-) +
-  theme(legend.position = "right") + 
-  scale_color_manual(values = cluster_colors)
-```
 
 Add this back to our original object
 
@@ -1172,6 +1177,7 @@ object_epi <- AddMetaData(object_epi,
 )
 ```
 
+Deal with infinite pseudotime values
 
 ```{r}
 ## Plot
@@ -1193,19 +1199,13 @@ FeaturePlot(object_epi, features = "monocle3_pseudotime") +
   ) +
   ggtitle("Monocle Pseudotime") +
   theme(
-    legend.position = "right",
-    legend.key.size = unit(0.4, "cm"),
-    plot.title = element_text(size = 14, family = "Arial"),
-    legend.text = element_text(size = 10, family = "Arial"),
-    axis.text = element_text(size = 12, family = "Arial"),
-    legend.title = element_text(size = 10, family = "Arial"),
-    axis.title = element_text(size = 12, family = "Arial")
+    legend.key.size = unit(0.4, "cm")
   )
 ```
 
 ```{r}
 # Generate the SpatialDimPlot
-plots <- SpatialFeaturePlot(
+SpatialFeaturePlot(
   object_epi,
   features = "monocle3_pseudotime",
   pt.size.factor = pt_size_factor,
@@ -1218,9 +1218,7 @@ plots <- SpatialFeaturePlot(
     legend.position = "right",
     legend.key.size = unit(0.5, "cm")
   ) +
-  labs(color = "pseudotime") +
-  guides(color = guide_colorbar(barwidth = 0.5, barheight = 4))
-plots
+  labs(color = "pseudotime")
 ```
 
 ```{r}
@@ -1258,12 +1256,56 @@ final_plot <- wrap_plots(p2, p3, ncol = 2)
 final_plot
 ```
 
-To extract csv files of the cell types and clusters to add to Loupe Browser
+Let's see how pseudotime breaks down by these different variables. We use `fct_reorder()` from the `forcats` package to reprder our x-axis variables by the median pseudotime
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+library(forcats)
+
+object_epi@meta.data %>%
+  ggplot(aes(x = fct_reorder(cell_type, pseudotime, median), y = pseudotime)) +
+  geom_violin(aes(fill = cell_type), scale = "width", show.legend = F) +
+  geom_boxplot(width = 0.1) +
+  scale_fill_manual(values = epi_type_cols) +
+  labs(x = "Cell Type", y = "Pseudotime") +
+  guides(x = guide_axis(angle = 45)) +
+  theme_classic()
+```
+
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+object_epi@meta.data %>%
+  ggplot(aes(x = fct_reorder(banksy_cluster, pseudotime, median), y = pseudotime)) +
+  geom_violin(aes(fill = banksy_cluster), scale = "width", show.legend = F) +
+  geom_boxplot(width = 0.1) +
+  scale_fill_manual(values = distinct_palette) +
+  labs(x = "Banksy Cluster", y = "Pseudotime") +
+  theme_classic()
+```
+
+
+```{r}
+#| fig-width: 3
+#| fig-height: 3
+object_epi@meta.data %>%
+  ggplot(aes(x = fct_reorder(monocle3_cluster, pseudotime, median), y = pseudotime)) +
+  geom_violin(aes(fill = monocle3_cluster), scale = "width", show.legend = F) +
+  geom_boxplot(width = 0.1) +
+  scale_fill_manual(values = distinct_palette) +
+  labs(x = "Monocle3 Cluster", y = "Pseudotime") +
+  theme_classic()
+```
+
+
+Let's extract csv files of the cell types and clusters to add to Loupe Browser
 
 ```{r}
 #| eval: false
-outdir = "data/"
-sample_name = "Visium_DCIS"
+outdir <- "data/"
+sample_name <- "Visium_DCIS"
 
 metadata <- object@meta.data[, c("seurat_cluster.projected", "banksy_cluster", "cell_type")] %>%
   tibble::rownames_to_column(var = "CellID")
