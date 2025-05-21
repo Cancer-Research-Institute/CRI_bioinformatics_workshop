@@ -315,7 +315,7 @@ ElbowPlot(object, reduction = "pca.banksy")
 
 
 ::: callout-note
-Normally we use the above plot to determine the number of dimensions to use for downstream kNN and clustering. Here, because we've subset it looks like we should pick fewer than the first 15 PCs, but in practice...
+Normally we use the above plot to determine the number of dimensions to use for downstream kNN and clustering. Here, because we've subset it looks like we should pick fewer than the first 15 PCs, but we'll keep 15 since it won't make a difference in downstream analysis. 
 :::
 
 Similar to conventional scRNA analysis, we now run `FindNeighbors()`, `FindClusters()`, and then `RunUMAP()`
@@ -338,6 +338,7 @@ object <- RunUMAP(object,
   dims = 1:15
 )
 ```
+
 
 ```{r}
 #| fig-width: 10
