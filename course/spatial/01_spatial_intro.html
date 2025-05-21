@@ -893,7 +893,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Normally we use the above plot to determine the number of dimensions to use for downstream kNN and clustering. Here, because we’ve subset it looks like we should pick fewer than the first 15 PCs, but in practice…</p>
+<p>Normally we use the above plot to determine the number of dimensions to use for downstream kNN and clustering. Here, because we’ve subset it looks like we should pick fewer than the first 15 PCs, but we’ll keep 15 since it won’t make a difference in downstream analysis.</p>
 </div>
 </div>
 <p>Similar to conventional scRNA analysis, we now run <code><a href="https://satijalab.org/seurat/reference/FindNeighbors.html">FindNeighbors()</a></code>, <code><a href="https://satijalab.org/seurat/reference/FindClusters.html">FindClusters()</a></code>, and then <code><a href="https://satijalab.org/seurat/reference/RunUMAP.html">RunUMAP()</a></code></p>
@@ -916,7 +916,7 @@ Number of edges: 496475
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.9067
 Number of communities: 8
-Elapsed time: 1 seconds</code></pre>
+Elapsed time: 2 seconds</code></pre>
 </div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">object</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html">RunUMAP</a></span><span class="op">(</span><span class="va">object</span>,</span>
 <span>  reduction <span class="op">=</span> <span class="st">"pca.banksy"</span>,</span>
