@@ -8,7 +8,7 @@ format:
     toc-depth: 4
     other-links:
       - text: Lecture Slides
-        href: https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/blob/main/course/slides/
+        href: https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/blob/main/course/slides/CRI_Day_6_Spatial_Transcriptomics.pdf
 engine: knitr
 ---
 
