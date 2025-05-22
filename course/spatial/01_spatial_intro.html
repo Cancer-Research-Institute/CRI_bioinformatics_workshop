@@ -527,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data</a></li>
   <li>
 <a href="#hands-on-section" id="toc-hands-on-section" class="nav-link" data-scroll-target="#hands-on-section">Hands On Section</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#quality-filtering" id="toc-quality-filtering" class="nav-link" data-scroll-target="#quality-filtering">Quality filtering</a></li>
   <li>
 <a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a>
@@ -547,7 +547,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#advanced-analysis" id="toc-advanced-analysis" class="nav-link" data-scroll-target="#advanced-analysis">Advanced Analysis</a>
   <ul class="collapse">
-<li><a href="#pseudotime" id="toc-pseudotime" class="nav-link" data-scroll-target="#pseudotime">Pseudotime</a></li>
+<li>
+<a href="#pseudotime" id="toc-pseudotime" class="nav-link" data-scroll-target="#pseudotime">Pseudotime</a>
+  <ul class="collapse">
+<li><a href="#subset-for-epithelial-cells" id="toc-subset-for-epithelial-cells" class="nav-link" data-scroll-target="#subset-for-epithelial-cells">Subset for epithelial cells</a></li>
+  <li><a href="#monocle3-analysis" id="toc-monocle3-analysis" class="nav-link" data-scroll-target="#monocle3-analysis"><code>Monocle3</code> Analysis</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   </ul>
@@ -916,7 +922,7 @@ Number of edges: 496475
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.9067
 Number of communities: 8
-Elapsed time: 2 seconds</code></pre>
+Elapsed time: 1 seconds</code></pre>
 </div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">object</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html">RunUMAP</a></span><span class="op">(</span><span class="va">object</span>,</span>
 <span>  reduction <span class="op">=</span> <span class="st">"pca.banksy"</span>,</span>
@@ -1600,7 +1606,7 @@ Note
 <span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/SpatialPlot.html">SpatialDimPlot</a></span><span class="op">(</span></span>
 <span>    <span class="va">subsetobject</span>,</span>
 <span>    group.by <span class="op">=</span> <span class="st">"cell_type"</span>,</span>
-<span>    pt.size.factor <span class="op">=</span> <span class="va">pt_size_factor</span><span class="op">+</span><span class="fl">5</span>, <span class="co"># Slightly higher</span></span>
+<span>    pt.size.factor <span class="op">=</span> <span class="va">pt_size_factor</span> <span class="op">+</span> <span class="fl">5</span>, <span class="co"># Slightly higher</span></span>
 <span>    label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>    image.alpha <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>    alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
@@ -2195,7 +2201,7 @@ altExpNames(0):</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/Cancer-Research-Institute\.github\.io\/CRI_bioinformatics_workshop\/");
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.cancer\-\research\-\institute\.github\.io\/custom");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -1,1 +1,1 @@
-Sitemap: https://Cancer-Research-Institute.github.io/CRI_bioinformatics_workshop/sitemap.xml
+Sitemap: https://cancer-research-institute.github.io/sitemap.xml
