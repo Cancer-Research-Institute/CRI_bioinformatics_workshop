@@ -7,6 +7,7 @@ execute:
 website:
   title: "CRI Bioinformatics Workshop"
   page-navigation: true
+  site-url: "https://cancer-research-institute.github.io"
   navbar:
     logo: img/cri_logo.png
     tools:
@@ -107,3 +108,5 @@ format:
     toc: true
     link-external-icon: false
     link-external-newwindow: true
+    link-external-filter: '^(?:http:|https:)\/\/www\.cancer\-\research\-\institute\.github\.io\/custom'
+    

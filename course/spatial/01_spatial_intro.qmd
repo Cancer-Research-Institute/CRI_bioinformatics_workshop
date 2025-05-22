@@ -5,7 +5,7 @@ execute:
 format:
   html:
     code-link: true
-    toc-depth: 3
+    toc-depth: 4
     other-links:
       - text: Lecture Slides
         href: https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/blob/main/course/slides/
@@ -858,7 +858,7 @@ celltype_plots <- lapply(X = celltypes_to_plot, FUN = function(ct) {
   p <- SpatialDimPlot(
     subsetobject,
     group.by = "cell_type",
-    pt.size.factor = pt_size_factor+5, # Slightly higher
+    pt.size.factor = pt_size_factor + 5, # Slightly higher
     label = FALSE,
     image.alpha = 0.2,
     alpha = c(1, 0.2),
@@ -1159,8 +1159,6 @@ plot_cells(cds,
   ) +
   labs(color = "Pseudotime")
 ```
-
-
 
 Add this back to our original object
 
