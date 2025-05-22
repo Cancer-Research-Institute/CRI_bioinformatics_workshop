@@ -1060,10 +1060,10 @@ Active assay: sketch (18085 features, 2000 variable features)
 <pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
 Number of nodes: 10000
-Number of edges: 285790
+Number of edges: 285667
 
 Running Louvain algorithm...
-Maximum modularity in 10 random starts: 0.8125
+Maximum modularity in 10 random starts: 0.8110
 Number of communities: 8
 Elapsed time: 1 seconds</code></pre>
 </div>
@@ -1263,7 +1263,7 @@ Note
 </div>
 <p>We can also plot using Seurat’s <code><a href="https://satijalab.org/seurat/reference/DotPlot.html">DotPlot()</a></code></p>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Seurat's DotPlot function doesn't like duplicated genes across</span></span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Seurat's DotPlot function doesn't like duplicated genes across groups</span></span>
 <span><span class="va">top_n_genes</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="co"># Select how many top genes to plot</span></span>
 <span><span class="va">top_unique</span> <span class="op">&lt;-</span> <span class="va">banksy_markers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1964,7 +1964,7 @@ altExpNames(0):</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">object_epi</span><span class="op">$</span><span class="va">monocle3_pseudotime</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.000   6.972  11.911  15.576  25.462  35.580 </code></pre>
+   0.00    9.50   23.99   20.91   31.20   37.85 </code></pre>
 </div>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">max_finite</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">object_epi</span><span class="op">$</span><span class="va">monocle3_pseudotime</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.finite</a></span><span class="op">(</span><span class="va">object_epi</span><span class="op">$</span><span class="va">monocle3_pseudotime</span><span class="op">)</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
