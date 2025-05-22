@@ -620,7 +620,7 @@ We can also plot using Seurat's `DotPlot()`
 ```{r}
 #| fig-width: 10
 #| fig-height: 4.5
-# Seurat's DotPlot function doesn't like duplicated genes across
+# Seurat's DotPlot function doesn't like duplicated genes across groups
 top_n_genes <- 5 # Select how many top genes to plot
 top_unique <- banksy_markers %>%
   group_by(cluster) %>%
