@@ -905,7 +905,15 @@ Subset the data to the cell types of interest
 
 ```{r}
 # Subset for epithelial cells only
-object_epi <- subset(object, idents = c("Luminal.progenitor", "Luminal.mature", "Tumor", "Basal_Myoepithelial"))
+object_epi <- subset(
+  object,
+  idents = c(
+    "Luminal.progenitor",
+    "Luminal.mature",
+    "Tumor",
+    "Basal_Myoepithelial"
+  )
+)
 
 DefaultAssay(object_epi) <- "Spatial.008um"
 ```
