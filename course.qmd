@@ -2,7 +2,7 @@
 title: "Course overview"
 ---
 
-# R Workshop (Day 1, Sat. - Day 2, Sun.)
+# R Workshop (1.5 Days, Saturday-Sunday)
 
 1.  [Introduction to R](course/1_introR.qmd)
 
@@ -14,7 +14,7 @@ title: "Course overview"
 
     [**Lecture Slides Available Here**](https://github.com/Cancer-Research-Institute/CRI_bioinformatics_workshop/tree/main/course/slides)
 
-# Bulk RNA sequence analysis (Day 3, Mon.)
+# Bulk RNA sequence analysis (1.5 Days, Sunday-Monday)
 
 -   [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day3-IntroToRNA%2BDNA.pdf)
 
@@ -32,7 +32,7 @@ title: "Course overview"
 
 7.  [Batch Correction - brief introduction](https://rnabio.org/module-03-expression/0003/06/02/Batch-Correction/) (Lead: Malachi)
 
-# Single cell RNA sequencing (Day 4, Tue. - Day 5, Wed.)
+# Single cell RNA sequencing (1.5 Days, Tuesday-Wednesday)
 
 -   [Introduction to scRNA sequencing technology lecture slides (Obi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day4-IntroToSCRNA.pdf)
 -   [Introduction to scRNA sequencing analysis lecture slides (Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2025/Day5-AdvancedSCRNA.pdf)
@@ -53,7 +53,7 @@ title: "Course overview"
 
 8.  [TCR/BCR Repertoire Analysis](https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/) (Lead: Obi)
 
-# Spatial Transcriptomics (Day 6 - Thurs.)
+# Spatial Transcriptomics (1.5 Days, Wednesday-Thursday)
 
 1.  [Spatial Transcriptomics](course/spatial/01_spatial_intro.qmd)
 
