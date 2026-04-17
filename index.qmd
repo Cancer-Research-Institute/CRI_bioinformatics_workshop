@@ -4,13 +4,11 @@ title: "CRI Bioinformatics Workshop 2025"
 
 Welcome to the 2025 Cancer Research Institute Bioinformatics Bootcamp!
 
-## Dates: May 17-22, 2025
+## Dates: May 16-21, 2026
 
-## Location: Wyndham Grand Orlando Resort Bonnet Creek, Orlando Florida
+## Location: Signia by Hilton La Cantera Resort & Spa, San Antonio, Texas
 
-Bonnet Creek Boardroom A/B
-
-![](img/WyndhamLocation.png){width=8in fig-align="center"}
+![](img/LaCantera.jpeg){width=8in fig-align="center"}
 
 ## Course Resources
 
