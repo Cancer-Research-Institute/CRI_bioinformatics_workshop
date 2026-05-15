@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cancer-research-institute.github.io/authors.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/4_qctrouble.html</loc>
-    <lastmod>2026-05-15T18:55:32.045Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/test_newfile.html</loc>
-    <lastmod>2026-05-15T18:55:32.316Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/spatial/01_spatial_intro.html</loc>
-    <lastmod>2026-05-15T18:55:32.260Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/1_introR.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/3_clustering.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/spatial_demo.html</loc>
-    <lastmod>2026-05-15T18:55:32.042Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/python_tutorial.html</loc>
-    <lastmod>2026-05-15T18:55:32.042Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/resources.html</loc>
-    <lastmod>2026-05-15T18:55:32.337Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/index.html</loc>
-    <lastmod>2026-05-15T18:55:32.334Z</lastmod>
-  </url>
-  <url>
     <loc>https://cancer-research-institute.github.io/schedule.html</loc>
-    <lastmod>2026-05-15T18:55:32.337Z</lastmod>
+    <lastmod>2026-04-17T04:18:07.030Z</lastmod>
   </url>
   <url>
     <loc>https://cancer-research-institute.github.io/course.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
+    <lastmod>2026-05-15T18:53:18.538Z</lastmod>
   </url>
   <url>
-    <loc>https://cancer-research-institute.github.io/course_2024.html</loc>
-    <lastmod>2026-05-15T18:55:32.318Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/python_tutorial.html</loc>
-    <lastmod>2026-05-15T18:55:32.145Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/2_basicplotting.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/test_newfile.html</loc>
-    <lastmod>2026-05-15T18:55:32.043Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cancer-research-institute.github.io/course/2024/4_qctrouble.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
+    <loc>https://cancer-research-institute.github.io/index.html</loc>
+    <lastmod>2026-04-17T04:31:13.354Z</lastmod>
   </url>
   <url>
     <loc>https://cancer-research-institute.github.io/course/2_basicplotting.html</loc>
-    <lastmod>2026-05-15T18:55:32.045Z</lastmod>
+    <lastmod>2026-04-17T03:36:20.248Z</lastmod>
   </url>
   <url>
-    <loc>https://cancer-research-institute.github.io/course/spatial_demo.html</loc>
-    <lastmod>2026-05-15T18:55:32.316Z</lastmod>
+    <loc>https://cancer-research-institute.github.io/course/test_newfile.html</loc>
+    <lastmod>2025-04-17T17:53:03.107Z</lastmod>
   </url>
   <url>
     <loc>https://cancer-research-institute.github.io/course/3_clustering.html</loc>
-    <lastmod>2026-05-15T18:55:32.045Z</lastmod>
+    <lastmod>2026-04-17T03:36:20.248Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/4_qctrouble.html</loc>
+    <lastmod>2026-04-17T03:36:20.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/2_basicplotting.html</loc>
+    <lastmod>2026-04-17T03:36:20.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/test_newfile.html</loc>
+    <lastmod>2026-04-17T03:36:20.245Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/spatial_demo.html</loc>
+    <lastmod>2026-04-17T03:36:20.244Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/1_introR.html</loc>
+    <lastmod>2026-04-17T03:36:20.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/4_qctrouble.html</loc>
+    <lastmod>2026-04-17T03:36:20.109Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/3_clustering.html</loc>
+    <lastmod>2026-04-17T03:36:20.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/2024/python_tutorial.html</loc>
+    <lastmod>2026-04-17T03:36:20.243Z</lastmod>
   </url>
   <url>
     <loc>https://cancer-research-institute.github.io/course/1_introR.html</loc>
-    <lastmod>2026-05-15T18:55:31.944Z</lastmod>
+    <lastmod>2026-04-17T03:36:20.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/spatial_demo.html</loc>
+    <lastmod>2025-04-17T17:53:03.104Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/spatial/01_spatial_intro.html</loc>
+    <lastmod>2026-04-17T03:36:20.347Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course/python_tutorial.html</loc>
+    <lastmod>2025-04-17T17:53:03.102Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/course_2024.html</loc>
+    <lastmod>2026-04-17T03:36:20.402Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/authors.html</loc>
+    <lastmod>2026-05-11T19:42:03.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cancer-research-institute.github.io/resources.html</loc>
+    <lastmod>2026-04-17T03:36:20.422Z</lastmod>
   </url>
 </urlset>
