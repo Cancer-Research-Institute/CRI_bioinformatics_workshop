@@ -43,11 +43,11 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 16, 2026 through 
 |          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
 |          | 1:30PM-2:30PM   | 1:00     | Advanced single cell       | Hands-on: Differential expression analysis                                   |
 |          | 2:30PM-3:30PM   | 1:00     |                            | Hands-on: Gene set and regulatory pathway                                    |
-|          | 3:30PM-5:00PM   | 1:30     |                            | Open Lab: Single cell AI integration                                         |
+|          | 3:30PM-5:00PM   | 1:30     |                            | Cancer cell identification                                          |
 |          | 5:30PM-7:00PM   | 1:30     |                            | Office Hours                                                                 |
 |          | 7:00PM          |          |                            | Dinner, On your own                                                          |
-| 5 (Wed)  | 9:00AM-10:30AM  | 1:30     | Advanced single cell       | Cancer cell identification                                                   |
-|          | 10:30AM-12:00PM | 1:30     |                            | Trajectory analysis                                                          |
+| 5 (Wed)  | 9:00AM-10:30AM  | 1:30     | Advanced single cell       | Trajectory analysis                                                   |
+|          | 10:30AM-12:00PM | 1:30     |                            | Differential Expression AI Integration: Demo and practical exercise                                                          |
 |          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
 |          | 1:30PM-2:45PM   | 1:15     | Spatial transcriptomics    | Introduction to Xenium: experimental planning, panels, and best practices    |
 |          | 2:45PM-3:00PM   | 0:15     |                            | Break                                                                        |
