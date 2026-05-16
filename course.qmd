@@ -28,9 +28,10 @@ title: "Course overview"
 
 5.  [Differential Expression Visualization (Advanced R)](https://rnabio.org/module-03-expression/0003/04/03/DE_Visualization_AdvancedR/) (Lead: Obi)
 
-6.  [Pathway Analysis](https://rnabio.org/module-03-expression/0003/05/01/DE_Pathway_Analysis/) (Lead: Obi)
+6. [DESeq2 AI Integration: Demo and practical exercise](https://rnabio.org/module-03-expression/0003/03/03/Differential_Expression-AI/) (Lead: Malachi)
 
-7.  [Batch Correction - brief introduction](https://rnabio.org/module-03-expression/0003/06/02/Batch-Correction/) (Lead: Malachi)
+7.  [Pathway Analysis](https://rnabio.org/module-03-expression/0003/05/01/DE_Pathway_Analysis/) (Lead: Obi)
+
 
 # Single cell RNA sequencing (1.5 Days, Tuesday-Wednesday)
 
@@ -50,7 +51,7 @@ title: "Course overview"
 
 7.  [Trajectory Analysis](https://rnabio.org/module-08-scrna/0008/07/01/Differentiation_trajectory/) (Lead: Evelyn)
 
-8.  [TCR/BCR Repertoire Analysis](https://rnabio.org/module-08-scrna/0008/08/01/TCR_BCR_analysis/) (Lead: Obi)
+8.  [Differential Expression AI Integration](https://rnabio.org/module-08-scrna/0008/09/01/DE_AI_exercise/) (Lead: Evelyn/Kartik)
 
 # Spatial Transcriptomics (1.5 Days, Wednesday-Thursday)
 
