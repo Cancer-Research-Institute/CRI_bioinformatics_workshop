@@ -51,7 +51,7 @@ title: "Course overview"
 
 7.  [Trajectory Analysis](https://rnabio.org/module-08-scrna/0008/07/01/Differentiation_trajectory/) (Lead: Evelyn)
 
-8.  [Differential Expression AI Integration](https://rnabio.org/module-08-scrna/0008/09/01/DE_AI_exercise/) (Lead: Evelyn/Kartik)
+8.  [Differential Expression AI Integration: Demo and practical exercise](https://rnabio.org/module-08-scrna/0008/09/01/DE_AI_exercise/) (Lead: Evelyn/Kartik)
 
 # Spatial Transcriptomics (1.5 Days, Wednesday-Thursday)
 
