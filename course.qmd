@@ -16,6 +16,8 @@ title: "Course overview"
 
 # Bulk RNA sequence analysis (1.5 Days, Sunday-Monday)
 
+-   [AI as a Research Assistant (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2026/Day2-AI-Research-Assistant.pdf)
+
 -   [Introduction to DNA and RNA sequencing lecture slides (Obi Griffith and Malachi Griffith)](https://github.com/griffithlab/rnabio.org/blob/master/assets/lectures/cri/2026/Day2-IntroToRNA-DNA.pdf)
 
 1.  [Introduction to rnabio.org](https://rnabio.org/) and [bulk RNAseq dataset](https://rnabio.org/module-01-inputs/0001/05/01/RNAseq_Data/) (Lead: Obi/Malachi)
