@@ -15,7 +15,6 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 16, 2026 through 
 |          | 2:15PM-3:15PM   | 1:00     |                            | Hands-on: Plotting information from data structures for real-time analysis   |
 |          | 3:15PM-3:30PM   | 0:15     |                            | Break       								                                    |
 |          | 3:30PM-5:00PM   | 1:30     |                            | Hands-on (cont'd): Plotting                                                  |
-|          | 5:30PM-6:30PM   | 1:00     |                            | Office Hours                                                                 |
 |          | 7:00PM          |          |                            | Welcome Dinner, Onsite                                                       |
 | 2 (Sun)  | 9:00AM-9:30AM   | 0:30     | R Workshop                 | Types of analysis: Clustering concepts and correlation                       |
 |          | 9:30AM-12:00PM  | 2:30     |                            | Hands-on: Dimension reduction methods, computing correlation                 |
@@ -26,7 +25,6 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 16, 2026 through 
 |          | 3:00PM-3:15PM   | 0:15     |                            | Break                                                                        |
 |          | 3:15PM-4:00PM   | 0:45     |                            | Hands-on: Exploring RNAseq data in IGV                                       |
 |          | 4:00PM-5:00PM   | 1:00     |                            | Hands-on: DE analysis with DESeq2                                            |
-|          | 5:00PM-6:00PM   | 1:00     |                            | Office Hours                                                                 |
 |          | 7:00PM-9:00PM   |          |                            | Dinner, Texas River Walk Bar                                                 |
 | 3 (Mon)  | 9:00AM-9:45AM   | 0:45     | Bulk RNA sequencing        | Hands-on: DE analysis with DESeq2                                            |
 |          | 9:45AM-10:45AM  | 1:00     |                            | Hands-on: Advanced DE visualization                                          |
@@ -36,24 +34,21 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 16, 2026 through 
 |          | 3:00PM-3:30PM   | 0:30     |                            | Q&A for Bulk RNA sequencing                                                  |
 |          | 3:30PM-4:30PM   | 1:00     | Single cell RNA sequencing | Introduction to scRNAseq methods and analysis                                |
 |          | 4:30PM-5:00PM   | 0:30     |                            | Introduction to scRNAseq dataset and loupe demonstration                     |
-|          | 5:30PM-7:00PM   | 1:30     |                            | Office Hours                                                                 |
 |          | 7:00PM          |          |                            | Dinner, On your own                                                          |
 | 4 (Tue)  | 9:00AM-10:30AM  | 1:30     | Single cell RNA sequencing | Hands-on: Quality assesment and clustering                                   |
 |          | 10:30AM-12:00PM | 1:30     |                            | Hands-on: Cell typing                                                        |
 |          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
 |          | 1:30PM-2:30PM   | 1:00     | Advanced single cell       | Hands-on: Differential expression analysis                                   |
 |          | 2:30PM-3:30PM   | 1:00     |                            | Hands-on: Gene set and regulatory pathway                                    |
-|          | 3:30PM-5:00PM   | 1:30     |                            | Cancer cell identification                                          |
-|          | 5:30PM-7:00PM   | 1:30     |                            | Office Hours                                                                 |
+|          | 3:30PM-5:00PM   | 1:30     |                            | Cancer cell identification                                                   |
 |          | 7:00PM          |          |                            | Dinner, On your own                                                          |
-| 5 (Wed)  | 9:00AM-10:30AM  | 1:30     | Advanced single cell       | Trajectory analysis                                                   |
-|          | 10:30AM-12:00PM | 1:30     |                            | Differential Expression AI Integration: Demo and practical exercise                                                          |
+| 5 (Wed)  | 9:00AM-10:30AM  | 1:30     | Advanced single cell       | Trajectory analysis                                                          |
+|          | 10:30AM-12:00PM | 1:30     |                            | Differential Expression AI Integration: Demo and practical exercise          |
 |          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
 |          | 1:30PM-2:45PM   | 1:15     | Spatial transcriptomics    | Introduction to Xenium: experimental planning, panels, and best practices    |
 |          | 2:45PM-3:00PM   | 0:15     |                            | Break                                                                        |
 |          | 3:00PM-4:00PM   | 1:00     |                            | Xenium cell segmentation, panel design, mounting a shared drive              |
 |          | 4:00PM-5:00PM   | 1:00     |                            | Hands-on: Xenium Explorer                                                    |
-|          | 5:00PM-6:00PM   | 1:00     |                            | Office Hours                                                                 |
 |          | 7:00PM-9:00PM   |          |                            | Dinner, Pinstack                                                             |
 | 6 (Thu)  | 9:00AM-10:15AM  | 1:15     | Spatial transcriptomics    | Introduction to Visium HD: experimental planning, data pre-processing        |
 |          | 10:15AM-11:30PM | 1:15     |                            | Seurat objects, motifs and neighborhood clustering (Banksy, Grafiti)         |
