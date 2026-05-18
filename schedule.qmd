@@ -26,7 +26,7 @@ The  CRI Bioinformatics Bootcamp will take place Saturday, May 16, 2026 through 
 |          | 3:15PM-4:00PM   | 0:45     |                            | Hands-on: Exploring RNAseq data in IGV                                       |
 |          | 4:00PM-5:00PM   | 1:00     |                            | Hands-on: DE analysis with DESeq2                                            |
 |          | 7:00PM-9:00PM   |          |                            | Dinner, Texas River Walk Bar                                                 |
-| 3 (Mon)  | 9:00AM-9:45AM   | 0:45     | Bulk RNA sequencing        | Hands-on: DE analysis with DESeq2                                            |
+| 3 (Mon)  | 9:00AM-9:45AM   | 0:45     | Bulk RNA sequencing        | Hands-on: DE visualization with DESeq2                                       |
 |          | 9:45AM-10:45AM  | 1:00     |                            | Hands-on: Advanced DE visualization                                          |
 |          | 10:45AM-12:00PM | 1:15     |                            | DESeq2 AI Integration: Demo and practical exercise                           |
 |          | 12:00PM-1:30PM  | 1:30     | Office Hours               | Lunch                                                                        |
