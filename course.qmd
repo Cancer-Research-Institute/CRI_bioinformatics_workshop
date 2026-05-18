@@ -43,7 +43,7 @@ title: "Course overview"
 
 2.  [QA/QC and Clustering](https://rnabio.org/module-08-scrna/0008/02/01/QA_clustering/) (Lead: Evelyn)
 
-3.  [Cell Type Annotation](https://rnabio.org/module-08-scrna/0008/03/01/Cell_annotation/) (Lead: Kelsy)
+3.  [Cell Type Annotation](https://rnabio.org/module-08-scrna/0008/03/01/Cell_annotation/) (Lead: Evelyn)
 
 4.  [Differential Expression](https://rnabio.org/module-08-scrna/0008/04/01/DE_analysis/) (Lead: Kartik)
 
